@@ -1,0 +1,58 @@
+    	<div class="container">
+        	<div class="tit">装修效果图<span><a href="{:U('Photo/index')}">more</a></span></div>
+        	<div class="section">
+                <ul class="clearfix">
+                    <li class="mokuai_1">
+                        <volist name="photoList" id="info" offset="0" length='1'>
+                       <div class="photo">
+                           <a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<else />{$info.main_image}</if>"></a>
+                        </div>
+                        <div class="text">
+                            <a href="{$info.url}"><h3><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></h3></a>
+                        </div>
+                        </volist>                        
+ 
+                    </li>
+                    <li class="mokuai_2">
+                        <volist name="photoList" id="info" offset="1" length='1'>
+                       <div class="photo">
+                           <a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<else />{$info.main_image}</if>"></a>
+                        </div>
+                        <div class="text_2">
+                            <a href="{$info.url}"><h3><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></h3></a>
+                        </div>
+                        </volist>
+                    </li>
+                    <li class="mokuai_3">
+                        <volist name="photoList" id="info" offset="2" length='1'>
+                       <div class="photo">
+                           <a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<else />{$info.main_image}</if>"></a>
+                        </div>
+                        <div class="text">
+                            <a href="{$info.url}"><h3><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></h3></a>
+                        </div>
+                        </volist>                          
+                    </li>
+                    <li class="mokuai_4">
+                        <volist name="photoList" id="info" offset="3" length='1'>
+                       <div class="photo">
+                           <a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<else />{$info.main_image}</if>"></a>
+                        </div>
+                        <div class="text_2">
+                            <a href="{$info.url}"><h3><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></h3></a>
+                        </div>
+                        </volist>                               
+                    </li>
+                    <li class="mokuai_4">
+                        <volist name="photoList" id="info" offset="4" length='1'>
+                       <div class="photo">
+                           <a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<else />{$info.main_image}</if>"></a>
+                        </div>
+                        <div class="text_2">
+                            <a href="{$info.url}"><h3><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></h3></a>
+                        </div>
+                        </volist>  
+                    </li>
+                </ul>
+            </div>
+        </div>

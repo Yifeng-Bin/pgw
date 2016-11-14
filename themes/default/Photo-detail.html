@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160923001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Photo/index')}">派工学堂</a>
+            </div>
+        </div>
+    </div>
+	<div class="sub">
+    	<div class="container">
+       		<div class="row">
+            	<div class="col-lg-9 col-md-9 col-sm-9">
+                	<div id="play">
+                      <ul class="img_ul">
+                          <foreach name="articleInfo.gallery" item="info">
+                              <if condition="$key eq 0">
+                                <li style="display:block;"><a class="img_a"><img src="{$info.url}"></a></li>  
+                              <else />
+                                <li><span></span><img src="{$info.url}"></a></li>
+                              </if>
+                          </foreach>
+                      </ul>  
+                      <a href="javascript:void(0)" class="prev_a change_a" title="上一张"> <span></span></a>
+                      <a href="javascript:void(0)" class="next_a change_a" title="下一张"> <span style="display: inline; "></span> </a>
+                    </div>
+                    <div class="img_hd">
+                      <ul class=" clearfix">
+                          <foreach name="articleInfo.gallery" item="info">
+                            <li><a class="img_a"><img src="{$info.thumb_url}" onload="imgs_load(this)"></a></li>
+                          </foreach>                          
+                      </ul>
+                      <a class="bottom_a prev_a" style="opacity: 0.7; "></a> <a class="bottom_a next_a" style="opacity: 0.7; "></a>
+                    </div>
+                </div>
+                	
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div class="photo_box">
+                    	<div class="photo_border">
+                        	<h4>{$articleInfo['article_name']|htmlspecialchars}</h4>
+                            <small>{$articleInfo['add_time']}</small>
+                            <p><a id="add_follow_content" href="javascript:void(0)" data-id="{$articleInfo['article_id']}" class="guanzhu">关注</a> 浏览量（{$articleInfo.visit_time}）</p>
+                        </div>
+                        <div class="photo_border">
+                            <p>标签</p>
+                            <b>{$articleInfo.article_keywords|htmlspecialchars}</b>
+                        </div>
+                        {:W('Photo/newPhoto')}
+                        {:W('Photo/hotPhoto')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+ <script>
+	var i=0; //图片标识
+var img_num=$(".img_ul").children("li").length; //图片个数
+$(".img_ul li").hide(); //初始化图片	
+play();
+$(function(){
+	 $(".img_hd ul").css("width",($(".img_hd ul li").outerWidth(true))*img_num); //设置ul的长度
+	 
+	 $(".bottom_a").css("opacity",0.7);	//初始化底部a透明度
+	 //$("#play").css("height",$("#play .img_ul").height());
+	 if (!window.XMLHttpRequest) {//对ie6设置a的位置
+	 $(".change_a").css("height",$(".change_a").parent().height());}
+	 $(".change_a").focus( function() { this.blur(); } );
+	 $(".bottom_a").hover(function(){
+		 $(this).css("opacity",1);	
+		 },function(){
+		$(this).css("opacity",0.7);	 
+			 });
+	 $(".change_a").hover(function(){
+		 $(this).children("span").show();
+		 },function(){
+		 $(this).children("span").hide();
+			 });
+	 $(".img_hd ul li").click(function(){
+		 i=$(this).index();
+		 play();
+		 });
+	 $(".prev_a").click(function(){
+		 //i+=img_num;
+		 i--;
+		 //i=i%img_num;
+		 i=(i<0?0:i);
+		 play();
+		 }); 
+	 $(".next_a").click(function(){
+		 i++;
+		 //i=i%img_num;
+		 i=(i>(img_num-1)?(img_num-1):i);
+		 play();
+		 }); 
+	 }); 
+function play(){ 
+	var img=new Image(); //图片预加载
+	img.onload=function(){img_load(img,$(".img_ul").children("li").eq(i).find("img"))};
+	img.src=$(".img_ul").children("li").eq(i).find("img").attr("src");
+	//$(".img_ul").children("li").eq(i).find("img").(img_load($(".img_ul").children("li").eq(i).find("img")));
+	
+	$(".img_hd ul").children("li").eq(i).addClass("on").siblings().removeClass("on");
+	if(img_num>7){ //大于7个的时候进行移动
+		if(i<img_num-3){ //前3个
+		$(".img_hd ul").animate({"marginLeft":(-($(".img_hd ul li").outerWidth()+4)*(i-3<0?0:(i-3)))});
+		}
+		else if(i>=img_num-3){ //后3个
+			$(".img_hd ul").animate({"marginLeft":(-($(".img_hd ul li").outerWidth()+4)*(img_num-7))});
+			}
+	}
+	if (!window.XMLHttpRequest) { //对ie6设置a的位置
+	$(".change_a").css("height",$(".change_a").parent().height());}
+	}
+function img_load(img_id,now_imgid){ //大图片加载设置 （img_id 新建的img,now_imgid当前图片）
+    
+    if(img_id.width/img_id.height>1)
+	{
+		if(img_id.width >=$("#play").width()) $(now_imgid).width($("#play").width());
+		}
+/*	else {
+		if(img_id.height>=500) $(now_imgid).height(500);
+		}*/
+		$(".img_ul").children("li").eq(i).show().siblings("li").hide(); //大小确定后进行显示
+	}
+function imgs_load(img_id){ //小图片加载设置
+	if(img_id.width >=$(".img_hd ul li").width()){img_id.width = 80};
+	//if(img_id.height>=$(".img_hd ul li").height()) {img_id.height=$(".img_hd ul li").height();}
+	}
+        $("#add_follow_content").click(function(){
+            var data = {};
+            data.act = 'add';
+            data.id = $(this).attr('data-id');
+            var that = $(this);
+            $.post("{:U('Article/follow')}",data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    that.html("已关注");
+                    that.unbind("click"); 
+                }
+            },'json');            
+        });         
+	</script>
+  </body>
+</html>

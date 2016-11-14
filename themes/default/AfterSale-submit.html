@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit"><if condition="$type eq 1">申请退款<else />提交工单</if></div>
+            <div id="quality">
+            	<h5>订单编号：<span>{$tenderInfo.tender_id}</span></h5>
+                <div id="user_table">
+                    <table class="table">
+                        <tr>
+                            <th>时间</th>
+                            <th>项目名称</th>
+                            <th>需求类型</th>
+                            <th>金额</th>
+                            <th>状态</th>
+                        </tr>
+                        <tr>
+                            <td>{$tenderInfo.add_time}</td>
+                            <td>{$tenderInfo.tender_name|htmlspecialchars}</td>
+                            <td>{$tenderInfo.type_name|htmlspecialchars}</td>
+                            <td><span>{$tenderInfo.order_price}</span></td>
+                            <td>{$tenderInfo.status_desc}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="quality_remarks">
+                	<span>!</span>
+                	<p>如果您有维修诉求建议先和工人师傅协商：<if condition="empty($tenderInfo['bid_real_name'])">{$tenderInfo['bid_user_name']|htmlspecialchars}<else />{$tenderInfo['bid_real_name']|htmlspecialchars}</if>，电话{$tenderInfo['bid_mobile']|htmlspecialchars}</p>
+                    <p>如需帮助您可拨打派工网客服电话进行咨询。</p>
+                </div>
+                <div class="quality_form">
+                <form action="{:U('AfterSale/submit')}" method="post">
+                    <textarea name="content" class="form-control" rows="3" placeholder="说明" required></textarea>
+                    <if condition="$type eq 1">
+                    <input type="text"  style="margin-top:10px;" name="refund_money" class="form-control" placeholder="退款金额，不得超过项目金额">
+                    <span>最多申请{$tenderInfo.order_price}元</span>
+                    </if>
+                    <p class="inputfile" id="container">
+                        <a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a>
+                        <div id="upload_progress" class="progress" style="display:none">
+                          <div id="upload_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                        </div>                           
+                        <small>上传文件描述更精准！(最多提交3张)</small>
+                        <div id="img_list">
+
+                        </div>
+                    </p>
+                    <p>
+                        <input name="id" value="{$tenderInfo['tender_id']}" type="hidden" />
+                        <input name="type" value="{$type}" type="hidden" />
+                        <button type="submit" class="pub_btn">提 交 申 请</button>
+                    </p>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  	
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script type="text/javascript">
+    $(function (){
+        var uploader = new plupload.Uploader({
+            
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'selectfiles', 
+                url : '{:U('AfterSale/submit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        $("#upload_progress").hide();
+                        $("#upload_progress_bar").attr('aria-valuenow',0);
+                        $("#upload_progress_bar").attr('style','width:0%');
+                        $("#upload_progress_bar").html("0%");                         
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.url+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadProgress: function(up,file){
+                        $("#upload_progress").show();
+                        $("#upload_progress_bar").attr('aria-valuenow',file.percent);
+                        $("#upload_progress_bar").attr('style','width:'+file.percent+'%');
+                        $("#upload_progress_bar").html('' + file.percent + "%");
+                        //$(file.id).getElementsByTagName('b')[0].innerHTML = '' + file.percent + "%";
+                    //layer.closeAll('loading');//关闭加载效果
+                    },                    
+                    
+                    UploadComplete: function(up,files){
+                        //所有文件上传完成                     
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+    });
+
+    </script>    
+  </body>
+</html>

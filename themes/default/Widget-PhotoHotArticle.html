@@ -1,0 +1,8 @@
+<div class="photo_border">
+    <p>大家都在看</p>
+    <ol>
+        <foreach name="photoList" item="info">
+            <li><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></li>
+        </foreach>
+    </ol>
+</div>

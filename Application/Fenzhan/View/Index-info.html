@@ -1,0 +1,28 @@
+<extend name="Public/base" />
+<block name="main">
+    
+    <div class="table-responsive">
+      <h3>用户信息信息</h1>
+      <table class="table table-bordered">
+          <tbody>
+              <tr>
+                  <td>总用户数</td><td>{$userTotal.total_num}人</td>
+                  <td>业主数量</td><td>{$userTotal.owner_num}人</td>
+                  <td>工人数量</td><td>{$userTotal.worker_num}人</td>
+              </tr>
+              <tr>
+                  <td>已实名工人数量</td><td>{$userTotal.is_verified_num}人</td>
+                  <td>待实名工人数量</td><td>{$userTotal.wait_verified_num}人，    <a href="{:U('Users/index',array('filter_user_type' => 1,'filter_is_verified'=>2))}">查看待验证工人</a></td>
+                  <td>未验证</td><td>{$userTotal.no_verified_num}人</td>
+              </tr>              
+          </tbody>
+      </table>
+    </div>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+
+</block>

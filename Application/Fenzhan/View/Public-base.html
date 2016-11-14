@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="{$baseurl}" />
+        <title>后台管理系统</title>
+    <block name="css-link">
+        <link href="__STATICS__/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet">
+        <link href="__STATICS__/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="__STATICS__/css/dashboard.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="__STATICS__/js/html5shiv.min.js"></script>
+          <script src="__STATICS__/js/respond.min.js"></script>
+        <![endif]-->    
+    </block>
+    <block name="css-style"></block>
+</head>
+<body style="background-color: #fff">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <block name="main"></block>
+        </div> 
+    </div>
+</div>
+<block name="js-src">
+    <script src="__STATICS__/js/jquery-2.1.4.min.js"></script>
+    <script src="__STATICS__/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+</block>
+<block name="js-input"></block>
+</body>
+</html>

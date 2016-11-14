@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+        <!-- Bootstrap -->
+        <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+    </head>
+    <body>
+    <include file="User:header" />
+    <div class="container">
+        <!--左侧文件加载处-->
+        <include file="User:left" />
+        <!--左侧文件加载处-->
+        <div class="sub_content">
+            <div class="user_sub_tit">我的金币</div>
+            <div id="user_mid">
+                <div class="user_nav">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation"<if condition="$type eq 'all'"> class="active"</if>><a <if condition="$type eq 'all'"> href="#gold" aria-controls="gold" role="tab" data-toggle="tab"<else />href="{:U('User/gold?type=all')}"</if>>金币日志</a></li>
+                        <li role="presentation"<if condition="$type eq 'in'"> class="active"</if>><a <if condition="$type eq 'in'"> href="#gold" aria-controls="gold" role="tab" data-toggle="tab"<else />href="{:U('User/gold?type=in')}"</if>>收入记录</a></li>
+                        <li role="presentation"<if condition="$type eq 'out'"> class="active"</if>><a <if condition="$type eq 'out'"> href="#gold" aria-controls="gold" role="tab" data-toggle="tab"<else />href="{:U('User/gold?type=out')}"</if>>支出记录</a></li>
+                        <li role="presentation"<if condition="$type eq 'pay_log'"> class="active"</if>><a <if condition="$type eq 'pay_log'"> href="#gold" aria-controls="gold" role="tab" data-toggle="tab"<else />href="{:U('User/gold?type=pay_log')}"</if>>购买记录</a></li>
+                        <li role="presentation"><a href="#goldRule" aria-controls="goldRule" role="tab" data-toggle="tab">金币规则</a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="gold">
+                            <div id="user_table">
+                                <if condition="$type eq 'pay_log'">
+                                    <table class="table">
+                                        <tr>
+                                            <th>日期</th>
+                                            <th>支付类型</th>
+                                            <th>金额</th>
+                                            <th>交易号</th>
+                                            <th>状态</th>
+                                        </tr>
+                                        <foreach name="list" item="info">
+                                            <tr>
+                                                <td>{$info.log_time}</td>
+                                                <td>{$info.pay_name}</td>
+                                                <td><small>{$info.money}</small></td>
+                                                <td>{$info.pay_id}</td>
+                                                <td><if condition="$info.pay_status eq 0">未付款{$info.pay_button}<else />已付款</if></td>
+                                            </tr>                                    
+                                        </foreach>                                        
+                                    </table>
+                                    <else />
+                                    <table class="table">
+                                        <tr>
+                                            <th>日期</th>
+                                            <th>类型</th>
+                                            <th>详情</th>
+                                            <th>收支</th>
+                                        </tr>
+                                        <foreach name="list" item="info">
+                                            <tr>
+                                                <td>{$info.change_time}</td>
+                                                <td>{$info.change_type}</td>
+                                                <td>{$info.change_desc|htmlspecialchars}</td>
+                                                <td><small>{$info.integral}</small></td>
+                                            </tr>                                    
+                                        </foreach>
+                                    </table>                                
+                                </if>
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="goldRule">
+                            <div class="gold_rule">
+                                <p class="user_gold_rule">金币是派工网用户在派工网（www.58pgw.com）写装修日记，回答装修问题等相关活动情况给予的奖励，派工网金币
+                                    仅可在派工网使用，如用户帐号暂停使用，则派工网将取消该用户帐号内金币相关使用权益。</p>
+                                <span>1、派工网金币能做什么？</span>
+                                <p>使用金币直接支付：金币可支付派工网站订单，金币和现金抵扣的比例为10:1，即 10金币=1￥，金币支付不得超过每笔订单结算金额的10%</p>
+                                <span>2、派工网金币如何获取？</span>
+                                <p>①、用户可通过发表装修日记、回答装修问题等相关活动情况获得相应的金币。</p>
+                                <p>②、用户可通过购买金币获得金币。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

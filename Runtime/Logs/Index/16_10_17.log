@@ -1,0 +1,61 @@
+[ 2016-10-17T09:30:18+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T09:30:22+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T09:30:24+08:00 ] 14.17.37.146 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T09:32:17+08:00 ] 14.17.44.216 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T09:32:19+08:00 ] 14.17.37.146 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T09:32:21+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T09:32:23+08:00 ] 14.17.44.216 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T10:31:51+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T11:02:12+08:00 ] 183.60.52.5 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T11:02:18+08:00 ] 183.60.52.5 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T13:44:41+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T13:44:44+08:00 ] 14.17.44.216 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T13:50:12+08:00 ] 118.255.26.101 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T13:50:56+08:00 ] 118.255.26.101 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T13:51:01+08:00 ] 118.255.26.101 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T13:51:18+08:00 ] 118.255.26.101 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T13:54:57+08:00 ] 118.255.26.101 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-17T14:07:33+08:00 ] 113.243.29.213 /search/teach?keywords=%E6%B4%BE%E5%B7%A5%E8%AE%A1%E7%AE%97%E6%9C%BA
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-10-17T14:13:37+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-17T14:22:04+08:00 ] 14.17.44.216 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+

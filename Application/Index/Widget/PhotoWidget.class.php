@@ -1,0 +1,69 @@
+<?php
+namespace Index\Widget;
+use Think\Controller;
+class PhotoWidget extends Controller {
+
+    //最新文章
+    public function newPhoto(){
+        $content = S('cache:widget_photo_new_article');
+        $content = false;
+        if($content === false){
+            $where = array(
+                'is_delete' => 0,
+                'cat_id_1' => 2,
+                'is_checked' => 1,
+            );
+            $photoList = M('Article')->field('article_id,article_name,main_image')->where($where)->order('add_time desc')->limit('0,9')->select();
+            foreach($photoList as &$info){
+                $info['url'] = U('Photo/detail?id=' . $info['article_id']);
+                $info['main_image'] = str_replace('style_org_img', 'style_thumb_img', $info['main_image']);
+            }
+            $this->photoList = $photoList;
+            $content = $this->fetch('Widget:PhotoNewArticle');
+            S('cache:widget_photo_new_article',$content,60*60);
+        }
+        echo $content;
+    }
+    
+    //最新文章
+    public function hotPhoto(){
+        $content = S('cache:widget_photo_hot_article');
+        $content = false;
+        if($content === false){
+            $where = array(
+                'is_delete' => 0,
+                'cat_id_1' => 2,
+                'is_checked' => 1,
+            );
+            $photoList = M('Article')->field('article_id,article_name,main_image')->where($where)->order('visit_time desc')->limit('0,10')->select();
+            foreach($photoList as &$info){
+                $info['url'] = U('Photo/detail?id=' . $info['article_id']);
+            }
+            $this->photoList = $photoList;
+            $content = $this->fetch('Widget:PhotoHotArticle');
+            S('cache:widget_photo_hot_article',$content,60*60);
+        }
+        echo $content;
+    }     
+    
+    //最新文章
+    public function recommendArticle(){
+        $content = S('cache:widget_diary_recommend_article');
+        $content = false;
+        if($content === false){
+            $where = array(
+                'is_delete' => 0,
+                'cat_id_1' => 52,
+                'is_checked' => 1,
+            );
+            $diaryList = M('Article')->field('article_id,article_name')->where($where)->order('sort desc')->limit('0,10')->select();
+            foreach($diaryList as &$info){
+                $info['url'] = U('Diary/detail?id=' . $info['article_id']);
+            }
+            $this->diaryList = $diaryList;
+            $content = $this->fetch('Widget:DiaryRecommendArticle');
+            S('cache:widget_diary_recommend_article',$content,60*60);
+        }
+        echo $content;
+    }         
+}

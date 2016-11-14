@@ -1,0 +1,112 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">答案管理</h1>                <p><a class="btn btn-default" href="{:U('Ask/index')}">返回问题列表</a></p>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline" style="width: 100%;height: 35px;font-size: 14px;background-color:#fbfbfb;line-height: 35px;border: 1px solid #ddd;">
+                <label class="control-label">当前问题：</label>				<span><b style="color:#f1640f;">{$article_name['article_name']|htmlspecialchars}</b></span>
+            </div>
+        </div>        
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#id<input id="check_all" type="checkbox"></th>                                        <th>回答者</th>
+                    <th>答案内容</th>
+                    <th>回答时间</th>                                        <th>最佳答案</th>
+                    <th>审核状态</th>
+                    <th>ip</th>                                        <th>设为最佳答案</th>                                        <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>            			<notempty name="commentList">
+	            <foreach name="commentList" item="commentInfo" >	            	
+	                <tr>	
+	                    <td scope="row">#<input type="hidden" value="{$commentInfo['comment_id']}">{$commentInfo['comment_id']}<input type="checkbox" name="comment_ids[]" value="{$commentInfo['comment_id']}"></td>	                    	                    <td>{$commentInfo['user_name']|htmlspecialchars}</td>	
+	                    <td>{$commentInfo['content']|htmlspecialchars|subtext=70}</td>	
+	                    <td>{$commentInfo['add_time']}</td>	                    	                    <td><if condition="$commentInfo['best_comment_id'] eq $commentInfo['comment_id']"><b style="color:red;">是</b><else />否</if></td>	                    	                    <td><if condition="$commentInfo['is_checked'] eq 0"><b style="color:red;">未审核</b><else />已审核</if></td>	
+	               	
+	                    <td>{$commentInfo['ip']}</td>	                    	                    <td><button class="btn btn-default btn-sm" onClick="setbestcomment({$commentInfo['comment_id']},{$commentInfo['article_id']});">设为最佳答案</a></td>	                    	                    <td>	                    	<a class="btn btn-default btn-sm" href="{:U('AskAnswer/edit',array('comment_id'=>$commentInfo['comment_id']))}">查看</a>	                    		                    	<button class="btn btn-default btn-sm" onClick="del_comment({$commentInfo['comment_id']});">删除</a>	                    </td>	
+	                </tr>	
+	            </foreach>	          </notempty>	          	          <empty name="commentList">	          	          	    <tr>	          	    	          	    	<td colspan="9" >没有数据！</td>	          	    	          	    </tr>	          	          </empty>            
+            </tbody>
+        </table>
+        <button class="btn btn-default btn-sm" onClick="submit_comment_status(1);">审核</button>
+        <button class="btn btn-default btn-sm" onClick="submit_comment_status(0);">取消审核</button>
+        <div id="page" class="m-pagination"></div>    
+        <form id="submitForm" action="{:U('Ask/thisanswer')}" method="get">
+                <foreach name="filter.fields_value" item="value" >
+                    <input type="hidden" name="filter_{$key}" value="{$value}" />
+                </foreach>     
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />            
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>    
+    <script type="text/javascript">      //删除回答    function del_comment(comment_id)    {        if(confirm("确认删除该回答吗？")){            var post_url = '{:U('AskAnswer/del')}';            var data = {};            data.comment_id = comment_id;            $.post(post_url, data,              function(result) {                if(result.status == 0){                    alert(result.info);                }else{                	location.reload();                }            },'json');        }                }          //设最佳答案    function setbestcomment(comment_id,article_id)    {        if(confirm("确认设为最佳答案吗？")){            var post_url = '{:U('Ask/setbestcomment')}';            var data = {};            data.comment_id = comment_id;                        data.article_id = article_id;            $.post(post_url, data,              function(result) {                if(result.status == 0){                    alert(result.info);                }else{                	location.reload();                	                }            },'json');        }                }
+        $("#check_all").click(function(){
+            if(this.checked){
+                $("input[name='comment_ids[]']").prop("checked", true);
+            }else{
+                $("input[name='comment_ids[]']").prop("checked", false);
+            }
+        });        
+        
+        function submit_comment_status(status)
+        {
+            var post_url = "{:U('ArticleComment/changeCommentStatus')}";
+            var data = {};
+            data.comment_ids = new Array();
+            data.status = status;
+            $("input[name='comment_ids[]']:checked").each(function(){
+                data.comment_ids.push($(this).val());
+            })
+            if(data.comment_ids.length == 0){
+                alert('请至少选择一个评论后再进行提交！');
+                return false;
+            }
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        } 
+        
+        function submit_filter()
+        {
+            $("[name^='search_']").each(function() {
+                var search_name = $(this).prop("name");
+                var filter_name = 'filter_' + search_name.substr(7);
+               $("input[name='"+filter_name+"']").val($(this).val()); 
+            });
+            $("input[name='orderby']").val($("#orderby").val());
+            $("input[name='sortby']").val($("#sortby").val());
+            $("input[name='p']").val(1);
+            $("#submitForm").submit();
+        }
+        
+                        function chanage_page(page)
+                        {
+                            $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">编辑案例</div>
+            <div class="user_case bor_top">
+                <form action="{:U('User/edit_case')}" method="post">
+                    <div class="ask_content_list">
+                        <label>案例标题：</label>
+                        <input type="text" required name="case_name"  value="{$list['article_name']}"  class="ask_tit" placeholder="请输入您的案例标题" required>
+                    </div>
+                    <div class="ask_content_list">
+                        <label>案例类型：</label>
+                        <select class="xq_text" name="case_type">
+                        	<option value="0" <if condition="$list['case_type'] eq 0">selected="selected"</if>>请选择</option>
+                        	<option value="1" <if condition="$list['case_type'] eq 1">selected="selected"</if>>设计案例</option>
+                        	<option value="2" <if condition="$list['case_type'] eq 2">selected="selected"</if>>施工案例</option>     	
+                        </select>
+                    </div>
+                    <input type="hidden" name="article_id" value="{$list['article_id']}" />
+                   <div class="ask_content_list" id="area">
+                            	<label>小区所在地：</label>
+                                <select id="prov" class="box_add"></select>
+                                <select id="city" class="box_add"></select>
+                                <select id="region_id" name="region_id" class="box_add"></select>
+                   </div>  
+
+                    <div class="ask_content_list">
+                        <label>小区：</label>
+                        <input type="text" required name="loupan_name" value="{$list['loupan_name']}" class="xq_text" placeholder="请选择小区" required>	
+                        <input type="hidden" name="loupan_id" value="{$list['loupan_id']}">
+                  <button type="button" class="btn_huise"  data-toggle="modal" id="pop_select">
+                                                     选择小区
+                 </button>
+                    </div>
+                    <div class="ask_content_list">
+                        <label>面积：</label>
+                        <input type="text" required name="area" value="{$price1}" class="ask_tit" placeholder="请输入面积（单位：㎡）" required>
+                    </div>
+                     <div class="ask_content_list">
+                        <label>价格：</label>
+                        <input type="text" required name="price"  value="{$list['area']}"  class="ask_tit" placeholder="请输入价格（单位：万元）" required>
+                    </div>
+                   <!-- <div class="ask_content_list">
+                        <label>户型图：</label>						                     <div id="img_list" style="height:15px;"></div>						<a id="id_case_image" href="javascript:void(0);" class="upload_case">上传图片</a>
+                    </div> -->
+                    <div class="ask_content_list">
+                        <label>户型：</label>
+                      <foreach name="house_type"  item="value" >  
+                        <label class="radio-inline">  
+                          <input type="radio" name="house_type" style="margin-top:13px;" id="inlineRadio1" value="{$value['attr_value']}" <if condition="$house_type1 eq $value['attr_value']">checked</if>>{$value['attr_value']}
+                        </label> 
+                      </foreach>                      
+                    </div>
+                    <div class="ask_content_list">                    
+                        <label>风格：</label>
+                     <foreach name="style_type"  item="value" > 
+                        <label class="checkbox-inline">
+                          <input type="checkbox" id="inlineCheckbox1" name="style_type[]" style="margin-top:13px;" value="{$value['attr_value']}" <foreach name="style_type1"  item="value1" > <if condition="$value1 eq $value['attr_value']">checked</if> </foreach>   > {$value['attr_value']}
+                        </label> 
+                      </foreach>                               
+                    </div>
+                   <!--  <div class="ask_content_list">
+                        <label>价格：</label>
+                    <foreach name="price"  item="value" > 
+                        <label class="radio-inline">
+                          <input type="radio" name="price" style="margin-top:13px;" id="inlineRadio1" value="{$value['attr_value']}" <if condition="$price1 eq $value['attr_value']">checked</if>> {$value['attr_value']}
+                        </label>
+                     </foreach>                      
+                    </div> -->
+                    <div class="ask_content_list">
+                        <label>类型：</label>
+                     <foreach name="type"  item="value" > 
+                        <label class="checkbox-inline">
+                          <input type="checkbox" id="type" style="margin-top:13px;" name="type[]" value="{$value['attr_value']}"  <foreach name="type1"  item="value1" > <if condition="$value1 eq $value['attr_value']">checked</if> </foreach>> {$value['attr_value']}
+                        </label>
+                     </foreach>                       
+                    </div>
+                    <div class="ask_content_list">
+                        <label>案例描述：</label>
+                        <textarea rows="2" name="case_add" class="ask_ttr" placeholder="请对您的案例进行描述" required>{$list['article_desc']}</textarea>
+                    </div>
+                    <div class="ask_content_list"><input type="submit"  class="ask_mit"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+   
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">选择小区</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+        	<div class="col-xs-12">
+            	<div class="input-group">
+                  <input type="text" class="form-control" name='loupan_name1' placeholder="请输入小区名">
+                  <span class="input-group-btn" style="padding-left:0;">
+                    <button class="btn btn-default btn_gaodu" id="search_name" type="button">搜索</button>
+                  </span>
+                </div>
+            </div>
+            <div class="col-xs-12 mar_top">
+            	<table class="table table-striped">
+                	<tr></tr>
+                  <tr id='tr1'>
+                
+                  </tr>
+                </table>
+            </div>        
+        </div>
+      </div>
+          <input type="hidden" name="page" value='' id="page" />
+        
+         <button type="button" onClick="submit_prev();" class="btn " style="margin-left:30px">上一页</button>
+         <button type="button" onClick="submit_next();" class="btn ">下一页</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="select_ok">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+  	<include file="User:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="./js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script src="__STATICS__/js/areaChange.js"></script>
+  </body>
+ <script type="text/javascript"> 
+$(function (){
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'id_case_image', 
+                url : '{:U('User/write_case')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="case_content_list alert fade in"><img src="'+response.info.url+'"/><textarea rows="2" name="img_desc[]" class="pic_describe" ></textarea><input name="img_id[]" type="hidden" value="'+response.info.img_id+'"><a class="delete" class="close" data-dismiss="alert" aria-label="Close">删除</a></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+});
+
+
+//省市区
+     $(function  () {
+	            initChangeRegionData('prov', 'city', 'region_id', {$province_id}, {$city_id},{$region_id})}
+
+          );
+ //选择小区         
+     $("#pop_select").click(function(){
+    	 var region_id=$("#region_id").find("option:selected").val();
+    	 var data={};    	 
+    	 data.region_id=region_id;
+    	 $('#page').val('');
+    	 $('td').remove();
+    	  $.get("{:U('User/select_loupan')}",data,function(result){
+    		  $.each(result.list,function(i,item){
+    			  $('#tr1').append(' <td><label><input type="radio" name="optionsRadios"  value="'+item.loupan_name+'" attr_id="'+item.loupan_id+'"></label>'+item.loupan_name+'</td>');
+    			
+    		  });
+    		  $('#page').val(result.page);
+    	  },'json');
+    	  
+    	 $('#myModal').modal();
+     });
+
+    $('#select_ok').click(function(){
+    	var loupan_name=$("input[name='optionsRadios']:checked").val();
+    	var loupan_id=$("input[name='optionsRadios']:checked").attr('attr_id');
+    	$("input[name='loupan_id']").val(loupan_id);
+    	$("input[name='loupan_name']").val(loupan_name);
+    	$('#myModal').modal('hide');
+    });
+    
+    function submit_prev(){
+    	 var region_id=$("#region_id").find("option:selected").val();
+    	 var page=parseInt($('#page').val());
+    	 var loupan_name=$("input[name='loupan_name1']").val();
+    	 $('td').remove();
+    	 page=page-1;
+  	      if(page==0){   
+  		    page=1;  
+  	       }
+  	     $('#page').val(page);
+    	 var data={};
+    	 data.page=page;
+    	 data.region_id=region_id;
+    	 data.loupan_name=loupan_name;
+    	 $.get("{:U('User/select_loupan')}",data,function(result){
+   		  $.each(result.list,function(i,item){
+   			  $('#tr1').append(' <td><label><input type="radio" name="optionsRadios" id="optionsRadios1" value="'+item.loupan_name+'" checked></label>'+item.loupan_name+'</td>');
+   			
+   		  });
+   		 $('#page').val(result.page);  
+   	  },'json');
+   	 
+   	 $('#myModal').modal();
+    }
+    
+    
+    function submit_next(){
+    	 var region_id=$("#region_id").find("option:selected").val();
+    	 var page=parseInt($('#page').val());
+    	 var loupan_name=$("input[name='loupan_name1']").val();
+    	 //alert(page);
+    	 $('td').remove();
+    	 page=page+1; 	      
+  	     $('#page').val(page);
+    	 var data={};
+    	// alert(page);
+    	 data.page=page;
+    	 data.region_id=region_id;
+    	 data.loupan_name=loupan_name;
+    	 $.get("{:U('User/select_loupan')}",data,function(result){
+   		  $.each(result.list,function(i,item){
+   			  $('#tr1').append(' <td><label><input type="radio" name="optionsRadios" id="optionsRadios1" value="'+item.loupan_name+'" checked></label>'+item.loupan_name+'</td>');
+   			
+   		  });
+   		$('#page').val(result.page);
+   	  },'json');
+   	  
+   	 $('#myModal').modal();
+    	
+    }
+    
+     $("#search_name").click(function(){
+    	 var region_id=$("#region_id").find("option:selected").val();
+    	 var loupan_name=$("input[name='loupan_name1']").val();
+    	 
+    	 var data={};    	 
+    	 data.region_id=region_id;
+    	 data.loupan_name=loupan_name;
+    	 $('#page').val('');
+    	 $('td').remove();
+    	  $.get("{:U('User/select_loupan')}",data,function(result){
+    		  $.each(result.list,function(i,item){
+    			  $('#tr1').append(' <td><label><input type="radio" name="optionsRadios"  value="'+item.loupan_name+'" attr_id="'+item.loupan_id+'"></label>'+item.loupan_name+'</td>');
+    			
+    		  });
+    		  $('#page').val(result.page);
+    	  },'json');
+    	  
+    	 $('#myModal').modal();
+    	 
+     });
+</script>
+</html>

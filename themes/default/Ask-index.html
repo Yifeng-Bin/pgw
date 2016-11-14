@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Search/teach')}">派工教学</a>
+            </div>
+        </div>
+    </div>
+	
+    <div id="teach_ask">
+    	<div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="teach_ask_content">
+                    	
+                        <div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li <if condition="$type eq ''">class="active"</if>><a href="{:U('Ask/index')}">最新提问</a></li>
+                            <li <if condition="$type eq 'resolved'">class="active"</if>><a href="{:U('Ask/index?type=resolved')}">已解决</a></li>
+                            <li <if condition="$type eq 'notresolved'">class="active"</if>><a href="{:U('Ask/index?type=notresolved')}">待解决</a></li>
+                          </ul>
+                        
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div>
+                                <foreach name="askList" item="info">
+                                    <div class="teach_ask_list">
+                                            <div class="<if condition="$info['is_resolved'] eq 1">teach_ask_qr<else />teach_ask_qn</if>"><a href="{$info.url}">{$info.article_name|htmlspecialchars}</div>
+                                        <div class="teach_ask_a"><span>已有 {$info.comment_num} 个回答</span><small>{$info.add_time}</small></div>
+                                    </div>                                    
+                                </foreach>
+                            </div>	
+                          </div>
+                        </div>
+                        
+                    </div>
+                    <div class="page">{$pageShow}</div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div id="teach_diary">
+                	<div class="left_ask">
+                    	<div class="left_ask_content">
+                        	<div class="left_ask_pic"><img src="images/icon/requ_icon.png"></div>
+                            <div class="left_ask_text">总有一个人能帮您解决装修问题</div>
+                        </div>
+                        <div class="left_ask_btn">
+                        	<form>
+                                        <a href="{:U('Ask/index?type=notresolved')}" class="ask_btn">我要回答</a>
+                        		<a href="{:U('Ask/submit')}" class="ask_btn">我要提问</a>
+                            </form>
+                        </div>
+                    </div>
+                	<div class="teach_list_count" style="margin-top:10px;">
+                        <div class="teach_list_right_tit">
+                            <span>装修工具</span>
+                        </div>
+                        <div class="teach_count">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                    <img src="./images/banner/count_pic_01.png" width="100%">
+                                    <p><a href="#">涂料计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                    <img src="./images/banner/count_pic_02.png" width="100%">
+                                    <p><a href="#">地板计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_bottom">
+                                    <img src="./images/banner/count_pic_03.png" width="100%">
+                                    <p><a href="#">壁纸计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                    <img src="./images/banner/count_pic_04.png" width="100%">
+                                    <p><a href="#">墙砖计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                    <img src="./images/banner/count_pic_05.png" width="100%">
+                                    <p><a href="#">窗帘计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <img src="./images/banner/count_pic_06.png" width="100%">
+                                    <p><a href="#">地砖计算器</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {:W('Teach/newArticle')}
+                    {:W('Teach/hotArticle')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

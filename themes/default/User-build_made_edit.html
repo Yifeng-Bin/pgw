@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">	
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">修改进度</div>
+            <div id="user_mid" class="bor_top">
+            	<form action="{:U('User/build_made_editok')}" method="post" enctype="multipart/form-data">
+                <div class="nav_box">
+                	
+                    <div class="nav_box_list"  >
+                        <span>进度：</span>
+                        <select class="btn_id" id="select_name" >
+                           
+                            <option value="0">开工大吉</option>
+                            <option value="1">水电改造</option>
+                            <option value="2">泥瓦阶段</option>
+                            <option value="3">木工阶段</option>
+                            <option value="4">油漆阶段</option>
+                            <option value="5">安装阶段</option>
+                            <option value="6">验收完成</option>
+                                                                          
+                        </select>
+                    </div>
+                    
+                    <input type="hidden" name="made_name" id="but" value="{$madelist['made_name']}" />
+                     <input type="hidden" name="id" value="{$id}" />
+                     <input type="hidden" name="bid"  value="{$madelist['bid']}" />
+                    <div class="nav_box_list">
+                        <span>工地简介：</span>
+                        <textarea rows="2" name="made_desc"  class="tex_info">{$madelist['made_desc']}</textarea>
+                    </div>
+                    <div class="nav_box_list">						<span>上传图片：</span>						<input type="file" name="img" id="but" value="上传图片" />						                    </div>
+                    <button type="submit" class="sub_info" >保存</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  	 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="./js/areaChange.js"></script> -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script type="text/javascript">
+    $(function(){ 
+    	var made_name='{$madelist['made_name']}';
+    	$("#select_name option:selected").html(made_name);
+    }); 
+         $("#select_name").change(function(){
+        	 var made_name= $("#select_name option:selected").html(); 
+        	 $('#but').val(made_name);
+        	 
+         });
+         
+
+    
+   
+    </script>
+  </body>
+</html>

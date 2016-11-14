@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+.follow_content{
+	width:100%;
+	height:auto;
+	overflow:hidden;}
+.follow_box{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	background-color:#fff;
+	border-bottom:1px #ddd solid;
+	margin-top:10px;}
+.follow_left{
+	width:25%;
+	float:left;
+	height:auto;
+	padding:5px;}
+.follow_right{
+	width:75%;
+	float:left;}
+.follow_left>img{
+	width:70px;
+	height:70px;}
+.follow_right>h5{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	margin:5px 0 0 0;}
+.follow_right>h5>span{
+	float:right;
+	padding-right:10px;
+	margin-top:5px;}
+.follow_right>ul li{
+	width:50%;
+	float:left;
+	height:20px;
+	line-height:20px;}
+.follow_right>ul li>span{
+	color:#eb6100;}

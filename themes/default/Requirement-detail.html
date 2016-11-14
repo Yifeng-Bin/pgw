@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160706005" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Requirement/index')}">需求大厅</a>
+            </div>
+        </div>
+    </div>
+	<div class="sub">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="req_det_head">
+                    	<div class="req_det_head_left">
+                            <div class="req_det_head_tit">{$requirementInfo.tender_name|htmlspecialchars} <span>标价<if condition="$requirementInfo.budget eq 0">暂无预算报价<else />￥{$requirementInfo.budget|htmlspecialchars}</if></span></div>
+                            <div class="req_det_head_infor">
+                            	<ul>
+                                    <li>需求ID：{$requirementInfo.tender_id}</li>
+                                    <li>浏览量：{$requirementInfo.visit_time}</li>
+                                    <li>发布者：{$requirementInfo.contacts|htmlspecialchars}</li>
+                                    <li>发布时间：{$requirementInfo.add_time}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="req_det_head_right"><if condition="!empty($nextTenderUrl)"><a href="{$nextTenderUrl}">下一条 ></a></if></div>
+                      </div>
+                      <div id="stepBar" class="ui-stepBar-wrap">
+                        <div class="ui-stepBar">
+                            <div class="ui-stepProcess"></div>
+                        </div>
+                        <div class="ui-stepInfo-wrap">
+                            <table class="ui-stepLayout" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="ui-stepInfo">
+                                        <a class="ui-stepSequence">1</a>
+                                        <p class="ui-stepName">等待承接</p>
+                                    </td>
+                                    <td class="ui-stepInfo">
+                                        <a class="ui-stepSequence">2</a>
+                                        <p class="ui-stepName">已被承接</p>
+                                    </td>
+                                    <td class="ui-stepInfo">
+                                        <a class="ui-stepSequence">3</a>
+                                        <p class="ui-stepName">交易完成</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="req_det_info">
+                    	<div class="req_det_info_tit">需求详情</div>
+                        <if condition="$requirementInfo.status eq STATUS_WAIT_BID or $requirementInfo.status eq STATUS_WAIT_EMPLOY">
+                            <div class="req_det_info_btn">
+                            	<a href="#" class="reg_btn text-center" data-toggle="modal" data-target="#myRequirement">我要承接</a>
+                                
+                                <!-- Modal -->
+                                <div class="modal fade" id="myRequirement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="myModalLabel">立即投标</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                            <img src="images/icon/requ_icon.png" width="26"><span>投标后即可查看业主联系方式</span>
+                                            <input type="text" id="requ_price" name="requ_price" class="modal_text modal_top" placeholder="请输入您的预估报价（元），可在后台修改">
+                                      </div>
+                                      <div class="modal-footer">
+                                            <input type="hidden" id="tender_id" value="{$requirementInfo.tender_id}" />
+                                            <button id="submitBtn" class="btn btn_appo">立即投标</button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                            </div>
+                        </if>
+                    </div>
+                    <div class="req_det_content">
+                    	<p>服务需求：<span>{$requirementInfo.type_name}</span></p>
+                        <p>接单工人属性：<span><if condition="$requirementInfo.work_rank eq 1">普通技工<elseif condition="$requirementInfo.work_rank eq 2" />VIP技工<else />不限</if></span></p>
+                        <p>服务地区：<span>{$provinceInfo.region_name} {$cityInfo.region_name} {$regionInfo.region_name} {$requirementInfo.address|htmlspecialchars}</span></p>
+                        <p>备注要求：<span><if condition="$requirementInfo.remark eq ''">无<else />{$requirementInfo.remark|htmlspecialchars}</if></span></p>
+                        <p>需求说明文档：
+                        <if condition="empty($requirementInfo['files'])">
+                            无
+                        <else />
+                            <foreach name="requirementInfo.files" item="file">
+                                <a href="{$file.url}" target="_blank">附件{$key+1}</a>
+                            </foreach>
+                        </if>
+                        </p>
+                        <foreach name="bidderList" item="bidderInfo">
+                            <if condition="$bidderInfo['user_id'] eq USER_ID">
+                            <p>联系方式：<span>{$requirementInfo.mobile|htmlspecialchars}</span></p>
+                            </if>
+                        </foreach>
+                        
+                    </div>
+                    <div class="req_bid">
+                    	<div class="req_bid_tit">参与竞标的技工<span>{$bidderList|count}人</span></div>
+                        <div class="req_bid_content">
+                            <foreach name="bidderList" item="bidderInfo">
+                            <div class="req_box">
+                            	<div class="media">
+                                  <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-circle img_big" width="100%" src="<if condition="empty($bidderInfo['avatar'])">./images/need/head/head.png<else />{$bidderInfo['avatar']}</if>">
+                                    </a>
+                                  </div>
+                                  <div class="media-body">
+                                    <h4 class="media-heading">{$bidderInfo['user_name']|htmlspecialchars} <span>{$bidderInfo['service_idea']|htmlspecialchars}</span></h4>
+                                    <P class="med_color"><if condition="$bidderInfo.is_verified eq 1"><img src="./images/icon/real.png"><else />未实名认证</if>，保险额：<if condition="$bidderInfo['is_safe'] eq 1">￥100000元<else />无保险</if>	质保金：￥{$bidderInfo['money']}</P>
+                                    <p>90天内接单统计：共承接任务{$bidderInfo['tenders_take_num']}笔，完美成功{$bidderInfo['tenders_finish_num']}笔，纠纷或失败{$bidderInfo['tenders_dispute_num']}笔，交付中{$bidderInfo['tenders_doing_num']}笔</p>
+                                    <div class="pro_color">
+                                    	<span>服务</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$bidderInfo.score1}" aria-valuemin="0" aria-valuemax="100" style="width: {$bidderInfo.score1}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($bidderInfo['score1']/20,1,'.','')}分</span>
+                                    </div>
+                                    <div class="pro_color">
+                                    	<span>价格</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$bidderInfo.score2}" aria-valuemin="0" aria-valuemax="100" style="width: {$bidderInfo.score2}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($bidderInfo['score2']/20,1,'.','')}分</span>
+                                    </div>
+                                    <div class="pro_color">
+                                    	<span>质量</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$bidderInfo.score3}" aria-valuemin="0" aria-valuemax="100" style="width: {$bidderInfo.score3}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($bidderInfo['score3']/20,1,'.','')}分</span>
+                                    </div>
+                                  </div>
+                                    <if condition="$requirementInfo['status'] eq STATUS_WAIT_EMPLOY and $requirementInfo['user_id'] eq USER_ID">
+                                        <input type="button" class="btn_yuyue" value="雇佣Ta" onClick="confirmBidder('{$requirementInfo['tender_id']}','{$bidderInfo['user_id']}');return false;" />
+                                    </if>
+                                    <if condition="$bidderInfo['user_id'] eq USER_ID || $requirementInfo['user_id'] eq USER_ID">
+                                        <span class="offer">报价：{$bidderInfo['price']}</span>
+                                        <span class="shows">(发布者可见)</span>                                        
+                                    </if>
+
+                                </div>
+                            </div>
+                            </foreach>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div class="release">
+                    	<div class="sub_tit"><a href="#">马上发布需求，立即解决</a></div>
+                        <div class="release_content">
+                        	<div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_1.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">发布需求后</h4>
+                                2个小时内收到服务商响应
+                              </div>
+                            </div>
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_2.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">每个需求</h4>
+                                平均有2个以上工人报价
+                              </div>
+                            </div>
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_3.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">95%以上的需求</h4>
+                                都得到了圆满解决
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    {:W('Common/recommendWorker')}
+                    {:W('Common/recommendTeach')}
+                </div>
+            </div>
+        </div>
+    </div>
+ 	<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./jquery/jquery.easing.1.3.js"></script>
+	<script src="./js/stepBar.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+    $(function(){
+            stepBar.init("stepBar",{
+                    step : <if condition="$requirementInfo['status'] == STATUS_WAIT_BID || $requirementInfo['status'] == STATUS_WAIT_EMPLOY">1<elseif condition="$requirementInfo['status'] eq STATUS_IS_FINISH" />3<else />2</if>,
+                    change : false,
+                    animation : true
+            });
+            $("#submitBtn").click(function(){
+                var data = {};
+                data.price = $('#requ_price').val();
+                data.tender_id = $("#tender_id").val();
+                $.post("{:U('Requirement/bid')}",data,function(result){
+                    if(result.status == 1){
+                        alert(result.info);
+                    }
+                    else{
+                        alert(result.info);
+                    }
+                    $('#myRequirement').modal('hide');
+
+                },'json');
+                return false;
+            });
+    });
+            function confirmBidder(tender_id,bidder_id){
+                var data = {};
+                data.tender_id = tender_id;
+                data.bidder_id = bidder_id;
+                $.post("{:U('Requirement/confirmBidder')}",data,function(result){
+                    if(result.status == 1){
+                        alert(result.info);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(result.info);
+                    }
+
+                },'json');
+                return false;            
+            }
+    </script>
+  </body>
+</html>

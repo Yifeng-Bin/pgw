@@ -1,0 +1,474 @@
+[ 2016-07-27T16:45:57+08:00 ] 42.156.138.41 /czs/WorkerList/36?page=4
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:45:57+08:00 ] 42.120.161.41 /index.php?ask-items-21-1-1.html
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:45:58+08:00 ] 42.156.137.41 /rcx/NewsList/Det/202
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:45:58+08:00 ] 42.120.160.41 /pgq/NewsList/Det/200
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:45:59+08:00 ] 42.156.136.41 /xcq/NewsList/Det/143
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:46:02+08:00 ] 42.156.136.41 /xcq/WorkerList/35-197
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:46:03+08:00 ] 42.156.139.41 /dxq/NewsList/Det/10
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:48:59+08:00 ] 207.46.13.166 /
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:49:36+08:00 ] 42.156.138.41 /diary/detail/id/263
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:49:36+08:00 ] 42.120.161.41 /pgq/NewsList/Det/142
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:51:19+08:00 ] 123.125.71.49 /photo/index/attr/1_2_2_11
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:52:57+08:00 ] 42.156.137.41 /dcq/NewsList/Det/201
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:52:57+08:00 ] 42.120.160.41 /index.php?ask-items-22-1-1.html
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:52:57+08:00 ] 42.156.136.41 /yxx/WorkerList/35
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:52:58+08:00 ] 42.156.139.41 /photo/index
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:52:58+08:00 ] 42.156.138.41 /hdq/WorkerList
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:53:02+08:00 ] 42.120.161.41 /zxs/NewsList/Det/1
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:53:03+08:00 ] 42.156.137.41 /photo/detail/id/65
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:53:04+08:00 ] 42.120.160.41 /myq/WorkerList/42-288
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:37+08:00 ] 42.156.136.41 /arx/WorkerList/36
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:37+08:00 ] 42.156.139.41 /czs/WorkerList/User/907
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:37+08:00 ] 42.156.138.41 /czs/WorkerList/User/988
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:38+08:00 ] 42.120.161.41 /sjsq/NewsList/72
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:38+08:00 ] 42.156.137.41 /czs/WorkerList?page=24
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:43+08:00 ] 42.156.136.41 /czs/WorkerList/User/1031
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:44+08:00 ] 42.156.139.41 /sjsq/NewsList/Det/166
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:44+08:00 ] 42.156.138.41 /czs/WorkerList/User/1122
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:56:44+08:00 ] 42.120.161.41 /yzx/NewsList/36
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T16:57:57+08:00 ] 123.125.71.51 /diary/index/page/4
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:17+08:00 ] 42.120.160.41 /czs/NewsList/Det/166
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:17+08:00 ] 42.156.136.41 /czs/WorkerList/User/551
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:18+08:00 ] 42.156.139.41 /czs/WorkerList/User/1087
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:18+08:00 ] 42.156.138.41 /czs/WorkerList/User/665
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:18+08:00 ] 42.120.161.41 /teach/index/sort/addtime_desc/attr/4_34/cid/99
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:00:23+08:00 ] 42.156.139.41 /czs/WorkerList/User/930
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:02:02+08:00 ] 175.0.107.72 /
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:02:05+08:00 ] 175.0.107.72 /requirement/submit
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:02:08+08:00 ] 175.0.107.72 /user/login
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:02:14+08:00 ] 175.0.107.72 /user/login
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:02:16+08:00 ] 175.0.107.72 /requirement/submit
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:03:56+08:00 ] 42.156.138.41 /czs/WorkerList/User/721
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:03:56+08:00 ] 42.120.161.41 /gdx/NewsList/Det/211
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:03:57+08:00 ] 42.156.137.41 /fsq/NewsList/Det/77
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:03:57+08:00 ] 42.120.160.41 /photo/index/attr/2_5_3_18
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:04:35+08:00 ] 123.125.71.74 /worker/info/id/1034
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:14+08:00 ] 113.243.53.251 /
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:18+08:00 ] 42.120.160.41 /jhx/NewsList/Det/112
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:18+08:00 ] 42.156.136.41 /rcx/WorkerList/35-197
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:18+08:00 ] 42.156.139.41 /pgq/NewsList/Det/61
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:19+08:00 ] 42.120.161.41 /ftq/WorkerList/36-205
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:19+08:00 ] 42.156.138.41 /hrq/WorkerList/43
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:23+08:00 ] 42.120.161.41 /dcq/NewsList/Det/141
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:07:24+08:00 ] 42.156.137.41 /dcq/WorkerList/36-213
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:08:59+08:00 ] 175.0.107.72 /requirement/submit
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:10:37+08:00 ] 42.120.160.41 /yqq/NewsList/Det/180
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:10:38+08:00 ] 42.156.136.41 /dxq/NewsList/33
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:10:39+08:00 ] 42.156.138.41 /czs/WorkerList/User/1061
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:11:14+08:00 ] 123.125.71.50 /teach/index/cid/100
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:12:40+08:00 ] 123.125.71.71 /czs/WorkerList/42-291?page=2
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:13:43+08:00 ] 175.0.107.72 /requirement/submit
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:13:58+08:00 ] 42.120.161.41 /czs/WorkerList/36?page=32
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:13:58+08:00 ] 42.156.137.41 /czs/WorkerList/User/794
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:13:58+08:00 ] 42.120.160.41 /ftq/NewsList/Det/93
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:16:06+08:00 ] 112.90.82.196 /
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:37+08:00 ] 42.120.160.41 /dcq/NewsList/Det/151
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:37+08:00 ] 42.156.136.41 /yxx/NewsList/Det/15
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:38+08:00 ] 42.156.139.41 /photo/index/attr/2_9_3_0
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:38+08:00 ] 42.156.138.41 /arx/WorkerList/42-287
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:40+08:00 ] 42.120.161.41 /czs/WorkerList/36?page=77
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:50+08:00 ] 123.125.71.16 /user/logout/code/09d3ff2d68
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:17:57+08:00 ] 123.125.71.21 /
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:19:16+08:00 ] 175.0.107.72 /requirement/submit
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:16+08:00 ] 42.120.160.41 /czs/WorkerList/42-288?page=4
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:16+08:00 ] 42.156.136.41 /index.php?ask-items-94-1-1.html
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:17+08:00 ] 42.156.139.41 /hdq/NewsList/Det/65
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:17+08:00 ] 42.156.138.41 /myq/NewsList/Det/
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:18+08:00 ] 42.120.161.41 /arx/NewsList/36
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:22+08:00 ] 42.156.138.41 /myq/WorkerList/36-216
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+
+[ 2016-07-27T17:21:22+08:00 ] 42.120.161.41 /hrq/NewsList/Det/68
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `pgw_shop_info`
+ERR: 1146:Table 'pgw.pgw_shop_info' doesn't exist
+ [ SQL语句 ] : SELECT `shop_name`,`shop_desc` FROM `pgw_shop_info` WHERE `id` = 1 LIMIT 1  
+

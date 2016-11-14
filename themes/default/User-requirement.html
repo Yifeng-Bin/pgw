@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+        <!-- Bootstrap -->
+        <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+        <link href="./css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+    </head>
+    <body>
+    <include file="User:header" />
+    <div class="container">
+        <!--左侧文件加载处-->
+        <include file="User:left" />
+        <!--左侧文件加载处-->
+        <div class="sub_content">
+            <div class="user_sub_tit">我的需求<a href="{:U('Requirement/submit')}">发布需求</a></div>
+            <div class="demand">
+                <div class="demand_tit">
+                    <div class="demand_name">需求名称</div>
+                    <div class="demand_sub">需求类型</div>
+                    <div class="demand_sub">金额</div>
+                    <div class="demand_sub">状态</div>
+                    <div class="demand_sub">操作</div>
+                </div>
+                <div class="demand_content">
+                    <foreach name="requirementList" item="info">
+                        <div class="demand_box">
+                            <div class="demand_top">
+                                <div class="demand_top_sub">订单编号：{$info.tender_id}</div>
+                                <div class="demand_top_sub"><if condition="empty($info['bid_user_name'])">已有 <span>{$info.bidder_num}</span> 名技工竞标<else />{$info['bid_user_name']|htmlspecialchars}</if></div>
+                                <div class="demand_top_sub">{$info.add_time}</div>
+                            </div>
+                            <div class="demand_content">
+                                <div class="demand_name">{$info.tender_name|htmlspecialchars}</div>
+                                <div class="demand_sub">{$info.type_name}</div>
+                                <div class="demand_sub">￥<if condition="$info['order_price'] gt 0">{$info['order_price']}<else />{$info.budget}</if></div>
+                                <div class="demand_sub">{$info.status_desc}</div>
+                                <div class="demand_sub">
+                                    <if condition="$info['status'] eq STATUS_WAIT_BID">
+                                        <a href="{:U('User/modify_requirement?id='.$info['tender_id'])}">修改需求</a>
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_WAIT_EMPLOY" />
+                                        <a href="{:U('Requirement/detail?id='.$info['tender_id'])}">去雇佣</a>
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_WAIT_CONFIRM" />
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>  
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_IS_CONFIRM" />
+                                        <if condition="$info['order_price'] neq $info['pay_total']">
+                                            <a href="#" data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#toPayment">我要付款</a>
+                                        </if>
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_WAIT_PAY" />
+                                        <if condition="$info['order_price'] neq $info['pay_total']">
+                                            <a href="#" data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#toPayment">我要付款</a>
+                                        </if>
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_WAIT_EXECUTE" />
+                                        <if condition="$info['order_price'] neq $info['pay_total']">
+                                            <a href="#" data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#toPayment">我要付款</a>
+                                        </if>
+                                        <a href="javascript:void();" onClick="change_tender_status('{$info['tender_id']}', '{$Think.const.STATUS_IS_EXECUTE}')">确认进场</a>
+                                        <button class="btn btn-sm" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_IS_EXECUTE" />
+                                        <if condition="$info['order_price'] neq $info['pay_total']">
+                                            <a href="#" data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#toPayment">我要付款</a>
+                                        </if>
+                                        <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>     
+                                        
+                                    <elseif condition="$info['status'] eq STATUS_WAIT_CHECK" />
+                                        <a href="javascript:void();" onClick="change_tender_status('{$info['tender_id']}', '{$Think.const.STATUS_IS_FINISH}')">验收完成</a>                            
+                                        <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>   
+
+                                    <elseif condition="$info['status'] eq STATUS_IS_FINISH" />
+                                        <if condition="$info['order_price'] neq $info['pay_total'] && in_array($info['finish_status'],array(FINISH_PREFECT))">
+                                            <a href="#" data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#toPayment">我要付款</a>
+                                        </if>                                    
+                                        <if condition="$info['comment_score1'] eq 0"><a href="javascript:void();"  data-toggle="modal" data-tender_id="{$info['tender_id']}" data-target="#myEvaluate">我要评价</a> </if>
+                                        <if condition="in_array($info['finish_status'],array(FINISH_STEP_FIFTY,FINISH_STEP_SIXTY,FINISH_STEP_SEVENTY))">
+                                            <if condition="empty($info['after_sale_refund_num'])">
+                                                <a href="{:U('AfterSale/submit?type=1&id='.$info['tender_id'])}">我要退款</a>
+                                                <else />
+                                                <a href="{:U('AfterSale/info?id='.$info['tender_id'])}">查看退款工单</a>
+                                            </if>
+                                        </if>
+                                        <if condition="in_array($info['finish_status'],array(FINISH_PREFECT))">
+                                            <if condition="empty($info['after_sale_num'])">
+                                                <a href="{:U('AfterSale/submit?type=99&id='.$info['tender_id'])}">申请售后</a>
+                                                <else />
+                                                <a href="{:U('AfterSale/info?id='.$info['tender_id'])}">查看售后工单</a>
+                                            </if>                                            
+                                        </if>
+                                    </if>                                
+                                </div>
+                            </div>
+                        </div>                        
+                    </foreach>
+                </div>
+                <div class="page">{$pageShow}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="toPayment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">确认支付</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="pay_form" action="{:U('Pay/submit')}" method="post">
+                        <div class="pay_tit">选择付款方式</div>
+                        <div class="pay_mode">
+                            <foreach name="payList" item="info">
+                                <label class="radio-inline">
+                                    <input type="radio" name="pay_id" value="{$info.pay_id}" style="margin-top: 11px;" <if condition="$key eq 0">checked="checked"</if> /> <img src="images/icon/{$info.pay_code}.png">
+                                </label>
+                            </foreach>
+                        </div>
+                        <input type="hidden" name="tender_id" value="0" />
+                        <input type="hidden" name="type" value="requirement" />
+                        <button type="submit" class="pay_btn">去付款</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myEvaluate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">发表评价</h4>
+                </div>
+                <div class="modal-body">
+                        <div id="www_zzjs_net" star_width="14">
+                            <p>服务</p>
+                            <ul class="star_rating">
+                                <li style="display:none;">
+                                    <input type="text" id="comment_score1" name="comment_score1" value="" />
+                                </li>
+                                <li class="current_rating">default level</li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="1 of 5 stars" class="one_star">1</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="2 of 5 stars" class="two_stars">2</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="3 of 5 stars" class="three_stars">3</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="4 of 5 stars" class="four_stars">4</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="5 of 5 stars" class="five_stars">5</a></li>
+
+                            </ul>
+
+                            <p>价格</p>
+
+                            <ul class="star_rating">
+                                <li style="display:none;">
+                                    <input type="text" id="comment_score2" name="comment_score2" value="" />
+                                </li>
+                                <li class="current_rating">default level</li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="1 of 5 stars" class="one_star">1</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="2 of 5 stars" class="two_stars">2</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="3 of 5 stars" class="three_stars">3</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="4 of 5 stars" class="four_stars">4</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="5 of 5 stars" class="five_stars">5</a></li>
+                            </ul>
+
+                            <p>质量</p>
+
+                            <ul class="star_rating">
+                                <li style="display:none;">
+                                    <input type="text"  id="comment_score3" name="comment_score3" value="" />
+                                </li>
+                                <li class="current_rating">default level</li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="1 of 5 stars" class="one_star">1</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="2 of 5 stars" class="two_stars">2</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="3 of 5 stars" class="three_stars">3</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="4 of 5 stars" class="four_stars">4</a></li>
+                                <li><a href="#" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" rel="external nofollow" title="5 of 5 stars" class="five_stars">5</a></li>
+                            </ul>
+                        </div>
+                        <textarea class="form-control" rows="3" id="comment_content" name="comment_content"></textarea>
+                        <div class="rong">
+                            <input type="hidden" id="comment_tender_id" name="comment_tender_id" value="0" />
+                            <input type="submit" class="evaluate" value="确认评价" onClick="submit_comment();return false;" />
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+<script type="text/javascript">
+                                        $('#toPayment').on('show.bs.modal', function (event) {
+                                            var button = $(event.relatedTarget);
+                                            var id = button.data('tender_id');
+                                            var modal = $(this);
+                                            modal.find('.modal-body input[name="tender_id"]').val(id)
+                                        })
+
+                                        $('#myEvaluate').on('show.bs.modal', function (event) {
+                                            var button = $(event.relatedTarget);
+                                            var id = button.data('tender_id');
+                                            var modal = $(this);
+                                            modal.find('input[name="comment_tender_id"]').val(id)
+                                        })
+
+                                        function change_tender_status(tender_id, status){
+                                            var data = {};
+                                            data.tender_id = tender_id;
+                                            data.status = status;
+                                            var url = '{:U('Requirement/changeStatus')}';
+                                            $.post(url, data, function(result){
+                                                if (result.status == 0){
+                                                    alert(result.info);
+                                                } else{
+                                                    window.location.reload();
+                                                }
+                                            }, 'json');
+                                        }
+
+                                        function submit_comment(){
+                                            var data = {};
+                                            data.tender_id = $("#comment_tender_id").val();
+                                            data.comment_score1 = $("#comment_score1").val();
+                                            data.comment_score2 = $("#comment_score2").val();
+                                            data.comment_score3 = $("#comment_score3").val();
+                                            data.comment_content = $("#comment_content").val();
+                                            var url = '{:U('Requirement/comment')}';
+                                            $.post(url, data, function(result){
+                                                if(result.status == 1){
+                                                    window.location.reload();
+                                                }else{
+                                                    alert(result.info);
+                                                }
+                                                return false;
+                                            },'json');
+                                        }    
+    
+    
+                                        function cancel_requirement(id){
+                                            var data = {};
+                                            data.id = id;
+                                            var url = '{:U('Requirement/cancel')}';
+                                            $.post(url, data, function(result){
+                                                if(result.status == 0){
+                                                    alert(result.info);
+                                                }else{
+                                                    window.location.reload();
+                                                }
+                                            });
+                                        }
+</script>
+<script>
+
+<!--
+
+    function __start(){
+        var initialize_width = 0;
+        if (document.getElelmentById){return false};
+        if (document.getElementsByTagName == null){return false; }
+        var startLevelObj = document.getElementById("www_zzjs_net")
+                if (startLevelObj == null){return false; }
+        initialize_width = parseInt(startLevelObj.getAttribute("star_width"), 10);
+        if (isNaN(initialize_width) || initialize_width == 0){return false; }
+        var ul_obj = startLevelObj.getElementsByTagName("ul");
+        if (ul_obj.length < 1){return false; }
+        var length = ul_obj.length;
+        var li_length = 0;
+        var a_length = 0;
+        var li_obj = null;
+        var a_obj = null;
+        var defaultInputObj = null;
+        var defaultValue = null;
+        for (var i = 0; i < length; i++){
+
+            li_obj = ul_obj[i].getElementsByTagName("li");
+            li_length = li_obj.length;
+            if (li_length < 0){return false; }
+
+            //获取默认值
+
+            defaultInputObj = li_obj[0].getElementsByTagName("input"); if (!defaultInputObj){return false; }
+
+            defaultValue = parseInt(defaultInputObj[0].value, 10);
+            if (!isNaN(defaultValue) && defaultValue != 0){
+            //alert("有初始值!");
+            //li_obj[1].style.width=initialize_width*defaultValue+"px";
+            //defaultValue=0;
+            }
+            for (var j = 0; j < li_length; j++){
+                a_obj = li_obj[j].getElementsByTagName("a");
+                if (a_obj.length < 1){continue; }
+                if (a_obj[0].className.indexOf("star") > 0){
+                    a_obj[0].onclick = function(){
+                        return give_value(this);
+                    }
+
+                    a_obj[0].onfocus = function(){
+                        this.blur();
+                    }
+                }
+            }
+        }
+
+    }
+
+    function give_value(obj){
+        var status = true;
+        var parent_obj = obj.parentNode;
+        var i = 0;
+        while (status){
+            i++;
+            if (parent_obj.nodeName == "UL"){break; }
+            parent_obj = parent_obj.parentNode;
+            if (i > 1000){break; }//防止找不到ul发生死循环
+        }
+        var hidden_input = parent_obj.getElementsByTagName("input")[0];
+        if (hidden_input.length < 1){/*alert("sorry?\nprogram error!")*/; }
+        var txt = obj.firstChild.nodeValue; //确保不能存在空格哦，因为这里用的firstChild
+        if (isNaN(parseInt(txt, 10))){/*alert('level error!')*/; return false; }
+        hidden_input.setAttribute("value", txt.toString());
+        //固定选中状态,先找到初始化颜色那个li
+        var current_li = parent_obj.getElementsByTagName("li");
+        var length = current_li.length;
+        var ok_li_obj = null;
+        for (var i = 0; i < length; i++){
+            if (current_li[i].className.indexOf("current_rating") >= 0){
+                ok_li_obj = current_li[i]; break; //找到
+            }
+        }
+        __current_width = txt * 14;
+        ok_li_obj.style.width = __current_width + "px";
+        return false;
+    }
+    __start();
+//-->
+
+</script>
+</html>

@@ -1,0 +1,17 @@
+@charset "utf-8";
+/* CSS Document */
+.table_demand{
+	width:100%;
+	background-color:#fff;}
+.table_demand th,.table_demand td{
+	text-align:center;}
+.table_demand thead{
+	height:45px;
+	line-height:45px;
+	border-bottom:1px #999 solid;}
+.table_demand tbody tr{
+	height:40px;
+	line-height:40px;
+	border-bottom:1px #ddd dashed;}
+.table_demand tbody tr span{
+	color:#eb6100;}

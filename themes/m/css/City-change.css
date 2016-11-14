@@ -1,0 +1,47 @@
+@charset "utf-8";
+/* CSS Document */
+.city,.city_recommend,.city_choice{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	background-color:#fff;}
+.city_recommend{
+	border-bottom:1px #ddd solid;}
+.btn_city{
+	width:50%;
+	height:40px;
+	margin:20px 25%;
+	background-color:#eb6100;
+	color:#fff;
+	border:none;}
+.choice_box{
+	width:100%;
+	height:auto;
+	overflow:hidden;}
+.box_city{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	border-bottom:1px #ddd dashed;
+	background-color:#fff;
+	color:#333;}
+.box_county{
+	padding:10px;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	color:#333;}
+.box_county>ul li>a{
+	margin:5px;
+	display:block;
+	width:60px;
+	height:35px;
+	text-align:center;
+	line-height:35px;
+	float:left;
+	border:1px #ddd solid;
+	color:#333;}
+.box_county>ul li>a:hover{
+	border:1px #0baa53 solid;
+	color:#0baa53;}

@@ -1,0 +1,232 @@
+<extend name="Public/base" />
+<block name="main">
+
+    <h1 class="page-header">增加用户</h1>
+    <p><a class="btn btn-default" href="{:U('Users/index')}">返回用户列表</a></p>
+    <form id="submitForm" class="form-horizontal" action="{:U('Users/add')}" method="post">
+        <div>
+            <div class="form-group">
+                <label for="user_name" class="control-label col-sm-2">用户名:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="user_name" name="user_name" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password" class="control-label col-sm-2">密码:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="password" name="password" value="" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="mobile" class="control-label col-sm-2">手机号码:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mobile" name="mobile" value="" />
+                </div>
+            </div>      
+            
+            <div class="form-group">
+                <label for="real_name" class="control-label col-sm-2">用户真实名:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="real_name" name="real_name" value="" />
+                </div>
+            </div>       
+            
+            <div class="form-group">
+                <label for="gender" class="control-label col-sm-2">性别 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="gender" value="0" checked="checked">保密</label>
+                    <label class="checkbox-inline"><input type="radio" name="gender" value="1">男</label>
+                    <label class="checkbox-inline"><input type="radio" name="gender" value="2">女</label>
+                </div>                
+            </div>       
+
+            <div class="form-group">
+                <label for="birthday" class="control-label col-sm-2">生日：</label>
+                <div class="col-sm-6">
+                    <div class='input-group date' id='time_1'>
+                        <input type='text'  id='birthday' name="birthday" class="form-control" value="" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>                
+                </div>                
+            </div>                 
+            
+            <div class="form-group">
+                <label for="qq" class="control-label col-sm-2">qq号码:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="qq" name="qq" value="" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="money" class="control-label col-sm-2">用户保证金:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="money" name="money" value="0" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="enter_year" class="control-label col-sm-2">入行时间:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="enter_year" name="enter_year" value="0" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="day_price" class="control-label col-sm-2">每天价格:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="day_price" name="day_price" value="0" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="profile" class="control-label col-sm-2">个人简介:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="profile" name="profile" value="" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="service_idea" class="control-label col-sm-2">服务理念:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="service_idea" name="service_idea" value="" />
+                </div>
+            </div>            
+
+            <div class="form-group">
+                <label for="status" class="control-label col-sm-2">状态 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="status" value="0">禁用</label>
+                    <label class="checkbox-inline"><input type="radio" name="status" value="1" checked="checked">可用</label>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                <label for="is_safe" class="control-label col-sm-2">是否已购保险 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="is_safe" value="0" checked="checked">未购</label>
+                    <label class="checkbox-inline"><input type="radio" name="is_safe" value="1">已购</label>
+                </div>
+            </div> 
+
+            <div class="form-group">
+                <label for="is_verified" class="control-label col-sm-2">是否实名认证 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="is_verified" value="0" checked="checked">未验证</label>
+                    <label class="checkbox-inline"><input type="radio" name="is_verified" value="1">已验证</label>
+                </div>
+            </div> 
+            
+            <div class="form-group">
+                <label for="user_type" class="control-label col-sm-2">用户类型:</label>
+                <div class="col-sm-3">
+                    <select id="user_type" name="user_type" class="form-control form-inline">
+                        <option value="0">业主</option>
+                        <option value="1">工人</option>
+                    </select>
+                </div>               
+            </div>   
+            <div class="form-group">
+                <label for="work_rank" class="control-label col-sm-2">工人类型:</label>
+                <div class="col-sm-3">
+                    <select id="work_rank" name="work_rank" class="form-control form-inline">
+                        <option value="1">普通工人</option>
+                        <option value="2">VIP工人</option>
+                    </select>
+                </div>               
+            </div>            
+            
+            <div class="form-group">
+                <label for="projectInfo" class="control-label col-sm-2">服务类型:</label>
+                <div id="projectInfo" class="col-sm-10"></div>  
+            </div>
+            
+            <div class="form-group">
+                <label for="region_id" class="control-label col-sm-2">地区:</label>
+                <div class="col-sm-2">
+                    <select id="prov" class="form-control"></select> 
+                </div>   
+                <div class="col-sm-2">
+                    <select id="city" class="form-control"></select>  
+                </div>   
+                <div class="col-sm-2">
+                    <select id="region_id" name="region_id" class="form-control"></select>  
+                </div>                                              
+            </div>           
+            
+            <div class="form-group">
+                <label for="images" class="control-label col-sm-2"></label>
+                <button type="submit" class="btn btn-default">确认增加</button>                  
+            </div>
+          
+        </div>
+
+
+    </form>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+    <style>
+    a.file_btn {
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: #eb6100;
+        color: #fff;
+    }        
+        .div_close {
+            width: 130px;
+            height: 130px;
+            float: left;
+            margin: 10px;
+        }        
+    </style>
+</block>
+<block name="js-input">
+<script src="__STATICS__/js/areaChange.js"></script>
+<script src="__STATICS__/js/workType.js"></script>   
+<script src="__STATICS__/js/moment.min.js"></script>
+<script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>   
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script>        
+<script type="text/javascript">
+    var workTypeList = {};
+    $(function () {
+        initChangeRegionData('prov', 'city', 'region_id', 0, 0, 0);
+        initChangeWorkType('firstWorkType', 'secondWorkType');                    
+        $('#time_1').datetimepicker({
+            defaultDate: "",
+            format: 'YYYY-MM-DD',
+        });
+        
+    //初始化工人选择
+        var workHtml = '';
+        for(var i in __allWorkType.first){
+            workHtml = workHtml + '<div class="project_box">';
+            workHtml = workHtml + '<p>' + __allWorkType.first[i].name + '</p>';
+            for(var j in __allWorkType.second[__allWorkType.first[i].code]){
+                workHtml = workHtml + '<label class="checkbox-inline"><input type="checkbox" value="'+__allWorkType.second[__allWorkType.first[i].code][j].code+'" name="type_ids[]"> '+__allWorkType.second[__allWorkType.first[i].code][j].name+'</label>';
+            }
+            workHtml = workHtml + '</div>';                                  
+	}
+        $("#projectInfo").append(workHtml);
+        
+        for(var i in workTypeList){
+            $("input[name='type_ids[]'][value='"+workTypeList[i]+"']").attr('checked', true);
+        }
+        
+        $('input[type=checkbox]').click(function() {
+            $("input[name='type_ids[]']").attr('disabled', true);
+            if ($("input[name='type_ids[]']:checked").length >= 3) {
+                $("input[name='type_ids[]']:checked").attr('disabled', false);
+            } else {
+                $("input[name='type_ids[]']").attr('disabled', false);
+            }
+        });         
+    });
+</script>
+</block>

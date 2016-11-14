@@ -1,0 +1,147 @@
+[ 2016-10-12T10:17:01+08:00 ] 110.75.248.201 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-12T10:17:01+08:00 ] 110.75.248.201 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:房屋装修',
+  'trade_no' => '2016071321001004720285197256',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-07-13 10:16:03',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '50',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-12 10:17:01',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '3.00',
+  'gmt_payment' => '2016-07-13 10:16:07',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-12 10:17:01',
+  'price' => '3.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'd43755e78603171be7d60280c32d281lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'bd899a5b1c78dfa23cd31226a721ac62',
+)
+[ 2016-10-12T10:17:01+08:00 ] 110.75.248.201 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '3.00',
+  'out_trade_no' => '50',
+)
+[ 2016-10-12T10:17:01+08:00 ] 110.75.248.201 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '50',
+  'out_id' => '48',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '3.00',
+  'log_ip' => '175.11.153.113',
+  'pay_status' => '1',
+  'pay_time' => '1468347368',
+  'log_time' => '1468347342',
+  'log_remark' => '',
+)
+[ 2016-10-12T10:19:01+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-12T10:19:01+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:房屋装修',
+  'trade_no' => '2016071321001004720285101813',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-07-13 10:17:53',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '51',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-12 10:19:01',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '3.00',
+  'gmt_payment' => '2016-07-13 10:17:56',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-12 10:19:01',
+  'price' => '3.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'b45be87e68604a45645081f8fed4826lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'b7c2d47b682b2937224f09f3602d5f17',
+)
+[ 2016-10-12T10:19:01+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '3.00',
+  'out_trade_no' => '51',
+)
+[ 2016-10-12T10:19:01+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '51',
+  'out_id' => '48',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '3.00',
+  'log_ip' => '175.11.153.113',
+  'pay_status' => '1',
+  'pay_time' => '1468347477',
+  'log_time' => '1468347467',
+  'log_remark' => '',
+)
+[ 2016-10-12T10:19:03+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-12T10:19:03+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:房屋装修',
+  'trade_no' => '2016071321001004720284491612',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-07-13 10:18:29',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '52',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-12 10:19:03',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '4.00',
+  'gmt_payment' => '2016-07-13 10:18:32',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-12 10:19:03',
+  'price' => '4.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '41dd12f88453fa3e937aa1e68b87645lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'eb9142d03c28660afb8694a15e3c2594',
+)
+[ 2016-10-12T10:19:03+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '4.00',
+  'out_trade_no' => '52',
+)
+[ 2016-10-12T10:19:03+08:00 ] 110.75.248.193 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '52',
+  'out_id' => '48',
+  'stage' => '3',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '4.00',
+  'log_ip' => '175.11.153.113',
+  'pay_status' => '1',
+  'pay_time' => '1468347513',
+  'log_time' => '1468347504',
+  'log_remark' => '',
+)

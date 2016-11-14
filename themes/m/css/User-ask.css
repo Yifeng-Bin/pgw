@@ -1,0 +1,33 @@
+@charset "utf-8";
+/* CSS Document */
+.ask_content{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	background-color:#fff;
+	margin-top:10px;}
+.ask_box{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	border-bottom:1px #ddd solid;
+	padding:0 10px;
+	position:relative;}
+.ask_box>h5{
+	width:100%;
+	height:auto;
+	line-height:40px;
+	font-size:18px;
+	color:#333;
+	margin:0;}
+.ask_box>span{
+	line-height:25px;
+	color:#666;
+	margin-right:15px;}
+.ask_box>span.state{
+	float:right;
+	margin-right:0;}
+.ask_box>span.no{
+	color:#eb6100;}
+.ask_box>span.yes{
+	color:#0baa53;}

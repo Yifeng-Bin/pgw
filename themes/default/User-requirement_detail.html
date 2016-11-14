@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">我的需求</div>
+            <div class="modify_demand bor_top">
+            	<div class="modify_demand_info">
+                	<p>我家主卧的灯坏了我要个灯具安装师傅<small>标价：￥10.00</small></p>
+                    <span>需求ID：123345</span>
+                    <span>浏览量：100</span>
+                    <span>发布者：郝**</span>
+                    <span>发布时间：2016-05-17 09:16:42</span>
+                </div>
+                <div class="modify_demand_form">
+                	<p>服务需求：<span>灯具安装</span></p>
+                    <p>接单工人属性：<span>VIP技工</span></p>
+                    <p>服务地区：<span>湖南省 郴州市 郴州 国庆路南路1号xx大厦1111111111号</span></p>
+                    <p>备注要求：<span>尽快上门安装尽快上门安装尽快上门安装尽快上门安装尽快上门安装尽快上门安装</span></p>
+                    <p>业主电话：<span>18888888888</span></p>
+                    <p><span>该信息还有2天过期</span></p>
+                    <p><span>订单状态：待雇佣</span></p>
+                    <p><span>订单编号：16545698548515</span></p>
+                    <p><span>承接时间：2016-05-17 09:16:42</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+  	<include file="User:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+<script>
+$(function (){
+	initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$regionInfo.region_id});
+	initChangeWorkType('firstWorkType', 'secondWorkType');
+        
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'selectfiles', 
+                url : '{:U('Requirement/submit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },   
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : true //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.attachment_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+        
+        $(".add_time").html(function () {
+            var d = new Date();
+            var now_time = Date.parse(d);
+            var now_time = parseInt(now_time / 1000) + parseInt(d.getTimezoneOffset() * 60);            
+            var add_time = $(this).attr('add_time');
+            var add_second = now_time - add_time ;
+            if (add_second <= 0)
+            {
+                return "";
+            } else
+            {
+                var __ed = parseInt(add_second / (24 * 60 * 60));
+                var __eh = parseInt((add_second / 3600) % 24);
+                var __em = parseInt((add_second/60)%60);
+                var __es = parseInt(add_second % 60);
+                var show_info = '';
+                if (__ed > 0) {
+                    show_info = __ed + "天前";
+                } else if (__eh > 0) {
+                    show_info = __eh + "小时前";
+                } else if (__em > 0) {
+                    show_info = __em + "分钟前";
+                } else if (__es > 0) {
+                    show_info = + __es + "秒前";
+                }
+                return show_info;
+            }
+        });
+
+});
+
+</script>
+  </body>
+</html>

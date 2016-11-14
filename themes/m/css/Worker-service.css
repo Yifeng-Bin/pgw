@@ -1,0 +1,89 @@
+@charset "utf-8";
+/* CSS Document */
+.worker_service{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	background-color:#fff;
+	padding:0 10px;}
+.service_head{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	border-bottom:1px #ddd solid;
+	padding-bottom:10px;}
+.service_head>h5{
+	margin:0;
+	padding:0;
+	height:45px;
+	line-height:45px;
+	font-size:16px;
+	font-weight:600;}
+.service_head>p{
+	color:#e6b100;}
+.service_content{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	padding:10px 0;
+	border-bottom:1px #ddd solid;}
+.service_content>p{
+	color:#666;
+	line-height:25px;}
+.service_foot,.service_clause{
+	width:100%;
+	height:auto;
+	overflow:hidden;}
+.service_clause{
+	padding:10px 0;
+	width:100%;
+	height:auto;
+	overflow:hidden;}
+.service_clause label,.service_clause a{
+	font-size:12px;
+	font-weight:500;}
+.service_clause a{
+	color:#eb6100;}
+.clause_btn{
+	width:50%;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	border:none;
+	background-color:#0baa53;
+	color:#fff;
+	margin:10px 25%;}
+.pay_btn{
+	width:80px;
+	height:35px;
+	line-height:35px;
+	color:#fff;
+	background-color:#eb6100;
+	border:none;
+	text-align:center;}
+.record_list{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	margin-top:10px;
+	background-color:#fff;
+	padding:0 10px;}
+.record_box{
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	border-bottom:1px #ddd solid;}
+.record_box>p{
+	padding:0;
+	margin:0;
+	height:35px;
+	line-height:35px;
+	font-size:16px;}
+.record_box>p>span{
+	float:right;
+	font-size:14px;
+	color:#eb6100;}
+.record_box>span{
+	height:30px;
+	line-height:30px;
+	margin-right:20px;}

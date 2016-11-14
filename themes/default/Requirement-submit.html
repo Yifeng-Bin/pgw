@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160727001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Requirement/submit')}">发布需求</a>
+            </div>
+        </div>
+    </div>
+	<div class="sub">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-lg-5 col-md-5 col-sm-5">
+                	<img src="./images/need/left.png" width="100%">
+                </div>
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                	<div class="publish">
+                    	<div class="publish_tit">发布需求</div>
+                        <form action="{:U('Requirement/submit')}" method="post">
+                        	<p>
+                            	<span>*</span> 您的姓名<input type="text" name="contacts" class="pub_txt" placeholder="请输入您的姓名">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>*</span> 联系电话<input type="text" name="mobile" class="pub_txt" placeholder="请输入您的联系电话">
+                            </p>
+                            <p>
+                            	<span>*</span> 项目名称<input type="text" name="tender_name" class="pub_txt" placeholder="请输入您的项目名称">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>*</span> 服务类型
+                                <select id="firstWorkType" class="pub_mold" style="width:100px;"></select>
+                                <select id="secondWorkType" name="work_type_id" class="pub_mold" style="width:100px;"></select>
+                            </p>
+                            <p>
+                            	<span>&nbsp;&nbsp;</span> 项目预算<input type="text" name="budget" class="pub_txt" placeholder="请输入您的预算(元) ">元&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>&nbsp; </span> 工程日期<input type="text" name="days" class="pub_txt" placeholder="请输入您的工期(天)">天
+                            </p>
+                            <p>
+                            	<span>&nbsp;&nbsp;</span> 服务地区
+                            	<select id="prov" class="pub_sel"></select>
+                                <select id="city" class="pub_sel"></select>
+                                <select id="region_id" name="region_id" class="pub_sel"></select>
+                            </p>
+                            <p>
+                            	<span>&nbsp;&nbsp;</span> 详细地址<input type="text" name="address" class="pub_txt_long" placeholder="请输入您项目的地址">
+                            </p>
+                            <p>
+                            	<strong>备注要求</strong><textarea name="remark" class="pub_txt_long" rows="3"></textarea>
+                            </p>
+                            <p>
+                            	<span>&nbsp; </span> 接单技工类型
+                                <label class="radio-inline mar_left">
+                                  <input type="radio" id="mechanicRadio1" name="work_rank" value="0" checked="checked"> 不限
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="mechanicRadio2" name="work_rank" value="1"> 普通技工
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="mechanicRadio3" name="work_rank" value="2"> <span>VIP技工(如遇问题支持先行赔付，更安全！)</span>
+                                </label>
+                            </p>
+                            <p>
+                            	<span>&nbsp; </span> 需求截至时间
+                                <label class="radio-inline mar_left">
+                                  <input type="radio" id="dayRadio1" name="closing_time" value="1" checked="checked"> 3天后截至
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="dayRadio2" name="closing_time" value="2"> 7天后截至
+                                </label>
+                            </p>
+		<p>
+                            	<span>&nbsp; </span> 是否分期
+                            	<select name="installment_num" class="new_sel">
+                                	<option value="1">不分期</option>
+                                    <option value="2">2期</option>
+                                    <option value="3">3期</option>
+                                    <option value="4">4期</option>
+                                </select>
+                                <span>&nbsp; </span> 质保金期限
+                            	<select name="guarantee_date" class="new_sel">
+                                    <option value="0">无</option>
+                                    <option value="1">1个月</option>
+                                    <option value="2">2个月</option>
+                                    <option value="3">3个月</option>
+                                    <option value="6">6个月</option>
+                                </select>
+                            </p>
+                            <p class="inputfile" id="container">
+                            	<a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a><small>上传文件描述更精准！让工人更清楚的明白您的需求！</small>
+                                <div id="upload_progress" class="progress" style="display:none">
+                                  <div id="upload_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                                </div>                                
+                                <div id="img_list" class="clearfix"></div>
+                                
+                            </p>
+                            <p>
+                            	<button type="submit" class="pub_btn">提 交 需 求</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="news_release">
+            	<div class="news_release_tit">最新需求订单</div>
+                <div class="news_release_content">
+                	<table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>姓名</th>
+                          <th>需求</th>
+                          <th>工种</th>
+                          <th>时间</th>
+                          <th>查看</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <foreach name="requirementList" item="list">
+                        <tr>
+                          <td>{$list.contacts|htmlspecialchars}</td>
+                          <td>{$list.tender_name|htmlspecialchars}</td>
+                          <td>{$list.type_name}</td>
+                          <td class="add_time" add_time="{$list.add_time}"></td>
+                          <td><a href="{:U('Requirement/detail?id='.$list['tender_id'])}">查看</a></td>
+                        </tr>
+                       </foreach>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+ 	<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <script src="./js/workType.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/i18n/zh_CN.js"></script>    
+<script type="text/javascript">
+$(function (){
+	initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$regionInfo.region_id});
+	initChangeWorkType('firstWorkType', 'secondWorkType');
+        
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'selectfiles', 
+                url : '{:U('Requirement/submit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        $("#upload_progress").hide();
+                        $("#upload_progress_bar").attr('aria-valuenow',0);
+                        $("#upload_progress_bar").attr('style','width:0%');
+                        $("#upload_progress_bar").html("0%");                         
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.attachment_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadProgress: function(up,file){
+                        $("#upload_progress").show();
+                        $("#upload_progress_bar").attr('aria-valuenow',file.percent);
+                        $("#upload_progress_bar").attr('style','width:'+file.percent+'%');
+                        $("#upload_progress_bar").html('' + file.percent + "%");
+                        //$(file.id).getElementsByTagName('b')[0].innerHTML = '' + file.percent + "%";
+                    //layer.closeAll('loading');//关闭加载效果
+                    },                    
+                    
+                    UploadComplete: function(up,files){
+                        //所有文件上传完成                     
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+        
+        $(".add_time").html(function () {
+            var d = new Date();
+            var now_time = Date.parse(d);
+            var now_time = parseInt(now_time / 1000) + parseInt(d.getTimezoneOffset() * 60);            
+            var add_time = $(this).attr('add_time');
+            var add_second = now_time - add_time ;
+            if (add_second <= 0)
+            {
+                return "";
+            } else
+            {
+                var __ed = parseInt(add_second / (24 * 60 * 60));
+                var __eh = parseInt((add_second / 3600) % 24);
+                var __em = parseInt((add_second/60)%60);
+                var __es = parseInt(add_second % 60);
+                var show_info = '';
+                if (__ed > 0) {
+                    show_info = __ed + "天前";
+                } else if (__eh > 0) {
+                    show_info = __eh + "小时前";
+                } else if (__em > 0) {
+                    show_info = __em + "分钟前";
+                } else if (__es > 0) {
+                    show_info = + __es + "秒前";
+                }
+                return show_info;
+            }
+        });
+
+});
+
+</script>
+  </body>
+</html>

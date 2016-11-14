@@ -1,0 +1,4 @@
+<?php
+//000000007203s:1090:"<ul>
+    <li><a href="/Teach/detail/id/45">室内装修卫生间区域的防水方法与技巧</a></li><li><a href="/Teach/detail/id/46">80后装修风格 如何找出厨房装修亮点</a></li><li><a href="/Teach/detail/id/48">清新简约卫浴空间收纳方法</a></li><li><a href="/Teach/detail/id/53">您挑选家具的十个小窍门</a></li><li><a href="/Teach/detail/id/56">装修知识：恐怖！小心家里的镜子！</a></li><li><a href="/Teach/detail/id/57">装修禁忌：小则伤财 大则伤命</a></li><li><a href="/Teach/detail/id/73">家装风水大师告诉您：卧室风水可以决定男人一生命运！！！！</a></li><li><a href="/Teach/detail/id/77">卫生间风水你知道多少？</a></li><li><a href="/Teach/detail/id/79">教你一次做好装修预算</a></li><li><a href="/Teach/detail/id/82">  家居风水八大忌讳</a></li><li><a href="/Teach/detail/id/83">一起打造绿色装修</a></li><li><a href="/Teach/detail/id/85">客厅装修风水不能忽视</a></li><li><a href="/Teach/detail/id/88">哪些装修装饰品不宜多？</a></li></ul>";
+?>

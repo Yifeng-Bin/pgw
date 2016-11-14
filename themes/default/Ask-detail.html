@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20161014001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Ask/index')}">知识问答</a>
+            </div>
+        </div>
+    </div>
+	
+    
+    
+    <div id="ask_detail">
+    	<div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="solution">
+                    	<div class="solution_problem">
+                        	<div class="problem_tit"><span>Q</span>{$askInfo.article_name|htmlspecialchars}</div>
+                            <div class="priblem_state">
+                            	<p>
+                                	<small><if condition="$askInfo.user_id neq 0">{$askInfo.user_name|htmlspecialchars}<else />匿名</if>	| <span>{$askInfo.visit_time}</span>人已浏览</small>
+                                    <small class="small_right">时间 : {$askInfo.add_time}</small>
+                                </p>
+                                <p><span>补充：</span>{$askInfo.article_desc|strip_tags|htmlspecialchars}</p>
+                            </div>
+                                
+                        	<h5>我来解答</h5>
+                            	<textarea class="form-control" id="comment_content" name="comment_content" rows="3"></textarea>
+                                <div class="comment_verify">  
+                                    <div class="comment_verify_pic">
+                                    	<span>验证码：</span>
+                                        <input id="verify_code" name="verify_code" type="text" class="text">
+                                        <img id="verify_img" src="{:U('Public/verify?key=comment&t='.gmtime())}" alt="captcha" style="vertical-align: middle;cursor: pointer;" width="124" height="52" onclick="this.src = '{:U("Public/verify?key=comment")}?t=' + (new Date()).getTime();" />
+                                        <input type="hidden" id="ask_id" value="{$askInfo['article_id']}">
+                                    	<button id="submit_comment" type="submit" class="answer_sub">提交</button>
+                                    </div>
+                                </div>                                
+                                
+                        </div>
+                        <div class="solution_answer">
+                        	<h5>已有{$askInfo.commentNumber}条回答</h5>
+                            <div class="solution_box">
+                                <foreach name="askInfo.commentList" item="info">
+                                    <div class="solution_box_list">
+                                            <span>{$info.user_name|htmlspecialchars}<small>{$info.add_time} </small></span>
+                                            <p>{$info.content|strip_tags|htmlspecialchars|nl2br}</p>
+                                            <if condition="$askInfo['user_id'] eq USER_ID and $askInfo['is_resolved'] eq 0">
+                                                <input type="button" class="btn_adopt" value="采纳" onClick="chioce_comment({$info.comment_id})">
+                                            </if>   
+                                            <if condition="$askInfo['best_comment_id'] eq $info['comment_id'] and $askInfo['is_resolved'] eq 1">
+                                                <input type="button" class="btn_adopt" value="已采纳">
+                                            </if>
+                                    </div>
+                                </foreach>
+                            </div>
+                        </div>
+                        <div class="solution_relevant">
+                        	<h5>相关解答</h5>
+                            <div class="solution_box">
+                                <foreach name="relateAskList" item="info">
+                                <div class="solution_box_list">
+                                	<div class="problem_tit"><span>Q</span>{$info.article_name|htmlspecialchars}</div>
+                                	<div class="problem_answer">{$info.article_desc|htmlspecialchars}</div>
+                                </div>
+                               </foreach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div id="teach_list">
+                        <div class="teach_list_count">
+                            <div class="teach_list_right_tit">
+                                <span>装修工具</span>
+                            </div>
+                            <div class="teach_count">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                        <img src="./images/banner/count_pic_01.png" width="100%">
+                                        <p><a href="#">涂料计算器</a></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                        <img src="./images/banner/count_pic_02.png" width="100%">
+                                        <p><a href="#">地板计算器</a></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 bor_bottom">
+                                        <img src="./images/banner/count_pic_03.png" width="100%">
+                                        <p><a href="#">壁纸计算器</a></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                        <img src="./images/banner/count_pic_04.png" width="100%">
+                                        <p><a href="#">墙砖计算器</a></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                        <img src="./images/banner/count_pic_05.png" width="100%">
+                                        <p><a href="#">窗帘计算器</a></p>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <img src="./images/banner/count_pic_06.png" width="100%">
+                                        <p><a href="#">地砖计算器</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {:W('Teach/newArticle')}
+                    {:W('Teach/hotArticle')}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        function chioce_comment(comment_id){
+            var url = "{:U('Article/choice')}";
+            var data = {};
+            data.comment_id = comment_id;
+            $.post(url,data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    alert(result.info);
+                }
+                window.location.reload();
+            },'json');         
+        }        
+        
+        $("#submit_comment").click(function(){
+            var url = "{:U('Article/comment')}";
+            var data = {};
+            $("#this").attr('disabled',"true");
+            data.id = $("#ask_id").val();
+            data.verify_code = $("#verify_code").val();
+            data.comment_content = $("#comment_content").val();
+            $.post(url,data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#comment_content").val('');
+                    alert(result.info);
+                }
+                $("#verify_img").click();
+            },'json');
+            
+            $("#this").attr('disabled',"false");
+        });
+    </script>    
+  </body>
+</html>

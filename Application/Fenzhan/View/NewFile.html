@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>id</th>
+                    
+                    <th>区域</th>
+                    
+                    <th>楼盘名称</th>
+
+                    <th>楼盘价格</th>
+
+                    <th>楼盘类型</th>
+
+                    <th>楼盘均价</th>
+
+                    <th>楼盘地址</th>
+                     
+                    <th>访问次数</th>
+                      
+                    <th>状态</th>
+                       
+                    <th>增加时间</th>
+                    
+                    <th>开盘时间</th>
+                    
+                    <th>交房时间</th>
+                    
+                    <th>开发商</th>
+                        
+                    <th>管理</th>
+
+                </tr>
+
+            </thead>
+
+            
+
+            <foreach name="loupan_list" item="info" >
+                <tbody>       
+                <tr>
+
+                    <td >{$info['loupan_id']}</td>
+
+                    <td>{$info['region_name']|htmlspecialchars}</td>
+
+                    <td>{$info['loupan_name']|htmlspecialchars}</td>
+
+                    <td>{$info['price']|htmlspecialchars}</td>
+
+                    <td>{$info['type']|htmlspecialchars}</td>
+
+                    <td>{$info['loupan_price']|htmlspecialchars}</td>
+                    
+                    <td>{$info['loupan_address']|htmlspecialchars}</td>
+                    
+                    <td>{$info['visit_time']}</td>
+                    
+                    <td>{$info['status']}</td>
+                    
+                    <td>{$info['add_time']|local_date='Y-m-d H:i:s',###}</td>
+                    
+                    <td>{$info['open_time']|local_date='Y-m-d H:i:s',###}</td>
+                    
+                    <td>{$info['finish_time']|local_date='Y-m-d H:i:s',###}</td>
+                    
+                    <td>{$info['developer']|htmlspecialchars}</td>
+                   
+                    <td>
+
+                        <a class="btn btn-default btn-sm" href="{:U('Article/edit',array('article_id'=>$info['article_id']))}">编辑</a>
+
+                        <button class="btn btn-default btn-sm" onClick="del_article({$info['article_id']});">删除</a>
+
+                    </td>
+
+                </tr>
+                </tbody>
+            </foreach>
+
+            
+
+        </table>
+</body>
+</html>

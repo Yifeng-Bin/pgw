@@ -1,0 +1,8 @@
+<div class="photo_border">
+    <p>相关图片</p>
+    <div class="row">
+        <foreach name="photoList" item="info">
+            <div class="col-lg-4 col-md-4 col-sm-4"><a href="{$info.url}"><img src="{$info.main_image}" width="100%"></a></div>
+        </foreach>
+    </div>
+</div>

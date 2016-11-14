@@ -1,0 +1,306 @@
+.pop-tips {
+  width: 436px;
+  height: 297px;
+  background: url(../images/pop-bg.gif) no-repeat left center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -148px 0 0 -218px;
+}
+.pop-tips .top {
+  padding: 10px 30px 0px 15px;
+}
+.pop-tips .top img {
+  width: 167px;
+  height: 53px;
+}
+.pop-tips .top a {
+  float: right;
+  width: 16px;
+  height: 16px;
+  margin-top: 10px;
+  background: url(../images/close.gif) no-repeat left center;
+}
+.pop-tips .tit {
+  background: url(../images/border.gif) no-repeat center;
+  height: 20px;
+  margin: 0 20px 0 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.pop-tips .tit span {
+  display: inline-block;
+  padding: 0 10px;
+  background: #fff;
+  color: #fd8531;
+  font-size: 16px;
+}
+.pop-tips .con {
+  margin: 0 20px 0 12px;
+  text-align: center;
+}
+.pop-tips .con p {
+  color: #0c0c0c;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.pop-tips .con span {
+  font-size: 14px;
+  color: #1e1e1e;
+}
+.pop-tips .bottom {
+  margin: 85px 25px 0 12px;
+  text-align: right;
+}
+.pop-tips .bottom a {
+  text-decoration: underline;
+  color: #1e1e1e;
+}
+/*首页*/
+.index-news {
+  background: #fff;
+}
+.index-news .tit {
+  border-bottom: 1px solid #ddd;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+ul.list li {
+  height: 43px;
+  border-bottom: 1px solid #eee;
+  padding: 6px 0 0 10px;
+  overflow: hidden;
+}
+ul.list li .list-l {
+  float: left;
+  width: 80%;
+}
+ul.list li .list-l .list-l-tit {
+  font-size: 14px;
+}
+ul.list li .list-l p {
+  margin: 0;
+  font-size: 12px;
+}
+ul.list li .list-l p span {
+  width: 45px;
+  display: inline-block;
+  padding-left: 15px;
+  color: #888;
+  background: url(../images/index-ico3.png) no-repeat left center;
+}
+ul.list li .list-l p span:nth-child(2) {
+  background-image: url(../images/index-ico1.png);
+  padding-left: 18px;
+  width: 70px;
+}
+ul.list li .list-l p span:nth-child(3) {
+  background-image: url(../images/index-ico2.png);
+}
+ul.list li .list-r {
+  float: right;
+  width: 20%;
+  text-align: center;
+  margin-top: 12px;
+  color: #888;
+  font-size: 12px;
+}
+.index-more {
+  height: 43px;
+  border-bottom: 1px solid #eee;
+  line-height: 43px;
+  text-align: center;
+}
+.index-more a {
+  background: url(../images/index-ico4.png) no-repeat right center;
+  padding-right: 15px;
+  color: #ea783f;
+  font-size: 13px;
+}
+/*楼盘详情*/
+.body {
+  width: 1200px;
+  margin: 0 auto;
+}
+.houses-main {
+  height: 230px;
+}
+.houses-main .pic {
+  float: left;
+  width: 330px;
+  height: 230px;
+  overflow: hidden;
+  background: red;
+}
+.houses-main .pic img {
+  width: 330px;
+}
+.houses-main .houses-main-r {
+  float: left;
+  width: 465px;
+  height: 230px;
+  margin-left: 50px;
+}
+.houses-main .houses-main-r .tit {
+  font-size: 24px;
+  height: 32px;
+  line-height: 40px;
+  overflow: hidden;
+}
+.houses-main .houses-main-r .price {
+  font-size: 20px;
+  margin-top: 25px;
+}
+.houses-main .houses-main-r .price span {
+  color: #f96904;
+}
+.houses-main .houses-main-r .time {
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  background: url(../images/time.png) no-repeat left center;
+  padding-left: 40px;
+  margin-top: 25px;
+}
+.houses-main .houses-main-r a.btn {
+  background: #0baa53;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+  display: block;
+  margin-top: 49px;
+}
+.houses-main .erweima {
+  float: left;
+  width: 170px;
+  text-align: center;
+  overflow: hidden;
+}
+.houses-main .erweima img {
+  width: 170px;
+  height: 170px;
+}
+.user-num {
+  background: #f5f5f5;
+  height: 65px;
+  margin-top: 35px;
+}
+.user-num > div {
+  width: calc(100% / 3);
+  float: left;
+  height: 65px;
+  line-height: 65px;
+  text-align: center;
+  font-size: 27px;
+}
+.user-num > div span {
+  color: #f96904;
+  padding: 0 10px;
+}
+/*套餐*/
+.housesInfo {
+  border: 1px solid #d2d2d2;
+  margin-top: 17px;
+}
+.housesInfo .tit {
+  background: #f5f5f5;
+  border-bottom: 1px solid #d2d2d2;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.housesInfo .content {
+  text-align: center;
+}
+.housesInfo .content img {
+  max-width: 100%;
+}
+.Package {
+  border-bottom: 1px solid #d2d2d2;
+}
+.Package .Package-l {
+  float: left;
+  color: #f96904;
+  width: 140px;
+  text-align: center;
+}
+.Package .Package-l span {
+  display: block;
+  margin-top: 13px;
+  font-size: 16px;
+}
+.Package .Package-c {
+  float: left;
+  width: 840px;
+  border-left: 1px solid #d2d2d2;
+  padding: 15px 26px 0 26px;
+}
+.Package .Package-c a {
+  padding: 0 5px 2px 5px;
+  display: inline-block;
+  margin: 0 15px 15px 0;
+  color: #646464;
+  font-size: 16px;
+}
+.Package .Package-c a.on {
+  background: #f96904;
+  color: #fff;
+  border-radius: 3px;
+}
+.Package .Package-r {
+  float: right;
+  color: #f96904;
+  width: 140px;
+  text-align: left;
+  margin-top: 17px;
+}
+.Package .Package-r span {
+  display: inline-block;
+  background: url(../images/taocan2.gif) no-repeat right center;
+  padding-right: 20px;
+  color: #646464;
+  font-size: 14px;
+}
+.enroll-box {
+  background: #eee;
+  height: 400px;
+  margin-top: 20px;
+}
+.enroll-box .enrollInfo {
+  width: 435px;
+  margin: 0 auto;
+}
+.enroll-box .enrollInfo .con {
+  border: 1px solid #c9c9c9;
+  background: #fff;
+  padding: 15px 0;
+}
+.enroll-box .enrollInfo .con input {
+  width: 88%;
+  margin: 0 0 12px 4%;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 12px;
+}
+.enroll-box .enrollInfo .con a.btn {
+  background: #0baa53;
+  display: block;
+  height: 50px;
+  width: 91.5%;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  line-height: 50px;
+  margin: 45px 0 0 4%;
+}
+.enroll-box .enrollInfo .tit {
+  font-size: 30px;
+  text-align: center;
+  padding: 12px 0;
+  color: #333;
+}
+/*# sourceMappingURL=style.css.map */

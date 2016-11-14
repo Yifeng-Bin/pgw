@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">	
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">添加工地</div>
+            <div id="user_mid" class="bor_top">
+            	<form action="{:U('User/build_editok')}" method="post" enctype="multipart/form-data">
+                <div class="nav_box">
+                	<div class="nav_box_list">
+                        <span>标题：</span><input type="text" name="title" class="btn_id" value="{$reslist['title']}" required>
+                    </div>
+                	 <input type="hidden" name="id" value="{$reslist['id']}"/>
+ 
+                      <div class="nav_box_list" id="area">
+                            	<span>所在地区：</span>
+                                <select id="prov" class="box_add"></select>
+                                <select id="city" class="box_add"></select>
+                                <select id="region_id" name="region_id" class="box_add"></select>
+                     </div>
+                    <div class="nav_box_list">
+                        <span>面积：</span><input type="number" class="btn_id" name="area" value="{$reslist['area']}" required placeholder="单位：㎡">
+                    </div>
+                    <div class="nav_box_list">
+                        <span>户型：</span>
+                        <select class="btn_id" name="attr_id">
+                           <foreach name="res"  item="value" >
+                            <option value="{$value['attr_value_id']}" <if condition="$articleInfo['cat_id'] eq $child['cat_id']">selected="selected"</if>>{$value['attr_value']}</option>
+                           
+                        </foreach>
+                        </select>
+                    </div>
+                    <div class="nav_box_list">
+                        <span>造价：</span><input type="number" class="btn_id" name="price" value="{$reslist['price']}" required placeholder="单位：万元"> <strong>万元</strong>
+                    </div>                   
+                    <div class="nav_box_list">
+                        <span>小区：</span>
+                         
+                        <select class="btn_id" name="loupan_id" id='loupan_id'>
+                        <foreach name="res1"  item="value" >
+                            <option value="{$value['loupan_id']}" <if condition="$articleInfo['cat_id'] eq $child['cat_id']">selected="selected"</if>>{$value['loupan_name']}</option>
+                           
+                        </foreach>
+                        </select>
+                    
+                    </div>					<div class="nav_box_list">                        <span>单元：</span><input type="text" class="btn_id" name="unit" value="{$reslist['unit']}" required placeholder="3栋205">                    </div>     
+                    <div class="nav_box_list">
+                        <span>工地简介：</span>
+                        <textarea rows="2" name="desc"  class="tex_info">{$reslist['desc']}</textarea>
+                    </div>
+                                       <div class="nav_box_list">						 <span>上传图片：</span>						 <input type="file" class="btn_id" name="img" required />                    </div>
+                    <button type="submit" class="sub_info">保存</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  	 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="./js/areaChange.js"></script> -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script type="text/javascript">
+   
+    $(function  () {
+    	initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$region_id})}
+    
+   );
+   $("#region_id").change(function(){
+	   var region_id= $(this).find("option:selected").val();
+	   var data = {};
+	   $("#loupan_id").empty();
+	   data.region_id=region_id;
+	   $.get("{:U('User/build_name')}",data,function(result){   
+		   $.each(result,function(i,item){
+			  $('#loupan_id').append('<option value="'+item.loupan_id+'">'+item.loupan_name+'</option>');
+		   });
+		   
+	   },'json');
+   });
+    var workTypeList = {:json_encode($workInfo['workTypeList'])};
+    //初始化工人选择
+    var workHtml = '';
+    for(var i in __allWorkType.first){
+        workHtml = workHtml + '<div class="project_box">';
+        workHtml = workHtml + '<p>' + __allWorkType.first[i].name + '</p>';
+        for(var j in __allWorkType.second[__allWorkType.first[i].code]){
+            workHtml = workHtml + '<label class="checkbox-inline"><input type="checkbox" value="'+__allWorkType.second[__allWorkType.first[i].code][j].code+'" name="type_ids[]"> '+__allWorkType.second[__allWorkType.first[i].code][j].name+'</label>';
+        }
+        workHtml = workHtml + '</div>';                                  
+}
+    $("#projectInfo").append(workHtml);
+    
+    for(var i in workTypeList){
+        $("input[name='type_ids[]'][value='"+workTypeList[i]+"']").attr('checked', true);
+    }
+    
+    $('input[type=checkbox]').click(function() {
+        $("input[name='type_ids[]']").attr('disabled', true);
+        if ($("input[name='type_ids[]']:checked").length >= 3) {
+            $(this).attr('checked', false);
+            $("input[name='type_ids[]']:checked").attr('disabled', false);
+        } else {
+            $("input[name='type_ids[]']").attr('disabled', false);
+        }
+    });        
+
+    
+   
+    </script>
+  </body>
+</html>

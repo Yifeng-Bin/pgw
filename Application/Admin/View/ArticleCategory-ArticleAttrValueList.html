@@ -1,0 +1,139 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">属性值列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_attr_value(0, '{:U('ArticleCategory/AttrValueManage?act=add&attr_id='.$attrInfo['attr_id'])}')">增加属性值</button>
+        <a class="btn btn-default btn-sm" href="{:U('ArticleCategory/AttrManage?act=list&cat_id='.$attrInfo['article_cat_id'])}">返回属性列表</a>
+        <a class="btn btn-default btn-sm" href="{:U('ArticleCategory/index')}">返回文章分类</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>属性值</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="attrValueList" item="attrValue" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$attrValue['attr_value_id']}"></td>
+                    <td>{$attrValue['attr_value']|htmlspecialchars}</td>
+                    <td><if condition="$attrValue['status'] eq 1">可用<else/>禁用</if></td>
+                    <td>{$attrValue['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_attr_value({$attrValue['attr_value_id']}, '{:U('ArticleCategory/AttrValueManage?act=edit&attr_id='.$attrInfo['attr_id'])}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_attr_value({$attrValue['attr_value_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    <!-- Modal -->
+    <div class="modal fade" id="attrValueModal" tabindex="-1" role="dialog" aria-labelledby="attrValueModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="attrValueModalLabel">增加/编辑属性值信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="attr_value" class="control-label">属性值:</label>
+                            <input type="text" class="form-control" id="attr_value" name="attr_value">
+                        </div>
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort">
+                        </div>                         
+                        <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>
+                    </form>
+                    <input type="hidden" id="attr_value_id" name="attr_value_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_attr_value();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+</block>
+<block name="js-input">
+    <script type="text/javascript">     
+        function submit_attr_value()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.attr_value_id = $('#attr_value_id').val();
+            data.attr_value = $('#attr_value').val();
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    window.location.reload();
+                }
+              },'json');
+        }
+        
+        
+        function del_attr_value(attr_value_id)
+        {
+            if(confirm("确认删除吗？")){
+                var post_url = '{:U('ArticleCategory/AttrValueManage?act=del')}';
+                var data = {};
+                data.attr_value_id = attr_value_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        window.location.reload();
+                    }
+                  },'json');                
+            }            
+        }
+                                function show_edit_attr_value(attr_value_id,url)
+                                {
+                                    $('#attr_value_id').val(0);
+                                    $('#attr_value').val('');
+                                    $('#sort').val(100);
+                                    $("input[name='status'][value='1']").attr("checked",true);
+                                    $("input[name='submitUrl']").val(url);
+                                    if (attr_value_id != 0)
+                                    {
+                                        $.get("{:U('ArticleCategory/AttrValueManage?act=getValueInfo')}", { attr_value_id : attr_value_id },
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#attr_value_id').val(data.info.attr_value_id);
+                                                        $('#attr_value').val(data.info.attr_value);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);      
+                                                        $('#attrValueModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $('#attrValueModal').modal();
+                                        }
+                                        
+                                }
+    </script>
+</block>

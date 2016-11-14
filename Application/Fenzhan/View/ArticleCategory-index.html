@@ -1,0 +1,171 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">分类列表</h1>
+        <if condition="$level elt 2"><button class="btn btn-default btn-sm" onClick="show_edit_category(0, '{:U('ArticleCategory/add')}',{$pid})">增加分类</button></if>
+        <if condition="$pid != 0"><a class="btn btn-default btn-sm" href="{:U('ArticleCategory/index',array('pid'=>$ppid))}">返回上级分类</a></if>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>分类名称</th>
+                    <th>描述</th>
+                    <th>关键字</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="categoryList" item="category" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$category['cat_id']}"></td>
+                    <if condition="$level elt 1">
+                       <td><a href="{:U('ArticleCategory/index?pid='.$category['cat_id'])}">{$category['cat_name']|htmlspecialchars}</a></td> 
+                    <else />
+                        <td>{$category['cat_name']|htmlspecialchars}</td>
+                    </if>
+                    <td>{$category['cat_decs']|htmlspecialchars}</td>
+                    <td>{$category['cat_keywords']|htmlspecialchars}</td>
+                    <td><if condition="$category['status'] eq 1">启用<else />禁用</if></td>
+                    <td>{$category['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_category({$category['cat_id']}, '{:U('ArticleCategory/edit')}')">编辑</button>
+                    <if condition="$pid eq 0"><a class="btn btn-default btn-sm" href="{:U('ArticleCategory/AttrManage?act=list&cat_id='.$category['cat_id'])}">属性管理</a></if>
+                    <button class="btn btn-default btn-sm" onClick="del_category({$category['cat_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('ArticleCategory/index',array('pid'=>$pid))}" method="get">
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="categoryModalLabel">增加/编辑分类信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="cat_name" class="control-label">分类名称:</label>
+                            <input type="text" class="form-control" id="cat_name" name="cat_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="cat_keywords" class="control-label">关键字:</label>
+                            <input type="text" class="form-control" id="cat_keywords" name="cat_keywords">
+                        </div>        
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort">
+                        </div>                         
+                        <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>                             
+                        <div class="form-group">
+                            <label for="cat_decs" class="control-label">分类描述:</label>
+                            <textarea rows="3" class="form-control" id="cat_decs" name="cat_decs"></textarea>
+                        </div>
+                    </form>
+                    <input type="hidden" id="cat_id" name="cat_id" value='0' />
+                    <input type="hidden" id="pid" name="pid" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_category();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">     
+        function submit_category()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.cat_id = $('#cat_id').val();
+            data.cat_name = $('#cat_name').val();
+            data.cat_decs = $('#cat_decs').val();
+            data.cat_keywords = $('#cat_keywords').val();
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+            data.parent_id = $('#pid').val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_category(cat_id)
+        {
+            if(confirm("确认删除文章分类吗？")){
+                var post_url = '{:U('ArticleCategory/del')}';
+                var data = {};
+                data.cat_id = cat_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                  },'json');                
+            }            
+        }
+                                function show_edit_category(cat_id,url,pid)
+                                {
+                                    $('#cat_id').val(0);
+                                    $('#cat_name').val('');
+                                    $('#cat_decs').val('');
+                                    $('#cat_keywords').val('');
+                                    $("input[name='status'][value='1']").attr("checked",true);
+                                    $("input[name='pid']").val(pid);
+                                    $("input[name='submitUrl']").val(url);
+                                    if (cat_id != 0)
+                                    {
+                                        $.get("{:U('ArticleCategory/edit')}", { cat_id:cat_id },
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#cat_id').val(data.info.cat_id);
+                                                        $('#cat_name').val(data.info.cat_name);
+                                                        $('#cat_decs').val(data.info.cat_decs);
+                                                        $('#cat_keywords').val(data.info.cat_keywords);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='pid']").val(data.info.parent_id);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);                                       
+                                                        $('#categoryModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $('#categoryModal').modal();
+                                        }
+                                        
+                                }
+    </script>
+</block>

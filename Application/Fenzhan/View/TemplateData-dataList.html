@@ -1,0 +1,347 @@
+<extend name="Public/base" />
+<block name="main">
+
+        <h1 class="page-header">模版数据列表<small>(模版位置：{$positionInfo.position_name})</small></h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_data(0, '{:U('TemplateData/add')}')">增加模版数据</button>
+        <a class="btn btn-default btn-sm" href="{:U('TemplateData/index')}">返回模版位置列表</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>模版数据名称</th>
+                    <th>链接/id</th>
+                    <th>图片</th>
+                    <th>地区</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="list" item="info" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$info['data_id']}"></td>
+                    <td>{$info['data_name']}</td>
+                    <td>{$info['data_link']}</td>
+                    <td>{$info['data_image']}</td>
+                    <td>{$info['region_name']}</td>
+                    <td>{$info['start_time']|local_date='Y-m-d',###}</td>
+                    <td>{$info['end_time']|local_date='Y-m-d',###}</td>
+                    <td><if condition="$info['status'] eq 1">启用<else />禁用</if></td>
+                    <td>{$info['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_data({$info['data_id']}, '{:U('TemplateData/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_data({$info['data_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('TemplateData/dataList')}" method="get">
+            <input type="hidden" name="position_id"  id="position_id" value="{$position_id}" />
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="dataModal" tabindex="-1" role="dialog" aria-labelledby="dataModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="dataModalLabel">增加/编辑模版信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="data_name" class="control-label">模版数据名称:</label>
+                            <input type="text" class="form-control" id="data_name" name="data_name">
+                        </div>
+                        
+                        <if  condition="$positionInfo['position_type'] eq 'worker'">
+                        <div class="form-group">
+                            <label for="data_name" class="control-label">工种:</label>
+                            <select id="type_id" name="type_id">
+
+                                <foreach name="worktypeList" item="value" >
+
+                                    <option value="{$value.type_id}">{$value.type_name}</option>
+
+                                </foreach>                                
+
+                            </select>  
+                        </div>
+						</if>
+						
+                        <div class="form-group form-inline">
+                            <if condition="$positionInfo['position_type'] eq 'link'">
+                                <label for="data_link" class="control-label">链接:</label>
+                                <input type="hidden" id="type" value="link" />
+                                <input type="text" class="form-control" id="data_link" name="data_link">
+                            <elseif  condition="$positionInfo['position_type'] eq 'worker'" />
+                                <label for="data_link" class="control-label">工人id:</label>
+                                <select class="form-control" id="data_link" name="data_link"></select>
+                                <input class="form-control" id="query" value="" />
+                                <input type="hidden" id="type" value="worker" />
+                                <button class="form-control" id="searchData">搜索</button>
+                            <elseif  condition="$positionInfo['position_type'] eq 'photo'" />
+                                <label for="data_link" class="control-label">效果图文章id:</label>
+                                <select class="form-control" id="data_link" name="data_link"></select>
+                                <input class="form-control" id="query" value="" />
+                                <input type="hidden" id="type" value="photo" />
+                                <button class="form-control" id="searchData">搜索</button>                           
+                            <elseif  condition="$positionInfo['position_type'] eq 'teach'" />
+                                <label for="data_link" class="control-label">教学文章id:</label>  
+                                <select class="form-control" id="data_link" name="data_link"></select>
+                                <input class="form-control" id="query" value="" />
+                                <input type="hidden" id="type" value="teach" />
+                                <button class="form-control" id="searchData">搜索</button>       
+                            <elseif  condition="$positionInfo['position_type'] eq 'ask'" />
+                                <label for="data_link" class="control-label">问答id:</label>  
+                                <select class="form-control" id="data_link" name="data_link"></select>
+                                <input class="form-control" id="query" value="" />
+                                <input type="hidden" id="type" value="ask" />
+                                <button class="form-control" id="searchData">搜索</button>  
+                            <elseif  condition="$positionInfo['position_type'] eq 'diary'" />
+                                <label for="data_link" class="control-label">日志id:</label>  
+                                <select class="form-control" id="data_link" name="data_link"></select>
+                                <input class="form-control" id="query" value="" />
+                                <input type="hidden" id="type" value="diary" />
+                                <button class="form-control" id="searchData">搜索</button>                                  
+                            </if>
+                            
+                        </div>      
+                        <div class="form-group">
+                            <label for="data_text" class="control-label">文字:</label>
+                            <input type="text" class="form-control" id="data_text" name="data_text">
+                        </div>                          
+                        <div class="form-group">
+                            <label for="data_image" class="control-label">图片:</label>
+                            <input ype="file" name="data_image_file" id="data_image_file" />                       
+                            <input type="text" class="form-control" id="data_image" name="data_image">
+                        </div>  
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control" id="sort" name="sort">
+                        </div>                          
+                        <div class='form-group form-inline'>
+                            <label for="time_1">开始时间</label>
+                            <div class='input-group date' id='time_1'>
+                                <input type='text'  id='start_time' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>  
+                        </div> 
+                        <div class='form-group form-inline'>
+                            <label for="time_2">结束时间</label>
+                            <div class='input-group date' id='time_2'>
+                                <input type='text'  id='end_time' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>  
+                        </div>                          
+              
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>
+                    </form>
+                    <input type="hidden" id="data_id" name="data_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_data();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script src="__STATICS__/js/moment.min.js"></script>
+    <script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+    $('#data_image_file').uploadify({
+        'swf'      : '__STATICS__/uploadify/uploadify.swf',
+        'uploader' : "{:U('Public/upload/type/4')}",
+        'buttonText' : '选择图片',
+        'multi'    : false,
+        'successTimeout' : 5,
+        'formData'      : {'ajax' : 1},
+        'onUploadSuccess' : function(file, data, response) {
+            data = jQuery.parseJSON(data);
+            if(data.status == 0)
+            {
+                alert(data.info);
+            }else{
+                var img_path = data.info.url;
+                $('#data_image').val(img_path);        
+            }
+        }
+    });        
+            $(function () {
+                $('#time_1').datetimepicker({
+                    defaultDate : "",
+                    format : 'YYYY-MM-DD HH:mm:ss',
+                });
+                $('#time_2').datetimepicker({
+                    defaultDate : "",
+                    format : 'YYYY-MM-DD HH:mm:ss',
+                });  
+                
+                $('#searchData').click(function(){
+                    var data_id = $("input[name='data_id']").val();
+                    var url = '';
+                    var data = {};
+                    data.act = 'query';
+                    data.type = $('#type').val();
+                    data.type_id = $('#type_id').val();
+                    data.query = $('#query').val();
+                    if(data_id == 0){
+                        url = "{:U('TemplateData/add')}";
+                    }else{
+                        url = "{:U('TemplateData/edit')}";
+                    }
+                    $.post(url,data,function(result){
+                        if(result.status == 0){
+                            alert(result.info);
+                        }else{
+                            $('#data_link').empty();
+                            for(var key in result.info){
+                                $('#data_link').append('<option value="'+key+'">'+result.info[key]+'</option>');
+                            }
+                        }
+                    },'json');
+                    return false;
+                });                
+            });
+        function submit_data()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.position_id = $('#position_id').val();
+            data.data_id = $('#data_id').val();
+            data.data_name = $('#data_name').val();
+            data.data_text = $('#data_text').val();
+            data.data_link = $('#data_link').val();
+            data.data_image = $('#data_image').val();
+            data.start_time = $('#start_time').val();
+            data.end_time = $('#end_time').val();
+            data.sort = $('#sort').val();
+            data.status = $("input[name='status']:checked").val();      
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_data(data_id)
+        {
+            if(confirm("确认删除模版数据吗？")){
+                var post_url = '{:U('TemplateData/del')}';
+                var data = {};
+                data.data_id = data_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                  },'json');
+            }        
+
+        }
+        
+       
+                                function show_edit_data(data_id, url)
+                                {
+                                    var type = $("#type").val();
+                                    $('#data_name').val('');
+                                    $('#data_text').val('');
+                                    if(type == 'link'){
+                                      $('#data_link').val('');  
+                                    }else{
+                                        $('#data_link').empty(); 
+                                    }
+                                    $('#data_image').val('');
+                                    $('#sort').val(100);
+                                    $("input[name='status'][value='1']").prop("checked",true);
+                                    if (data_id != 0)
+                                    {
+                                        $.get("{:U('TemplateData/edit')}", {data_id : data_id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#data_id').val(data.info.data_id);
+                                                        $('#data_name').val(data.info.data_name);
+                                                        $('#data_text').val(data.info.data_text);
+                                                        if(type == 'link'){
+                                                            $('#data_link').val(data.info.data_link);
+                                                        }else{
+                                                            $('#data_link').append('<option value="'+data.info.data_link+'">'+data.info.select_value+'</option>');
+                                                        }
+                                                        
+                                                        $('#data_image').val(data.info.data_image);
+                                                        $('#start_time').val(data.info.start_time);
+                                                        $('#end_time').val(data.info.end_time);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);
+                                                        $("input[name='submitUrl']").val(url);
+                                                        $('#dataModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='data_id']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                                $('#dataModal').modal();
+                                        }
+                                        return false;
+                                        
+                                }
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

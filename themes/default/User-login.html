@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+
+
+    <!-- Bootstrap -->
+
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <link href="./css/style.css?v=20160728001" type="text/css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if lt IE 9]>
+
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+
+            <script src="__STATICS__/js/respond.min.js"></script>        
+
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+
+        <![endif]-->
+
+  </head>
+
+  <body>
+
+    <div class="header_top">
+
+        	<div class="container">
+
+            	<div class="row">
+
+                	<div class="col-lg-3 col-md-3 col-sm-3 text-left">
+
+                            <if condition="USER_ID eq 0">
+
+                                <img src="./images/header/login_off.png"> <a href="{:U('User/login')}">登录</a> | <a href="{:U('User/register')}">注册</a>
+
+                            <else/>
+
+                                <span><a href="{:U('User/index')}">{$userInfo.user_name|htmlspecialchars}</a></span><a href="{:U('User/logout?code='.session('xss_code'))}"> &nbsp;退出</a>
+
+                            </if>
+
+                        </div>
+
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 text-right"><a href="{:U('Requirement/submit')}">发布需求</a></div>
+
+                    <div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('User/order')}">我的预约</a></div>
+
+	<div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('House/zhaoshang')}">分站加盟</a></div>
+
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right"><img src="./images/header/tel.png"> 服务热线：<span><empty name="tel">{:C('service_phone')}<else/>{$tel.data_text|htmlspecialchars}</empty></span></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        
+
+    <div class="container">
+
+    	<div class="reg_content_header"><a href="{$baseurl}"><img src="./images/header/logo.png" height="80"></a></div>
+
+    </div>
+
+    <div class="register_container">
+
+    	<div class="container">
+
+            <div class="reg_container_content">
+
+            	<div class="row">
+
+                	<div class="col-lg-7 col-md-7 col-sm-7">
+
+                    	<img class="pic_margin" src="./images/user/login_pic.png">
+
+                    </div>
+
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+
+                    	<div class="reg_cont_form" style="height:400px;">
+
+                            <form action="{:U('User/login')}" method="post">
+
+                                <div class="user_login">
+
+                                	<div class="information_content">
+
+                                    	<h4>用户登录</h4>
+
+                                        <input type="text" name="user_name" id="txt_username" class="form-control inp_reg" placeholder="用户名">
+
+                                        <input type="password" name="password" id="txt_password" class="form-control inp_reg" placeholder="密码" style="margin-top:20px">
+
+                                        <div class="reading" style="margin-top:10px">
+
+                                        	<input name="remember" type="checkbox" id="ck_rmbUser" style="margin-top:0;"> 下次自动登录
+
+                                        </div>
+
+                                        <button type="submit" id="sub" class="btn reg_submit">立即登录</button>
+
+                                        <input type="hidden" name="back_url" value="{$back_url}" />
+
+                                        <div class="login_text text-left"><a href="{:U('User/register')}">新用户注册</a></div>
+
+                                        <div class="login_text text-right"><a href="{:U('User/findpass')}">忘记密码？</a></div>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+ 
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+
+    <script src="./jquery/jquery.cookie.js"></script>
+
+    <script src="./js/main.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+
+ 
+
+  $(document).ready(function () {
+
+    if ($.cookie("rmbUser") == "true") {
+
+    $("#ck_rmbUser").attr("checked", true);
+
+    $("#txt_username").val($.cookie("username"));
+
+    $("#txt_password").val($.cookie("password"));
+
+    }
+
+  });
+
+ 
+
+  //记住用户名密码
+
+  function Save() {
+
+    if ($("#ck_rmbUser").attr("checked")) {
+
+      var str_username = $("#txt_username").val();
+
+      var str_password = $("#txt_password").val();
+
+      $.cookie("rmbUser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+
+      $.cookie("username", str_username, { expires: 7 });
+
+      $.cookie("password", str_password, { expires: 7 });
+
+    }
+
+    else {
+
+      $.cookie("rmbUser", "false", { expire: -1 });
+
+      $.cookie("username", "", { expires: -1 });
+
+      $.cookie("password", "", { expires: -1 });
+
+    }
+
+  };
+
+
+
+$(function(){
+
+if(!placeholderSupport()){   // 判断浏览器是否支持 placeholder
+
+    $('[placeholder]').focus(function() {
+
+        var input = $(this);
+
+        if (input.val() == input.attr('placeholder')) {
+
+            input.val('');
+
+            input.removeClass('placeholder');
+
+        }
+
+    }).blur(function() {
+
+        var input = $(this);
+
+        if (input.val() == '' || input.val() == input.attr('placeholder')) {
+
+            input.addClass('placeholder');
+
+            input.val(input.attr('placeholder'));
+
+        }
+
+    }).blur();
+
+};
+
+})
+
+function placeholderSupport() {
+
+    return 'placeholder' in document.createElement('input');
+
+}
+
+</script>
+
+  </body>
+
+</html>

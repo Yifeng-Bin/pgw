@@ -1,0 +1,125 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">用户列表</h1>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline">
+                <label class="control-label">筛选：</label>
+                <foreach name="filter.fields_name" item="name" >
+                    <if condition="$name.type eq 'input'">
+                        <input class="form-control input-sm" type="text" name="search_{$key}" value='{$filter['fields_value'][$key]}' placeholder="{$name.desc}" />
+                    <elseif condition="$name.type eq 'select'"/>
+                        <select name="search_{$key}" class="form-control input-sm">
+                            <foreach name="name.values" key="key1" item="value" >
+                                <option value="{$key1}" <if condition="$filter['fields_value'][$key] eq $key1">selected="selected"</if>>{$value}</option>
+                            </foreach>   
+                        </select>                        
+                    </if>
+                </foreach>
+                <label>排序：</label>
+                <select id="orderby" class="form-control input-sm">
+                <foreach name="filter.order.fields" item="name" >
+                    <option value="{$key}" <if condition="$filter['order']['orderby'] eq $key">selected="selected"</if>>{$name}</option>
+                </foreach>                    
+                </select>
+                <select id="sortby" class="form-control input-sm">
+                    <option value="DESC" <if condition="$filter['order']['sortby'] eq 'desc'">selected="selected"</if>>降序</option>
+                    <option value="ASC" <if condition="$filter['order']['sortby'] eq 'asc'">selected="selected"</if>>升序</option>
+                </select>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()">确认</button>
+            </div>
+            <div class="col-sm-3"><a class="btn btn-default btn-sm pull-right" href="{:U('Users/add')}">增加用户</a></div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#用户id</th>
+                    <th>帐号</th>
+                    <th>手机号码</th>
+                    <th>真实名称</th>
+                    <th>所在区域</th>                                        <th>注册时间</th>                    <th>最近登录时间</th>                    
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="usersList" item="userInfo" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$userInfo['user_id']}">{$userInfo['user_id']}</td>
+                    <td>{$userInfo['user_name']|htmlspecialchars}</td>
+                    <td>{$userInfo['mobile']|htmlspecialchars}</td>
+                    <td>{$userInfo['real_name']|htmlspecialchars}</td>
+                    <td>{$userInfo['region_name']}</td>                                         <th>{$userInfo['add_time']|date="Y-m-d H:i:s",###}</th>                     <th><if condition="$userInfo['login_time'] eq 0">0<else/>{$userInfo['login_time']|date="Y-m-d H:i:s",###}</if></th>
+                <td>
+                    <a class="btn btn-default btn-sm" href="{:U('Users/edit?id='.$userInfo['user_id'])}">编辑</a>
+                    <button class="btn btn-default btn-sm" onClick="del_user({$userInfo['user_id']});">删除</button>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('Users/index')}" method="get">
+                <foreach name="filter.fields_value" item="value" >
+                    <input type="hidden" name="filter_{$key}" value="{$value}" />
+                </foreach>     
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script type="text/javascript">
+        function submit_filter()
+        {
+            $("[name^='search_']").each(function() {
+                var search_name = $(this).prop("name");
+                var filter_name = 'filter_' + search_name.substr(7);
+               $("input[name='"+filter_name+"']").val($(this).val()); 
+            });
+            $("input[name='orderby']").val($("#orderby").val());
+            $("input[name='sortby']").val($("#sortby").val());
+            $("#submitForm").submit();
+        }
+        function del_user(uid)
+        {
+            if(confirm("确认删除用户吗？")){
+                var post_url = '{:U('Users/del')}';
+                var data = {};
+                data.user_id = uid;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                },'json');                
+            }
+        }
+                            
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

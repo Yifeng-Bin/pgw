@@ -1,0 +1,224 @@
+<extend name="Public/base" />
+<block name="main">
+
+    <h1 class="page-header">编辑需求信息</h1>
+    <p><a class="btn btn-default" href="{:U('Requirement/index')}">返回需求列表</a></p>
+    <form id="submitForm" class="form-horizontal" action="{:U('Requirement/edit')}" method="post">
+        <div>
+            <div class="form-group">
+                <label for="tender_name" class="control-label col-sm-2">项目名称:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="tender_name" name="tender_name" value="{$tenderInfo.tender_name|htmlspecialchars}" />
+                </div>                
+            </div>
+
+            <div class="form-group">
+                <label for="work_type_id" class="control-label col-sm-2">服务类型:</label>
+                <div class="col-sm-3">
+                    <select id="firstWorkType" class="form-control form-inline"></select>
+                </div>  
+                <div class="col-sm-3">
+                    <select id="secondWorkType" name="work_type_id" class="form-control"></select>    
+                </div>                 
+
+            </div>
+
+            <div class="form-group">
+                <label for="contacts" class="control-label col-sm-2">姓名:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="contacts" name="contacts" value="{$tenderInfo.contacts|htmlspecialchars}" />
+                </div>                
+            </div>
+            <div class="form-group">
+                <label for="mobile" class="control-label col-sm-2">联系电话:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="mobile" name="mobile" value="{$tenderInfo.mobile|htmlspecialchars}" />
+                </div>                
+            </div> 
+            <div class="form-group">
+                <label for="region_id" class="control-label col-sm-2">地区:</label>
+                <div class="col-sm-2">
+                    <select id="prov" class="form-control"></select> 
+                </div>   
+                <div class="col-sm-2">
+                    <select id="city" class="form-control"></select>  
+                </div>   
+                <div class="col-sm-2">
+                    <select id="region_id" name="region_id" class="form-control"></select>  
+                </div>                                              
+            </div>            
+            <div class="form-group">
+                <label for="address" class="control-label col-sm-2">详细地址:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="address" name="address" value="{$tenderInfo.address|htmlspecialchars}" />
+                </div>                
+            </div>              
+            <div class="form-group">
+                <label for="budget" class="control-label col-sm-2">项目预算:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="budget" name="budget" value="{$tenderInfo.budget|htmlspecialchars}" />
+                </div>                
+            </div>
+            <div class="form-group">
+                <label for="days" class="control-label col-sm-2">工程日期:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="days" name="days" value="{$tenderInfo.days|htmlspecialchars}" />
+                </div>                
+            </div>   
+            <div class="form-group">
+                <label for="remark" class="control-label col-sm-2">备注要求:</label>
+                <div class="col-sm-6">
+                    <textarea id="remark" name="remark" class="form-control" rows="3">{$tenderInfo.remark|htmlspecialchars}</textarea>
+                </div>                
+            </div>  
+            <div class="form-group">
+                <label for="work_rank" class="control-label col-sm-2">接单技工类型 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="work_rank" value="0" <if condition="$tenderInfo.work_rank eq 0">checked="checked"</if>>不限</label>
+                    <label class="checkbox-inline"><input type="radio" name="work_rank" value="1" <if condition="$tenderInfo.work_rank eq 1">checked="checked"</if>>普通技工</label>
+                    <label class="checkbox-inline"><input type="radio" name="work_rank" value="2" <if condition="$tenderInfo.work_rank eq 2">checked="checked"</if>>vip技工</label>
+                </div>                
+            </div>
+            <div class="form-group">
+                <label for="status" class="control-label col-sm-2">需求状态 :</label>
+                <div class="col-sm-6">
+                    <select id="status" name="status" class="form-control">
+                        <option value="{$Think.const.STATUS_IS_INVALID}" <if condition="$tenderInfo.status eq STATUS_IS_INVALID">selected="selected"</if>>无效</option>
+                        <option value="{$Think.const.STATUS_WAIT_BID}" <if condition="$tenderInfo.status eq STATUS_WAIT_BID">selected="selected"</if>>待承接</option>
+                        <option value="{$Think.const.STATUS_WAIT_EMPLOY}" <if condition="$tenderInfo.status eq STATUS_WAIT_EMPLOY">selected="selected"</if>>待雇佣</option>
+                        <option value="{$Think.const.STATUS_WAIT_CONFIRM}" <if condition="$tenderInfo.status eq STATUS_WAIT_CONFIRM">selected="selected"</if>>待确认</option>
+                        <option value="{$Think.const.STATUS_IS_CONFIRM}" <if condition="$tenderInfo.status eq STATUS_IS_CONFIRM">selected="selected"</if>>已确认</option>
+                        <option value="{$Think.const.STATUS_WAIT_PAY}" <if condition="$tenderInfo.status eq STATUS_WAIT_PAY">selected="selected"</if>>待付款</option>
+                        <option value="{$Think.const.STATUS_WAIT_EXECUTE}" <if condition="$tenderInfo.status eq STATUS_WAIT_EXECUTE">selected="selected"</if>>待施工</option>
+                        <option value="{$Think.const.STATUS_IS_EXECUTE}" <if condition="$tenderInfo.status eq STATUS_IS_EXECUTE">selected="selected"</if>>施工中</option>
+                        <option value="{$Think.const.STATUS_WAIT_CHECK}" <if condition="$tenderInfo.status eq STATUS_WAIT_CHECK">selected="selected"</if>>待验收</option>
+                        <option value="{$Think.const.STATUS_IS_FINISH}" <if condition="$tenderInfo.status eq STATUS_IS_FINISH">selected="selected"</if>>已结束</option>
+                    </select>  
+                </div>                                  
+            </div>             
+            <div class="form-group">
+                <label for="is_checked" class="control-label col-sm-2">审核状态 :</label>
+                <div class="col-sm-6">
+                    <label class="checkbox-inline"><input type="radio" name="is_checked" value="1" <if condition="$tenderInfo.is_checked eq 1">checked="checked"</if>>已审核</label>
+                    <label class="checkbox-inline"><input type="radio" name="is_checked" value="0" <if condition="$tenderInfo.is_checked eq 0">checked="checked"</if>>未审核</label>
+                </div>                
+            </div>              
+            <div class="form-group">
+                <label for="closing_time" class="control-label col-sm-2">工程日期:</label>
+                <div class="col-sm-6">
+                    <div class='input-group date' id='time_1'>
+                        <input type='text'  id='closing_time' name="closing_time" class="form-control" value="{$tenderInfo.closing_time|htmlspecialchars}" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>                
+                </div>                
+            </div>                  
+            <div id="img_list" class="form-group">
+                <label for="images" class="control-label col-sm-2">图片附件:<a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a></label>
+                <foreach name="tenderInfo.attachmentList" item="Info">
+                <div class="col-sm-2 alert alert-warning  alert-dismissible div_close" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <img src="{$Info.url}" style="width:100px">
+                    <input name="attachment_id[]" type="hidden" value="{$Info.attachment_id}">
+                </div>                    
+                </foreach>
+            </div>  
+            <div class="form-group">
+                <label for="images" class="control-label col-sm-2"></label>
+                <input type="hidden" id="user_id" name="user_id" value="{$tenderInfo['user_id']}" />
+                <input type="hidden" id="tender_id" name="tender_id" value="{$tenderInfo['tender_id']}" />
+                <button type="submit" class="btn btn-default">确认修改</button>                  
+            </div>
+          
+        </div>
+
+
+    </form>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+    <style>
+    a.file_btn {
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: #eb6100;
+        color: #fff;
+    }        
+        .div_close {
+            width: 130px;
+            height: 130px;
+            float: left;
+            margin: 10px;
+        }        
+    </style>
+</block>
+<block name="js-input">
+<script src="__STATICS__/js/areaChange.js"></script>
+<script src="__STATICS__/js/workType.js"></script>   
+<script src="__STATICS__/js/moment.min.js"></script>
+<script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>   
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script>        
+<script type="text/javascript">
+    $(function () {
+        initChangeRegionData('prov', 'city', 'region_id', {$tenderInfo.province_id}, {$tenderInfo.city_id}, {$tenderInfo.region_id});
+        initChangeWorkType('firstWorkType', 'secondWorkType', {$tenderInfo.top_work_type_id}, {$tenderInfo.work_type_id});                    
+        $('#time_1').datetimepicker({
+            defaultDate: "",
+            format: 'YYYY-MM-DD HH:mm:ss',
+        });
+
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,flash,silverlight,html4',
+                browse_button : 'selectfiles', 
+                url : '{:U('Requirement/edit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1',
+                  user_id : $("#user_id").val(),
+                },
+
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="col-sm-2 alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.attachment_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();                    
+
+    });
+</script>
+</block>

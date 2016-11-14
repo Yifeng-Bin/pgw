@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+.teach_detail{
+	margin-top:10px;
+	width:100%;
+	height:auto;
+	background-color:#fff;
+	padding:0 15px;}
+.teach_head{
+	width:100%;
+	height:55px;
+	border-bottom:1px #ddd dashed;}
+.teach_head>h5{
+	width:100%;
+	height:30px;
+	line-height:30px;
+	overflow:hidden;
+	margin:0;
+	font-size:16px;
+	color:#333;}
+.teach_head>h5>span{
+	float:right;
+	color:#999;
+	font-size:14px;}
+.teach_head>p{
+	color:#999;
+	height:20px;
+	line-height:20px;
+	margin:0;}
+.teach_head>p>span{
+	float:right;}
+.teach_content{
+	width:100%;
+	height:auto;
+	padding-top:10px;
+	text-align:center;}
+.teach_content>p{
+	text-align:left;
+	line-height:25px;
+	color:#666;}
+.teach_content img{
+	max-width:100%;
+	position:relative;
+	left:0;
+	right:0;
+	margin:10px auto;}

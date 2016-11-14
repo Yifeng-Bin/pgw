@@ -1,0 +1,87 @@
+[ 2016-07-12T09:36:53+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-12T09:36:53+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'payment_type' => '1',
+  'subject' => '支付需求:换锁芯',
+  'trade_no' => '2016071221001004940268571668',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-12 09:36:52',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '45',
+  'notify_time' => '2016-07-12 09:36:53',
+  'seller_id' => '2088611544270613',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-12 09:36:52',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '47551ac64fe517e15df2e7439cfae4an96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '71191a255519c93d229ef45597cef17b',
+)
+[ 2016-07-12T09:36:53+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '45',
+)
+[ 2016-07-12T09:36:53+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '45',
+  'out_id' => '45',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467841858',
+  'log_remark' => '',
+)
+[ 2016-07-12T09:36:55+08:00 ] 223.152.23.245 /payment/notify/type/alipay/method/return?is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXQYPB3iT81Tf1JmJx4c4yBZBXXRTu8XJWJmUsDQ7VX87hPEN5&notify_time=2016-07-12+09%3A36%3A53&notify_type=trade_status_sync&out_trade_no=45&payment_type=1&seller_id=2088611544270613&service=alipay.wap.create.direct.pay.by.user&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016071221001004940268571668&trade_status=TRADE_SUCCESS&sign=34d745302303de06e07b77a323274588&sign_type=MD5
+INFO: return
+[ 2016-07-12T09:36:55+08:00 ] 223.152.23.245 /payment/notify/type/alipay/method/return?is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXQYPB3iT81Tf1JmJx4c4yBZBXXRTu8XJWJmUsDQ7VX87hPEN5&notify_time=2016-07-12+09%3A36%3A53&notify_type=trade_status_sync&out_trade_no=45&payment_type=1&seller_id=2088611544270613&service=alipay.wap.create.direct.pay.by.user&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016071221001004940268571668&trade_status=TRADE_SUCCESS&sign=34d745302303de06e07b77a323274588&sign_type=MD5
+INFO: array (
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXQYPB3iT81Tf1JmJx4c4yBZBXXRTu8XJWJmUsDQ7VX87hPEN5',
+  'notify_time' => '2016-07-12 09:36:53',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '45',
+  'payment_type' => '1',
+  'seller_id' => '2088611544270613',
+  'service' => 'alipay.wap.create.direct.pay.by.user',
+  'subject' => '支付需求:换锁芯',
+  'total_fee' => '1.00',
+  'trade_no' => '2016071221001004940268571668',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '34d745302303de06e07b77a323274588',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-12T09:36:55+08:00 ] 223.152.23.245 /payment/notify/type/alipay/method/return?is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXQYPB3iT81Tf1JmJx4c4yBZBXXRTu8XJWJmUsDQ7VX87hPEN5&notify_time=2016-07-12+09%3A36%3A53&notify_type=trade_status_sync&out_trade_no=45&payment_type=1&seller_id=2088611544270613&service=alipay.wap.create.direct.pay.by.user&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016071221001004940268571668&trade_status=TRADE_SUCCESS&sign=34d745302303de06e07b77a323274588&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '45',
+)
+[ 2016-07-12T09:36:55+08:00 ] 223.152.23.245 /payment/notify/type/alipay/method/return?is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXQYPB3iT81Tf1JmJx4c4yBZBXXRTu8XJWJmUsDQ7VX87hPEN5&notify_time=2016-07-12+09%3A36%3A53&notify_type=trade_status_sync&out_trade_no=45&payment_type=1&seller_id=2088611544270613&service=alipay.wap.create.direct.pay.by.user&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016071221001004940268571668&trade_status=TRADE_SUCCESS&sign=34d745302303de06e07b77a323274588&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '45',
+  'out_id' => '45',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1468258613',
+  'log_time' => '1467841858',
+  'log_remark' => '',
+)

@@ -1,0 +1,49 @@
+<extend name="Public/base" />
+<block name="main">
+
+        <h1 class="page-header">修改答案</h1>
+        <p><a class="btn btn-default" href="javascript:history.go(-1)">返回</a></p>
+        <form id="submitForm" action="{:U('AskAnswer/edit')}" method="post">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#baseinfo" aria-controls="baseinfo" role="tab" data-toggle="tab">基本信息</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="baseinfo">
+                        <div class="form-group">
+                            <label for="article_name" class="control-label">回答者:</label>
+                            <input type="text" style="width:50%;" class="form-control" id="article_name" name="user_name" value="{$commentInfo.user_name|htmlspecialchars}">
+                        </div>                                                <div class="form-group">                            <label for="article_name" class="control-label">标题:</label>                            <input type="text" style="width:50%;" class="form-control" id="article_name" name="article_name" value="{$commentInfo.article_name|htmlspecialchars}">                        </div>
+                        <div class="form-group">
+                            <label for="article_brief" class="control-label">答案内容:</label>
+                            <textarea rows="3" class="form-control" style="height:350px;width:90%;" id="article_brief" name="content">{$commentInfo.content|htmlspecialchars}</textarea>
+                        </div>                                 
+                        <div class="form-group">
+                            <label for="is_checked" class="control-label">审核状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="is_checked" value="0" <if condition="$commentInfo['is_checked'] eq 0">checked="checked"</if>>未审核</label>
+                            <label class="checkbox-inline"><input type="radio" name="is_checked" value="1" <if condition="$commentInfo['is_checked'] eq 1">checked="checked"</if>>已审核</label>                            
+                        </div>                                                                         
+                        
+                        <div id="attrInfo"></div>                                                            
+                        
+                    </div><!-- end baseinfo -->                                     
+                </div><!-- tab-content -->             
+            </div>
+            <input type="hidden" id="goods_id" name="comment_id" value="{$commentInfo['comment_id']}" />
+            <button type="submit" class="btn btn-default">确认修改</button>
+        </form>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+    <style type="text/css">
+        #cat_div_id{height: 100%;padding: 10px;}
+        #cat_list{padding: 10px 0px;}
+    </style>
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.cxselect.min.js"></script>
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__STATICS__/jquery-ui-1.11.4/jquery-ui.min.js"></script>        
+</block>

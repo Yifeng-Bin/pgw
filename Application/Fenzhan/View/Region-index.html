@@ -1,0 +1,161 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">区域列表</h1>
+        <if condition="$level elt 2"><button class="btn btn-default btn-sm" onClick="show_edit_region(0, '{:U('Region/add')}',{$pid})">增加区域</button></if>
+        <if condition="$pid != 0"><a class="btn btn-default btn-sm" href="{:U('Region/index',array('pid'=>$ppid))}">返回上级分类</a></if>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>地区</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>标识</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="regionList" item="region" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$region['region_id']}"></td>
+                    <if condition="$level elt 2">
+                       <td><a href="{:U('Region/index?pid='.$region['region_id'])}">{$region['region_name']|htmlspecialchars}</a></td> 
+                    <else />
+                        <td>{$region['region_name']|htmlspecialchars}</td>
+                    </if>
+                    <td><if condition="$region['status'] eq 1">启用<else />禁用</if></td>
+                    <td>{$region['sort']}</td>
+                    <td>{$region['domain']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_region({$region['region_id']}, '{:U('Region/edit')}',0)">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_region({$region['region_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('Region/index',array('pid'=>$pid))}" method="get">
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="regionModal" tabindex="-1" role="dialog" aria-labelledby="regionModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="regionModalLabel">增加/编辑分区信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="region_name" class="control-label">区域名称:</label>
+                            <input type="text" class="form-control" id="region_name" name="region_name">
+                        </div> 
+                        <div class="form-group">
+                            <label for="domain" class="control-label">域名标识(地区填写):</label>
+                            <input type="text" class="form-control" id="domain" name="domain">
+                        </div>                          
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort">
+                        </div>                         
+                        <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>                             
+                    </form>
+                    <input type="hidden" id="region_id" name="region_id" value='0' />
+                    <input type="hidden" id="pid" name="pid" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_region();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script type="text/javascript">     
+        function submit_region()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.region_id = $('#region_id').val();
+            data.parent_id = $('#pid').val();
+            data.region_name = $('#region_name').val();
+            data.domain = $('#domain').val();
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+            
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_region(region_id)
+        {
+            if(confirm("确认删除分区吗？")){
+                var post_url = '{:U('Region/del')}';
+                var data = {};
+                data.region_id = region_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                  },'json');                
+            }            
+        }
+                                function show_edit_region(region_id,url,pid)
+                                {
+                                    $('#region_id').val(0);
+                                    $("input[name='pid']").val(pid);
+                                    $('#region_name').val('');
+                                    $('#domain').val('');
+                                    $("input[name='status'][value='1']").attr("checked",true);
+                                    $('#sort').val(100);
+                                    $("input[name='submitUrl']").val(url);
+                                    if (region_id != 0)
+                                    {
+                                        $.get("{:U('Region/edit')}", { region_id : region_id },
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#region_id').val(data.info.region_id);
+                                                        $("input[name='pid']").val(data.info.parent_id);
+                                                        $('#region_name').val(data.info.region_name);
+                                                        $('#domain').val(data.info.domain);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);                                       
+                                                        $('#regionModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $('#regionModal').modal();
+                                        }
+                                        
+                                }
+    </script>
+</block>

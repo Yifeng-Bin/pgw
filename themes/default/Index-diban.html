@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+    <link href="/themes/default/css/jsj.css?v=20160930001" rel="stylesheet" type="text/css" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+<body>
+<include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > 派工计算器 >
+            </div>
+        </div>
+    </div>
+	<!-- 主体str -->
+	<div class="subwd-bg">
+	<div class="subwd mb20">
+<!--主体左边内容开始-->
+<div class="about_lt lt">
+		<ul>
+								<li><a href="{:U('index/tuliao')}">涂料预算器</a>
+					</li>
+								<li><a href="{:U('index/qiangzhuan')}">墙砖预算器</a>
+					</li>
+								<li><a href="{:U('index/dizhuan')}">地砖计算器</a>
+					</li>
+								<li><a href="{:U('index/chuanglian')}">窗帘计算器</a>
+					</li>
+								<li><a href="{:U('index/bizhi')}">壁纸计算器</a>
+					</li>
+								<li><a class="current" href="{:U('index/diban')}">地板计算器</a>
+					</li>
+						
+							</ul>
+	</div>
+	<!--主体左边内容结束-->
+
+
+
+
+  <!--主体右边内容开始-->
+  <div class="about_rt rt">
+    <div class="pding">
+           <h2 align="center">地板计算器</h2>
+          <form name="floorbrickfrm" action="" method="post"  class="counter">
+                 <h3>1、请您输入居室信息</h3>
+                 <div>
+                    <input name="room_long" class="text" placeholder="房间长度" type="text">米
+                    <input name="room_width" class="text" placeholder="房间宽度" type="text">米
+                 </div>
+                 <h3>2、请输入地板信息</h3>
+                 <div>
+                    地板长度:<input name="floor_long" class="text" value="600" placeholder="地板长度" type="text">毫米<br>
+                    地板宽度:<input name="floor_width" class="text" value="90" placeholder="地板宽度" type="text">毫米<br>
+                    或选择标准规格的地板:<select name="bricktype" onchange="autoinput(this.form)" class="text" >
+                                        <option selected="selected" value="1">600x90</option>
+                                        <option value="2">750x90</option>
+                                        <option value="3">900x90</option>
+                                     </select>毫米<br>
+                  地板类型 : <select name="rate" class="text" id="rate">
+                                    <option value="1.08">实木地板</option>
+                                    <option selected="selected" value="1.05">复合地板</option>
+                                    </select>
+                 </div>
+         <div class="counter_btn">你需要的地板数量是：<span id="rt" class="jieguo"></span>
+         <input type="button" onclick="floor_brick(this.form)" value="开始计算" name="Submit" class="btn btn_sub_sm">
+         <input type="reset" value="重新输入" name="Submit" class="btn again_btn">
+        
+            </form>
+ 
+    </div>
+  </div>
+  <!--主体右边内容结束-->
+</div>
+</div>
+</div>
+<!-- 主体end -->
+<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+(function(K, $){
+$(".top_nav_login li").mouseover(function(){
+  $(this).find('.top_nav_login_son').show();
+}).mouseout(function(){
+  $(this).find('.top_nav_login_son').hide();
+});
+})(window.KT, window.jQuery);
+</script>
+
+    <script language=JavaScript type=text/JavaScript>
+
+
+function IsDigit(cCheck)
+{
+return ((('0'<=cCheck) && (cCheck<='9'))||cCheck=='.');
+}
+function CheckNum(charValue,alertValue,obj)
+{
+for(var iIndex=0;iIndex<charValue.length;iIndex++)
+{
+var cCheck=charValue.charAt(iIndex);
+if(!IsDigit(cCheck))
+{
+alert(alertValue);
+obj.focus();
+return false;
+}
+}
+}
+function floor_brick(form)
+{
+//检查输入
+if(checkfloorbrickInput(form)==false) return;
+var room_long=0,room_width=0,floorbrick_long=0,floorbrick_width=0;
+var floornum=0;
+var rate=0;
+//给各个变量赋值
+room_long=form.room_long.value*1000;
+room_width=form.room_width.value*1000;
+floor_long=form.floor_long.value;
+floor_width=form.floor_width.value;
+rate=form.rate.value;
+//开始计算
+floornum=Math.round((room_long/floor_long)*(room_width/floor_width)*rate);
+document.getElementById("rt").innerHTML=floornum+ "块";
+}
+function  checkfloorbrickInput(form)
+{
+if(form.room_long.value==""){
+alert("请输入房间长度");
+form.room_long.focus();
+return false;
+}
+if(CheckNum(form.room_long.value,"房间长度只能输入数字格式！",form.room_long)==false)
+return false;
+if(form.room_width.value==""){
+alert("请输入房间宽度");
+form.room_width.focus();
+return false;
+}
+if(CheckNum(form.room_width.value,"房间宽度只能输入数字格式！",form.room_width)==false)
+return false;
+if(form.floor_long.value==""){
+alert("请输入地板的长度");
+form.floor_long.focus();
+return false;
+}
+if(CheckNum(form.floor_long.value,"窗户高度只能输入数字格式！",form.floor_long)==false)
+return false;
+if(form.floor_width.value==""){
+alert("请输入地板的宽度");
+form.floor_width.focus();
+return false;
+}
+if(CheckNum(form.floor_long.value,"地板的宽度只能输入数字格式！",form.floor_long)==false)
+return false;
+}
+function autoinput(form)
+{
+switch(parseInt(form.bricktype.value))
+{
+case 1:
+form.floor_long.value=600;
+form.floor_width.value=90;
+break;
+case 2:
+form.floor_long.value=750;
+form.floor_width.value=90;
+break;
+case 3:
+form.floor_long.value=900;
+form.floor_width.value=90;
+
+}
+}
+//-->
+</script>
+
+ <script type="text/javascript">
+$(document).ready(function(){
+    $(".rightNav ul li").mouseenter(function(){
+        $(this).find(".show").addClass('current');
+        $(this).find("[kefu]").stop(true,true).fadeIn();
+    }).mouseleave(function(){
+        $(this).find(".show").removeClass('current');
+        $(this).find("[kefu]").stop(true,true).fadeOut();
+    });
+    $(".rightNav ul li [kefu]").mouseenter(function(){
+        $(this).show();
+        $(this).prev("li").addClass("current");
+    }).mouseleave(function(){
+        $(this).stop(true).fadeOut();
+        $(this).prev("li").removeClass("current");
+    });     
+    $('.rightNav li.re_top').click(function(event) {
+        $('html,body').animate({
+            scrollTop: 0
+        }, 200);
+        return false;
+    }); 
+});
+</script>
+
+<script type="text/javascript">
+(function(K, $){
+$(document).ready(function(){
+    $('[bxSlider]').bxSlider({ mode: 'fade',captions: true, auto:true});
+});
+})(window.KT, window.jQuery);
+</script>
+</body>
+</html>

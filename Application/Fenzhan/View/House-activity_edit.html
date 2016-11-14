@@ -1,0 +1,464 @@
+<extend name="Public/base" />
+
+<block name="main">
+    <h1 class="page-header">添加活动</h1>
+    <p><a class="btn btn-default" href="{:U('House/activity')}">返回活动列表</a></p>
+    <form  class="form-horizontal" action="{:U('House/activity_edit')}" method="post" enctype="multipart/form-data">
+       <div class="form-group">
+
+                <label  class="control-label col-sm-2">标题：</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  name="tender_name" value="{$list['tender_name']}" />
+                </div>
+            </div>
+ <input type="hidden" name="loupan_id" value="{$loupan_id}"/>
+
+           <div class="form-group" id="area">
+
+                <label for="region_id" class="control-label col-sm-2">地区：</label>
+
+                <div class="col-sm-2">
+
+                    <select id="prov" class="form-control"></select> 
+
+                </div>   
+
+                <div class="col-sm-2">
+
+                    <select id="city" class="form-control"></select>  
+
+                </div>   
+
+                <div class="col-sm-2">
+
+                    <select id="region_id" name="region_id" class="form-control"></select>  
+
+                </div>                                              
+            </div>           
+            <div class="form-group">
+
+                <label  class="control-label col-sm-2">工人：</label>
+
+                <div class="col-sm-6">
+
+                  <input type="text" class="form-control"  id="pop_name" name="user_name" value="{$list['user_name']}" /><input type="button" id="pop_select" value="请选择工人" />
+                  <input type="hidden" id="pop_id" name="user_id" value="{$list['user_id']}"/>
+                </div>
+            </div>
+            <div class="form-group">			                  <label for="user_type" class="control-label col-sm-2">活动类型：</label>                <div class="col-sm-3">                    <select id="type" name="type" class="form-control form-inline">                        <option value="0">请选择</option>                        <option value="1">清工包</option>                        <option value="2">主材包</option>						<option value="3">辅材包</option>                        <option value="4">装饰包</option>						<option value="5">软装包</option>                    </select>                </div>                           </div>    
+           <div class="form-group">
+                <label  class="control-label col-sm-2">参团限定人数：</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  name="people_num" value="{$list['people_num']}" required placeholder="单位：人次"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label  class="control-label col-sm-2">面积：</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"  name="area" value="{$list['area']}" required placeholder="单位：㎡"/>
+                </div>
+            </div>			<div class="form-group">                <label for="user_type" class="control-label col-sm-2">套餐</label>                <div class="col-sm-3">                       <select id="user_type" name="taocan" class="form-control form-inline">                        <option value="1">一级套餐</option>						<option value="2">二级套餐</option>						<option value="3">三级套餐</option>						<option value="4">高级套餐</option>						<option value="5">顶级套餐</option>                    </select>                </div>                           </div>			     			<div class="form-group">                <label for="user_type" class="control-label col-sm-2">面积范围</label>                <div class="col-sm-3">                       <select id="user_type" name="mianji" class="form-control form-inline">                        <option value="1">30-50m²</option>						<option value="2">50-70m²</option>						<option value="3">70-90m²</option>						<option value="4">90-120m²</option>						<option value="5">120-150m²</option>						<option value="6">150-180m²</option>						<option value="7">180-210m²</option>						<option value="8">210以上</option>                    </select>                </div>                            </div>
+            <div class="form-group">
+                <label for="user_type" class="control-label col-sm-2">户型：</label>
+                <div class="col-sm-3">
+                    <select id="attr_id" name="attr_id" class="form-control form-inline">
+                       <foreach name="res"  item="value" >
+                        <option value="{$value['attr_value_id']}" <if condition="$list['attr_id'] eq $value['attr_value_id']">selected="selected"</if>>{$value['attr_value']}</option>
+                        </foreach>
+                    </select>
+                </div>               
+            </div>            
+      <div class="form-group">
+                <label for="user_type" class="control-label col-sm-2">小区：</label>
+                <div class="col-sm-3">
+                    <select id='loupan_id' name="loupan_id" class="form-control form-inline">
+                       <foreach name="res1"  item="value" >
+                         <option value="{$value['loupan_id']}" <if condition="$list['loupan_id'] eq $value['loupan_id']">selected="selected"</if>>{$value['loupan_name']}</option>
+                        </foreach>
+                        </foreach>
+                    </select>
+
+                </div>               
+
+            </div>            
+
+            <div class="form-group">
+
+                <label for="mobile" class="control-label col-sm-2">价格：</label>
+
+                <div class="col-sm-6">
+
+                     <input type="text" class="form-control" name="order_price" value="{$list['order_price']}" required placeholder="单位：万元"/>
+
+                </div>
+
+            </div>      
+       <div class="form-group">
+                <label for="mobile" class="control-label col-sm-2">开始时间：</label>
+                <div class="col-sm-6">
+                     <input type="date" class="form-control" name="add_time" value="{$list['add_time']|local_date='Y-m-d',###}"/>
+                </div>
+            </div>      
+            <div class="form-group">
+                <label for="real_name" class="control-label col-sm-2">结束时间：</label>
+                <div class="col-sm-6">
+                   <input type="date" class="form-control" name="closing_time" value="{$list['closing_time']|local_date='Y-m-d',###}"/>
+                </div>
+            </div>       
+          
+          <input type="hidden" name="tender_id" value="{$list['tender_id']}"/>
+            <div class="form-group">
+                <label for="real_name" class="control-label col-sm-2">活动简介：</label>
+                <div class="col-sm-6">
+                   <textarea rows="3" class="form-control" name="desc">{$list['desc']}</textarea>
+                </div>
+            </div>       
+			<div class="form-group" id="gallery">                <label for="money" class="control-label col-sm-2">上传图片：</label>				  <div class="col-sm-6">				 <input type="file" class="form-control" name="img" />				</div>             </div>
+
+            <div class="form-group">
+                <label for="images" class="control-label col-sm-2"></label>
+
+                <button type="submit" class="btn btn-default">确认增加</button>                  
+
+            </div>
+
+        </div>
+    </form>
+     <!-- Modal -->
+    <div class="modal fade" id="attrModal" tabindex="-1" role="dialog" aria-labelledby="attrModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="attrModalLabel">选择工人</h4>
+                </div>
+               <div class="row well-sm">
+
+            <div class="col-sm-9 form-inline">
+
+                <label class="control-label">筛选：</label> 
+                <input type='text' name='id1' placeholder='输入id' id="sel1"/>
+                <input type='text' name='name1' placeholder='输入工人名' id="sel2"/>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()" >确认</button>
+
+            </div>
+        <table class="table ">
+
+            <thead >
+
+                <tr>
+                      <th>id</th>
+                      <th>用户名</th>
+                      <th>真实姓名</th>
+                      <th>地址</th>
+                      <th>类型</th>
+                      <th>手机号</th>
+                      <th>入行时间(年)</th>                   
+                      <th>操作</th>
+                 </tr>
+            
+            </thead>
+
+            <tbody id="list">       
+               
+             </tbody>
+        </table> 
+      <input type="hidden" name="region" value='' id="region" />
+      
+      
+       <input type="hidden" name="page" value='' id="page" />
+        
+         <button type="button" onClick="submit_prev();" class="btn " style="margin-left:30px">上一页</button>
+         <button type="button" onClick="submit_next();" class="btn ">下一页</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                   <!--  <button type="button" onClick="submit_attr();" class="btn btn-primary">保存</button> -->
+                </div>
+            </div>
+        </div>  
+    </div>
+   </div>          
+</block>
+<block name="css-style">
+
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        #cat_div_id{height: 100%;padding: 10px;}
+
+        #cat_list{padding: 10px 0px;}
+
+    </style>
+
+</block>
+<block name="css-style">
+
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+
+    <style>
+
+    a.file_btn {
+
+        width: 90px;
+
+        height: 30px;
+
+        line-height: 30px;
+
+        text-align: center;
+
+        background-color: #eb6100;
+
+        color: #fff;
+
+    }        
+
+        .div_close {
+
+            width: 130px;
+
+            height: 130px;
+
+            float: left;
+
+            margin: 10px;
+
+        }        
+
+    </style>
+
+</block>
+<block name="css-style">
+
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+
+</block>
+<block name="js-input">
+
+<script src="__STATICS__/js/areaChange.js"></script>
+
+<script src="__STATICS__/js/workType.js"></script>   
+
+<script src="__STATICS__/js/moment.min.js"></script>
+
+<script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>   
+
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+
+<script type="text/javascript" src="__STATICS__/plupload/i18n/zh_CN.js"></script> 
+   
+<script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+
+<script src="__STATICS__/jquery-ui-1.11.4/jquery-ui.min.js"></script>    
+    
+<script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+<script type="text/javascript">
+
+    var workTypeList = {};
+
+    $(function () {
+
+        initChangeRegionData('prov', 'city', 'region_id', {$province_id},{$city_id},{$region_id});
+
+        initChangeWorkType('firstWorkType', 'secondWorkType');                    
+
+        $('#time_1').datetimepicker({
+
+            defaultDate: "",
+
+            format: 'YYYY-MM-DD',
+
+        });
+
+        
+        
+        $('#goods_files').uploadify({
+
+            'swf'      : '__STATICS__/uploadify/uploadify.swf',
+
+            'uploader' : "{:U('Public/upload?type=6')}",
+
+            'buttonText' : "选择图片",
+
+            'multi'    : true,
+
+            'successTimeout' : 5,
+
+            'formData'      : {'ajax' : 1},
+
+            'onUploadSuccess' : function(file, data, response) {
+
+                data = jQuery.parseJSON(data);
+              
+                if (data.status == 0)
+
+                {
+
+                    alert(data.info);
+
+                } else{
+
+                    var img_str = '<div class="col-md-3"><img  class="img-responsive" src="'+data.info.url+'"><br /><input type="hidden" name="photo_ids[]" value="'+data.info.img_id+'"><br /><button name="del_img" type="button" value="'+data.info.img_id+'" class="btn btn-sm">删除</button></div>';
+
+                    $('#imglist').append(img_str);
+
+                }
+
+            }
+
+    });        
+
+    });
+   
+   $("#region_id").change(function(){
+	  
+	   var region_id= $(this).find("option:selected").val();
+	   var data = {};
+	   $("#loupan_id").empty();
+	   data.region_id=region_id;
+	   $.get("{:U('House/build_name')}",data,function(result){   
+		   $.each(result,function(i,item){
+			  $('#loupan_id').append('<option value="'+item.loupan_id+'">'+item.loupan_name+'</option>');
+		   });
+		   
+	   },'json');
+   });
+  
+ $("#pop_select").click(function(){
+	 var region_id=$("#region_id").find("option:selected").val();
+	  var data = {};
+	  $('td').remove();
+	  $('#page').val('');
+	  data.region_id=region_id;
+	 $('#region').val(region_id);
+	
+	  $.get("{:U('House/pop_select')}",data,function(result){
+		
+		  $.each(result.list,function(i,item){
+			  var modul='<tr><td >'+item.user_id+'</td><td >'+item.user_name+'</td><td>'+item.real_name+'</td><td>'+item.region_name+'</td><td>'+item.user_type+'</td><td>'+item.mobile+'</td><td>'+item.enter_year+'</td><td> <a  type="button" attr_id="'+item.user_id+'" attr_value="'+item.user_name+'" attr_region="'+item.region_id+'" id="select_list'+i+'"  class="btn btn-sm">选择</a> </td></tr>';
+			  $('#list').append(modul); 
+			  
+			  $("#select_list"+i).click(function(){
+				    var user_id=$(this).attr('attr_id');
+				    var user_name=$(this).attr('attr_value');
+				    
+				    select_list(user_id,user_name);
+				 
+			  });
+		  });
+		  $('#page').val(result.page);
+	  },'json');   
+	    $('#attrModal').modal();
+        
+ });
+   
+   function select_list(user_id,user_name){
+	   $('#pop_name').val(user_name);
+	   $('#pop_id').val(user_id);
+	   $('#attrModal').modal('hide');
+	   
+   }
+   
+   function submit_filter(){
+      var user_id=$('#sel1').val();
+      var user_name=$('#sel2').val();
+      var region_id=$("#region").val();
+      $('#page').val('');
+      var data = {};
+      $('td').remove();
+	  data.region_id=region_id;
+	  data.user_id=user_id;
+	  data.user_name=user_name;
+	  
+	  $.get("{:U('House/pop_select')}",data,function(result){
+		 
+		  $.each(result.list,function(i,item){
+			  var modul='<tr><td >'+item.user_id+'</td><td >'+item.user_name+'</td><td>'+item.real_name+'</td><td>'+item.region_name+'</td><td>'+item.user_type+'</td><td>'+item.mobile+'</td><td>'+item.enter_year+'</td><td> <a  type="button" attr_id="'+item.user_id+'" attr_value="'+item.user_name+'" attr_region="'+item.region_id+'" id="select_list'+i+'"  class="btn btn-sm">选择</a> </td></tr>';
+			  $('#list').append(modul); 
+			  $("#select_list"+i).click(function(){
+				    var user_id=$(this).attr('attr_id');
+				    var user_name=$(this).attr('attr_value');
+				    
+				    select_list(user_id,user_name);
+				 
+			  });
+		  });
+		  $('#page').val(result.page);
+	  },'json');   
+	    $('#attrModal').modal();
+ }
+ 
+   function submit_prev(){
+	   var page=parseInt($('#page').val());
+	   //alert(page);
+	   var user_id=$('#sel1').val();
+	   var user_name=$('#sel2').val();
+	   var region_id=$("#region").val();
+	   page=page-1;
+	   if(page==0){   
+		 page=1;  
+	   }
+	   $('#page').val(page);
+	   var data = {};
+	      $('td').remove();
+		  data.region_id=region_id;
+		  data.user_id=user_id;
+		  data.user_name=user_name;
+		  data.page= page;
+		 // alert(page);
+		  $.get("{:U('House/pop_select')}",data,function(result){
+			 
+			  $.each(result.list,function(i,item){
+				  var modul='<tr><td >'+item.user_id+'</td><td >'+item.user_name+'</td><td>'+item.real_name+'</td><td>'+item.region_name+'</td><td>'+item.user_type+'</td><td>'+item.mobile+'</td><td>'+item.enter_year+'</td><td> <a  type="button" attr_id="'+item.user_id+'" attr_value="'+item.user_name+'" attr_region="'+item.region_id+'" id="select_list'+i+'"  class="btn btn-sm">选择</a> </td></tr>';
+				  $('#list').append(modul); 
+				  $("#select_list"+i).click(function(){
+					    var user_id=$(this).attr('attr_id');
+					    var user_name=$(this).attr('attr_value');
+					    
+					    select_list(user_id,user_name);
+					 
+				  });
+			  });
+		  },'json');   
+		    $('#attrModal').modal();   
+	   
+   }
+   
+   function submit_next(){
+	   var page=parseInt($('#page').val());
+	  //alert(page);
+	   var user_id=$('#sel1').val();
+	   var user_name=$('#sel2').val();
+	   var region_id=$("#region").val();
+	   page=page+1;
+	   $('#page').val(page);
+	   var data = {};
+	      $('td').remove();
+		  data.region_id=region_id;
+		  data.user_id=user_id;
+		  data.user_name=user_name;
+		  data.page= page;
+		  //alert(page);
+		  $.get("{:U('House/pop_select')}",data,function(result){
+			 
+			  $.each(result.list,function(i,item){
+				  var modul='<tr><td >'+item.user_id+'</td><td >'+item.user_name+'</td><td>'+item.real_name+'</td><td>'+item.region_name+'</td><td>'+item.user_type+'</td><td>'+item.mobile+'</td><td>'+item.enter_year+'</td><td> <a  type="button" attr_id="'+item.user_id+'" attr_value="'+item.user_name+'" attr_region="'+item.region_id+'" id="select_list'+i+'"  class="btn btn-sm">选择</a> </td></tr>';
+				  $('#list').append(modul); 
+				  $("#select_list"+i).click(function(){
+					    var user_id=$(this).attr('attr_id');
+					    var user_name=$(this).attr('attr_value');
+					    
+					    select_list(user_id,user_name);
+					 
+				  });
+			  });
+		  },'json');   
+		    $('#attrModal').modal();   
+   }
+</script>
+
+</block>
+

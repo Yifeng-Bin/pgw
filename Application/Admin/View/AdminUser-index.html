@@ -1,0 +1,216 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">管理员列表</h1>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline">
+                <label class="control-label">筛选：</label>
+                <foreach name="filter.fields_name" item="name" >
+                    <if condition="$name.type eq 'input'">
+                        <input class="form-control input-sm" type="text" name="search_{$key}" value='{$filter['fields_value'][$key]}' placeholder="{$name.desc}" />
+                    </if>
+                </foreach>
+                <label>排序：</label>
+                <select id="orderby" class="form-control input-sm">
+                <foreach name="filter.order.fields" item="name" >
+                    <option value="{$key}" <if condition="$filter['order']['orderby'] eq $key">selected="selected"</if>>{$name}</option>
+                </foreach>                    
+                </select>
+                <select id="sortby" class="form-control input-sm">
+                    <option value="DESC" <if condition="$filter['order']['sortby'] eq 'desc'">selected="selected"</if>>降序</option>
+                    <option value="ASC" <if condition="$filter['order']['sortby'] eq 'asc'">selected="selected"</if>>升序</option>
+                </select>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()">确认</button>
+            </div>
+            <div class="col-sm-3"><button class="btn btn-default btn-sm pull-right" onClick="show_edit_admin_user(0, '{:U('AdminUser/add')}')">增加管理员</button></div>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>状态</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="adminUserList" item="userInfo" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$userInfo['uid']}"></td>
+                    <td>{$userInfo['user_name']}</td>
+                <td><if condition="$userInfo['status'] eq 1">启用<else />禁用</if></td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_admin_user({$userInfo['uid']}, '{:U('AdminUser/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_admin_user({$userInfo['uid']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('AdminUser/index')}" method="get">
+                <foreach name="filter.fields_value" item="value" >
+                    <input type="hidden" name="filter_{$key}" value="{$value}" />
+                </foreach>     
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="groupModalLabel">增加/编辑管理员信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="user_name" class="control-label">管理员名称:</label>
+                            <input type="text" class="form-control" id="user_name" name="user_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="control-label">管理员密码:</label>
+                            <input type="password" class="form-control" id="password" name="password">(留空不修改)
+                        </div>                        
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">选择用户所在管理组:</label>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <foreach name="authGroupList" item="groupInfo">
+                                    <div class="col-md-4"><input name="groups[]" type="checkbox" value='{$groupInfo.id}'>{$groupInfo.title}</div>
+                                    </foreach>
+                                </div>
+                        </div>                        <input type="hidden" id="city_id" name="city_id" value='0' />                        <input type="hidden" id="contact" name="contact" value='0' />                        <input type="hidden" id="phone" name="phone" value='0' />                        <input type="hidden" id="email" name="email" value='pgw@qq.com' />                                                <input type="hidden" id="uid" name="uid" value='0' />                    	<input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                    </form>                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_admin_user();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script type="text/javascript">
+        function submit_filter()
+        {
+            $("[name^='search_']").each(function() {
+                var search_name = $(this).prop("name");
+                var filter_name = 'filter_' + search_name.substr(7);
+               $("input[name='"+filter_name+"']").val($(this).val()); 
+            });
+            $("input[name='orderby']").val($("#orderby").val());
+            $("input[name='sortby']").val($("#sortby").val());
+            $("#submitForm").submit();
+        }
+        function submit_admin_user()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.uid = $('#uid').val();
+            data.user_name = $('#user_name').val();                        data.password = $('#password').val();                        data.contact = $('#contact').val();                        data.phone = $('#phone').val();                        data.email = $('#email').val();
+            data.status = $("input[name='status']:checked").val();
+            data.groups = new Array();
+            $("input[name='groups[]']:checked").each(function(){
+                data.groups.push($(this).val());
+            })         
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        function del_admin_user(uid)
+        {
+            if(confirm("确认删除管理员吗？")){
+                var post_url = '{:U('AdminUser/del')}';
+                var data = {};
+                data.uid = uid;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                },'json');                
+            }
+        }
+                                function show_edit_admin_user(uid, url)
+                                {
+                                    $('#user_name').val('');
+                                    $('#password').val('');
+                                    $("input[name='groups[]']").prop("checked",false);
+                                    $("input[name='status'][value='1']").prop("checked",true);
+                                    if (uid != 0)
+                                    {
+                                        $.get("{:U('AdminUser/edit')}", {uid:uid},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#user_name').val(data.info.user_name);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);
+                                                        $("input[name='uid']").val(data.info.uid);
+                                                        $("input[name='submitUrl']").val(url);
+                                                        if(data.info.groups != '')
+                                                        {
+                                                            var groups=data.info.groups.split(",");
+                                                            for(var i=0;i<groups.length;i++){
+                                                                $("input[name='groups[]'][value='"+groups[i]+"']").prop("checked",true);
+                                                            }
+                                                        }                                                    
+                                                        $('#userModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='uid']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                                $('#userModal').modal();
+                                        }
+                                        
+                                }
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

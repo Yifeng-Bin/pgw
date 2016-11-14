@@ -1,0 +1,4 @@
+[ 2016-08-28T21:50:35+08:00 ] 123.84.210.157 /user/register
+ERR: 1062:Duplicate entry '15573552735' for key 'user_name'
+ [ SQL语句 ] : INSERT INTO `pgw_user_auths` (`user_id`,`user_type`,`user_name`,`is_inside`,`is_verify`,`add_time`) VALUES ('1176','username','15573552735','1','1','1472363435')
+

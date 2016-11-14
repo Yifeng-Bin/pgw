@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Ask/index')}">知识问答</a>
+            </div>
+        </div>
+    </div>
+    <div class="ask">
+    	<div class="container">
+        	<h4 class="ask_h5">好学而不勤问非真好学者</h4>
+            <div class="ask_content">
+                <form action="{:U('Ask/submit')}" method="post">
+                    <div class="ask_content_list">
+                        <label>问题说明：</label>
+                        <input type="text" required name="ask_name" class="ask_tit" placeholder="请输入您的问题">
+                    </div>
+                    <div class="ask_content_list">
+                        <label>问题补充：</label>
+                        <textarea rows="2" name="ask_add" class="ask_ttr" placeholder="请对您的问题做个补充说明"></textarea>
+                    </div>
+                    <div class="ask_content_list">
+                        <a id="ask_img" href="javascript:void(0);" class="upload_ask">上传图片</a>
+                        <div id="img_list">
+
+                        </div>
+                    </div>
+                    <div class="ask_content_list"><input type="submit" name="ask_submit" class="ask_mit"></div>
+                </form>
+            </div>
+        </div>
+	</div>
+	
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script>        
+<script type="text/javascript">
+$(function (){
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'ask_img', 
+                url : '{:U('Ask/submit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="img_id[]" type="hidden" value="'+response.info.img_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+});
+
+</script>    
+  </body>
+</html>

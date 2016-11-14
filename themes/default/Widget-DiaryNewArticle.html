@@ -1,0 +1,12 @@
+<div class="teach_list_news">
+    <div class="teach_list_right_tit">
+        <span>最新文章</span>
+    </div>
+    <div class="teach_news_content">
+        <ul>
+            <foreach name="diaryList" item="info">
+                <li><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></li>
+            </foreach>
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords}">
+<meta name="description" content="{$pageHeadInfo.description}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-index.css?v=20160926006" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="user">
+    	<div class="user_head">
+        	<div class="user_head_left">
+            	<img src="<if condition="!empty($userBaseInfo['avatar'])">{$userBaseInfo.avatar}<else />./images/user/head/head.png</if>" class="img-circle">
+            </div>
+            <div class="user_head_right">
+            	<h5>{$userBaseInfo.user_name}</h5>
+                <p>我的金币：<span>{$userBaseInfo.gold}</span></p>
+            </div>
+        </div>
+        <div class="user_list">
+        	<div class="user_list_box magrin_top">
+            	<a href="{:U('User/requirement')}"><img class="big" src="./images/user/icon/user_icon_01.png">
+                <span>我的需求</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/gold')}"><img class="big" src="./images/user/icon/user_icon_02.png">
+                <span>我的金币</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box magrin_top">
+            	<a href="{:U('User/diary')}"><img class="big" src="./images/user/icon/user_icon_03.png">
+                <span>我的日记</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/ask')}"><img class="big" src="./images/user/icon/user_icon_04.png">
+                <span>我的问答</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/follow')}"><img class="big" src="./images/user/icon/user_icon_05.png">
+                <span>我的收藏</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            
+            <if condition="$userBaseInfo['user_type'] eq 1">
+            <div class="user_list_box magrin_top">
+            	<a href="{:U('User/workinfo')}"><img class="big" src="./images/user/icon/work_icon_01.png">
+                <span>工人信息</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/service')}"><img class="big" src="./images/user/icon/work_icon_02.png">
+                <span>客户服务</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/order')}"><img class="big" src="./images/user/icon/work_icon_03.png">
+                <span>订单管理</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box">
+            	<a href="{:U('User/cases')}"><img class="big" src="./images/user/icon/work_icon_04.png">
+                <span>案例管理</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            </if>
+            
+            <div class="user_list_box magrin_top">
+            	<a href="{:U('User/profile')}"><img class="big"  src="./images/user/icon/user_icon_06.png">
+                <span>修改资料</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+            <div class="user_list_box magrin_top">
+            	<a href="{:U('User/logout?code='.session('xss_code'))}"><img class="big" src="./images/user/icon/user_icon_07.png">
+                <span>注销帐号</span>
+                <small><img src="./images/user/icon/forward.png"></small></a>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="Common:footer_my" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

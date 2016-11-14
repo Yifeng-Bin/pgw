@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Requirement/index')}">需求大厅</a>
+            </div>
+        </div>
+    </div>
+	<div class="sub">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-lg-9 col-md-9 col-sm-9">
+                	<table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>业主</th>
+                          <th>项目名称</th>
+                          <th>类型</th>
+                          <th>发布时间</th>
+                          <th>查看详情</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <foreach name="requirementList" item="list">
+                        <tr>
+                          <td>{$list.contacts|htmlspecialchars}</td>
+                          <td>{$list.tender_name|htmlspecialchars}</td>
+                          <td>{$list.type_name}</td>
+                          <td class="add_time" add_time="{$list.add_time}"></td>
+                          <td><a href="{:U('Requirement/detail?id='.$list['tender_id'])}">查看</a></td>
+                        </tr>
+                       </foreach>                                                    
+                      </tbody>
+                    </table>
+                    <div class="page">{$pageShow}</div>
+                </div>
+                
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div class="release">
+                    	<div class="sub_tit"><a href="#">马上发布需求，立即解决</a></div>
+                        <div class="release_content">
+                        	<div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_1.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">发布需求后</h4>
+                                2个小时内收到服务商响应
+                              </div>
+                            </div>
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_2.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">每个需求</h4>
+                                平均有2个以上工人报价
+                              </div>
+                            </div>
+                            <div class="media">
+                              <div class="media-left">
+                                <a href="#">
+                                  <img class="media-object" src="./images/need/need_icon_3.png" class="img-circle" width="41">
+                                </a>
+                              </div>
+                              <div class="media-body">
+                                <h4 class="media-heading">95%以上的需求</h4>
+                                都得到了圆满解决
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                    {:W('Common/recommendWorker')}
+                    {:W('Common/recommendTeach')}
+                </div>
+            </div>
+        </div>
+    </div>
+ 	<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function (){
+        $(".add_time").html(function () {
+            var d = new Date();
+            var now_time = Date.parse(d);
+            var now_time = parseInt(now_time / 1000) + parseInt(d.getTimezoneOffset() * 60);            
+            var add_time = $(this).attr('add_time');
+            var add_second = now_time - add_time ;
+            if (add_second <= 0)
+            {
+                return "";
+            } else
+            {
+                var __ed = parseInt(add_second / (24 * 60 * 60));
+                var __eh = parseInt((add_second / 3600) % 24);
+                var __em = parseInt((add_second/60)%60);
+                var __es = parseInt(add_second % 60);
+                var show_info = '';
+                if (__ed > 0) {
+                    show_info = __ed + "天前";
+                } else if (__eh > 0) {
+                    show_info = __eh + "小时前";
+                } else if (__em > 0) {
+                    show_info = __em + "分钟前";
+                } else if (__es > 0) {
+                    show_info = + __es + "秒前";
+                }
+                return show_info;
+            }
+        });
+
+});
+
+</script>    
+  </body>
+</html>

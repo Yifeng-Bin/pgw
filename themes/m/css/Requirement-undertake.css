@@ -1,0 +1,37 @@
+@charset "utf-8";
+/* CSS Document */
+.undertake{
+	width:100%;
+	height:auto;
+	background-color:#fff;
+	margin-top:10px;}
+.undertake_body{
+	width:100%;
+	padding:10px;
+	border-bottom:1px #e1e1e1 dashed;}
+.undertake_body p{
+	background-image:url(../images/requirement/prompt.png);
+	background-position:left center;
+	background-repeat:no-repeat;
+	height:80px;
+	line-height:80px;
+	padding-left:50px;
+	font-size:18px;}
+.undertake_body .price{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	padding-left:10px;
+	border:#ddd 1px solid;
+	outline:none;}
+.undertake_body .price:focus{
+	border:1px #1dadff solid;}
+.undertake_foot{
+	width:100%;
+	padding:10px;}
+.undertake_foot .btn_price{
+	width:100%;
+	height:40px;
+	background-color:#eb6100;
+	color:#fff;
+	border:none;}

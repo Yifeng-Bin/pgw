@@ -1,0 +1,165 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">用户访问规则列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_model(0, '{:U('AdminAuthRule/add')}')">增加规则</button>
+        <if condition="$prevUrl neq ''"><a class="btn btn-default btn-sm" href="{$prevUrl}">返回上级</a></if>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>规则名称</th>
+                    <th>规则地址</th>
+                    <th>规则类型</th>
+                    <th>状态</th>
+                    <th>是否显示</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="authList" item="authInfo" >
+                <tr>
+                    <th scope="row">{$authInfo['id']}</th>
+                    <td>
+                        <if condition="$authInfo['url'] eq ''">{$authInfo['title']|htmlspecialchars}<else /><a href="{$authInfo['url']}">{$authInfo['title']|htmlspecialchars}</a></if>
+                    </td>
+                    <td>{$authInfo['name']|htmlspecialchars}</td>
+                    <td><if condition="$authInfo['type'] eq 0">菜单<else />规则</if></td>
+                    <td><if condition="$authInfo['status'] eq 1">启用<else />禁用</if></td>
+                <td><if condition="$authInfo['is_show'] eq 1">显示<else />不显示</if></td>
+                <td>{$authInfo['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_model({$authInfo['id']}, '{:U('AdminAuthRule/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_auth({$authInfo['id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" role="dialog" aria-labelledby="authModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="authModalLabel">编辑规则</h4>
+                </div>
+                <div class="modal-body">
+                    <form> 
+                        <div class="form-group">
+                            <label for="authName" class="control-label">规则url:</label>
+                            <input type="text" class="form-control" id="authName" name="authName">
+                        </div>
+                        <div class="form-group">
+                            <label for="authTitle" class="control-label">规则名称:</label>
+                            <input type="text" class="form-control" id="authTitle" name="authTitle">
+                        </div>      
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="authStatus" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="authStatus" value="1">启用</label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">是否显示:</label>
+                            <label class="checkbox-inline"><input type="radio" name="authIsShow" value="0">不显示</label>
+                            <label class="checkbox-inline"><input type="radio" name="authIsShow" value="1">显示</label>            
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="authSort" name="authSort">
+                        </div>
+                    </form>
+                    <input type="hidden" id="authId" name="authId" value='0' />
+                    <input type="hidden" id="authPid" value="{$pid}" />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_auth();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</block>
+<block name="css-style">
+</block>
+<block name="js-input">
+    <script type="text/javascript">
+        
+        function submit_auth()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.id = $('#authId').val();
+            data.name = $('#authName').val();
+            data.title = $('#authTitle').val();
+            data.status = $("input[name='authStatus']:checked").val();
+            data.sort = $('#authSort').val();
+            data.pid = $("#authPid").val();
+            data.is_show = $("input[name='authIsShow']:checked").val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    window.location.reload();
+                }
+              },'json');
+        }
+        
+        
+        function del_auth(id)
+        {
+            if(confirm("确认删除权限规则吗？")){
+                var post_url = '{:U('AdminAuthRule/del')}';
+                var data = {};
+                data.id = id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        window.location.reload();
+                    }
+                },'json');
+            }            
+
+        }
+                                function show_edit_model(id, url)
+                                {
+                                        $('#authName').val('');
+                                        $('#authTitle').val('');
+                                        $("input[name='authStatus'][value='1']").attr("checked",true);
+                                        $("input[name='authIsShow'][value='1']").attr("checked",true);
+                                        $('#authSort').val(100);
+                                        $("input[name='authId']").val(0);
+                                        if (id != 0)
+                                        {
+                                            $.get("{:U('AdminAuthRule/edit')}", {id:id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#authName').val(data.info.name);
+                                                        $('#authTitle').val(data.info.title);
+                                                        $("input[name='authStatus'][value='"+data.info.status+"']").attr("checked",true);
+                                                        $("input[name='authIsShow'][value='"+data.info.is_show+"']").attr("checked",true);
+                                                        $('#authSort').val(data.info.sort); 
+                                                        $("input[name='authId']").val(data.info.id);
+                                                        $("input[name='submitUrl']").val(url);                                                        
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='submitUrl']").val(url);
+                                        }
+                                        $('#authModal').modal();
+                                }
+    </script>
+</block>

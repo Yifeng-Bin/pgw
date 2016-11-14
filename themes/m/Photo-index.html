@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/photo-index.css?v=20160713003" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+    <div class="photo">
+        <foreach name="photoList" item="info">
+    	<div class="photo_content" style="height:180px;overflow:hidden;">
+            <a href="{$info.url}"><img height="130" src="{$info.main_image}">
+            <p style="height:23px;overflow:hidden;">{$info.article_name|htmlspecialchars}</p></a>
+        </div>
+        </foreach>
+       
+    </div>
+    <div class="page">{$pageShow}</div>
+</div>
+<include file="Common:footer_design" />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

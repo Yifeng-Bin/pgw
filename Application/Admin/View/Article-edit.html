@@ -1,0 +1,217 @@
+<extend name="Public/base" />
+<block name="main">
+
+        <h1 class="page-header">编辑文章</h1>
+        <p><a class="btn btn-default" href="{:U('Article/index')}">返回文章列表</a></p>
+        <form id="submitForm" action="{:U('Article/edit')}" method="post">
+            <div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#baseinfo" aria-controls="baseinfo" role="tab" data-toggle="tab">基本信息</a></li>
+                    <li role="presentation"><a href="#descript" aria-controls="descript" role="tab" data-toggle="tab">详细描述</a></li>
+                    <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab">相册</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="baseinfo">
+                        <div class="form-group">
+                            <label for="article_name" class="control-label">名称:</label>
+                            <input type="text" class="form-control" id="article_name" name="article_name" value="{$articleInfo.article_name|htmlspecialchars}">
+                        </div>
+                        <div class="form-group">
+                            <label for="article_brief" class="control-label">摘要:</label>
+                            <textarea rows="3" class="form-control" id="article_brief" name="article_brief">{$articleInfo.article_brief|htmlspecialchars}</textarea>
+                        </div>                                 
+                        <div class="form-group">
+                            <label for="article_keywords" class="control-label">关键字:</label>
+                            <input type="text" class="form-control" id="article_keywords" name="article_keywords" value="{$articleInfo.article_keywords|htmlspecialchars}">
+                        </div>
+                        <div class="form-group">
+                            <label for="is_checked" class="control-label">审核状态:</label>
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="is_checked" value="0" <if condition="$articleInfo['is_checked'] eq 0">checked="checked"</if>>未审核</label>
+                            <label class="checkbox-inline"><input type="radio" name="is_checked" value="1" <if condition="$articleInfo['is_checked'] eq 1">checked="checked"</if>>已审核</label>                            
+                        </div>                        
+                        <div class="form-group">
+                            <label for="main_image" class="control-label">文章封面图(图片不存在则提取文章内容的第一张图片，相册文章不用上传):</label>
+                            <input ype="file" name="main_image_file" id="main_image_file" />                       
+                            <input type="text" class="form-control" id="main_image" name="main_image" value="{$articleInfo.main_image|htmlspecialchars}" />
+                        </div>                                                  
+                        <div class="form-group">
+                            <label for="cat_div_id" class="control-label">文章分类:</label>
+                            <select id="cat_id" name="cat_id">
+                                <foreach name="catList" key="key1" item="value" >
+                                    <option value="{$value.cat_id}" <if condition="$articleInfo['cat_id'] eq $value['cat_id']">selected="selected"</if>>{$value.cat_name}</option>
+                                    <if condition="isset($value['children'])">
+                                    <foreach name="value.children" key='key2' item="child" >
+                                        <option value="{$child.cat_id}" <if condition="$articleInfo['cat_id'] eq $child['cat_id']">selected="selected"</if>>|--{$child.cat_name}</option>
+                                            <if condition="isset($child['children'])">
+                                            <foreach name="child.children" key='key3' item="lastChild" >
+                                                <option value="{$lastChild.cat_id}" <if condition="$articleInfo['cat_id'] eq $lastChild['cat_id']">selected="selected"</if>>|------{$lastChild.cat_name}</option>
+                                            </foreach>
+                                            </if>                            
+                                    </foreach>
+                                    </if>
+                                </foreach>                                
+                            </select>                          
+                        </div>
+                        
+                        <div id="attrInfo"></div> 
+                        
+                        <div class="form-group">
+                            <label for="cat_div_id" class="control-label">文章分区:</label>
+                            <select id="region_id" name="region_id">
+                                <foreach name="regionList" key="key1" item="value" >
+                                    <option value="{$value.region_id}" <if condition="$articleInfo['region_id'] eq $value['region_id']">selected="selected"</if>>{$value.region_name}</option>
+                                    <if condition="isset($value['children'])">
+                                    <foreach name="value.children" key='key2' item="child" >
+                                        <option value="{$child.region_id}" <if condition="$articleInfo['region_id'] eq $child['region_id']">selected="selected"</if>>|--{$child.region_name}</option>                      
+                                            <if condition="isset($child['children'])">
+                                            <foreach name="child.children" key='key3' item="lastChild" >
+                                                <option value="{$lastChild.region_id}" <if condition="$articleInfo['region_id'] eq $lastChild['region_id']">selected="selected"</if>>|------{$lastChild.region_name}</option>
+                                            </foreach>
+                                            </if>                                        
+                                    </foreach>
+                                    </if>
+                                </foreach>                                
+                            </select>                          
+                        </div>                 
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort" value="{$articleInfo.sort|htmlspecialchars}">
+                        </div>                        
+                        
+                    </div><!-- end baseinfo -->
+                    
+                    <div role="tabpanel" class="tab-pane" id="descript">
+                        <if condition="$articleInfo['cat_id_1'] eq 49 || $articleInfo['cat_id_1'] eq 51">
+                            <div class="form-group">
+                            <textarea rows="3" class="form-control" id="article_desc" name="article_desc">{$articleInfo.article_desc|htmlspecialchars}</textarea>
+                            </div>
+                        <else />
+                            <textarea id="article_desc" name="article_desc" type="text/plain">
+                                {$articleInfo.article_desc}
+                            </textarea>
+                            <script type="text/javascript" src="__STATICS__/ueditor/ueditor.config.js"></script>
+                            <script type="text/javascript" src="__STATICS__/ueditor/ueditor.all.min.js"></script>
+                            <script type="text/javascript">
+                                                var article_desc = UE.getEditor('article_desc', {
+                                                serverUrl:'{:U('Ueditor/manage/type/1')}',
+                                                        initialFrameHeight:300,
+                                                });                        
+                            </script>
+                        </if>
+                    </div>                    
+                    <div role="tabpanel" class="tab-pane" id="gallery">
+                        <input type="file" name="goods_files" id="goods_files" />
+                        <div id="imglist" class="row"> 
+                            <foreach name="gallery" item="images" >
+                                <div class="col-md-3">
+                                    <img class="img-responsive" src="{$images.url}" /><br />
+                                    <input type="hidden" name='photo_ids[]' value="{$images.img_id}"><br />
+                                    <button name='del_img' type="button" value="{$images.id}" class="btn btn-sm">删除</button>
+                                </div>
+                            </foreach>                            
+                        </div>
+                    </div><!-- end descript -->                        
+                </div><!-- tab-content -->             
+            </div>
+            <input type="hidden" id="goods_id" name="article_id" value="{$articleInfo['article_id']}" />
+            <button type="submit" class="btn btn-default">确认修改</button>
+        </form>
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+    <style type="text/css">
+        #cat_div_id{height: 100%;padding: 10px;}
+        #cat_list{padding: 10px 0px;}
+    </style>
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.cxselect.min.js"></script>
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script src="__STATICS__/jquery-ui-1.11.4/jquery-ui.min.js"></script>        
+    <script type="text/javascript">
+                var attrInfo = {$attrInfo};
+                function initAttrSelect(){
+                    for(var i=0;i<attrInfo.length;i++){
+                        $('#attrInfo input[name="attr['+attrInfo[i]['attr_id']+'][]"][value="'+attrInfo[i]['attr_value_id']+'"]').attr('checked' ,true);
+                    }
+                }
+                                            $(function(){
+                                                $( "#imglist" ).sortable();
+                                                $( "#sortable" ).disableSelection();   
+                                                
+                                                $("#cat_id").change(function(){
+                                                    var data = {};
+                                                    data.act = 'getAttr';
+                                                    data.cat_id = $(this).val();
+                                                    $.post("{:U('Article/edit')}",data,function(result){
+                                                        $("#attrInfo").html('');
+                                                        if(result.status == 1){
+                                                            var html = '';
+                                                            for(var i=0;i<result.info.length;i++){
+                                                                html = html + '<div class="form-group"><label for="sort" class="control-label">'+result.info[i].attr_desc+':  </label>';
+                                                                    for(var j=0;j < result.info[i].valueList.length; j++){
+                                                                        if(result.info[i]['attr_type'] == 0){
+                                                                            html = html + '<label class="checkbox-inline"><input type="radio" name="attr['+result.info[i]['attr_id']+'][]" value="'+result.info[i].valueList[j]['attr_value_id']+'" />'+result.info[i].valueList[j]['attr_value']+'</label>';
+                                                                        }else{
+                                                                            html = html + '<label class="checkbox-inline"><input type="checkbox" name="attr['+result.info[i]['attr_id']+'][]" value="'+result.info[i].valueList[j]['attr_value_id']+'" />'+result.info[i].valueList[j]['attr_value']+'</label>';
+                                                                        }
+                                                                    }
+                                                                html = html + '</div>';
+                                                            }
+                                                        }
+                                                        $("#attrInfo").html(html);
+                                                        initAttrSelect();
+                                                    },'json');
+                                                });   
+                                                $("#cat_id").trigger('change');
+                                                
+                                                
+                                                
+                                              $("#imglist").on("click","button[name='del_img']",
+                                                function(){
+                                                   $(this).parent().remove();
+                                              }); 
+                                               $('#main_image_file').uploadify({
+                                                'swf'      : '__STATICS__/uploadify/uploadify.swf',
+                                                'uploader' : "{:U('Public/upload/type/5')}",
+                                                'buttonText' : '选择图片',
+                                                'multi'    : false,
+                                                'successTimeout' : 5,
+                                                'formData'      : {'ajax' : 1},
+                                                'onUploadSuccess' : function(file, data, response) {
+                                                    data = jQuery.parseJSON(data);
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                    }else{
+                                                        var img_path = data.info.url;
+                                                        $('#main_image').val(img_path);        
+                                                    }
+                                                }
+                                            });    
+                                            $('#goods_files').uploadify({
+                                                    'swf'      : '__STATICS__/uploadify/uploadify.swf',
+                                                    'uploader' : "{:U('Public/upload?type=2')}",
+                                                    'buttonText' : "选择图片",
+                                                    'multi'    : true,
+                                                    'successTimeout' : 5,
+                                                    'formData'      : {'ajax' : 1},
+                                                    'onUploadSuccess' : function(file, data, response) {
+                                                        data = jQuery.parseJSON(data);
+                                                        if (data.status == 0)
+                                                        {
+                                                            alert(data.info);
+                                                        } else{
+                                                            var img_str = '<div class="col-md-3"><img  class="img-responsive" src="'+data.info.url+'"><br /><input type="hidden" name="photo_ids[]" value="'+data.info.img_id+'"><br /><button name="del_img" type="button" value="'+data.info.img_id+'" class="btn btn-sm">删除</button></div>';
+                                                            $('#imglist').append(img_str);
+                                                        }
+                                                    }
+                                            });                                                    
+                                                
+                                            });
+
+    </script>
+</block>

@@ -1,0 +1,24 @@
+[ 2016-10-08T09:27:09+08:00 ] 219.133.40.16 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-08T10:26:55+08:00 ] 219.133.40.16 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-08T10:26:59+08:00 ] 219.133.40.16 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-08T17:12:28+08:00 ] 219.133.40.16 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-08T23:37:34+08:00 ] 124.231.45.231 /user/register
+ERR: 1062:Duplicate entry '13272368619' for key 'user_name'
+ [ SQL语句 ] : INSERT INTO `pgw_user_auths` (`user_id`,`user_type`,`user_name`,`is_inside`,`is_verify`,`add_time`) VALUES ('1212','username','13272368619','1','1','1475912254')
+
+[ 2016-10-08T23:38:14+08:00 ] 124.231.45.231 /user/register
+ERR: 1062:Duplicate entry '13272368619' for key 'user_name'
+ [ SQL语句 ] : INSERT INTO `pgw_user_auths` (`user_id`,`user_type`,`user_name`,`is_inside`,`is_verify`,`add_time`) VALUES ('1213','username','13272368619','1','1','1475912294')
+
+[ 2016-10-08T23:39:06+08:00 ] 124.231.45.231 /user/register
+ERR: 1062:Duplicate entry '13272368619' for key 'user_name'
+ [ SQL语句 ] : INSERT INTO `pgw_user_auths` (`user_id`,`user_type`,`user_name`,`is_inside`,`is_verify`,`add_time`) VALUES ('1214','username','13272368619','1','1','1475912346')
+

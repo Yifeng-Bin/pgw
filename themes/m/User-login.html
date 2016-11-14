@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+
+
+<!-- Bootstrap -->
+
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+
+<link href="./css/logins.css?v=20160926001" type="text/css" rel="stylesheet">
+
+
+
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
+
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div class="content">
+
+	<div class="logins">
+
+    	<form action="{:U('User/login')}" method="post">
+
+        	<span class="user_id"></span>
+
+            <input class="logins_input input_merge" type="text"  name="user_name" placeholder="用户名/验证手机" required/>
+
+            <span class="user_password"></span>
+
+            <input class="logins_input" style="margin-top:10px" type="password"  name="password" placeholder="密码" required/>
+
+            <input type="hidden" name="back_url" value="{$back_url}" />
+
+            <input type="submit" value="登录" class="user_btn user_logins" name="user_logins">
+
+            <input type="button" value="注册" class="user_btn user_register" onClick="javascript:window.location.href='{:U('User/register')}';"  name="user_register">
+
+        </form>
+
+        <p class="operation">
+
+                <input name="remember" type="checkbox" id="ck_rmbUser"> 下次自动登录
+
+            <a href="#">忘记密码?</a>
+
+        </p>
+
+    </div>
+
+    <!--
+
+    <div class="third_logins">
+
+    	<div class="third_logins_tit"><span>第三方登录</span></div>
+
+        <div class="third_logins_content">
+
+        	<a href="#"><img src="./images/logins/icon/logins_qq.png"></a>
+
+            <a href="#"><img src="./images/logins/icon/logins_weixin.png"></a>
+
+            <a href="#"><img src="./images/logins/icon/logins_weibo.png"></a>
+
+        </div>
+
+    </div>
+
+    -->
+
+</div>
+
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+
+  $(document).ready(function () {
+
+    if ($.cookie("rmbUser") == "true") {
+
+    $("#ck_rmbUser").attr("checked", true);
+
+    $("#txt_username").val($.cookie("username"));
+
+    $("#txt_password").val($.cookie("password"));
+
+    }
+
+  });
+
+ 
+
+  //记住用户名密码
+
+  function Save() {
+
+    if ($("#ck_rmbUser").attr("checked")) {
+
+      var str_username = $("#txt_username").val();
+
+      var str_password = $("#txt_password").val();
+
+      $.cookie("rmbUser", "true", { expires: 7 }); //存储一个带7天期限的cookie
+
+      $.cookie("username", str_username, { expires: 7 });
+
+      $.cookie("password", str_password, { expires: 7 });
+
+    }
+
+    else {
+
+      $.cookie("rmbUser", "false", { expire: -1 });
+
+      $.cookie("username", "", { expires: -1 });
+
+      $.cookie("password", "", { expires: -1 });
+
+    }
+
+  };
+
+
+
+if(!placeholderSupport()){   // 判断浏览器是否支持 placeholder
+
+    $('[placeholder]').focus(function() {
+
+        var input = $(this);
+
+        if (input.val() == input.attr('placeholder')) {
+
+            input.val('');
+
+            input.removeClass('placeholder');
+
+        }
+
+    }).blur(function() {
+
+        var input = $(this);
+
+        if (input.val() == '' || input.val() == input.attr('placeholder')) {
+
+            input.addClass('placeholder');
+
+            input.val(input.attr('placeholder'));
+
+        }
+
+    }).blur();
+
+};
+
+})
+
+function placeholderSupport() {
+
+    return 'placeholder' in document.createElement('input');
+
+}
+
+</script>
+
+</body>
+
+</html>
+

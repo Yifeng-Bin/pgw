@@ -1,0 +1,98 @@
+[ 2016-10-06T10:03:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-06T10:03:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:洗衣机',
+  'trade_no' => '2016070721001004940253578812',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-07 10:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '43',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-06 10:03:44',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '2.00',
+  'gmt_payment' => '2016-07-07 10:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-06 10:03:44',
+  'price' => '2.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '9499bf1a13da2ac9e1b8345e059faacn96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '517928cc1666931dea224940557bc180',
+)
+[ 2016-10-06T10:03:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '43',
+)
+[ 2016-10-06T10:03:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '43',
+  'out_id' => '44',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467828196',
+  'log_time' => '1467828166',
+  'log_remark' => '',
+)
+[ 2016-10-06T10:11:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-06T10:11:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:换锁芯',
+  'trade_no' => '2016070721001004940254339567',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-07 10:11:07',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '44',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-06 10:11:45',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-07 10:11:13',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-06 10:11:44',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '899b9f40c8caee5065f897eb827a621n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'bd66b564a42233ee9935f2e563f5a5c6',
+)
+[ 2016-10-06T10:11:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '44',
+)
+[ 2016-10-06T10:11:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '44',
+  'out_id' => '45',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467828673',
+  'log_time' => '1467828640',
+  'log_remark' => '',
+)

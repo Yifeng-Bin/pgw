@@ -1,0 +1,12 @@
+[ 2016-10-05T12:22:45+08:00 ] 14.17.37.145 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-05T12:23:00+08:00 ] 14.17.37.145 /house/detail
+ERR: 模板不存在:themes/m/House-detail.html
+
+[ 2016-10-05T15:34:25+08:00 ] 219.133.40.14 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+
+[ 2016-10-05T15:34:25+08:00 ] 219.133.40.14 /house/my
+ERR: 模板不存在:themes/m/House-my.html
+

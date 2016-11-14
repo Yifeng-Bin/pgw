@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/Ask-submit.css?v=20160921001" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="ask_submit">
+    	<form action="{:U('Ask/submit')}" method="post">
+            <input name="ask_name" class="ask_describe" type="text"  placeholder="一句话描述您的问题"/>
+            <textarea rows="5" class="ask_supplement"  name="ask_add" placeholder="问题补充"></textarea>
+
+                <div class="ask_content_list">
+                    <a id="ask_img" href="javascript:void(0);" class="upload_ask">上传图片</a>
+                    <div id="img_list">
+
+                    </div>
+                </div>            
+            <input type="submit" class="btn_submit" value="提交" />	
+        </form>
+    </div>
+   <div id="upload_progress" class="progress" style="display:none">
+      <div id="upload_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+    </div>
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script>     
+<script type="text/javascript">
+$(function (){
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,flash,silverlight,html4',
+                browse_button : 'ask_img', 
+                url : '{:U('Ask/submit')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                resize: {
+                    width: 1000,
+                    height: 1000,
+                    quality: 100
+                },
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '4mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        $("#upload_progress").hide();
+                        $("#upload_progress_bar").attr('aria-valuenow',0);
+                        $("#upload_progress_bar").attr('style','width:0%');
+                        $("#upload_progress_bar").html("0%");                            
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="img_id[]" type="hidden" value="'+response.info.img_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadProgress: function(up,file){
+                        $("#upload_progress").show();
+                        $("#upload_progress_bar").attr('aria-valuenow',file.percent);
+                        $("#upload_progress_bar").attr('style','width:'+file.percent+'%');
+                        $("#upload_progress_bar").html('' + file.percent + "%");
+                        //$(file.id).getElementsByTagName('b')[0].innerHTML = '' + file.percent + "%";
+                    //layer.closeAll('loading');//关闭加载效果
+                    },                      
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+});
+
+</script>        
+</body>
+</html>

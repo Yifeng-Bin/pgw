@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="././images/photoDetail/favicon.ico" />
+    <title>楼盘装修套餐</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=201610270004" type="text/css" rel="stylesheet">
+ <link href="./css/base.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  
+   <link href="./css/l_base.css" type="text/css" rel="stylesheet">
+    <link href="./css/l_jqzoom.css" type="text/css" rel="stylesheet">
+	<link href="./css/l_style.css?v=20161028001" type="text/css" rel="stylesheet">
+	
+  	<div class="sub_location">		
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="/house/my">装修套餐</a> > <a href="#">{$loupan['loupan_name']}</a>
+            </div>
+        </div>
+    </div>
+	
+    <div class="house">
+    	<div class="container">
+        	<div class="house_top">
+				<div class="houses-main2">
+					<div class="pic">
+						<img src="{$loupan['thumb']}"/>
+					</div>
+					
+					<div class="houses-main-r">
+						<div class="title">{$loupan['loupan_name']}
+						
+						<span>{$Loupanlist['attr_value']}</span>
+						
+						<div class="tit-r"><label>{$loupan['visit_time']}</label>人查看了该楼盘特餐</div></div>
+						<p>施工楼盘：{$loupan['loupan_address']}<a href="#" class="map">查看地图</a></p>
+						<p>施工均价：<span>{$loupan['loupan_price']}元/m</span></p>
+						
+						<a <?php if(session('user_info.user_id') !=0){ ?> href="{:U('requirement/submit')}" <?php }else{ ?> onclick="javaScript:alert('请先登录!')" <?php } ?>  class="btn">发布需求</a>  
+						
+					</div>	
+						
+				</div>
+			</div>
+            <div class="house_content">
+				
+            	<div id="user_mid">
+				
+                    <div>
+                      <!-- Nav tabs -->
+                       <ul class="nav nav-tabs" role="tablist">
+                        <li>
+							<a href="{:U('House/detail?id='.$loupan['loupan_id'])}?type=1" class="on" js-click="" forid="#cgal" js-type="1">成功案例</a>
+						</li>
+                        <li>
+							<a href="{:U('House/detail?id='.$loupan['loupan_id'])}?type=2" js-click="" forid="#zjgc" js-type="2">在建工程</a>
+						</li>
+                        <li>
+							<a href="{:U('House/detail?id='.$loupan['loupan_id'])}?type=3" js-click="" forid="#xqhd" js-type="3">小区活动</a>
+						</li>
+						<div id="one" style=""></a>
+                      </ul>
+					  
+                      <!-- Tab panes -->
+                      <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="information">
+					<div class="tab-content">				
+				<div class="col-xs-9" >
+					<ul class="ListInfo" id="cgal">
+					<?php if(!empty($zhuanti)){ ?>
+						<foreach name="zhuanti" item="info" >
+						<li>
+							<a href="{:U('House/design?lid='.$loupan['loupan_id'].'&id='.$info['article_id'])}" class="pic"><img height="134" width='182' src="{$info['main_image']}"/></a>
+							<div class="text-r">
+								<div class="title">{$info['article_name']}<div class="tit-r"><label>{$info['visit_time']}</label>人查看了此方案</div></div>
+								<div class="con">
+									<?php $who = M('Users')->field('user_name')->where('user_id='.$info['user_id'])->find();
+										$stype = unserialize($info['type_desc']);
+									?>
+									<div class="author1">方案提供者：<span>{$who['user_name']}</span></div>
+									<div class="type">
+										<span>{$stype['house_type']}</span>
+										<span>{$info['area']}m</span> 
+										<span>{$stype['price']}万</span>
+										<span>{$stype['style_type'][0]}</span>
+									</div>
+									<div class="summary">方案描述：{$info['article_desc']}</div>
+								</div>
+								<a href="{:U('House/design?lid='.$loupan['loupan_id'].'&id='.$info['article_id'])}" class="ckfn">查看方案</a>
+							</div>
+						</li>
+						 </foreach>
+						 <div class="page">{$pageShow}</div>
+						 <?php }else{?>
+						  <div class="center">暂无案例</div>
+						<?php  } ?>
+					</ul>
+					
+					<ul class="ListInfo"  style="display:none;" id="zjgc">
+						<?php if(!empty($zaijian)){ ?>
+						<foreach name="zaijian" item="info" >
+						<li>
+							<a href="{:U('House/engineering?lid='.$loupan['loupan_id'].'&id='.$info['id'])}" class="pic"><img width='180' height='133' src="{$info['img']}"/></a>
+							<div class="text-r">
+								<div class="title">{$info['unit']}<div class="tit-r"><label>{$info['visit_time']}</label>人看了此工程</div></div>
+								<?php $who = M('Users')->field('user_name')->where('user_id='.$info['user_id'])->find(); ?>
+								<div class="con">
+									<div class="author1">方案提供者：<span>{$who['user_name']}</span></div>
+									<div class="summary">方案描述：{$info['desc']}</div>
+								</div>
+								<a href="{:U('House/engineering?lid='.$loupan['loupan_id'].'&id='.$info['id'])}" class="ckfn">我要参观</a>
+							</div>
+						</li>
+						 </foreach>
+						 <div class="page">{$pageShow}</div>
+						 <?php }else{?>
+						  <div class="center">暂无工程</div>
+						<?php  } ?>
+		
+					</ul>
+					
+					<div style="display:none;" id="xqhd">
+					<!-- 级别 -->
+					<div class="col-lg-12 col-md-12 col-sm-12"  >
+					   <div class="screen" >
+							<div class="screen_inline">
+								<div class="screen_inline_left" style="border:none;">级别</div>
+								<div class="screen_inline_right" style="border:none;">
+									<ul>
+										<li><a href="javascript:;" class="on" onclick="mianji(11)" >一级套餐</a></li>
+										<li><a href="javascript:;" onclick="mianji(22)" >二级套餐</a></li>
+										<li><a href="javascript:;" onclick="mianji(33)" >三级套餐</a></li>
+										<li><a href="javascript:;" onclick="mianji(44)" >高级套餐</a></li>
+										<li><a href="javascript:;" onclick="mianji(55)" >顶级套餐</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<ul class="activityInfo">
+						<?php if(!empty($zaijian)){ ?>
+						<foreach name="zaijian" item="info" >
+						<li>
+							<div class="pic">
+								<?php $time = time();  
+									$oneImg = M('tender_attachment')->field('url')->where('tender_id='.$info['tender_id'])->find();
+									$onemate = M('tender_mate')->field('id')->where('tender_id='.$info['tender_id'])->find();
+									$count = M('tender_mate')->where('tender_id='.$info['tender_id'])->count();
+									$closing_time = $info['closing_time']+86400;                 
+									if($closing_time < $time){ ?>
+									<a href="javaScript:alert('活动已结束')"><img src="{$oneImg['url']}"/></a>
+								<?php }elseif($info['add_time'] > $time){ ?>
+									<a href="javaScript:alert('活动即将开始')"><img src="{$oneImg['url']}"/></a>
+								<?php }elseif(empty($onemate['id'])){ ?>
+									<a href="javaScript:alert('还没有添加活动包')"><img src="{$oneImg['url']}"/></a>
+								<?php }elseif(($time > $info['add_time']) && ($time < $closing_time)){ ?>
+									<a href="{:U('House/activity?lid='.$loupan['loupan_id'].'&id='.$info['tender_id'])}"><img src="{$oneImg['url']}"/></a>
+								<?php } ?>
+								
+								<div class="bg"></div>
+								<?php if($closing_time < $time){ ?>
+									<div class="text">活动已结束</div>
+								<?php }elseif($info['add_time'] > $time){ ?>
+									<div class="text"><?php echo date('Y-m-d',$info['add_time']);?>开始</div>
+								<?php }elseif(($time > $info['add_time']) && ($time < $closing_time)){ ?>
+									<div class="text">活动中&nbsp;<?php echo date('Y-m-d',$info['closing_time']);?>结束</div>
+								<?php } ?>
+							</div>
+							<div class="title">{$info['desc']}</div>
+							<div class="num">
+								<span>{$count}</span>人已报名
+								<?php if($closing_time < $time){ ?>
+									<a href="javaScript:alert('已结束')" class="btn">已结束</a>
+								<?php }elseif($info['add_time'] > $time){ ?>
+									<a href="javaScript:alert('即将开始')" class="btn">即将开始</a>
+								<?php }elseif(($time > $info['add_time']) && ($time < $closing_time)){ ?>
+									<a href="{:U('House/activity?lid='.$loupan['loupan_id'].'&id='.$info['tender_id'])}" class="btn ljcy">立即参与</a>
+								<?php } ?>
+								
+							</div> 
+						</li>
+						 </foreach>
+						 <div class="page">{$pageShow}</div>
+						 <?php }else{?>
+						  <div class="center">暂无活动</div>
+						<?php  } ?>
+					</ul>
+					</div>
+				</div>
+				   <div class="col-xs-3">
+                            {:W('Common/recommendWorker')}
+                    		{:W('Common/recommendTeach')} 
+                    </div>
+				
+				<div class="clear"></div>
+			</div>
+      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	                    </div>
+                </div>
+    
+    <include file="Common:footer" />
+	<div  name='mao1'> </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+		var getPath=function(text) {
+				/*解析路径参数*/
+				var parameter = text.split('?')[1];
+				if (!parameter) { return null; }
+				var parameterHash = {}, parameter = '&' + parameter;
+				parameter.replace(/&([^=]+)=([^&]*)/g, function() {
+					parameterHash[arguments[1]] = arguments[2]
+				})
+				return parameterHash;
+			}
+		$(function(){
+			$('.nav-tabs [js-click]').each(function(){
+				
+				$(this).click(function(){	
+					$('.nav-tabs li a').each(function(){
+						$(this).removeClass('on');
+						var forid=$(this).attr("forid");
+						$(forid).hide();
+					});
+					$(this).addClass('on');
+					var forid=$(this).attr("forid");
+					$(forid).show();
+				
+				})
+			})
+			var url=location.href;
+			var urlData=getPath(url);
+			if(urlData && urlData.type){
+				$('[js-type="'+urlData.type+'"]').click();
+				var targetOffset = $('#one').offset().top ;			
+				$('html,body').animate({
+				  scrollTop: targetOffset
+				},
+				1000);
+			}
+			
+		})
+	function getLocalTime(nS) { 
+		return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)
+	}
+	
+	function mianji(obj){
+		var activityInfo = $(".activityInfo");
+		activityInfo.find('li').remove();
+		var url = "/House/mianji";
+		var region = "<?php echo $_COOKIE['region_id']; ?>";
+		var data = {id:obj,region:region};
+		$.post(url,data,function(data){
+			console.log(data);
+			var len = data.length;
+			for(var i=0;i<len;i++){
+				var end = getLocalTime(data[i]['closing_time']);
+				var html = "<li><div class='pic'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"'><img src='"+data[i]['path']+"'/></a><div class='text'>活动中&nbsp;"+end+"结束</div></div><div class='title'></div><div class='num'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"' class='btn ljcy'>立即参与</a></div></li>";
+				activityInfo.append(html);
+			}
+		},'json');
+	}
+	
+	</script>
+  </body>
+</html>

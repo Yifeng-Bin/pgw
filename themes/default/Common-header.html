@@ -1,0 +1,102 @@
+  	<header>
+    	<div class="header_top">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                            <if condition="USER_ID eq 0">
+                                <img src="./images/header/login_off.png"> <a href="{:U('User/login')}">登录</a> | <a href="{:U('User/register')}">注册</a>
+                            <else/>
+                                <span><a href="{:U('User/index')}">{$userInfo.user_name|htmlspecialchars}</a></span><a href="{:U('User/logout?code='.session('xss_code'))}"> &nbsp;退出</a>
+                            </if>
+                        </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 text-right"><a href="{:U('Requirement/submit')}">发布需求</a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('User/order')}">我的预约</a></div>
+	<div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('House/zhaoshang')}">分站加盟</a></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right"><img src="./images/header/tel.png"> 服务热线：<span><empty name="tel">{:C('service_phone')}<else/>{$tel.data_text|htmlspecialchars}</empty></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="header_content">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    	<div class="header_logo">
+                        	<a href="{$baseurl}"><img src="./images/header/logo.png" width="100%"></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+                    	<div class="header_address">
+                        	<img src="./images/header/add.png"> {$regionInfo.region_name} <br /><a href="{:U('City/change')}">[切换城市]</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-5 col-xs-5">
+                    	<div class="header_search">
+                        	<form id="search_form" action="{:U('Search/worker')}" method="get">
+                                <div class="search_left">
+                                    <select class="group_gray" onChange="$('#search_form').attr('action',$(this).val())">
+                                      <option value="{:U('Search/worker')}">找工人</option> 
+                                      <option value="{:U('Search/teach')}">派工教学</option>  
+                                    </select>
+                                </div>
+                                <div class="search_middle">
+                                    <input type="text" class="in_green" name="keywords">
+                                </div>
+                                <div class="search_right">
+                                    <button type="submit" class="btn_green">搜 索</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-lg-offset-1 col-xs-2">
+                    	<div class="header_advert">
+                        	<img src="./images/header/guanggao.png" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav>
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-10 col-md-10 col-sm-10">
+                        <div class="nav">
+                        <!--导航条-->
+                            <ul class="nav-main">
+                                <li><a href="{$baseurl}">首页</a></li>
+                                <li id="li-1"><a href="{:U('Requirement/index')}">需求大厅</a></li>
+                                <li id="li-2"><a href="#">找工人<span class="caret"></span></a></li>
+                                <li id="li-5"><a href="{:U('House/my')}">装修套餐</a></li>
+								<li id="li-3"><a href="#">找效果图</a></li>
+								 <li id="li-4"><a href="{:U('Photo/index')}">派工学堂<span class="caret"></span></a></li>
+								
+                               
+                            </ul>
+                            <!--隐藏盒子-->
+                            <div id="box-2" class="hidden-box hidden-loc-us">
+                                <ul>
+                                    <li><a href="{:U('Worker/type?id=35')}">工程管理</a></li>
+                                    <li><a href="{:U('Worker/type?id=36')}">装修工匠</a></li>
+                                    <li><a href="{:U('Worker/type?id=40')}">家居维修</a></li>
+                                    <li><a href="{:U('Worker/type?id=42')}">成品安装</a></li>
+                                    <li><a href="{:U('Worker/type?id=43')}">杂工搬运</a></li>
+                                </ul>
+                            </div>
+                            <div id="box-4" class="hidden-box hidden-loc-info box04" style="left:65.5%;">
+                                <ul>
+                                    <li><a href="{:U('Teach/index')}">装修课堂</a></li>
+                                    <li><a href="{:U('Ask/index')}">知识问答</a></li>
+                                    <li><a href="{:U('Diary/index')}">装修日志</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                	</div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                    	<div class="need">
+                            <div class="need_pic"><img src="./images/header/sanjiao.png"></div>
+                            <div class="need_text"><a href="{:U('Requirement/submit')}">发布需求</a></div>
+                    	</div>
+                    </div>
+            	</div>
+            </div>
+        </nav>	
+    </header>

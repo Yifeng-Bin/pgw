@@ -1,0 +1,128 @@
+@charset "utf-8";
+/* CSS Document */
+.worktype{
+	width:100%;
+	height:auto;
+	}
+.worktype_box{
+	margin-top:10px;
+	float:left;
+	width:100%;
+	height:auto;
+	background-color:#fff;}
+.worktype_tit{
+	float:left;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	background-color:#fff;
+	border-bottom:1px #ddd solid;
+	padding-left:10px;}
+.worktype_content{
+	float:left;
+	width:100%;
+	height:auto;
+	background-color:#fff;
+padding-bottom:12px;
+}
+.work_flex{
+	width:20%;
+	text-align:center;
+	float:left;
+	padding:10px 0 0 0;}
+.work_flex p{height:20px;overflow:hidden;}
+.work_flex img{
+	max-width:60%;}
+.work_flex{
+	float:left;
+	text-align:center;
+	font-size:12px;
+	line-height:20px;}
+.service_tel{
+	float:left;
+	width:100%;
+	height:40px;
+	text-align:center;
+	line-height:40px;
+	margin-top:10px;
+	background-color:#fff;
+	border-bottom:1px #ddd solid;
+	border-top:1px #ddd solid;}
+.service_tel span{
+	background-image:url(../images/index/icon/tel.png);
+	background-position:left center;
+	background-repeat:no-repeat;
+	color:#0baa53;
+	padding-left:20px;}
+.foot{
+	float:left;
+	width:100%;
+	font-size:10px;
+	height:40px;
+	line-height:40px;
+	color:#999;
+	text-align:center;}
+/*首页-最新需求*/
+.index-news {
+  background: #fff;
+}
+.index-news .tit {
+  border-bottom: 1px solid #ddd;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+ul.list li {
+  height: 50px;
+  border-bottom: 1px solid #eee;
+  padding: 6px 0 0 10px;
+  overflow: hidden;
+}
+ul.list li .list-l {
+  float: left;
+  width: 80%;
+}
+ul.list li .list-l .list-l-tit {
+  font-size: 14px;
+}
+ul.list li .list-l p {
+  margin: 0;
+  font-size: 12px;
+  height:17px;
+  line-height:17px;
+}
+ul.list li .list-l p span {
+  width: 75px;
+  display: inline-block;
+  padding-left: 15px;
+  color: #888;
+  background: url(../images/index/icon/index-ico3.png) no-repeat left center;
+}
+ul.list li .list-l p span:nth-child(2) {
+  background-image: url(../images/index/icon/index-ico1.png);
+  padding-left: 18px;
+  width: 85px;
+}
+ul.list li .list-l p span:nth-child(3) {
+  background-image: url(../images/index/icon/index-ico2.png);
+}
+ul.list li .list-r {
+  float: right;
+  width: 20%;
+  text-align: center;
+  margin-top: 12px;
+  color: #888;
+  font-size: 12px;
+}
+.index-more {
+  height: 43px;
+  border-bottom: 1px solid #eee;
+  line-height: 43px;
+  text-align: center;
+}
+.index-more a {
+  background: url(../images/index/icon/index-ico4.png) no-repeat right center;
+  padding-right: 15px;
+  color: #ea783f;
+  font-size: 13px;
+}

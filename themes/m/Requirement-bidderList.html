@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720001" type="text/css" rel="stylesheet">
+<link href="./css/Requirement-workman.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="bid_workman">
+        <foreach name="bidderList" item="bidderInfo">
+    	<div class="bid_workman_box">
+        	<div class="workman_box_middle">
+            	<div class="inner">
+                	<h5>{$bidderInfo['user_name']|htmlspecialchars}</h5>
+                    <p>90天内共接任务<strong>{$bidderInfo['tenders_take_num']}</strong>笔</p>
+                    <span><if condition="$bidderInfo.is_verified eq 1">实名<else />未实名</if></span>
+                    <span><if condition="$bidderInfo['money'] gt 0">先赔<else />无保证金</if></span>
+                    <span><if condition="$bidderInfo['is_safe'] eq 0">无保险<else />保险</if></span>
+                </div>
+            </div>
+        	<div class="workman_box_left"><img class="img-circle" src="<if condition="empty($bidderInfo['avatar'])">./images/workman/header/head.png<else />{$bidderInfo['avatar']}</if>"></div>
+            <div class="workman_box_right">
+            	<p>服务：{:number_format($bidderInfo['score1']/20,1,'.','')}分</p>
+                <p>价格：{:number_format($bidderInfo['score2']/20,1,'.','')}分</p>
+                <p>质量：{:number_format($bidderInfo['score3']/20,1,'.','')}分</p>
+            </div>
+        </div>
+        <!-- 业主查看时显示 -->
+        <if condition="$requirementInfo['user_id'] eq USER_ID">
+            <if condition="$requirementInfo['status'] eq STATUS_WAIT_EMPLOY">
+                <input type="button" class="btn_yuyue" value="雇佣Ta" onClick="confirmBidder('{$requirementInfo['tender_id']}','{$bidderInfo['user_id']}');return false;" />
+            </if>
+            <span class="offer">报价：{$bidderInfo['price']}</span>
+            <span class="shows">(发布者可见)</span>    
+            <div class="workman_operation">
+                <span>报价：<strong>{$bidderInfo['price']}</strong>元</span>
+                <input type="button" class="workman_hire" name="workman_hire" value="雇佣ta"  onClick="confirmBidder('{$requirementInfo['tender_id']}','{$bidderInfo['user_id']}');return false;"  />
+            </div>            
+        </if>        
+        <!-- 业主查看时显示 -->
+        </foreach>    
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+    
+            function confirmBidder(tender_id,bidder_id){
+                var data = {};
+                data.tender_id = tender_id;
+                data.bidder_id = bidder_id;
+                $.post("{:U('Requirement/confirmBidder')}",data,function(result){
+                    if(result.status == 1){
+                        alert(result.info);
+                        window.location.reload();
+                    }
+                    else{
+                        alert(result.info);
+                    }
+
+                },'json');
+                return false;            
+            }
+    </script>
+</body>
+</html>

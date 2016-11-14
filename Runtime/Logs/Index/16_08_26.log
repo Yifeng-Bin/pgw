@@ -1,0 +1,4 @@
+[ 2016-08-26T10:38:27+08:00 ] 101.226.66.172 /search/teach?keywords=?°„??°„?®¶°Í??a?+?¶Ãa???®®?2????°Ë°Ï???®®o????
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQLËØ≠Âè• ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+

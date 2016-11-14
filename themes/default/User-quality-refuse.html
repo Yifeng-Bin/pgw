@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">提交工单</div>
+            <div id="quality">
+            	<h5>订单编号：<span>156414564589</span></h5>
+                <div id="user_table">
+                    <table class="table">
+                        <tr>
+                            <th>时间</th>
+                            <th>项目名称</th>
+                            <th>需求类型</th>
+                            <th>金额</th>
+                            <th>状态</th>
+                        </tr>
+                        <tr>
+                            <td>2016-05-19 13:00</td>
+                            <td>家里装修需要个木工</td>
+                            <td>木工</td>
+                            <td><span>200.00</span></td>
+                            <td>已验收</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="quality_remarks">
+                	<span>!</span>
+                	<p>如果您有维修诉求建议先和工人师傅协商：工人姓名，电话18888888888</p>
+                    <p>如需帮助您可拨打派工网客服电话进行咨询。</p>
+                </div>
+                <div class="quality_detail">
+                	<div class="quality_tit">退款详情</div>
+                    <div class="quality_detail_left">
+                    	<img src="images/user/head.png" class="img-circle">
+                        <span>用户昵称</span>
+                    </div>
+                    <div class="quality_detail_right">
+                    	<p>退款金额：<span>￥200.00</span><a href="#">修改</a><small>2016-06-12 12:12</small></p>
+                        <p>退款说明：说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明</p>
+                        <a href="#" data-toggle="modal" data-target="#pic_1"><img src="images/quality/1.jpg"></a>
+                        <a href="#" data-toggle="modal" data-target="#pic_2"><img src="images/quality/1.jpg"></a>
+                        <a href="#" data-toggle="modal" data-target="#pic_3"><img src="images/quality/1.jpg"></a>
+                    </div>
+                </div>
+                <div class="quality_detail">
+                    <div class="quality_detail_left">
+                    	<img src="images/user/head.png" class="img-circle">
+                        <span>用户昵称</span>
+                    </div>
+                    <div class="quality_detail_right">
+                        <p>拒绝说明：说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明</p>
+                        <span>2016-06-12 12:12</span>
+                        <span>退款状态：工人已拒绝退款申请，待您处理</span>
+                    </div>
+                </div>
+                <div class="quality_form">
+                	<form>
+                    	<textarea class="form-control" rows="3" placeholder="说明" required></textarea>
+                        <p class="inputfile" id="container">
+                            <a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a>
+                            <small>上传文件描述更精准！(最多提交3张)</small>
+                            <div id="img_list">
+                                
+                            </div>
+                            
+                        </p>
+                    </form>
+                </div>
+                <div class="quality_detail_button">
+                	<input type="button" class="btn_cancel" value="关闭申请">
+                	<input type="button" class="btn_cancel" value="再次申请退款">
+                	<input type="button" class="btn_supplement" value="订单维权">
+                </div>
+            </div>
+        </div>
+    </div>
+  	
+    <!-- Modal -->
+    <div class="modal fade" id="pic_1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">说明图片</h4>
+          </div>
+          <div class="modal-body">
+            <img src="images/quality/1.jpg" class="big_pic">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="pic_2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">说明图片</h4>
+          </div>
+          <div class="modal-body">
+            <img src="images/quality/1.jpg" class="big_pic">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="pic_3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">说明图片</h4>
+          </div>
+          <div class="modal-body">
+            <img src="images/quality/1.jpg" class="big_pic">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+  </body>
+</html>

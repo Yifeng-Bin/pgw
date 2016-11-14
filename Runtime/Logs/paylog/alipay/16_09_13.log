@@ -1,0 +1,36 @@
+[ 2016-09-13T13:30:41+08:00 ] 110.75.248.216 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-13T13:30:41+08:00 ] 110.75.248.216 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-13 13:30:41',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'f0660d9c30b004a47adfcbb40aa37e8f',
+)
+[ 2016-09-13T13:30:41+08:00 ] 110.75.248.216 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-13T13:30:41+08:00 ] 110.75.248.216 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL

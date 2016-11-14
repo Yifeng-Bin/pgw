@@ -1,0 +1,91 @@
+[ 2016-09-26T14:52:03+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-26T14:52:03+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:木工',
+  'trade_no' => '2016092621001004870248919628',
+  'buyer_email' => 'xieyangfei@vip.qq.com',
+  'gmt_create' => '2016-09-26 14:51:51',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '60',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-26 14:52:03',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-09-26 14:52:02',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088302455650871',
+  'notify_id' => '30877f74f9f7c66bae59c1cdf53adb7mpq',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '125ac6214dc525a03805a20557d3e0b6',
+)
+[ 2016-09-26T14:52:03+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '60',
+)
+[ 2016-09-26T14:52:03+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '60',
+  'out_id' => '71',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.217.166',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1474843862',
+  'log_remark' => '',
+)
+[ 2016-09-26T14:52:13+08:00 ] 118.255.217.166 /payment/notify/type/alipay/method/return?buyer_email=xieyangfei%40vip.qq.com&buyer_id=2088302455650871&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWesHIVwQzpw6fU3NOa4OFn99hYovt6fAcdEfFXSCLSHfaEScY&notify_time=2016-09-26+14%3A52%3A10&notify_type=trade_status_sync&out_trade_no=60&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%9C%A8%E5%B7%A5&total_fee=1.00&trade_no=2016092621001004870248919628&trade_status=TRADE_SUCCESS&sign=ac177b4856898fe5b1ceeda491a86f62&sign_type=MD5
+INFO: return
+[ 2016-09-26T14:52:13+08:00 ] 118.255.217.166 /payment/notify/type/alipay/method/return?buyer_email=xieyangfei%40vip.qq.com&buyer_id=2088302455650871&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWesHIVwQzpw6fU3NOa4OFn99hYovt6fAcdEfFXSCLSHfaEScY&notify_time=2016-09-26+14%3A52%3A10&notify_type=trade_status_sync&out_trade_no=60&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%9C%A8%E5%B7%A5&total_fee=1.00&trade_no=2016092621001004870248919628&trade_status=TRADE_SUCCESS&sign=ac177b4856898fe5b1ceeda491a86f62&sign_type=MD5
+INFO: array (
+  'buyer_email' => 'xieyangfei@vip.qq.com',
+  'buyer_id' => '2088302455650871',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InWesHIVwQzpw6fU3NOa4OFn99hYovt6fAcdEfFXSCLSHfaEScY',
+  'notify_time' => '2016-09-26 14:52:10',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '60',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:木工',
+  'total_fee' => '1.00',
+  'trade_no' => '2016092621001004870248919628',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => 'ac177b4856898fe5b1ceeda491a86f62',
+  'sign_type' => 'MD5',
+)
+[ 2016-09-26T14:52:13+08:00 ] 118.255.217.166 /payment/notify/type/alipay/method/return?buyer_email=xieyangfei%40vip.qq.com&buyer_id=2088302455650871&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWesHIVwQzpw6fU3NOa4OFn99hYovt6fAcdEfFXSCLSHfaEScY&notify_time=2016-09-26+14%3A52%3A10&notify_type=trade_status_sync&out_trade_no=60&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%9C%A8%E5%B7%A5&total_fee=1.00&trade_no=2016092621001004870248919628&trade_status=TRADE_SUCCESS&sign=ac177b4856898fe5b1ceeda491a86f62&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '60',
+)
+[ 2016-09-26T14:52:13+08:00 ] 118.255.217.166 /payment/notify/type/alipay/method/return?buyer_email=xieyangfei%40vip.qq.com&buyer_id=2088302455650871&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWesHIVwQzpw6fU3NOa4OFn99hYovt6fAcdEfFXSCLSHfaEScY&notify_time=2016-09-26+14%3A52%3A10&notify_type=trade_status_sync&out_trade_no=60&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%9C%A8%E5%B7%A5&total_fee=1.00&trade_no=2016092621001004870248919628&trade_status=TRADE_SUCCESS&sign=ac177b4856898fe5b1ceeda491a86f62&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '60',
+  'out_id' => '71',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.217.166',
+  'pay_status' => '1',
+  'pay_time' => '1474843923',
+  'log_time' => '1474843862',
+  'log_remark' => '',
+)

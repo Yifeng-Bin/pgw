@@ -1,0 +1,597 @@
+.pop-tips {
+  width: 436px;
+  height: 297px;
+  background: url(../images/pop-bg.gif) no-repeat left center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -148px 0 0 -218px;
+}
+.pop-tips .top {
+  padding: 10px 30px 0px 15px;
+}
+.pop-tips .top img {
+  width: 167px;
+  height: 53px;
+}
+.pop-tips .top a {
+  float: right;
+  width: 16px;
+  height: 16px;
+  margin-top: 10px;
+  background: url(../images/close.gif) no-repeat left center;
+}
+.pop-tips .tit {
+  background: url(../images/border.gif) no-repeat center;
+  height: 20px;
+  margin: 0 20px 0 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.pop-tips .tit span {
+  display: inline-block;
+  padding: 0 10px;
+  background: #fff;
+  color: #fd8531;
+  font-size: 16px;
+}
+.pop-tips .con {
+  margin: 0 20px 0 12px;
+  text-align: center;
+}
+.pop-tips .con p {
+  color: #0c0c0c;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.pop-tips .con span {
+  font-size: 14px;
+  color: #1e1e1e;
+}
+.pop-tips .bottom {
+  margin: 85px 25px 0 12px;
+  text-align: right;
+}
+.pop-tips .bottom a {
+  text-decoration: underline;
+  color: #1e1e1e;
+}
+/*首页*/
+.index-news {
+  background: #fff;
+}
+.index-news .tit {
+  border-bottom: 1px solid #ddd;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+}
+ul.list li {
+  height: 43px;
+  border-bottom: 1px solid #eee;
+  padding: 6px 0 0 10px;
+  overflow: hidden;
+}
+ul.list li .list-l {
+  float: left;
+  width: 80%;
+}
+ul.list li .list-l .list-l-tit {
+  font-size: 14px;
+}
+ul.list li .list-l p {
+  margin: 0;
+  font-size: 12px;
+}
+ul.list li .list-l p span {
+  width: 45px;
+  display: inline-block;
+  padding-left: 15px;
+  color: #888;
+  background: url(../images/index-ico3.png) no-repeat left center;
+}
+ul.list li .list-l p span:nth-child(2) {
+  background-image: url(../images/index-ico1.png);
+  padding-left: 18px;
+  width: 70px;
+}
+ul.list li .list-l p span:nth-child(3) {
+  background-image: url(../images/index-ico2.png);
+}
+ul.list li .list-r {
+  float: right;
+  width: 20%;
+  text-align: center;
+  margin-top: 12px;
+  color: #888;
+  font-size: 12px;
+}
+.index-more {
+  height: 43px;
+  border-bottom: 1px solid #eee;
+  line-height: 43px;
+  text-align: center;
+}
+.index-more a {
+  background: url(../images/index-ico4.png) no-repeat right center;
+  padding-right: 15px;
+  color: #ea783f;
+  font-size: 13px;
+}
+/*楼盘详情*/
+.body {
+  width: 1200px;
+  margin: 0 auto;
+}
+.houses-main {
+  height: 230px;
+}
+.houses-main .pic {
+  float: left;
+  width: 330px;
+  height: 230px;
+  overflow: hidden;
+  background: red;
+}
+.houses-main .pic img {
+  width: 330px;
+}
+.houses-main .houses-main-r {
+  float: left;
+  width: 465px;
+  height: 230px;
+  margin-left: 50px;
+}
+.houses-main .houses-main-r .tit {
+  font-size: 24px;
+  height: 32px;
+  line-height: 40px;
+  overflow: hidden;
+}
+.houses-main .houses-main-r .price {
+  font-size: 20px;
+  margin-top: 25px;
+}
+.houses-main .houses-main-r .price span {
+  color: #f96904;
+}
+.houses-main .houses-main-r .time {
+  height: 32px;
+  line-height: 32px;
+  font-size: 20px;
+  background: url(../images/time.png) no-repeat left center;
+  padding-left: 40px;
+  margin-top: 25px;
+}
+.houses-main .houses-main-r a.ckfa {
+  background: #0baa53;
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
+  text-align: center;
+  display: block;
+  margin-top: 49px;
+}
+.houses-main .erweima {
+  float: left;
+  width: 170px;
+  text-align: center;
+  overflow: hidden;
+}
+.houses-main .erweima img {
+  width: 170px;
+  height: 170px;
+}
+.user-num {
+  background: #f5f5f5 url(../images/lpxq-1.png) no-repeat 15px center;
+  height: 35px;
+  margin-top: 35px;
+  line-height: 35px;
+  padding-left: 60px;
+  font-size: 16px;
+  color: #f96904;
+}
+/*套餐*/
+.housesInfo {
+  border: 1px solid #d2d2d2;
+}
+.housesInfo .tit {
+  background: #f5f5f5;
+  border-bottom: 1px solid #d2d2d2;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+  font-size: 20px;
+}
+.housesInfo .content {
+  text-align: center;
+}
+.housesInfo .content img {
+  max-width: 100%;
+}
+.Package {
+  border-bottom: 1px solid #d2d2d2;
+}
+.Package .Package-l {
+  float: left;
+  color: #f96904;
+  width: 100px;
+  text-align: center;
+}
+.Package .Package-l span {
+  display: block;
+  margin-top: 16px;
+  font-size: 14px;
+}
+.Package .Package-c {
+  float: left;
+  width: 840px;
+  padding: 15px 26px 0 0px;
+}
+.Package .Package-c a {
+  padding: 0 5px 2px 5px;
+  display: inline-block;
+  margin: 0 15px 15px 0;
+  color: #646464;
+  font-size: 14px;
+}
+.Package .Package-c a.on {
+  background: #f96904;
+  color: #fff;
+  border-radius: 3px;
+}
+.taocan-box {
+  height: 345px;
+}
+.taocan-box .taocan-l {
+  float: left;
+  width: 225px;
+  border-right: 1px solid #e1e1e1;
+}
+.taocan-box .taocan-l span.xianmu {
+  float: left;
+  width: 78px;
+  height: 345px;
+  line-height: 345px;
+  text-align: center;
+  color: #f96904;
+  border-right: 1px solid #e1e1e1;
+  font-size: 16px;
+}
+.taocan-box .taocan-pic {
+  float: left;
+  width: 355px;
+  overflow: hidden;
+  height: 345px;
+  border-right: 1px solid #e1e1e1;
+}
+.taocan-box .taocan-pic img {
+  width: 355px;
+}
+.taocan-box .taocan-con {
+  float: left;
+  width: 320px;
+  padding: 40px;
+}
+.taocan-box .taocan-r {
+  float: left;
+  width: 210px;
+}
+.taocan-box .taocan-r .jiage {
+  width: 100px;
+  border: 1px solid #e1e1e1;
+  border-width: 0 1px;
+  height: 327px;
+  padding-top: 18px;
+  float: left;
+  margin-right: 15px;
+}
+.taocan-box .taocan-r .jiage p {
+  margin: 0;
+  text-align: center;
+  height: 52px;
+  line-height: 52px;
+}
+.taocan-box .taocan-r .jiage p.on {
+  color: #f96904;
+}
+.taocan-box .taocan-r span {
+  float: left;
+  text-align: center;
+  width: 80px;
+  margin-top: 170px;
+  color: #f96904;
+}
+ul.typeList {
+  float: left;
+  width: 145px;
+  padding-top: 18px;
+}
+ul.typeList li {
+  height: 52px;
+  line-height: 52px;
+  padding-left: 30px;
+}
+ul.typeList li a {
+  color: #000;
+}
+ul.typeList li a.on {
+  color: #f96904;
+}
+ul.typeList li a:hover {
+  text-decoration: underline;
+}
+ul.typeList li span {
+  float: right;
+  margin: 18px 15px 0 0;
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  background: url(../images/lpxq-1.gif) no-repeat left center;
+}
+ul.typeList li span.on {
+  background-image: url(../images/lpxq-1-on.gif);
+}
+.enroll-box {
+  background: #eee;
+  height: 400px;
+  margin-top: 20px;
+}
+.enroll-box .enrollInfo {
+  width: 435px;
+  margin: 0 auto;
+}
+.enroll-box .enrollInfo .con {
+  border: 1px solid #c9c9c9;
+  background: #fff;
+  padding: 15px 0;
+}
+.enroll-box .enrollInfo .con input {
+  width: 88%;
+  margin: 0 0 12px 4%;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 12px;
+}
+.enroll-box .enrollInfo .con a.btn {
+  background: #0baa53;
+  display: block;
+  height: 50px;
+  width: 91.5%;
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+  line-height: 50px;
+  margin: 45px 0 0 4%;
+}
+.enroll-box .enrollInfo .tit {
+  font-size: 30px;
+  text-align: center;
+  padding: 12px 0;
+  color: #333;
+}
+/*成功案例*/
+.houses-main2 .pic {
+  width: 465px;
+  height: 350px;
+  float: left;
+}
+.houses-main2 .pic img {
+  width: 465px;
+  height: 350px;
+}
+.houses-main2 .houses-main-r {
+  width: 640px;
+  float: right;
+}
+.houses-main2 .houses-main-r .tit {
+  font-size: 30px;
+  color: #000;
+  vertical-align: middle;
+  margin-bottom: 20px;
+}
+.houses-main2 .houses-main-r .tit span {
+  font-size: 14px;
+  color: #fff;
+  background: #009944;
+  text-align: center;
+  display: inline-block;
+  padding: 5px 15px;
+  vertical-align: middle;
+  margin: -4px 0 0 20px;
+}
+.houses-main2 .houses-main-r .tit .tit-r {
+  float: right;
+  font-size: 16px;
+  color: #bdbabd;
+  height: 40px;
+  line-height: 40px;
+}
+.houses-main2 .houses-main-r .tit .tit-r label {
+  color: #ff8e39;
+  font-size: 17px;
+}
+.houses-main2 .houses-main-r p {
+  font-size: 17px;
+  height: 28px;
+  line-height: 28px;
+  margin: 10px 0 0 0;
+}
+.houses-main2 .houses-main-r p span {
+  color: #ff8e39;
+  font-size: 17px;
+}
+.houses-main2 .houses-main-r p a.map {
+  color: #bdbabd;
+  display: inline-block;
+  height: 28px;
+  background: url(../images/weizhi.gif) no-repeat left 1px;
+  padding-left: 25px;
+  margin-left: 15px;
+}
+.houses-main2 .houses-main-r a.btn {
+  display: block;
+  background: #ff8631;
+  color: #fff;
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  width: 170px;
+  font-size: 22px;
+  margin-top: 40px;
+}
+/*成功案例列表*/
+.col-xs-9 {
+  width: 845px;
+  float: left;
+  margin-top: 15px;
+  border: 1px solid #d6d3d6;
+}
+ul.ListInfo li {
+  padding: 15px 0;
+  margin: 0 15px;
+  border-bottom: 1px dashed #d6d3d6;
+}
+ul.ListInfo li a.pic {
+  width: 180px;
+  height: 135px;
+  overflow: hidden;
+  float: left;
+}
+ul.ListInfo li a.pic img {
+  width: 180px;
+}
+ul.ListInfo li .text-r {
+  float: right;
+  width: 570px;
+  overflow: hidden;
+}
+ul.ListInfo li .text-r .title {
+  height: 40px;
+  font-size: 15px;
+}
+ul.ListInfo li .text-r .title .tit-r {
+  float: right;
+  color: #bdbabd;
+}
+ul.ListInfo li .text-r .title .tit-r label {
+  color: #ff8e39;
+  padding-right: 10px;
+  font-size: 15px;
+}
+ul.ListInfo li .text-r .con {
+  width: 460px;
+  float: left;
+  overflow: hidden;
+}
+ul.ListInfo li .text-r .con .author1 {
+  font-size: 15px;
+}
+ul.ListInfo li .text-r .con .author1 span {
+  color: #ff8e39;
+  font-size: 15px;
+}
+ul.ListInfo li .text-r .con .type {
+  margin-top: 15px;
+  font-size: 15px;
+}
+ul.ListInfo li .text-r .con .type span {
+  color: #bdbabd;
+  display: inline-block;
+  margin-right: 30px;
+}
+ul.ListInfo li .text-r .con .summary {
+  height: 20px;
+  overflow: hidden;
+  font-size: 15px;
+  margin-top: 15px;
+}
+ul.ListInfo li a.ckfn {
+  float: right;
+  width: 110px;
+  height: 42p;
+  text-align: center;
+  line-height: 42px;
+  background: #ff8631;
+  color: #fff;
+  margin-top: 15px;
+}
+ul.ListInfo li:last-child {
+  border-bottom: none;
+}
+/*小区活动列表*/
+ul.activityInfo li {
+  width: 247px;
+  height: 235px;
+  overflow: hidden;
+  float: left;
+  border: 1px solid #e7e3e7;
+  margin: 12px;
+}
+ul.activityInfo li .pic {
+  width: 247px;
+  height: 175px;
+  overflow: hidden;
+  position: relative;
+}
+ul.activityInfo li .pic img {
+  width: 247px;
+}
+ul.activityInfo li .pic .bg {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+}
+ul.activityInfo li .pic .text {
+  position: absolute;
+  width: 205px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 3;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  padding-left: 50px;
+  background: url(../images/time1.png) no-repeat 15px center;
+  background-size: 23px auto;
+}
+ul.activityInfo li .tit {
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  padding: 0 10px;
+  margin-top: 5px;
+}
+ul.activityInfo li .num {
+  padding: 0 10px;
+  line-height: 28px;
+  height: 28px;
+}
+ul.activityInfo li .num span {
+  color: #ff8e39;
+  padding-right: 5px;
+}
+ul.activityInfo li .num .btn {
+  float: right;
+  width: 82px;
+  height: 28px;
+  line-height: 28px;
+  text-align: center;
+  color: #000;
+  background: #cecbce;
+}
+ul.activityInfo li .num .btn.ljcy {
+  background: #08aa52;
+  color: #fff;
+}
+ul.activityInfo li .num .btn:last-child {
+  margin: auto;
+}
+/*# sourceMappingURL=style.css.map */

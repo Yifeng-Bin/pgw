@@ -1,0 +1,644 @@
+[ 2016-09-12T09:41:43+08:00 ] 110.75.248.155 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T09:41:43+08:00 ] 110.75.248.155 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '8',
+  'trade_no' => '2016061321001004720214954181',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 09:40:44',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '8',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 09:41:43',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 09:40:56',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 09:41:43',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'b04599679fe150e1713e61061e5a4f7lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '239b6d06c26ade4c8d3ea82ff9ddcdf9',
+)
+[ 2016-09-12T09:41:43+08:00 ] 110.75.248.155 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '8',
+)
+[ 2016-09-12T09:41:43+08:00 ] 110.75.248.155 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '8',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465753211',
+  'log_remark' => '',
+)
+[ 2016-09-12T09:54:02+08:00 ] 110.75.248.127 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T09:54:02+08:00 ] 110.75.248.127 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214657429',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 09:52:44',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '9',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 09:54:01',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 09:52:47',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 09:54:01',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'a565f6255305a2a106f2be6946eedbdlk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '5d982b01a24b44af6b4d5541d3a82e6a',
+)
+[ 2016-09-12T09:54:02+08:00 ] 110.75.248.127 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '9',
+)
+[ 2016-09-12T09:54:02+08:00 ] 110.75.248.127 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '9',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465753956',
+  'log_remark' => '',
+)
+[ 2016-09-12T10:03:22+08:00 ] 110.75.248.106 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T10:03:22+08:00 ] 110.75.248.106 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720215107147',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 10:02:20',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '10',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 10:03:22',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 10:02:23',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 10:03:22',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'c709b0e08dbb10ad6b03e5815c7b176lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'c64db576fcfb52c406c6a433b6b9b7b6',
+)
+[ 2016-09-12T10:03:22+08:00 ] 110.75.248.106 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '10',
+)
+[ 2016-09-12T10:03:22+08:00 ] 110.75.248.106 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '10',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465754526',
+  'log_remark' => '',
+)
+[ 2016-09-12T10:11:53+08:00 ] 110.75.248.87 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T10:11:53+08:00 ] 110.75.248.87 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720216880226',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 10:10:48',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '11',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 10:11:53',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 10:10:51',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 10:11:53',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '78ae67cb4019e71d5ec9917608e86f9lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'cd9e09e0ec5763f64657a5b4ca507661',
+)
+[ 2016-09-12T10:11:53+08:00 ] 110.75.248.87 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '11',
+)
+[ 2016-09-12T10:11:53+08:00 ] 110.75.248.87 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '11',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465755026',
+  'log_remark' => '',
+)
+[ 2016-09-12T10:14:06+08:00 ] 110.75.248.82 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T10:14:06+08:00 ] 110.75.248.82 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214741736',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 10:12:31',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '12',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 10:14:06',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 10:12:34',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 10:14:06',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '7ed59bcd896d83f0f03700dc4ad70ablk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '62814e08220cf9e28b5dfc200e21a386',
+)
+[ 2016-09-12T10:14:07+08:00 ] 110.75.248.82 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '12',
+)
+[ 2016-09-12T10:14:07+08:00 ] 110.75.248.82 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '12',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465755144',
+  'log_remark' => '',
+)
+[ 2016-09-12T13:03:42+08:00 ] 110.75.248.223 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T13:03:42+08:00 ] 110.75.248.223 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 13:03:42',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '20e8e46af38c6a8297be14a1f8023350',
+)
+[ 2016-09-12T13:03:42+08:00 ] 110.75.248.223 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T13:03:42+08:00 ] 110.75.248.223 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T13:07:16+08:00 ] 110.75.248.215 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T13:07:16+08:00 ] 110.75.248.215 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 13:07:15',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '6553532688c6af825aeba588d9317737',
+)
+[ 2016-09-12T13:07:16+08:00 ] 110.75.248.215 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T13:07:16+08:00 ] 110.75.248.215 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T13:10:36+08:00 ] 110.75.248.208 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T13:10:36+08:00 ] 110.75.248.208 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720215199763',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:09:09',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '13',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 13:10:36',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:09:13',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:10:36',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '9dd008983bbf9cb6a975ef1d678f893lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '3ae8e9a9f52b0fb4228d712a49ba6f5f',
+)
+[ 2016-09-12T13:10:36+08:00 ] 110.75.248.208 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '13',
+)
+[ 2016-09-12T13:10:36+08:00 ] 110.75.248.208 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '13',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '1',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465765729',
+  'log_remark' => '',
+)
+[ 2016-09-12T13:18:28+08:00 ] 110.75.248.190 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T13:18:28+08:00 ] 110.75.248.190 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 13:18:28',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '99b8a86d697391f8e90960d593ca3882',
+)
+[ 2016-09-12T13:18:28+08:00 ] 110.75.248.190 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T13:18:28+08:00 ] 110.75.248.190 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T13:27:07+08:00 ] 110.75.248.171 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T13:27:07+08:00 ] 110.75.248.171 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 13:27:06',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '340a226d55271405fa79c1dc6155f53f',
+)
+[ 2016-09-12T13:27:07+08:00 ] 110.75.248.171 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T13:27:07+08:00 ] 110.75.248.171 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T14:27:29+08:00 ] 110.75.248.35 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T14:27:29+08:00 ] 110.75.248.35 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 14:27:29',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '90f8b2e4e6c5ed0811ca44a9b5aada63',
+)
+[ 2016-09-12T14:27:29+08:00 ] 110.75.248.35 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T14:27:29+08:00 ] 110.75.248.35 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T16:14:45+08:00 ] 110.75.248.68 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T16:14:45+08:00 ] 110.75.248.68 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '购买金币',
+  'trade_no' => '2016061321001004720215951045',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 16:13:50',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '17',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 16:14:45',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 16:13:52',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 16:14:45',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '7b8e75e255cfdbe2e1cebf3d6e04f5alk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'cc22a5833204778c95282bbd46760b2a',
+)
+[ 2016-09-12T16:14:45+08:00 ] 110.75.248.68 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '17',
+)
+[ 2016-09-12T16:14:45+08:00 ] 110.75.248.68 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '17',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '2',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465776620',
+  'log_remark' => '',
+)
+[ 2016-09-12T16:23:43+08:00 ] 110.75.248.50 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T16:23:43+08:00 ] 110.75.248.50 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214426116',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 16:22:50',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '18',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 16:23:43',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 16:22:53',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 16:23:43',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '666afc2d80dd8dbea90b103d6b551f1lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '0a5264df6815e6a503e229da5d1ee372',
+)
+[ 2016-09-12T16:23:43+08:00 ] 110.75.248.50 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '18',
+)
+[ 2016-09-12T16:23:43+08:00 ] 110.75.248.50 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '18',
+  'out_id' => '0',
+  'stage' => '1',
+  'user_id' => '1139',
+  'pay_id' => '1',
+  'log_type' => '2',
+  'money' => '1.00',
+  'log_ip' => '175.13.68.168',
+  'pay_status' => '1',
+  'pay_time' => '0',
+  'log_time' => '1465777339',
+  'log_remark' => '',
+)
+[ 2016-09-12T16:27:46+08:00 ] 110.75.248.41 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T16:27:46+08:00 ] 110.75.248.41 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 16:27:46',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '75f8f31dd0e48d77869dba62f461a4b5',
+)
+[ 2016-09-12T16:27:46+08:00 ] 110.75.248.41 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T16:27:46+08:00 ] 110.75.248.41 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL
+[ 2016-09-12T22:27:34+08:00 ] 110.75.248.92 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-12T22:27:34+08:00 ] 110.75.248.92 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付保证金',
+  'trade_no' => '2016061321001004720214422179',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-13 13:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '1',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-12 22:27:34',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-13 13:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-12 13:03:42',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '74de39584b7ca08bef80c053f6c956blk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '6425d25b3c19c21e27b258b094691ad2',
+)
+[ 2016-09-12T22:27:34+08:00 ] 110.75.248.92 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '1',
+)
+[ 2016-09-12T22:27:34+08:00 ] 110.75.248.92 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：NULL

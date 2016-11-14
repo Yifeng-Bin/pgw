@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+        <!-- Bootstrap -->
+
+        <link href="http://localhost/pgw/themes/default/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+        <link href="http://localhost/pgw/themes/default/css/style.css?v=2016102701" type="text/css" rel="stylesheet">
+
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if lt IE 9]>
+
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+
+            <script src="__STATICS__/js/respond.min.js"></script>        
+
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+    <include file="Common:header" />
+
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-9 col-md-9 col-sm-9">
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-sm-12" style="height:282px">
+
+                            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+                                <!-- Indicators -->
+
+                                <ol class="carousel-indicators">
+
+                                    <Sc:ads position_id="1">
+
+                                        <li data-target="#carousel-example-generic" data-slide-to="{$key}" <if condition="$key eq 0">class="active"</if>></li>
+
+                                    </Sc:ads>
+
+                                </ol>
+
+                                <!-- Wrapper for slides -->
+
+                                <div class="carousel-inner" role="listbox">
+
+                                    <Sc:ads position_id="1">
+
+                                        <div <if condition="$key eq 0">class="item active"<else />class="item"</if>>
+
+                                            <if condition="$adInfo.ad_link neq ''">
+
+                                                <a href="{$adInfo.ad_link}"><img src="{$adInfo.ad_image}" /></a>
+
+                                                <else />
+
+                                                <img src="{$adInfo.ad_image}" />
+
+                                            </if>
+
+                                            <div class="carousel-caption">
+
+                                                {$adInfo.ad_text|htmlspecialchars}
+
+                                            </div>
+
+                                        </div>
+
+                                    </Sc:ads>                                        
+
+                                </div>
+
+
+
+                                <!-- Controls -->
+
+                                <a class="left carousel-control" style="height:282px" href="#carousel-example-generic" role="button" data-slide="prev">
+
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+
+                                    <span class="sr-only">Previous</span>
+
+                                </a>
+
+                                <a class="right carousel-control" style="height:282px" href="#carousel-example-generic" role="button" data-slide="next">
+
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+
+                                    <span class="sr-only">Next</span>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+
+                            <div class="thumbnail margin_top">
+
+                                <div class="caption">
+
+                                    <h3>装修知识</h3>
+
+                                    <p>装修知识全面解答</p>
+
+                                </div>
+
+                                <a href="{:U('Teach/index')}"><img class="img_four" src="./images/banner/knowledge.png"></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+
+                            <div class="thumbnail margin_top">
+
+                                <div class="caption">
+
+                                    <h3>装修问答</h3>
+
+                                    <p>装修问题全民互动</p>
+
+                                </div>
+
+                                <a href="{:U('Ask/index')}"><img class="img_four" src="./images/banner/question.png"></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+
+                            <div class="thumbnail margin_top">
+
+                                <div class="caption">
+
+                                    <h3>装修日记</h3>
+
+                                    <p>真实的装修全记录</p>
+
+                                </div>
+
+                                <a href="{:U('Diary/index')}"><img class="img_four" src="./images/banner/diary.png"></a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3 col-sm-3">
+
+                            <div class="thumbnail margin_top">
+
+                                <div class="caption">
+
+                                    <h3>装修效果图</h3>
+
+                                    <p>让您找到更多装修灵感</p>
+
+                                </div>
+
+                                <a href="{:U('Photo/index')}"><img class="img_four" src="./images/banner/design.png"></a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3">
+
+                    <div class="release">
+
+                        <div class="sub_tit"><a href="#">马上发布需求，立即解决</a></div>
+
+                        <div class="release_content">
+
+                            <div class="media">
+
+                                <div class="media-left">
+
+                                    <a href="#">
+
+                                        <img class="media-object" src="./images/need/need_icon_1.png" class="img-circle" width="41">
+
+                                    </a>
+
+                                </div>
+
+                                <div class="media-body">
+
+                                    <h4 class="media-heading">发布需求后</h4>
+
+                                    2个小时内收到服务商响应
+
+                                </div>
+
+                            </div>
+
+                            <div class="media">
+
+                                <div class="media-left">
+
+                                    <a href="#">
+
+                                        <img class="media-object" src="./images/need/need_icon_2.png" class="img-circle" width="41">
+
+                                    </a>
+
+                                </div>
+
+                                <div class="media-body">
+
+                                    <h4 class="media-heading">每个需求</h4>
+
+                                    平均有2个以上工人报价
+
+                                </div>
+
+                            </div>
+
+                            <div class="media">
+
+                                <div class="media-left">
+
+                                    <a href="#">
+
+                                        <img class="media-object" src="./images/need/need_icon_3.png" class="img-circle" width="41">
+
+                                    </a>
+
+                                </div>
+
+                                <div class="media-body">
+
+                                    <h4 class="media-heading">95%以上的需求</h4>
+
+                                    都得到了圆满解决
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="count">
+
+                        <div class="count_content">
+
+                            <div class="count_sub border_right border_bottom">
+
+                                <div class="count_sub_pic"><a href="{:U('index/tuliao')}"><img src="./images/banner/count_pic_01.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/tuliao')}">涂料计算器</a></div>
+
+                            </div>
+
+                            <div class="count_sub border_right border_bottom">
+
+                                <div class="count_sub_pic"><a href="{:U('index/diban')}"><img src="./images/banner/count_pic_02.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/diban')}">地板计算器</a></div>
+
+                            </div>
+
+                            <div class="count_sub border_bottom">
+
+                                <div class="count_sub_pic"><a href="{:U('index/bizhi')}"><img src="./images/banner/count_pic_03.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/bizhi')}">壁纸计算器</a></div>
+
+                            </div>
+
+                            <div class="count_sub border_right">
+
+                                <div class="count_sub_pic"><a href="{:U('index/qiangzhuan')}"><img src="./images/banner/count_pic_04.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/qiangzhuan')}">墙砖计算器</a></div>
+
+                            </div>
+
+                            <div class="count_sub border_right">
+
+                                <div class="count_sub_pic"><a href="{:U('index/chuanglian')}"><img src="./images/banner/count_pic_05.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/chuanglian')}">窗帘计算器</a></div>
+
+                            </div>
+
+                            <div class="count_sub">
+
+                                <div class="count_sub_pic"><a href="{:U('index/dizhuan')}"><img src="./images/banner/count_pic_06.png" width="100%"></a></div>
+
+                                <div class="count_sub_text"><a href="{:U('index/dizhuan')}">地砖计算器</a></div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="workman">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-9 col-md-9 col-sm-9">
+
+                    {:W('Index/workerList')}
+
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-3">
+
+                    {:W('Index/dynamicList')}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="xiaoguo">
+
+        {:W('Index/photoList')}
+
+    </div>
+
+    <div class="teach">
+
+        <div class="container">
+
+            <div class="tit">派工教学<span><a href="#">more</a></span></div>
+
+            <div class="row">
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+
+                    <div class="decoration_class">
+
+                        <div class="decoration_tit"><a href="{:U('Teach/index')}">装修课堂</a></div>
+
+                        <div class="class_content">
+
+                            {:W('Index/teachList')}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+
+                    <div class="decoration_question">
+
+                        <div class="decoration_tit"><a href="#">知识问答</a></div>
+
+                        <div class="question_content">
+
+                            {:W('Index/askList')}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4">
+
+                    <div class="decoration_journal">
+
+                        <div class="journal_tit"><a href="#">装修日志</a></div>
+
+                        <div class="journal_content">
+
+                            {:W('Index/diaryList')}
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <include file="Common:footer" />
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+
+    <script src="./js/main.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

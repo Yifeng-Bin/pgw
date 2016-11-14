@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>切换地区_派工网_工人装修_工长装修★装修维修服务一站式平台★免费提供装修设计方案、装修建材导购！</title>
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20161015008" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="#">装修案例</a> 
+                
+            </div>
+        </div>
+    </div>
+	
+    <div id="teach_detail">
+    	<div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9" style="margin-top:10px;">
+                	<div class="teach_detail_content" style="height:620px;">
+                    	<div class="detail_content_article">
+                        	<h4>{$articleInfo['article_name']|htmlspecialchars}</h4>
+                            <div class="detail_share">
+                            	<div class="detail_share_left"><span>{$articleInfo['visit_time']}</span>人已浏览</div>
+                                <div class="tetail_share_mid">时间 : {$articleInfo['add_time']}</div>
+                                <div class="tetail_share_right">
+                                    <!-- JiaThis Button BEGIN -->
+                                    <div class="jiathis_style_24x24">
+                                        <a class="jiathis_button_qzone"></a>
+                                        <a class="jiathis_button_tsina"></a>
+                                        <a class="jiathis_button_tqq"></a>
+                                        <a class="jiathis_button_weixin"></a>
+                                        <a class="jiathis_button_renren"></a>
+                                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                    </div>
+                                    <!-- JiaThis Button END -->
+                                    <div class="share_text">分享：</div>
+                                </div>
+                            </div>
+                            
+                            <div class="case_detail">
+                            	<div class="cse_detail_describe">
+                                {$articleInfo['article_desc']|htmlspecialchars}
+                                </div>
+                                <div class="case_detail_pic">
+                                
+                                	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                                      <!-- Indicators -->
+                                      <ol class="carousel-indicators">
+                                        <for start="0" end="$articleInfo['photo_num']">
+                                            <li data-target="#carousel-example-generic" data-slide-to="{$i}"<if condition="$i eq 0"> class="active"</if>></li>
+                                        </for>
+                                      </ol>
+                                    
+                                      <!-- Wrapper for slides -->
+                                      <div class="carousel-inner" role="listbox">
+                                          <foreach name="articleInfo.gallery" item="info">
+                                            <div class="item <if condition="$key eq 0">active</if>">
+                                              <img src="{$info.url}">
+                                              <div class="carousel-text">
+                                                  <strong>{$key+1}</strong>/<span>{$articleInfo['photo_num']}</span>
+                                                  <p>{$info.img_desc|htmlspecialchars}</p>
+                                              </div>
+                                            </div>                                              
+                                          </foreach>
+                                      </div>
+                                    
+                                      <!-- Controls -->
+                                      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left heise" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                      </a>
+                                      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right heise" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                      </a>
+                                    </div>
+                                    
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                    {:W('Common/recommendWorker')}
+                    {:W('Common/recommendTeach')}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="http://v3.jiathis.com/code/jia.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $("#submit_comment").click(function(){
+            var url = "{:U('Article/comment')}";
+            var data = {};
+            $("#this").attr('disabled',"true");
+            data.id = $("#teach_id").val();
+            data.verify_code = $("#verify_code").val();
+            data.comment_content = $("#comment_content").val();
+            $.post(url,data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#comment_content").val('');
+                    alert(result.info);
+                }
+            },'json');
+            $("#verify_img").click();
+            $("#this").attr('disabled',"false");
+        });
+    </script>
+  </body>
+</html>

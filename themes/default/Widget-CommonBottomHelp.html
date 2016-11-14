@@ -1,0 +1,20 @@
+<div class="row">
+    <foreach name="bottomHelpList" item="info">
+    <div class="col-md-2 col-sm-2">
+        <div class="footer_content_list">
+            <ul>
+                <li class="list_tit"><a href="#">{$info.cat_name}</a></li>
+                <foreach name="info.list" item="child">
+                    <li><a href="{$child.url}">{$child.article_name|htmlspecialchars}</a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>        
+    </foreach>
+    <div class="col-md-2 col-sm-2">
+        <div class="footer_mobile">
+            <div class="mobile_tit">手机扫一扫</div>
+            <div class="mobile_pic"><img src="images/footer/code.png" width="100%"></div>
+        </div>
+    </div>
+</div>

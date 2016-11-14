@@ -1,0 +1,186 @@
+[ 2016-07-07T10:03:16+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-07T10:03:16+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:洗衣机',
+  'trade_no' => '2016070721001004940253578812',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-07 10:03:12',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '43',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-07 10:03:16',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '2.00',
+  'gmt_payment' => '2016-07-07 10:03:16',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '2.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '472e53b59cd37c86e3b3dab5d072e0fn96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '2c60fa084ab25216e9e9bb97bfadf0f6',
+)
+[ 2016-07-07T10:03:16+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '43',
+)
+[ 2016-07-07T10:03:16+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '43',
+  'out_id' => '44',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467828166',
+  'log_remark' => '',
+)
+[ 2016-07-07T10:03:29+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YAvu91nvLq8Gwde2U9iMkDasH6fGR8ndAjGsDjZHek%252B&notify_time=2016-07-07+10%3A03%3A26&notify_type=trade_status_sync&out_trade_no=43&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B4%97%E8%A1%A3%E6%9C%BA&total_fee=2.00&trade_no=2016070721001004940253578812&trade_status=TRADE_SUCCESS&sign=8741de429cec23b57b665e2371c4b561&sign_type=MD5
+INFO: return
+[ 2016-07-07T10:03:29+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YAvu91nvLq8Gwde2U9iMkDasH6fGR8ndAjGsDjZHek%252B&notify_time=2016-07-07+10%3A03%3A26&notify_type=trade_status_sync&out_trade_no=43&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B4%97%E8%A1%A3%E6%9C%BA&total_fee=2.00&trade_no=2016070721001004940253578812&trade_status=TRADE_SUCCESS&sign=8741de429cec23b57b665e2371c4b561&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXToIO4YAvu91nvLq8Gwde2U9iMkDasH6fGR8ndAjGsDjZHek%2B',
+  'notify_time' => '2016-07-07 10:03:26',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '43',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:洗衣机',
+  'total_fee' => '2.00',
+  'trade_no' => '2016070721001004940253578812',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '8741de429cec23b57b665e2371c4b561',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-07T10:03:29+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YAvu91nvLq8Gwde2U9iMkDasH6fGR8ndAjGsDjZHek%252B&notify_time=2016-07-07+10%3A03%3A26&notify_type=trade_status_sync&out_trade_no=43&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B4%97%E8%A1%A3%E6%9C%BA&total_fee=2.00&trade_no=2016070721001004940253578812&trade_status=TRADE_SUCCESS&sign=8741de429cec23b57b665e2371c4b561&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '43',
+)
+[ 2016-07-07T10:03:29+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YAvu91nvLq8Gwde2U9iMkDasH6fGR8ndAjGsDjZHek%252B&notify_time=2016-07-07+10%3A03%3A26&notify_type=trade_status_sync&out_trade_no=43&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B4%97%E8%A1%A3%E6%9C%BA&total_fee=2.00&trade_no=2016070721001004940253578812&trade_status=TRADE_SUCCESS&sign=8741de429cec23b57b665e2371c4b561&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '43',
+  'out_id' => '44',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467828196',
+  'log_time' => '1467828166',
+  'log_remark' => '',
+)
+[ 2016-07-07T10:11:13+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-07T10:11:13+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:换锁芯',
+  'trade_no' => '2016070721001004940254339567',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-07 10:11:07',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '44',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-07 10:11:13',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-07 10:11:13',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '9d37272d385c9868cb45b5d8cb03998n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'c4d05bf8e1efd89da6153174bd20124b',
+)
+[ 2016-07-07T10:11:13+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '44',
+)
+[ 2016-07-07T10:11:13+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '44',
+  'out_id' => '45',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467828640',
+  'log_remark' => '',
+)
+[ 2016-07-07T10:11:26+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YREEa2RERZNRApyydLtFAIES1SfJ263ep8VXr1A%252BOUc&notify_time=2016-07-07+10%3A11%3A22&notify_type=trade_status_sync&out_trade_no=44&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016070721001004940254339567&trade_status=TRADE_SUCCESS&sign=064ada6a95528835ffd7453859ee8635&sign_type=MD5
+INFO: return
+[ 2016-07-07T10:11:26+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YREEa2RERZNRApyydLtFAIES1SfJ263ep8VXr1A%252BOUc&notify_time=2016-07-07+10%3A11%3A22&notify_type=trade_status_sync&out_trade_no=44&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016070721001004940254339567&trade_status=TRADE_SUCCESS&sign=064ada6a95528835ffd7453859ee8635&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXToIO4YREEa2RERZNRApyydLtFAIES1SfJ263ep8VXr1A%2BOUc',
+  'notify_time' => '2016-07-07 10:11:22',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '44',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:换锁芯',
+  'total_fee' => '1.00',
+  'trade_no' => '2016070721001004940254339567',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '064ada6a95528835ffd7453859ee8635',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-07T10:11:26+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YREEa2RERZNRApyydLtFAIES1SfJ263ep8VXr1A%252BOUc&notify_time=2016-07-07+10%3A11%3A22&notify_type=trade_status_sync&out_trade_no=44&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016070721001004940254339567&trade_status=TRADE_SUCCESS&sign=064ada6a95528835ffd7453859ee8635&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '44',
+)
+[ 2016-07-07T10:11:26+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXToIO4YREEa2RERZNRApyydLtFAIES1SfJ263ep8VXr1A%252BOUc&notify_time=2016-07-07+10%3A11%3A22&notify_type=trade_status_sync&out_trade_no=44&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%8D%A2%E9%94%81%E8%8A%AF&total_fee=1.00&trade_no=2016070721001004940254339567&trade_status=TRADE_SUCCESS&sign=064ada6a95528835ffd7453859ee8635&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '44',
+  'out_id' => '45',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467828673',
+  'log_time' => '1467828640',
+  'log_remark' => '',
+)

@@ -1,0 +1,42 @@
+<extend name="Public/base" />
+<block name="header"></block>
+<block name="left"></block>
+<block name="footer"></block>
+<block name="css-style">
+    <style type="text/css">
+        #login{
+            margin-top: 100px;
+            width: 300px;
+        }
+    </style>
+</block>
+<block name="main">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-sm-12">
+                <form class="center-block" id="login" method="post">
+                    <h2 class="text-center">用户登录</h2>
+                    <div class="form-group">
+                        <label for="username" class="sr-only">用户名</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="用户名" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="sr-only">密码</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="密码" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-block">登录</button>
+                    </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js-input">
+    <script type="text/javascript">
+        if (top.location != location)  
+        {  
+        top.location.href = location.href;  
+        }         
+    </script>
+</block>

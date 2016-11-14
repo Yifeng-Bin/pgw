@@ -1,0 +1,205 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">工种列表</h1>
+        <if condition="$level elt 2"><button class="btn btn-default btn-sm" onClick="show_edit_type(0, '{:U('WorkType/add')}',{$pid})">增加工种类别</button></if>
+        <if condition="$pid != 0"><a class="btn btn-default btn-sm" href="{:U('WorkType/index',array('pid'=>$ppid))}">返回上级</a></if>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th>关键字</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="typeList" item="type" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$type['type_id']}">{$type['type_id']}</td>
+                    <if condition="$level elt 1">
+                       <td><a href="{:U('WorkType/index?pid='.$type['type_id'])}">{$type['type_name']|htmlspecialchars}</a></td> 
+                    <else />
+                        <td>{$type['type_name']|htmlspecialchars}</td>
+                    </if>
+                    <td>{$type['type_decs']|htmlspecialchars}</td>
+                    <td>{$type['type_keywords']|htmlspecialchars}</td>
+                    <td><if condition="$type['status'] eq 1">启用<else />禁用</if></td>
+                    <td>{$type['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_type({$type['type_id']}, '{:U('WorkType/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_type({$type['type_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('WorkType/index',array('pid'=>$pid))}" method="get">
+        </form>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="categoryModalLabel">增加/编辑工种信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="type_name" class="control-label">名称:</label>
+                            <input type="text" class="form-control" id="type_name" name="type_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="type_keywords" class="control-label">关键字:</label>
+                            <input type="text" class="form-control" id="type_keywords" name="type_keywords">
+                        </div>        
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort">
+                        </div>                    
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>                             
+                        <div class="form-group">
+                            <label for="type_decs" class="control-label">描述:</label>
+                            <textarea rows="3" class="form-control" id="type_decs" name="type_decs"></textarea>
+                        </div>   
+                        <div class="form-group">
+                            <label class="control-label">工种图片:</label>
+                            <input type="file" name="work_type_file_01" id="work_type_file_01" />
+                            <div id="work_type_url_01"></div>
+                            <input id="work_type_img_01" name="work_type_img_01" value="" />
+                        </div>                           
+                    </form>
+                    <input type="hidden" id="type_id" name="type_id" value='0' />
+                    <input type="hidden" id="pid" name="pid" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_type();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+$(function() {
+    $('#work_type_file_01').uploadify({
+        'swf'      : '__STATICS__/uploadify/uploadify.swf',
+        'uploader' : "{:U('Public/upload?type=1')}",
+        'buttonText' : '选择工种图片',
+        'multi'    : false,
+        'successTimeout' : 5,
+        'formData'      : {'ajax' : 1},
+        'onUploadSuccess' : function(file, data, response) {
+            data = jQuery.parseJSON(data);
+            if(data.status == 0)
+            {
+                alert(data.info);
+            }else{
+                $('#work_type_url_01').html('<img style="width:20%;" src="'+data.info.url+'"/>');
+                $('#work_type_img_01').val(data.info.url);        
+            }
+        }
+    });  
+}); 
+        function submit_type()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.type_id = $('#type_id').val();
+            data.type_name = $('#type_name').val();
+            data.type_decs = $('#type_decs').val();
+            data.type_keywords = $('#type_keywords').val();
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+            data.parent_id = $('#pid').val();
+            data.work_type_img_01 = $('#work_type_img_01').val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_type(type_id)
+        {
+            if(confirm("确认删除工种类型吗？")){
+                var post_url = '{:U('WorkType/del')}';
+                var data = {};
+                data.type_id = type_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                },'json');                
+            }            
+
+        }
+                                function show_edit_type(type_id,url,pid)
+                                {
+                                    $('#type_id').val(0);
+                                    $('#type_name').val('');
+                                    $('#type_decs').val('');
+                                    $('#type_keywords').val('');
+                                    $("input[name='status'][value='1']").attr("checked",true);
+                                    $('#work_type_img_01').val("");
+                                    $('#work_type_url_01').html("");                                 
+                                    $("input[name='pid']").val(pid);
+                                    $("input[name='submitUrl']").val(url);
+                                    if (type_id != 0)
+                                    {
+                                        $.get("{:U('WorkType/edit')}", { type_id: type_id },
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#type_id').val(data.info.type_id);
+                                                        $('#type_name').val(data.info.type_name);
+                                                        $('#type_decs').val(data.info.type_decs);
+                                                        $('#type_keywords').val(data.info.type_keywords);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);   
+                                                        if(data.info.work_type_img_01 != '')
+                                                        {
+                                                            $('#work_type_img_01').val(data.info.work_type_img_01);
+                                                            $('#work_type_url_01').html('<img style="width:20%" src="'+data.info.work_type_img_01+'"/>');
+                                                        }                                                        
+                                                        $('#categoryModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $('#categoryModal').modal();
+                                        }
+                                        
+                                }
+    </script>
+</block>

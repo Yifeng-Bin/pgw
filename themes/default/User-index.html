@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+    <head>
+
+        <meta charset="utf-8">
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+        <!-- Bootstrap -->
+
+        <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+        <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if lt IE 9]>
+
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+
+            <script src="__STATICS__/js/respond.min.js"></script>        
+
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+    <include file="User:header" />
+
+    <div class="container"  id="conid">
+
+        <!--左侧文件加载处-->
+
+
+
+        <include file="User:left" />
+
+        <div class="sub_content">
+
+            <div class="user_sub_tit">个人中心</div>
+
+            <div class="user_info">
+
+                <div class="user_info_left">
+
+                    <img  class="img-circle" src="<if condition="!empty($userBaseInfo['avatar'])">{$userBaseInfo.avatar}<else />./images/User-mid/user_head/work_head_pic.png</if>" width="100%">
+
+                </div>
+
+                <div class="user_info_mid">
+
+                    <h4>{$userBaseInfo.user_name|htmlspecialchars}</h4>
+
+                    <p>账户类型：<if condition="$userBaseInfo['user_type'] eq 0">普通用户<else />工人</if></p>
+
+                    <p>手机号码：{$userBaseInfo['mobile']|htmlspecialchars}</p>
+
+                    <!--<p>站内信箱：（1）</p>-->
+
+                    <span>实名认证：<if condition="$userBaseInfo['is_verified'] eq 1"><img src="./images/User-mid/icon/real.png"><else />未认证</if></span>
+
+                    <if condition="$userBaseInfo['is_safe'] eq 1">
+
+                        <span>保险额：<small>￥100000</small>元</span>
+
+                        <else />
+
+                        <span>未购保险</span>
+
+                    </if>
+
+                    <span>保质金：<small>￥{$userBaseInfo['money']}</small>元</span>
+
+                </div>
+
+            </div>
+
+            <div class="user_gold">
+
+                <div class="sub_content_tit"><span>金币日志</span></div>
+
+                <p>我的金币：{$userBaseInfo.gold}</p>
+
+                <a href="#" data-toggle="modal" data-target="#buyGlod">购买金币</a>
+
+                <a href="{:U('User/gold?type=all')}">收支明细</a>
+
+            </div>
+
+            <!--
+
+            <div class="user_notice">
+
+                <div class="sub_content_tit"><span>平台公告</span></div>
+
+                <ul>
+
+                    <li><a href="#">欢迎登录！</a></li>
+
+                    <li><a href="#">【郴州】举办活动举办活动举办活动举办活动举办活动</a></li>
+
+                    <li><a href="#">【郴州】举办活动举办活动举办活动举办活动举办活动</a></li>
+
+                    <li><a href="#">【郴州】举办活动举办活动举办活动举办活动举办活动</a></li>
+
+                    <li><a href="#">【郴州】举办活动举办活动举办活动举办活动举办活动</a></li>
+
+                </ul>
+
+            </div>
+
+            -->
+
+            <div class="user_contact">
+
+                <div class="sub_content_tit"><span>联系我们</span></div>
+
+                <img src="./images/User-mid/code.png">
+
+                <h5>关注派工网官方微信，找工人更方便</h5>
+
+                <p>服务时间: 9:00-18:00</p>
+				
+				<p>400服务电话：400-0062-058</p>
+
+                <p>郴州站服务电话：0735-7685666</p>
+
+                <p>派工网总部电话：0735-7685888</p>
+
+            </div>
+
+            <div class="user_transaction">
+
+                <div class="sub_content_tit"><span>交易管理</span></div>
+
+                <p>我的项目：</p>
+
+                <a href="{:U('User/requirement')}">我的招标（<span>{$projectInfo.bid_num}</span>）</a>
+
+                <a href="{:U('User/requirement')}">预约技工（<span>{$projectInfo.appointment_num}</span>）</a>
+
+                <br />
+
+                <a href="#">待付款（<span>{$projectInfo.wait_pay_num}</span>）</a>
+
+                <a href="#">待验收（<span>{$projectInfo.wait_check_num}</span>）</a>
+
+                <a href="#">待评价（<span>{$projectInfo.wait_comment_num}</span>）</a>
+
+            </div>
+
+
+
+            <div class="user_journal">
+
+                <!--用户无日记时显示-->
+
+                <div class="sub_content_tit"><span>装修日记</span></div>
+
+                <if condition="count(!diaryList) == 0">
+
+                <h5>您还没有写任何装修日记！</h5>
+
+                </if>
+
+                <p>写篇装修日记记录您的装修进程吧！还可赚取金币哦！</p>
+
+                <!--用户无日记时显示-->
+
+                <a href="{:U('User/write_diary')}" class="write_btn">写装修日记</a>
+
+                <!--用户有日记时显示-->
+
+                <ul>
+
+                    <foreach name="diaryList" item="info">
+
+                        <li><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a><span>{$info.add_time}</span></li>
+
+                    </foreach>
+
+                </ul>
+
+                <!--用户有日记时显示-->
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+
+    <div class="modal fade" id="buyGlod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <div class="modal-dialog" role="document">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <h4 class="modal-title" id="myModalLabel">购买金币</h4>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <form id="pay_form" action="{:U('Pay/submit')}" method="post">
+
+                        <p class="mar_bottom">当前金币余额：{$userBaseInfo.gold}个</p>
+
+                        <p style="margin-bottom:20px;">
+
+                            <label>购买金币数量：</label>
+
+                            <input type="text" id="god_num" name="god_num" value="100" class="in_money"> 个 <span id="money">10</span>元
+
+                        </p>
+
+                        <p>1元购买{:C('money_to_gold')}个金币</p>
+
+                        <div class="pay_tit">选择付款方式</div>
+
+                        <div class="pay_mode">
+
+                            <foreach name="payList" item="info">
+
+                                <label class="radio-inline">
+
+                                    <input type="radio" name="pay_id" value="{$info.pay_id}" style="margin-top: 11px;" <if condition="$key eq 0">checked="checked"</if> /> <img src="images/icon/{$info.pay_code}.png">
+
+                                </label>                    
+
+                            </foreach>
+
+                        </div>
+
+                        <input type="hidden" name="type" value="gold" />
+
+                        <button type="submit" class="pay_btn">去付款</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <include file="User:footer" />
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script>
+
+                            $('#god_num').blur(function () {
+
+                                var value = $(this).val();
+
+                                var money = parseInt(value/10) || 0;//(parseInt($('#money').val()/100) || 0) * 100;
+
+                                if(money < 1){
+
+                                    money = 1;
+
+                                }
+
+                                $("#money").html(money);
+
+                                $(this).val(money * 10);
+
+                                $('#money').val(money);
+
+                            });
+
+    </script>  
+<script>
+//获取对象定位尺寸信息
+var getOffset = function(obj, scrOnOff) {
+	obj=$(obj).get(0);
+	var left = 0, top = 0;
+	var width = obj.offsetWidth, height = obj.offsetHeight;
+	do { left += obj.offsetLeft - (scrOnOff ? obj.scrollLeft : 0), top += obj.offsetTop - (scrOnOff ? obj.scrollTop : 0); } while (obj = obj.offsetParent);
+	return { 'left': left, 'top': top, 'width': width, 'height': height };
+};
+//获取屏幕尺寸信息
+var getClient=function() {
+	/*获取document.documentElement信息*/
+	var dc = document.documentElement || document.body;
+	return  { width: dc.clientWidth, height: dc.clientHeight };
+}
+function setFooter(conid,footerid){
+	var conOfffset=getOffset(conid);//获取内容区高度
+	var client=getClient();//获取屏幕高度
+	if(conOfffset.height<client.height-94){
+		$(footerid).css({position:'absolute',bottom:0,left:0});//
+	}else{
+		$(footerid).css({position:'static'});
+	}
+}
+
+setFooter('#conid','#footerid');
+</script>  
+
+</body>
+
+</html>

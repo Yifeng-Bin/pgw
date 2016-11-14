@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-follow.css" type="text/css" rel="stylesheet">
+<link href="./css/Diary-index.css" type="text/css" rel="stylesheet">
+<link href="./css/Teach-index.css" type="text/css" rel="stylesheet">
+<link href="./css/photo-index.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="user_gold">
+    	<div class="user_nav">
+        	<ul class="four">
+            	<li <if condition="$type eq 'worker'"> class="active"</if>><a href="{:U('User/follow?type=worker')}">技工</a></li>
+                <li <if condition="$type eq 'diary'"> class="active"</if>><a href="{:U('User/follow?type=diary')}">装修日记</a></li>
+                <li <if condition="$type eq 'photo'"> class="active"</if>><a href="{:U('User/follow?type=photo')}">效果图</a></li>
+                <li <if condition="$type eq 'teach'"> class="active"</if>><a href="{:U('User/follow?type=teach')}">文章资讯</a></li>
+            </ul>
+        </div>
+        <div class="follow_content">
+            <if condition="$type eq 'worker'">
+                <foreach name="list" item="info">
+                <div class="follow_box">
+                    <div class="follow_left">
+                            <img src="<if condition="empty($info['avatar'])">./images/user/head/head.png<else />{$info['avatar']}</if>" class="img-circle">
+                    </div>
+                    <div class="follow_right">
+                            <h5>{$info['user_name']|htmlspecialchars}<spanclass="glyphicon glyphicon-trash"></span></h5>
+                            <ul id="userInfo">
+                            <li>入行年限：<span>{$info['enter_year']|htmlspecialchars}</span>年</li>
+                            <li>案例：<span>{$info['case_num']}</span>套</li>
+                            <li>接单统计：<span>{$info['tenders_take_num']}</span>次</li>
+                            <li>均价：<span>{$info.day_price}</span>元/天</li>
+                        </ul>
+                    </div>
+                </div>
+                </foreach>
+            <elseif condition="$type eq 'diary'" />  
+            	<foreach name="list" item="info"> 
+            	<div class="diary_box">
+                    <div class="diary_content">
+                        <h5><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a><span>{$info.add_time}</span></h5>
+                        <p>{$info.article_brief|htmlspecialchars}</p>
+                    </div>
+                    <div class="diary_foot">
+                        <div class="diary_foot_left">{$info.cat_name|htmlspecialchars}</div>
+                        <div class="diary_foot_right">
+                            <span><img src="./images/diary/news_03.png"> {$info.comment_num}</span>
+                            <span><img src="images/diary/tight_03.png"> {$info.follow_num}</span>
+                        </div>
+                    </div>
+                </div>
+                </foreach>
+            <elseif condition="$type eq 'photo'" />   
+            	<foreach name="list" item="info"> 
+                <div class="photo_content">
+                     <a href="{$info.url}"><img src="{$info.main_image}"></a>
+                    <p><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></p>
+                </div>
+            	</foreach>
+            <elseif condition="$type eq 'teach'" />  
+            	<foreach name="list" item="info">  
+            	<div class="teach_box">
+                    <div class="teach_text">
+                        <h5><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a><span>{$info.add_time}</span></h5>
+                        <p>{$info.article_brief|htmlspecialchars}</p>
+                    </div>
+                </div>
+            	</foreach>
+            </if>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

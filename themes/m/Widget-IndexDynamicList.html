@@ -1,0 +1,49 @@
+<ul class="list">
+			<foreach name="dynamicList" item="info" offset="0" length='5'>
+			<li>
+				<div class="list-l">
+					<div class="list-l-tit">{$info.tender_name|htmlspecialchars}</div>
+					<p>
+						<span>{$info.contacts|htmlspecialchars}</span>
+						<span>{$info.type_name|htmlspecialchars}</span>
+						<span class="add_time" add_time="{$info.add_time}"></span>
+					</p>
+				</div>
+				<a href="{$info.url}" class="list-r">查看</a>
+			</li>
+			</foreach>			
+		</ul>	
+<script type="text/javascript">
+$(function (){
+        $(".add_time").html(function () {
+            var d = new Date();
+            var now_time = Date.parse(d);
+            var now_time = parseInt(now_time / 1000) + parseInt(d.getTimezoneOffset() * 60);            
+            var add_time = $(this).attr('add_time');
+            var add_second = now_time - add_time ;
+            if (add_second <= 0)
+            {
+                return "";
+            } else
+            {
+                var __ed = parseInt(add_second / (24 * 60 * 60));
+                var __eh = parseInt((add_second / 3600) % 24);
+                var __em = parseInt((add_second/60)%60);
+                var __es = parseInt(add_second % 60);
+                var show_info = '';
+                if (__ed > 0) {
+                    show_info = __ed + "天前";
+                } else if (__eh > 0) {
+                    show_info = __eh + "小时前";
+                } else if (__em > 0) {
+                    show_info = __em + "分钟前";
+                } else if (__es > 0) {
+                    show_info = + __es + "秒前";
+                }
+                return show_info;
+            }
+        });
+
+});
+</script>    
+		

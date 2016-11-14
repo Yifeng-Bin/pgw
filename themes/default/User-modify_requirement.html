@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">我的需求</div>
+            <div class="modify_demand bor_top">
+            	<div class="modify_demand_info">
+                	<p>{$info.tender_name|htmlspecialchars}</p>
+                    <span>需求ID：{$info['tender_id']}</span>
+                    <span>浏览量：{$info['visit_time']}</span>
+                    <span>发布时间：{$info['add_time']}</span>
+                </div>
+                <div class="modify_demand_form">
+                	<div class="publish border_no">
+                        <form action="{:U('Requirement/modify')}" method="post">
+                            <p class="modi">
+                            	<span>&nbsp;&nbsp;</span> 项目预算<input type="text" value="{$info.budget}" name="budget" class="pub_txt" placeholder="请输入您的预算(元) ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span>&nbsp; </span> 工程日期<input type="text" name="days" value="{$info.days}" class="pub_txt" placeholder="请输入您的工期(天)">
+                            </p>
+                            <p class="modi">
+                            	<span>&nbsp;&nbsp;</span> 服务地区
+                            	<select id="prov" class="pub_sel"></select>
+                                <select id="city" class="pub_sel"></select>
+                                <select id="region_id" name="region_id" class="pub_sel"></select>
+                            </p>
+                            <p class="modi">
+                            	<span>&nbsp;&nbsp;</span> 详细地址<input type="text" name="address" value="{$info.address|htmlspecialchars}" class="pub_txt_long" placeholder="请输入您项目的地址">
+                            </p>
+                            <p class="modi">
+                            	<strong>备注要求</strong><textarea name="remark" class="pub_txt_long" rows="3">{$info.remark|htmlspecialchars}</textarea>
+                            </p>
+                            <p>
+                            	<span>&nbsp; </span> 接单技工类型                               
+                                <label class="radio-inline mar_left">
+                                  <input type="radio" id="mechanicRadio1" name="work_rank" value="0" <if condition="$info.work_rank eq 0">checked="checked"</if>> 不限
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="mechanicRadio2" name="work_rank" value="1" <if condition="$info.work_rank eq 1">checked="checked"</if>> 普通技工
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="mechanicRadio3" name="work_rank" value="2" <if condition="$info.work_rank eq 2">checked="checked"</if>> <span>VIP技工(如遇问题支持先行赔付，更安全！)</span>
+                                </label>
+                            </p>
+                            <p>
+                            	<span>&nbsp; </span> 需求截至时间
+                                <label class="radio-inline mar_left">
+                                  <input type="radio" id="dayRadio1" name="closing_time" value="1" checked="checked"> 3天后截至
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" id="dayRadio2" name="closing_time" value="2"> 7天后截至
+                                </label>
+                            </p>
+                            <p class="inputfile" id="container">
+                            	<a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a><small>上传文件描述更精准！让工人更清楚的明白您的需求！</small>
+                                <div id="img_list">
+                                    <foreach name="info.attachmentList" item="aInfo">
+                                    <div class="col-sm-2 alert alert-warning  alert-dismissible div_close" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                        <img src="{$aInfo.url}" style="width:100px">
+                                        <input name="attachment_id[]" type="hidden" value="{$aInfo.attachment_id}">
+                                    </div>                    
+                                    </foreach>                                	
+                                </div>
+                                
+                            </p>
+                            <p>
+                                <input type="hidden" name="id" value="{$info.tender_id}" />
+                            	<button type="submit" class="pub_btn">修 改 需 求</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  	<include file="User:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/i18n/zh_CN.js"></script> 
+<script>
+$(function (){
+	initChangeRegionData('prov', 'city', 'region_id',{$info.province_id},{$info.city_id},{$info.region_id});
+        
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'selectfiles', 
+                url : '{:U('Requirement/modify')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : true //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.attachment_id+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+});
+
+</script>
+  </body>
+</html>

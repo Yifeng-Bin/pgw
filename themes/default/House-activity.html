@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="././images/photoDetail/favicon.ico" />
+    <title>小区优惠活动</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+    <link href="./css/l_style.css?v=201610280003" type="text/css" rel="stylesheet">
+    <link href="./css/l_base.css" type="text/css" rel="stylesheet">
+	<link href="./css/l_jqzoom.css" type="text/css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('House/my')}">装修套餐</a> > <a href="{:U('House/detail?id='.$lid)}?type=3">{$loupan['loupan_name']}</a> > <a href="javascript:;">优惠活动</a>
+            </div>
+        </div>
+    </div>
+	
+    <div class="body">
+			<div class="houses-main">
+				<div class="pic">
+					<img width='330' height='230' src="{$tendert['url']}"/>
+				</div>
+				<div class="houses-main-r">
+					<div class="title">{$tenderz['tender_name']}</div>
+					<div class="price">拼团活动价：<span>￥{$tenderz['order_price']}</span></div>
+					<div class="time"><?php echo date('Y-m-d',$tenderz['closing_time']);?>结束</div>
+					<a href="#baoming" class="button">立即报名</a>
+				</div>
+				<div class="erweima">
+					<img src="./images/erweima.png"/>
+					微信扫码 优惠折扣轻松拿
+				</div>
+			</div>
+			<div class="user-num">楼盘专供套餐=物超所值，应有尽有，任意选择，省时、省心、省钱20-30%</div>
+			<div class="housesInfo">
+				<div class="Package">
+					<div class="Package-l"><span>套餐:</span></div>
+					<div class="Package-c">
+						<?php $peices = array(); if($tenderz['type']==1){ ?>
+							<a href="javascript:;" js-click="" forid="#boxQgb" class="on">清工包</a>
+						<?php }elseif($tenderz['type']==2){ ?>
+							<a href="javascript:;" js-click="" forid="#boxZcb">主材包</a>
+						<?php }elseif($tenderz['type']==3){ ?>
+							<a href="javascript:;" js-click="" forid="#boxPcb">辅材包</a>
+						<?php }elseif($tenderz['type']==4){ ?>
+							<a href="javascript:;" js-click="" forid="#boxZsb">装饰包</a>
+						<?php }elseif($tenderz['type']==5){ ?>
+							<a href="javascript:;" js-click="" forid="#boxRzb">软装包</a>
+						<?php } ?>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<!--轻工包开始 -->
+				<div class="taocan-box" id="boxQgb">
+					<div class="taocan-l">
+						<span class="xianmu">项目：</span>
+						<ul class="typeList">
+						<?php if($tenderz['type'] == 1){ ?>
+							<foreach name="actibao" item="info" >
+							<?php $qin = $info['qinggong'];
+							if($qin==1){ 
+							$name='水电工';}elseif($qin==2){
+							$name='泥瓦工';}elseif($qin==3){
+							$name='装饰木工';}elseif($qin==4){ 
+							$name='家具油漆';}elseif($qin==5){ 
+							$name='墙面油漆';} ?>
+							<li><a href="javascript:;" onclick="cailiao({$qin})" js-data="{pic:'{$info['img']}',maxPic:'{$info['imgb']}',title:'{$name}',price:'{$info['price']}'}">{$name}</a></li>
+							</foreach>
+						<?php }elseif($tenderz['type'] == 2){ ?>
+							<foreach name="actibao" item="info" >
+							<?php $qin = $info['qinggong'];
+							if($qin==1){ 
+							$name='墙地面主材';}elseif($qin==2){
+							$name='门窗主材';}elseif($qin==3){
+							$name='电器主材';}elseif($qin==4){ 
+							$name='整体衣柜';}elseif($qin==5){ 
+							$name='整体橱柜';}elseif($qin==6){ 
+							$name='集成吊顶';} ?>
+							<li><a href="javascript:;" onclick="cailiao({$qin})" js-data="{pic:'{$info['img']}',maxPic:'{$info['imgb']}',title:'{$name}',price:'{$info['price']}'}">{$name}</a></li>
+							</foreach>
+						<?php }elseif($tenderz['type'] == 3){ ?>
+							<foreach name="actibao" item="info" >
+							<?php $qin = $info['qinggong'];
+							if($qin==1){ 
+							$name='水电辅材';}elseif($qin==2){
+							$name='泥工辅材';}elseif($qin==3){
+							$name='防水辅材';}elseif($qin==4){ 
+							$name='木工辅材';}elseif($qin==5){ 
+							$name='刮胶辅材';} ?>
+							<li><a href="javascript:;" onclick="cailiao({$qin})" js-data="{pic:'{$info['img']}',maxPic:'{$info['imgb']}',title:'{$name}',price:'{$info['price']}'}">{$name}</a></li>
+							</foreach>
+						<?php }elseif($tenderz['type'] == 4){ ?>
+							<foreach name="actibao" item="info" >
+							<?php $qin = $info['qinggong'];
+							if($qin==1){ 
+							$name='背景墙';}elseif($qin==2){
+							$name='艺术天花';}elseif($qin==3){
+							$name='装饰柜';}elseif($qin==4){ 
+							$name='墙面装饰';} ?>
+							<li><a href="javascript:;" onclick="cailiao({$qin})" js-data="{pic:'{$info['img']}',maxPic:'{$info['imgb']}',title:'{$name}',price:'{$info['price']}'}">{$name}</a></li>
+							</foreach>
+						<?php }elseif($tenderz['type'] == 5){ ?>
+							<foreach name="actibao" item="info" >
+							<?php $qin = $info['qinggong'];
+							if($qin==1){ 
+							$name='家具';}elseif($qin==2){
+							$name='窗帘';}elseif($qin==3){
+							$name='装饰画';}elseif($qin==4){ 
+							$name='装饰品';} ?>
+							<li><a href="javascript:;" onclick="cailiao({$qin})" js-data="{pic:'{$info['img']}',maxPic:'{$info['imgb']}',title:'{$name}',price:'{$info['price']}'}">{$name}</a></li>
+							</foreach>
+						<?php } ?>
+						</ul>
+					</div>
+					<div class="jqzoom">
+							<img src="" alt="" jqimg="" id="bigImg"/>
+							
+					</div>
+					<div class="taocan-con">
+						<foreach name="actibao" item="info" >
+						<span>品牌: {$info['pinpai']}</span><br>
+						</foreach>
+					</div>
+					<div class="taocan-r">
+						<div class="jiage">
+						<foreach name="actibao" item="info" >
+						<?php array_push($peices,$info['price']); ?>
+							<p>￥{$info['price']}</p>
+						</foreach>
+						</div>
+						<div class="heji">
+							<b>合计</b><span>￥<?php echo array_sum($peices); ?>元</span>
+						</div>
+					</div>
+				</div>
+				<!--轻工包结束 -->
+				<!--主材包开始 -->
+				<!--<div class="taocan-box" style="display: none" id="boxZcb">
+					<div class="taocan-l">
+						<span class="xianmu">项目：</span>
+						<ul class="typeList">
+							<li><a href="#" class="on">墙地面主材</a><span class="on"></span></li>
+							<li><a href="#">门窗主材</a><span></span></li>
+							<li><a href="#">电器主材</a><span></span></li>
+							<li><a href="#">整体衣柜</a><span></span></li>
+							<li><a href="#">整体橱柜</a><span></span></li>
+							<li><a href="#">集成吊顶</a><span></span></li>
+						</ul>
+					</div>
+					<div class="jqzoom">
+						<img src="./images/lpxq2.jpg" alt="" jqimg="./images/house3.jpg" id="bigImg"/>
+					</div>
+					<div class="taocan-con">
+						品牌: NIPPON PAINT/
+						品牌: NIPPON PAINT/
+					</div>
+					<div class="taocan-r">
+						<div class="jiage">
+							<p class="on">￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+						</div>
+						<span>合计￥123456元</span>
+					</div>
+				</div>-->
+				<!--主材包结束 -->
+				<!--辅材包开始 -->
+				<!--<div class="taocan-box" style="display: none" id="boxPcb">
+					<div class="taocan-l">
+						<span class="xianmu">项目：</span>
+						<ul class="typeList">
+							<li><a href="#" class="on">水电辅材</a><span class="on"></span></li>
+							<li><a href="#">泥工辅材</a><span></span></li>
+							<li><a href="#">防水辅材</a><span></span></li>
+							<li><a href="#">木工辅材</a><span></span></li>
+							<li><a href="#">刮胶辅材</a><span></span></li>
+						</ul>
+					</div>
+					<div class="jqzoom">
+						<img src="./images/lpxq2.jpg" alt="" jqimg="./images/house3.jpg" id="bigImg"/>
+					</div>
+					<div class="taocan-con">
+						品牌: NIPPON PAINT/
+						品牌: NIPPON PAINT/
+						品牌: NIPPON PAINT/
+					</div>
+					<div class="taocan-r">
+						<div class="jiage">
+							<p class="on">￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+						</div>
+						<span>合计￥123456元</span>
+					</div>
+				</div>-->
+				<!--辅材包结束 -->
+				<!--装饰包开始 -->
+				<!--<div class="taocan-box" style="display: none" id="boxZsb">
+					<div class="taocan-l">
+						<span class="xianmu">项目：</span>
+						<ul class="typeList">
+							<li><a href="#" class="on">背景墙</a><span class="on"></span></li>
+							<li><a href="#">艺术天花</a><span></span></li>
+							<li><a href="#">装饰柜</a><span></span></li>
+							<li><a href="#">墙面装饰</a><span></span></li>
+						</ul>
+					</div>
+					<div class="jqzoom">
+						<img src="./images/lpxq2.jpg" alt="" jqimg="./images/house3.jpg" id="bigImg"/>
+					</div>
+					<div class="taocan-con">
+						品牌: NIPPON PAINT/品牌: NIPPON PAINT/
+						品牌: NIPPON PAINT/
+						品牌: NIPPON PAINT/
+						
+					</div>
+					<div class="taocan-r">
+						<div class="jiage">
+							<p class="on">￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+						</div>
+						<span>合计￥123456元</span>
+					</div>
+				</div> -->
+				<!--装饰包结束 -->
+				<!--软装包开始 -->
+				<!--<div class="taocan-box" style="display: none" id="boxRzb">
+					<div class="taocan-l">
+						<span class="xianmu">项目：</span>
+						<ul class="typeList">
+							<li><a href="#" class="on">家具</a><span class="on" js-data="{pic:'',title:''}"></span></li>
+							<li><a href="#">窗帘</a><span></span></li>
+							<li><a href="#">装饰画</a><span></span></li>
+							<li><a href="#">装饰品</a><span></span></li>
+						</ul>
+					</div>
+					<div class="jqzoom">
+						<img src="./images/lpxq2.jpg" alt="" jqimg="./images/house3.jpg" id="bigImg"/>
+					</div>
+					<div class="taocan-con">
+						品牌: NIPPON PAINT/
+					</div>
+					<div class="taocan-r">
+						<div class="jiage">
+							<p class="on">￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+							<p>￥4000</p>
+						</div>
+						<span>合计￥123456元</span>
+					</div>
+				</div> -->
+				<!--软装包结束 -->
+				<div class="title">活动详情</div>
+				<div class="content"><img src="./images/loupan1.gif"/></div>
+			</div>
+		</div>
+		<div class="enroll-box" id="baoming">
+			<div class="enrollInfo">
+				<div class="title">在线登记,快速报名</div>
+				<div class="con">
+					<input type="text" class="text" id="concat" value="" placeholder="您的称呼"/>
+					<input type="text" class="text" id="mobile" value="" placeholder="联系电话"/>
+					<a <?php if(session('user_info.user_id') !=0){ ?> id="joinActivity" <?php }else{ ?> onclick="javaScript:alert('请先登录!')" <?php } ?> class="btn">立即报名</a>
+					
+				</div>
+			</div>
+		</div>
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="./js/jquery.jqzoom.js"></script>
+	<script src="./jquery/jquery.cookie.js"></script>
+	<script>
+		$(function(){
+			var url = "/house/joinajax";
+			var id = '{$id}';
+			var lid = '{$lid}';
+			var uid = "<?php echo session('user_info.user_id'); ?>";
+			var bao = "{$tenderz['type']}";
+			var aa = $.cookie('coz1');
+			var bb = $.cookie('coz2');;
+			var cc = $.cookie('coz3');;
+			var dd = $.cookie('coz4');;
+			var ee = $.cookie('coz5');;
+			var ff = $.cookie('coz6');;
+			var isPhone = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;  
+			$('#joinActivity').click(function(){
+				var concat = $('#concat').val();
+				var mobile = $('#mobile').val();				
+				if(concat == '' || concat.length > 4 || mobile == '' || !isPhone.test(mobile)){
+					alert('请填写相关资料或者输入格式不对！');
+					return false;
+				}
+				var data = {id:id,lid:lid,uid:uid,concat:concat,mobile:mobile,bao:bao,aa:aa,bb:bb,cc:cc,dd:dd,ee:ee,ff:ff};
+				$.post(url,data,function(data){
+					alert(data);
+				},'json');
+			})
+		})
+	</script>
+	<script type="text/javascript">
+        /*使用jqzoom*/
+		
+        $(function() {
+            $(".jqzoom").jqueryzoom({
+                xzoom: 355, //放大图的宽度(默认是 200)
+                yzoom: 345, //放大图的高度(默认是 200)
+                offset: 10, //离原图的距离(默认是 10)
+                position: "right", //放大图的定位(默认是 "right")
+                preload: 1
+            });
+        });
+		
+        $(function(){
+			$('.Package-c [js-click]').each(function(){
+				$(this).click(function(){	
+					$('.Package-c a').each(function(){
+						$(this).removeClass('on');
+						var forid=$(this).attr("forid");
+						$(forid).hide();
+					});
+					$(this).addClass('on');
+					var forid=$(this).attr("forid");
+					$(forid).show();
+
+				})
+			})
+			$('.typeList [js-data]').each(function(key){
+				$(this).click(function(){
+					var parent=$(this).parents('.taocan-box');
+					if($(this).hasClass('on')){
+						$(this).removeClass('on');
+						
+						parent.find('.taocan-r .jiage p:eq('+key+')').removeClass('on');
+					}else{
+						$(this).addClass('on');
+						parent.find('.taocan-r .jiage p:eq('+key+')').addClass('on');
+					}
+
+					var data=toJs($(this).attr('js-data'));
+					parent.find('.jqzoom img').attr('src',data.pic).attr('jqimg',data.maxPic);
+					parent.find('.taocan-con').html(data.title);
+					var allPrice=0;
+					parent.find('.on[js-data]').each(function(){
+						var _d=toJs($(this).attr('js-data')); 
+						allPrice+=(_d.price-0)
+					})
+					parent.find('.taocan-r .heji span').html('￥'+allPrice+'元');
+					
+				})
+			})
+			$('.typeList [js-data]:eq(0)').click();
+			
+		});
+		var toJs= function(jsonText) {
+		    /*说明：把json字符串转换成js */
+		    try {
+		        jsonText = jsonText == '' ? '""' : jsonText;
+		        return (new Function("return " + jsonText))();
+		    } catch (e) {
+		        return null;
+		    }
+
+		}
+		
+		function cailiao(obj){
+				$.cookie('coz'+obj, obj);
+		}
+ </script>
+  </body>
+</html>

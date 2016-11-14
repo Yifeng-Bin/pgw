@@ -1,0 +1,43 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">安装支付方式</h1>
+        <p><a class="btn btn-default" href="{:U('Payment/index')}">返回支付方式列表</a></p>
+        <form id="submitForm" action="{:U('Payment/install')}" method="post">
+            <div>
+                <div class="form-group">
+                    <label for="pay_name" class="control-label">支付方式名称:</label>
+                    <input type="text" class="form-control" id="pay_name" name="pay_name" value="{$payInfo.pay_name|htmlspecialchars}">
+                </div>
+                <div class="form-group">
+                    <label for="pay_desc" class="control-label">支付描述:</label>
+                    <textarea rows="3" class="form-control" id="pay_desc" name="pay_desc">{$payInfo.pay_desc|htmlspecialchars}</textarea>
+                </div>                                 
+                <div class="form-group">
+                    <label class="control-label">是否启用:</label>
+                    <label class="checkbox-inline"><input type="radio" name="enabled" value="0" <if condition="$payInfo['enabled'] eq 0">checked="checked"</if>>禁用</label>
+                    <label class="checkbox-inline"><input type="radio" name="enabled" value="1"<if condition="$payInfo['enabled'] eq 1">checked="checked"</if>>启用</label>
+                </div>      
+                <div class="form-group">
+                    <label class="control-label">是否在线支付:</label>
+                    <label class="checkbox-inline"><input type="radio" name="is_online" value="0" <if condition="$payInfo['is_online'] eq 0">checked="checked"</if>>禁用</label>
+                    <label class="checkbox-inline"><input type="radio" name="is_online" value="1"<if condition="$payInfo['is_online'] eq 1">checked="checked"</if>>启用</label>
+                </div>                   
+                <div class="form-group">
+                    <label for="pay_order" class="control-label">排序:</label>
+                    <input type="text" class="form-control form-inline" id="pay_order" name="pay_order" value="{$payInfo.pay_order|htmlspecialchars}">
+                </div>
+                <foreach name="defaultConfig" key="k" item="config_v" >
+                <div class="form-group">
+                    <label for="{$k}" class="control-label">{$config_v.desc}:</label>
+                    <input type="text" class="form-control form-inline" id="{$k}" name="{$k}" value="<if condition="isset($payInfo['pay_config'][$k])">{$payInfo['pay_config'][$k]|htmlspecialchars}<else />{$config_v.value|htmlspecialchars}</if>">
+                </div>                    
+                </foreach>                  
+            </div>
+            <input type="hidden" id="pay_code" name="pay_code" value="{$payInfo['pay_code']}" />
+            <button type="submit" class="btn btn-default">确认安装</button>
+        </form>
+</block>
+<block name="js-input">
+    <script type="text/javascript">
+    </script>
+</block>

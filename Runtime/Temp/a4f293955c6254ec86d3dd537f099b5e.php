@@ -1,0 +1,5 @@
+<?php
+//000000007204s:1426:"<ul>
+    <li class="answer"><a href="/Ask/detail/id/406">天花板有啥材料？天花板怎么装修？装了后隔音更好吗？</a></li><li ><a href="/Ask/detail/id/407">地板砖有黑印怎么处理？</a></li><li ><a href="/Ask/detail/id/408">精装修的房子怎么验房，验房注意事项有哪些？</a></li><li ><a href="/Ask/detail/id/409">家用新风系统哪个好，新风系统有哪些功能？</a></li><li class="answer"><a href="/Ask/detail/id/411">不方正的房子风水好不好，什么房子风水好？</a></li><li ><a href="/Ask/detail/id/412">装修新房子，什么取暖方式好？</a></li><li ><a href="/Ask/detail/id/413">穿衣镜用什么粘，穿衣镜到底放在哪里比较好？</a></li><li ><a href="/Ask/detail/id/414">客厅能贴仿古瓷砖吗,客厅贴仿古瓷砖好做卫生吗？</a></li><li class="answer"><a href="/Ask/detail/id/415">客厅适合养什么花？百合花在客厅怎么养更容易开？</a></li><li ><a href="/Ask/detail/id/417">浴霸坏了是什么原因引起的，浴霸坏了怎么换？</a></li><li ><a href="/Ask/detail/id/418">白墙上的污渍怎么去除，白墙上的脚印怎么清除？</a></li><li class="answer"><a href="/Ask/detail/id/420">选择什么牌子的地砖好，地砖要从哪些方面选择？</a></li><li ><a href="/Ask/detail/id/417">浴霸坏了是什么原因引起的，浴霸坏了怎么换？</a></li>    
+</ul>";
+?>

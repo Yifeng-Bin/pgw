@@ -1,0 +1,180 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">系统配置列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_config(0, '{:U('Config/add')}')">增加配置项</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>配置名称</th>
+                    <th>配置项</th>                    
+                    <th>配置值</th>
+                    <th>配置说明</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="configList" item="configInfo" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$configInfo['id']}"></td>
+                    <td>{$configInfo['title']}</td>
+                    <td>{$configInfo['name']}</td>
+                    <td>{$configInfo['value']}</td>
+                    <td>{$configInfo['prompt']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_config({$configInfo['id']}, '{:U('Config/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_config({$configInfo['id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('Config/index')}" method="get">
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="configModal" tabindex="-1" role="dialog" aria-labelledby="configModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="configModalLabel">增加/编辑配置信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="config_title" class="control-label">配置名称:</label>
+                            <input type="text" class="form-control" id="config_title" name="config_title">
+                        </div>
+                        <div class="form-group">
+                            <label for="config_name" class="control-label">配置项:</label>
+                            <input type="text" class="form-control" id="config_name" name="config_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="config_value" class="control-label">配置值:</label>
+                            <textarea rows="3" class="form-control" id="config_value" name="config_value"></textarea>
+                            
+                        </div>                    
+                        <div class="form-group">
+                            <label for="config_prompt" class="control-label">配置说明:</label>
+                            <input type="text" class="form-control" id="config_prompt" name="config_prompt">
+                        </div>   
+                    </form>
+                    <input type="hidden" id="config_id" name="config_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_config();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">       
+
+        function submit_config()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.id = $('#config_id').val();
+            data.title = $('#config_title').val();
+            data.name = $('#config_name').val();
+            data.value = $('#config_value').val();
+            data.prompt = $('#config_prompt').val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_config(config_id)
+        {
+            if(confirm("确认删除配置项吗？")){
+                var post_url = '{:U('Config/del')}';
+                var data = {};
+                data.id = config_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                  },'json');                
+            }            
+        }
+                                function show_edit_config(config_id, url)
+                                {
+                                    $('#config_id').val('');
+                                    $('#config_title').val('');
+                                    $('#config_name').val('');
+                                    $('#config_value').val('');
+                                    $('#config_prompt').val('');
+                                    if (config_id != 0)
+                                    {
+                                        $.get("{:U('Config/edit')}", {id : config_id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#config_id').val(data.info.id);
+                                                        $('#config_title').val(data.info.title);
+                                                        $('#config_name').val(data.info.name);
+                                                        $('#config_value').val(data.info.value);
+                                                        $('#config_prompt').val(data.info.prompt);
+                                                        $("input[name='submitUrl']").val(url);           
+                                                        $('#configModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='id']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                                $('#configModal').modal();
+                                        }
+                                        return false;
+                                        
+                                }
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

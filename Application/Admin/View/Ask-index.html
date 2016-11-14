@@ -1,0 +1,177 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">问答列表</h1>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline">
+                <label class="control-label">筛选：</label>
+                <foreach name="filter.fields_name" item="name" >
+                    <if condition="$name.type eq 'input'">
+                        <input class="form-control input-sm" type="text" name="search_{$key}" value='{$filter['fields_value'][$key]}' placeholder="{$name.desc}" />
+                    <elseif condition="$name.type eq 'select'"/>
+                        <if condition="$key eq 'cat_id'">
+                        <select name="search_{$key}" class="form-control input-sm">
+                            <foreach name="name.values" key="key1" item="value" >
+                                <option value="{$value.cat_id}" <if condition="$filter['fields_value'][$key] eq $value['cat_id']">selected="selected"</if>>{$value.cat_name}</option>
+                                <if condition="isset($value['children'])">
+                                <foreach name="value.children" key='key2' item="child" >
+                                    <option value="{$child.cat_id}" <if condition="$filter['fields_value'][$key] eq $child['cat_id']">selected="selected"</if>>|--{$child.cat_name}</option>
+                                        <if condition="isset($child['children'])">
+                                        <foreach name="child.children" key='key3' item="lastChild" >
+                                            <option value="{$lastChild.cat_id}" <if condition="$filter['fields_value'][$key] eq $lastChild['cat_id']">selected="selected"</if>>|------{$lastChild.cat_name}</option>
+                                        </foreach>
+                                        </if>                            
+                                </foreach>
+                                </if>
+                            </foreach>
+                        </select>
+                        <else />
+                        <select name="search_{$key}" class="form-control input-sm">
+                            <foreach name="name.values" key="key1" item="value" >
+                                <option value="{$key1}" <if condition="$filter['fields_value'][$key] eq $key1">selected="selected"</if>>{$value}</option>
+                            </foreach>                        
+                        </select>                        
+                        </if>
+                    </if>
+                </foreach>
+                <label>排序：</label>
+                <select id="orderby" class="form-control input-sm">
+                <foreach name="filter.order.fields" item="name" >
+                    <option value="{$key}" <if condition="$filter['order']['orderby'] eq $key">selected="selected"</if>>{$name}</option>
+                </foreach>                    
+                </select>
+                <select id="sortby" class="form-control input-sm">
+                    <option value="DESC" <if condition="$filter['order']['sortby'] eq 'desc'">selected="selected"</if>>降序</option>
+                    <option value="ASC" <if condition="$filter['order']['sortby'] eq 'asc'">selected="selected"</if>>升序</option>
+                </select>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()">确认</button>
+            </div>
+            <div class="col-sm-3"><a class="btn btn-default btn-sm  pull-right" href="{:U('Article/add')}">增加问答</a></div>
+        </div>        
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><input id="check_all" type="checkbox">全选</th>
+                    <th>名称</th>
+                    <th>补充说明</th>                    
+                    <th>用户</th>                                        <th>创建时间</th>                                        <th>浏览次数</th>                                        <th>回答次数</th>                                        <th>状态</th>
+                    <th>排序</th>                                        <th>审核</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="articleList" item="articleInfo" >
+                <tr>
+                    <td scope="row"><input type="hidden" value="{$articleInfo['article_id']}"><input type="checkbox" name="article_ids[]" value="{$articleInfo['article_id']}">#{$articleInfo['article_id']}</td>
+                    <td>{$articleInfo['article_name']|htmlspecialchars}</td>
+                    <td>{$articleInfo['article_desc']|htmlspecialchars}</td>
+                    <td>{$articleInfo['user_name']|htmlspecialchars}</td>                                        <td>{$articleInfo['add_time']|local_date='Y-m-d ',###}</td>                                        <td>{$articleInfo['visit_time']|intval}</td>                                        <td>{$articleInfo['comment_num']|intval}</td>                                        <td><if condition="$articleInfo['is_resolved'] eq 0"><b style="color:red;">未解决</b><else />已解决</if></td>					<td>{$articleInfo['sort']|intval}</td>					
+                    <td><if condition="$articleInfo['is_checked'] eq 0"><b style="color:red;">未审核</b><else />已审核</if></td>                  
+                    <td>						<a class="btn btn-default btn-sm" href="{:U('Ask/thisanswer',array('article_id'=>$articleInfo['article_id']))}">答案</a>
+                        <a class="btn btn-default btn-sm" href="{:U('Ask/edit',array('article_id'=>$articleInfo['article_id']))}">修改</a>                                                
+                        <button class="btn btn-default btn-sm" onClick="del_article({$articleInfo['article_id']});">删除</a>
+                    </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <button class="btn btn-default btn-sm" onClick="submit_article_checked(1);">审核</button>
+        <button class="btn btn-default btn-sm" onClick="submit_article_checked(0);">取消审核</button>        
+        <div id="page" class="m-pagination"></div>    
+        <form id="submitForm" action="{:U('Ask/index')}" method="get">
+                <foreach name="filter.fields_value" item="value" >
+                    <input type="hidden" name="filter_{$key}" value="{$value}" />
+                </foreach>     
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />            
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script type="text/javascript">
+        $("#check_all").click(function(){
+            if(this.checked){
+                $("input[name='article_ids[]']").prop("checked", true);
+            }else{
+                $("input[name='article_ids[]']").prop("checked", false);
+            }
+        });           
+        
+        function submit_article_checked(status)
+        {
+            var post_url = "{:U('Article/changeCheckedStatus')}";
+            var data = {};
+            data.article_ids = new Array();
+            data.status = status;
+            $("input[name='article_ids[]']:checked").each(function(){
+                data.article_ids.push($(this).val());
+            })
+            if(data.article_ids.length == 0){
+                alert('请至少选择一篇文章后再进行提交！');
+                return false;
+            }
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }         
+        
+        function submit_filter()
+        {        	
+            $("[name^='search_']").each(function() {
+                var search_name = $(this).prop("name");
+                var filter_name = 'filter_' + search_name.substr(7);
+               $("input[name='"+filter_name+"']").val($(this).val()); 
+            });
+            $("input[name='orderby']").val($("#orderby").val());
+            $("input[name='sortby']").val($("#sortby").val());
+            $("input[name='p']").val(1);
+            $("#submitForm").submit();
+        }
+        function del_article(article_id)
+        {
+            if(confirm("确认删除文章吗？")){
+                var post_url = '{:U('Ask/del')}';
+                var data = {};
+                data.article_id = article_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                },'json');
+            }            
+
+        }
+        
+                        function chanage_page(page)
+                        {
+                            $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

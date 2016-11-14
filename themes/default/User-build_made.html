@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>在建工地</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">在建工地<a href="{:U('User/build_made_add?id='.$id.'&region_id='.$region_id)}">更新进度</a></div>
+            <div class="con_follow bor_top">
+            	<div class="follow_left">
+                	<img src="{$list['img']}">
+                </div>
+                <div class="follow_right">
+                	<h4>{$list['title']}</h4>
+                    <p><span>面积：{$list['area']}㎡</span><span>户型：两室</span><span>造价：{$list['price']}万</span></p>
+                    <p><span>地区：{$province['region_name']} {$city['region_name']} {$region['region_name'] }</span><span>小区：{$list['loupan_name']}</span></p>
+                    <P>工地简介:{$list['desc']}</P>
+                </div>
+            </div>
+            <div id="user_table">
+              <table class="table">
+                  <tr>
+                      <th>工程进度</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+                    <foreach name="madelist" item="list">	
+                  <tr>
+                      <td>{$list['made_name']}</td>
+                      <td>{$list['made_time']|local_date='Y-m-d H:i:s',###}</td>
+                      <td>
+                        <a href="{:U('User/build_made_edit',array('id'=>$list['id']))}" class="btn_a">修改</a>
+                        <a href="{:U('User/build_made_del',array('id'=>$list['id'],'bid'=>$list['bid']))}" class="btn_a">删除</a>
+                      </td>
+                  </tr>
+                  </foreach>
+              </table>
+          </div>
+        </div>
+    </div>
+  	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="./js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+  </body>
+ <script type="text/javascript"> 
+var countdown=60; 
+function settime(obj) { 
+    if (countdown == 0) { 
+        obj.removeAttribute("disabled");    
+        obj.value="免费获取验证码"; 
+        countdown = 60; 
+        return;
+    } else { 
+        obj.setAttribute("disabled", true); 
+        obj.value="重新发送(" + countdown + ")"; 
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+</script>
+</html>

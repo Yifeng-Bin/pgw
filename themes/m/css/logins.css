@@ -1,0 +1,81 @@
+@charset "utf-8";
+/* CSS Document */
+.logins{
+	position:relative;
+	width:100%;
+	margin-top:50px;
+	padding:0 20px;}
+.logins_input{
+	width:100%;
+	border:1px #ddd solid;
+	height:45px;
+	line-height:45px;
+	padding-left:55px;
+	outline:none;
+	}
+.user_id{
+	width:22px;
+	height:29px;
+	position:absolute;
+	top:10px;
+	left:36px;
+	background-image:url(../images/logins/icon/id.png);
+	background-size:19px auto;
+	background-repeat:no-repeat;}
+.user_password{
+	width:29px;
+	height:30px;
+	position:absolute;
+	background-image:url(../images/logins/icon/password.png);
+	background-repeat:no-repeat;
+	background-size:21px auto;
+	top:67px;
+	left:37px;}
+.input_merge{
+
+	}
+.logins_input:hover{
+	border:1px #3fc4fc solid;}
+.logins_input:focus{
+	border:1px #0baa53 solid;}
+.user_btn{
+	width:100%;
+	height:45px;
+	color:#fff;
+	border:none;
+	margin-top:10px;}
+.user_logins{
+	background-color:#0baa53;}
+.user_register{
+	background-color:#eb6100;}
+.operation{
+	width:100%;
+	margin-top:10px;}
+.operation a{
+	color:#eb6100;
+	float:right;
+	padding-right:5px;}
+.third_logins{
+	margin-top:20px;
+	width:100%;
+	padding:0 20px;}
+.third_logins_tit{
+	height:10px;
+	position:relative;
+	font-size:14px;
+	text-align:center;
+	border-bottom:1px #666 solid;}
+.third_logins_tit span{
+	width:120px;
+	background-color:#f3f3f3;
+	left:0;
+	right:0;
+	margin:auto;
+	display:block;
+	position:absolute;}
+.third_logins_content{
+	width:240px;
+	margin:20px auto;}
+.third_logins_content img{
+	width:66px;
+	margin:0 5px;}

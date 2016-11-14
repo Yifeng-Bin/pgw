@@ -1,0 +1,196 @@
+[ 2016-09-22T15:13:53+08:00 ] 110.75.248.197 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-22T15:13:53+08:00 ] 110.75.248.197 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:测试需求',
+  'trade_no' => '2016062321001004720268904802',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-23 15:13:08',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '27',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-22 15:13:53',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-23 15:13:12',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-22 15:13:53',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '3ec99f14921457c40af1e9212088a4flk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '6ddaef274d5f4a07a426afca6d6d29db',
+)
+[ 2016-09-22T15:13:53+08:00 ] 110.75.248.197 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '27',
+)
+[ 2016-09-22T15:13:53+08:00 ] 110.75.248.197 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '27',
+  'out_id' => '16',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '113.247.106.162',
+  'pay_status' => '1',
+  'pay_time' => '1466637192',
+  'log_time' => '1466637134',
+  'log_remark' => '',
+)
+[ 2016-09-22T15:14:51+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-22T15:14:51+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:测试需求',
+  'trade_no' => '2016062321001004720270048382',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-23 15:14:03',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '29',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-22 15:14:51',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-23 15:14:06',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-22 15:14:51',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '9fe0b4eceb2868cd79ba104e11ddcc9lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '18cd28cb13a89a00cfd0fcd2d3a5e508',
+)
+[ 2016-09-22T15:14:51+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '29',
+)
+[ 2016-09-22T15:14:51+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '29',
+  'out_id' => '16',
+  'stage' => '3',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '113.247.106.162',
+  'pay_status' => '1',
+  'pay_time' => '1466637247',
+  'log_time' => '1466637239',
+  'log_remark' => '',
+)
+[ 2016-09-22T15:14:52+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-22T15:14:52+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:测试需求',
+  'trade_no' => '2016062321001004720274564781',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-23 15:14:31',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '30',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-22 15:14:51',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-23 15:14:34',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-22 15:14:51',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => 'ec58ef73603b37bd7581fde5723632clk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '877181b974ed2f28d48dc66669efbdbb',
+)
+[ 2016-09-22T15:14:52+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '30',
+)
+[ 2016-09-22T15:14:52+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '30',
+  'out_id' => '16',
+  'stage' => '4',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '113.247.106.162',
+  'pay_status' => '1',
+  'pay_time' => '1466637274',
+  'log_time' => '1466637265',
+  'log_remark' => '',
+)
+[ 2016-09-22T15:14:53+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-22T15:14:53+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:测试需求',
+  'trade_no' => '2016062321001004720267754626',
+  'buyer_email' => 'yanghang@foxmail.com',
+  'gmt_create' => '2016-06-23 15:13:40',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '28',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-22 15:14:52',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-06-23 15:13:43',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-09-22 15:14:52',
+  'price' => '1.00',
+  'buyer_id' => '2088102329364723',
+  'notify_id' => '0fe410907073eefd28554ce7e4dec03lk2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '45d5a560fdbdeb00e7a4f02cf3d41cfb',
+)
+[ 2016-09-22T15:14:53+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '28',
+)
+[ 2016-09-22T15:14:53+08:00 ] 110.75.248.194 /Payment/Notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '28',
+  'out_id' => '16',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '113.247.106.162',
+  'pay_status' => '1',
+  'pay_time' => '1466637224',
+  'log_time' => '1466637215',
+  'log_remark' => '',
+)

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">修改资料</div>
+            <div id="user_mid">
+            	<div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#workInfo" aria-controls="workInfo" role="tab" data-toggle="tab">资料设置</a></li>
+                    <li role="presentation"><a href="#realName" aria-controls="realName" role="tab" data-toggle="tab">实名认证</a></li>
+                    <li role="presentation"><a href="#project" aria-controls="project" role="tab" data-toggle="tab">服务项目</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="workInfo">
+                    	<form action="{:U('User/workinfo')}" method="post">
+                        <div class="nav_box">
+                            <div class="nav_box_list">
+                            	<span>入行年限：</span>
+                                <select name="enter_year" class="btn_id">
+                                    <option value="1" <if condition="$workInfo['enter_year'] eq 1">selected="selected"</if>>1年</option>
+                                    <option value="2" <if condition="$workInfo['enter_year'] eq 2">selected="selected"</if>>2年</option>
+                                    <option value="3" <if condition="$workInfo['enter_year'] eq 3">selected="selected"</if>>3年</option>
+                                    <option value="4" <if condition="$workInfo['enter_year'] eq 4">selected="selected"</if>>4年</option>
+                                    <option value="5" <if condition="$workInfo['enter_year'] eq 5">selected="selected"</if>>5年</option>
+                                    <option value="6" <if condition="$workInfo['enter_year'] eq 6">selected="selected"</if>>6年</option>
+                                    <option value="7" <if condition="$workInfo['enter_year'] eq 7">selected="selected"</if>>7年</option>
+                                    <option value="8" <if condition="$workInfo['enter_year'] eq 8">selected="selected"</if>>8年</option>
+                                    <option value="9" <if condition="$workInfo['enter_year'] eq 9">selected="selected"</if>>9年</option>
+                                    <option value="10" <if condition="$workInfo['enter_year'] eq 10">selected="selected"</if>>10年</option>
+                                    <option value="11" <if condition="$workInfo['enter_year'] eq 11">selected="selected"</if>>10年以上</option>
+                                </select>
+                            </div>
+                            <div class="nav_box_list">
+                            	<span>联系QQ：</span><input name="qq" type="text" class="btn_id" value="{$workInfo['qq']|htmlspecialchars}" />
+                            </div>
+	          <div class="nav_box_list">
+                            	<span>均价：</span><input name="day_price" type="text" class="btn_id" value="{$workInfo['day_price']|htmlspecialchars}" /> 元/天
+                          </div>
+                            <div class="nav_box_list">
+                            	<span>服务理念：</span>
+                                <textarea rows="2" class="tex_info" name="service_idea">{$workInfo['service_idea']|htmlspecialchars}</textarea>
+                            </div>
+                            <div class="nav_box_list">
+                            	<span>个人简介：</span>
+                                <textarea rows="2" class="tex_info" name="profile">{$workInfo['profile']|htmlspecialchars}</textarea>
+                            </div>
+                            <input type="hidden" name="act" value="modify_baseinfo" />
+                            <button type="submit" class="sub_info">保存</button>
+                        </div>
+                        </form>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="realName">
+                        <if condition="$workInfo.is_verified eq 1">
+                            <p class="qingqiu">已通过身份验证</p>
+                            <img src="{$workInfo.id_card_image_01}" style="width:100px"/>
+                            <img src="{$workInfo.id_card_image_02}" style="width:100px"/>
+                        <else />
+                        <if condition="!empty($workInfo['id_card_number'])"><p class="qingqiu">等待管理员审核</p></if>
+                        <form action="{:U('User/workinfo')}" method="post">
+                        <div class="nav_box">
+                        	<div class="nav_box_list">
+                            	<span>身份证号码：</span><input name="id_card_number" type="text" class="btn_id" value="{$workInfo.id_card_number}">
+                            </div>
+                            <div class="nav_box_file">
+                            	<a id="id_card_image_01" href="javascript:void(0);" class="upload_btn">上传身份证正面扫描文件</a>
+                                <if condition="!empty($workInfo['id_card_image_01'])">
+                                    <img src="{$workInfo.id_card_image_01}" style="width:100px"/>
+                                </if>
+                            </div>
+                            <div class="nav_box_file">
+                            	<a id="id_card_image_02" href="javascript:void(0);" class="upload_btn">上传身份证背面扫描文件</a>
+                                <if condition="!empty($workInfo['id_card_image_02'])">
+                                    <img src="{$workInfo.id_card_image_02}" style="width:100px"/>
+                                </if> 
+                            </div>
+                            <input type="hidden" name="act" value="modify_idinfo" />
+                            <button type="submit" class="sub_info">提交审核</button>
+                        </div>
+                        </form>
+                        </if>
+                        
+                        <div class="box_text">
+                        	<div class="box_text_left"> ! </div>
+                            <div class="box_text_right">
+                            	<p><span>认证关乎到您的帐号安全，请勿使用P图、网络图等伪造图片</span></p>
+                                <p>认证资料一经审核通过后无法修改，可以转换认证类型</p>
+                                <p>认证资料一经审核通过后无法修改，可以转换认证类型</p>
+                                <p>认证资料一经审核通过后无法修改，可以转换认证类型</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="project">
+                        <form action="{:U('User/workinfo')}" method="post">
+                    	<div id="projectInfo">
+                        	<h5>请选择您所服务的工种类型，让业主更快速的找到您<span>[最多勾选3项]</span></h5>
+                        </div>
+                            <input type="hidden" name="act" value="modify_workinfo" />
+                            <button type="submit" class="sub_info">确认修改服务项目</button>                            
+                        </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <script src="./js/workType.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+<script type="text/javascript">
+var workTypeList = {:json_encode($workInfo['workTypeList'])};
+$(function (){
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'id_card_image_01', 
+                url : '{:U('User/upload_id_card_image')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  type : 'frone',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1){
+                            $('#id_card_image_01').nextAll().remove();
+                            $('#id_card_image_01').parent().append('<img src="'+response.info+'" style="width:100px"/>');  
+                        }
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+        
+         var uploader1 = new plupload.Uploader({
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'id_card_image_02', 
+                url : '{:U('User/upload_id_card_image')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  type : 'back',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader1.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1){
+                            $('#id_card_image_02').nextAll().remove();
+                            $('#id_card_image_02').parent().append('<img src="'+response.info+'" style="width:100px"/>');  
+                        }
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        alert(err.message);
+                    }                   
+                },
+        });
+        uploader1.init();
+
+        //初始化工人选择
+        var workHtml = '';
+        for(var i in __allWorkType.first){
+            workHtml = workHtml + '<div class="project_box">';
+            workHtml = workHtml + '<p>' + __allWorkType.first[i].name + '</p>';
+            for(var j in __allWorkType.second[__allWorkType.first[i].code]){
+                workHtml = workHtml + '<label class="checkbox-inline"><input type="checkbox" value="'+__allWorkType.second[__allWorkType.first[i].code][j].code+'" name="type_ids[]"> '+__allWorkType.second[__allWorkType.first[i].code][j].name+'</label>';
+            
+            }
+            workHtml = workHtml + '</div>';                                  
+	}
+        $("#projectInfo").append(workHtml);
+        
+        
+        for(var i in workTypeList){
+            $("input[name='type_ids[]'][value='"+workTypeList[i]+"']").attr('checked', true);
+        }
+        
+        $('input[type=checkbox]').click(function() {
+            $("input[name='type_ids[]']").attr('disabled', true);
+            if ($("input[name='type_ids[]']:checked").length >= 3) {
+                $(this).attr('checked', false);
+                $("input[name='type_ids[]']:checked").attr('disabled', false);
+            } else {
+                $("input[name='type_ids[]']").attr('disabled', false);
+            }
+        });        
+});
+
+</script>  
+  </body>
+</html>

@@ -1,0 +1,5 @@
+<div class="row">
+    <foreach name="diaryList" item="info">
+        <div class="col-sm-6 <if condition="$key gt 1">margin_top</if>"><a href="{$info.url}"><img src="<if condition="!empty($info['data_image'])">{$info.data_image}<elseif  condition="!empty($info['main_image'])" />{$info.main_image}<else />./images/journal/journal_1.png</if>" width="100%"></a></div>
+    </foreach>
+</div>

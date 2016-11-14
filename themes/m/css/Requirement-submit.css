@@ -1,0 +1,142 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.requirement_submit{
+	width:100%;
+	padding:10px;}
+.requ_text{
+	width:100%;
+	height:45px;
+	line-height:45px;
+	border:1px #ddd solid;
+	outline:none;
+	padding-left:10px;
+	margin-top:10px;}
+.requ_sel{
+	width:48%;
+	height:45px;
+	line-height:45px;
+	border:1px #ddd solid;
+	padding-left:10px;
+	margin:0;
+	margin-top:10px;
+	outline:none;}
+.requ_text:hover,.requ_sel:hover,.text_remarks:hover{
+	border:1px #3fc4fc solid;}
+.requ_text:focus,.requ_sel:focus,.text_remarks:hover{
+	border:1px #0baa53 solid;}
+.mar_right{
+	float:right;}
+.radio_zu{
+	width:100%;
+	margin-top:10px;}
+.requirement_submit>form>span{
+	font-size:12px;
+	color:#eb6100;}
+.text_remarks{
+	width:100%;
+	line-height:25px;
+	margin-top:10px;
+	padding-left:10px;
+	border:1px #ddd solid;
+	outline:none;}
+/*图片上传*/	
+.upload_main{
+	border-width:1px 1px 1px;
+	border-style:solid; 
+	border-color:#ddd #ddd #ddd; 
+	background-color:#fbfbfb; 
+	margin-top:5px;}
+.upload_choose{
+	padding:1em;}
+.upload_drag_area{
+	display:inline-block; 
+	width:60%; 
+	padding:4em 0; 
+	margin-left:.5em; 
+	border:1px dashed #ddd; 
+	background:#fff url(http://rescdn.qqmail.com/zh_CN/htmledition/images/func/dragfile07bf38.gif) no-repeat 20px center; 
+	color:#999; 
+	text-align:center; 
+	vertical-align:middle;}
+.upload_drag_hover{
+	border-color:#069; 
+	box-shadow:inset 2px 2px 4px rgba(0, 0, 0, .5); 
+	color:#333;}
+.upload_preview{
+	border-top:1px solid #ddd;  
+	background-color:#fff; 
+	overflow:hidden; 
+	_zoom:1;}
+.upload_append_list{
+	height:120px; 
+	padding:9px; 
+	float:left; 
+	position:relative;}
+.upload_delete{
+	margin-left:2em;}
+.upload_image{
+	height:80px; 
+	width:80px; 
+	padding:5px;}
+.upload_submit{
+	padding-top:1em; 
+	padding-left:1em;}
+.upload_submit_btn{
+	display:none; 
+	height:32px; 
+	font-size:14px;}
+.upload_loading{
+	height:250px; 
+	background:url(http://www.zhangxinxu.com/study/image/loading.gif) no-repeat center;}
+.upload_progress{
+	display:none; 
+	padding:5px; 
+	border-radius:10px; 
+	color:#fff; 
+	background-color:rgba(0,0,0,.6); 
+	position:absolute; 
+	left:25px; 
+	top:45px;}
+.left{
+	float:left;}
+.middle{
+	position:absolute;
+	left:0;
+	right:0;
+	margin:10px auto;}
+.rihgt{
+	float:right;}
+.user_select{
+	margin-top:10px;
+	width:30%;
+	height:45px;
+	line-height:45px;
+	border:1px #ddd solid;
+	padding-left:5px;
+	outline:none;}
+.user_select:focus{
+	border:1px #0baa53 solid;}
+.register_submit{
+	width:100%;
+	height:45px;
+	background-color:#0baa53;
+	color:#fff;
+	border:none;
+	margin:20px auto 40px auto;}
+
+.select-btn{height: 45px;margin-top: 10px;}
+.select-btn span {
+  	display: inline-block;
+  	width: 80px;
+	height: 45px;
+	line-height: 45px;
+	}
+.select-btn select {
+	float:right;
+	width:75%;
+ 	 height: 45px;
+  	line-height: 45px;
+  	border: 1px #ddd solid;
+  	padding-left: 10px;  
+ 	outline: none;
+}

@@ -1,0 +1,5 @@
+<ul>
+    <foreach name="askList" item="info">
+        <li <if condition="$info['is_resolved'] eq 1">class="answer"</if>><a href="{$info.url}"><if condition="!empty($info['data_text'])">{$info.data_text|htmlspecialchars}<else />{$info.article_name|htmlspecialchars}</if></a></li>
+    </foreach>    
+</ul>

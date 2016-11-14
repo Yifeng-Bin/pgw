@@ -1,0 +1,24 @@
+[ 2016-09-01T10:11:21+08:00 ] 183.60.52.227 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-01T10:11:27+08:00 ] 163.177.94.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-01T10:32:02+08:00 ] 163.177.69.107 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-01T14:52:52+08:00 ] 113.243.195.25 /search/teach?keywords=%E5%8D%AB%E6%B5%B4%E6%B4%81%E5%85%B7%E6%B8%85%E6%B4%97
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-01T14:53:00+08:00 ] 113.243.195.25 /search/teach?keywords=%E5%8D%AB%E6%B5%B4%E6%B4%81%E5%85%B7%E6%B8%85%E6%B4%97%E4%BF%9D%E5%85%BB
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-01T14:53:13+08:00 ] 113.243.195.25 /search/teach?keywords=%E5%8D%AB%E6%B5%B4%E6%B4%81%E5%85%B7%E6%B8%85%E6%B4%97
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-01T15:31:12+08:00 ] 101.226.68.215 /house/fenzhan
+ERR: 模板不存在:themes/m/House-fenzhan.html
+

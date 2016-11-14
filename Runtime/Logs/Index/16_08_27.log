@@ -1,0 +1,16 @@
+[ 2016-08-27T17:21:14+08:00 ] 101.226.33.219 /worker/comment/user_id/1154
+ERR: 模板不存在:themes/default/Worker-comment.html
+
+[ 2016-08-27T17:22:53+08:00 ] 180.153.206.18 /requirement/bidderlist/id/46
+ERR: 模板不存在:themes/default/Requirement-bidderlist.html
+
+[ 2016-08-27T17:22:53+08:00 ] 180.153.214.199 /requirement/bidderlist/id/46
+ERR: 模板不存在:themes/default/Requirement-bidderlist.html
+
+[ 2016-08-27T17:22:53+08:00 ] 117.185.27.113 /requirement/bidderlist/id/46
+ERR: 模板不存在:themes/default/Requirement-bidderlist.html
+
+[ 2016-08-27T23:52:31+08:00 ] 223.152.210.175 /user/register
+ERR: 1062:Duplicate entry '18073517892' for key 'user_name'
+ [ SQL语句 ] : INSERT INTO `pgw_user_auths` (`user_id`,`user_type`,`user_name`,`is_inside`,`is_verify`,`add_time`) VALUES ('1174','username','18073517892','1','1','1472284351')
+

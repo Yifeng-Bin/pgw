@@ -1,0 +1,8 @@
+<div class="detail_content_recommend">
+    <h4>相关推荐</h4>
+    <ul>
+        <foreach name="teachList" item="info">
+            <li><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></li>
+        </foreach>
+    </ul>
+</div>

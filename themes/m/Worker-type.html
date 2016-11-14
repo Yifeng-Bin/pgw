@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-follow.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="user_gold">
+    	
+        <div class="follow_content">
+        	<foreach name="workerList" item="list">
+            <div class="follow_box">
+            	<div class="follow_left">
+                    <a href="{$list.url}"><img height="60" width="60" src="<if condition="$list.avatar eq ''">./images/user/head/head.png<else />{$list.avatar}</if>" class="img-circle"></a>
+                </div>
+                <div class="follow_right">
+                    <h5><a href="{$list.url}">{$list.user_name|htmlspecialchars}</a></h5>
+                	<ul>
+                    	<li>入行年限：<span>{$list.enter_year}</span>年</li>
+                        <li>案例：<span>{$list.case_num}</span>套</li>
+                        <li>接单统计：<span>{$list.tenders_take_num}</span>次</li>
+                        <li>均价：<span>{$list.day_price}</span>元/天</li>
+                    </ul>
+                </div>
+            </div>
+            </foreach>
+            <div class="page">{$pageShow}</div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

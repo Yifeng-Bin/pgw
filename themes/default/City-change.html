@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+
+    <!-- Bootstrap -->
+    <link href="http://localhost/pgw/themes/default/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="http://localhost/pgw/themes/default/css/style.css?v=20160920001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  <div class="city-change">
+  	<div class="container">
+    	<div class="city-in"><a type="button" class="btn_city" href="http://beihuqu.city.58pgw.com">点击进入北湖区</a></div>
+        <div class="city_content">
+            <div class="row">
+                <foreach name="regionList" item="regionInfo">
+                    <div class="col-lg-1 col-md-1 col-sm-1"><span>{$regionInfo.region_name|htmlspecialchars}</span></div>
+                    <div class="col-lg-11 col-md-11 col-sm-11">
+                        <foreach name="regionInfo.list" item="child">
+                            <div class="col-md-1 col-md-1 col-sm-1"><a class="active" href="{$child.url}">{$child.region_name|htmlspecialchars}</a></div>
+                        </foreach>
+                    </div>                    
+                </foreach>
+
+            </div>
+        </div>
+    </div>
+  </div>
+   <include file="Common:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+</html>

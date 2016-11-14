@@ -1,0 +1,235 @@
+<extend name="Public/base" />
+
+<block name="main">
+
+        <h1 class="page-header">楼盘分类属性管理</h1>
+
+       
+         <div class="row well-sm">
+         <div class="col-sm-9 form-inline">
+
+
+            </div>
+             <div class="col-sm-3"><a class="btn btn-default btn-sm  pull-right" href="{:U('House/attradd',array('attr_id'=>$attr_id))}">增加分类</a></div>
+          </div>          
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+                    <th>id </th>
+                    <th>分类</th>
+                    
+                    <th>操作</th>
+                    
+                   
+                </tr>
+
+            </thead>
+
+            
+
+            <foreach name="list" item="info" >
+                <tbody>       
+                <tr>
+
+                    <td >{$info['attr_value_id']}</td>
+
+                     <td >{$info['attr_value']}</td>
+
+                    
+                    <td>
+
+                        <a class="btn btn-default btn-sm" onClick="show_edit_attr({$info['attr_value_id']},'{$info['attr_value']}');">编辑</a>
+                       
+                        <button class="btn btn-default btn-sm" onClick="use_article({$info['attr_value_id']},{$info['status']});"><if condition="$info['status'] eq 1">启用<else/>未启用</if></a>
+                        
+                        <button class="btn btn-default btn-sm" onClick="del_article({$info['attr_value_id']});">删除</a>
+                    </td>
+
+                </tr>
+                </tbody>
+            </foreach>
+
+            
+
+        </table>
+
+              <div id="page" class="m-pagination"></div>    
+
+        <form id="submitForm" action="{:U('House/attrlist')}" method="get">
+
+            <input type="hidden" name="p_name"/>   
+
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />            
+
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+
+        </form>
+       <!-- Modal -->
+    <div class="modal fade" id="attrModal" tabindex="-1" role="dialog" aria-labelledby="attrModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="attrModalLabel">增加/编辑分类属性信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="attr_desc" class="control-label">属性名称:</label>
+                            <input type="text" class="form-control" id="attr_desc" name="attr_desc">
+                        </div>
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort" value="100">
+                        </div>                         
+                        <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>  
+                        <!-- <div class="form-group">
+                            <label class="control-label">类型:</label>
+                            <label class="checkbox-inline"><input type="radio" name="attr_type" value="0">单选</label>
+                            <label class="checkbox-inline"><input type="radio" name="attr_type" value="1">多选</label>
+                        </div>    -->                       
+                    </form>
+                    <input type="hidden" id="attr_id" name="attr_id" value='0' />
+                    <!-- <input type="hidden" id="submitUrl" name="submitUrl" value='' /> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_attr();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+              
+
+</block>
+
+<block name="css-style">
+
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+
+</block>
+
+<block name="js-input">
+
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+
+    <script type="text/javascript">
+           
+
+        
+
+        function del_article(attr_value_id)
+
+        {
+          
+            if(confirm("确认删除楼盘吗？")){
+
+                var post_url = '{:U('House/attrdel')}';
+
+                var data = {};
+
+                data.attr_value_id = attr_value_id;
+
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.status == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+
+        }
+
+        function use_article(attr_value_id,status)
+
+        {
+          
+            if(confirm("确认启用分类属性吗？")){
+
+                var post_url = '{:U('House/attruse')}';
+
+                var data = {};
+
+                data.attr_value_id = attr_value_id;
+                
+                data.status=status;
+                
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.status == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+
+        }
+
+        function submit_attr()
+        {
+            var post_url = '{:U('House/attredit')}';
+            var data = {};
+            data.attr_value_id = $('#attr_id').val();
+            data.attr_value = $('#attr_desc').val();
+           
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+           //alert(data.attr_value );
+            $.post(post_url, data,
+              function(result) {
+            	
+                if(result == 'no'){
+                    alert('编辑失败');
+                }else{
+                	alert('编辑成功');
+                    window.location.reload();
+                }
+              },'json');
+        }
+      
+        function show_edit_attr(attr_id,attr_value)
+        {
+        	
+        	$('#attr_id').val(attr_id);
+            $('#attr_desc').val(attr_value);
+            $('#sort').val(100);
+            $("input[name='status'][value='1']").attr("checked",true);
+            $("input[name='attr_type'][value='0']").attr("checked",true);
+           
+            $('#attrModal').modal();
+              
+                
+        }
+                       
+    </script>
+
+</block>
+

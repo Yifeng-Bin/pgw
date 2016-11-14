@@ -1,0 +1,111 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">支付日志</h1>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline">
+                <label class="control-label">筛选：</label>
+                <foreach name="filter.fields_name" item="name">
+                    <if condition="$name.type eq 'input'">
+                        <input class="form-control input-sm" type="text" name="search_{$key}" value='{$filter['fields_value'][$key]}' placeholder="{$name.desc}" />
+                    <elseif condition="$name.type eq 'select'"/>
+                    <select name="search_{$key}" class="form-control input-sm">
+                        <foreach name="name.values" key="key1" item="value" >
+                            <option value="{$key1}" <if condition="$filter['fields_value'][$key] eq $key1">selected="selected"</if>>{$value}</option>
+                        </foreach>                        
+                    </select>
+                    </if>
+                </foreach>
+                <label>排序：</label>
+                <select id="orderby" class="form-control input-sm">
+                <foreach name="filter.order.fields" item="name" >
+                    <option value="{$key}" <if condition="$filter['order']['orderby'] eq $key">selected="selected"</if>>{$name}</option>
+                </foreach>                    
+                </select>
+                <select id="sortby" class="form-control input-sm">
+                    <option value="DESC" <if condition="$filter['order']['sortby'] eq 'desc'">selected="selected"</if>>降序</option>
+                    <option value="ASC" <if condition="$filter['order']['sortby'] eq 'asc'">selected="selected"</if>>升序</option>
+                </select>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()">确认</button>
+            </div>
+        </div>        
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>用户名</th>
+                    <th>支付方式</th>
+                    <th>类型</th>
+                    <th>金额</th>
+                    <th>ip</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="payLogList" item="info" >
+                <tr>
+                    <td scope="row">{$info['log_id']}</td>
+                    <td>{$info['user_name']|htmlspecialchars}</td>
+                    <td>{$info['pay_name']|htmlspecialchars}:<if condition="$info['pay_status'] eq 0">未支付<else />已支付(支付时间：{$info.pay_time})</if></td>
+                    <td><if condition="$info['log_type'] eq 1">保证金
+                        <elseif  condition="$info['log_type'] eq 2" />金币购买
+                        <elseif  condition="$info['log_type'] eq 3" />需求支付:{$info['detail']['tender_name']|htmlspecialchars}
+                        </if>
+                    </td>
+                    <td>{$info['money']}</td>
+                    <td>{$info['log_ip']}</td>
+                    <td>{$info['log_remark']|htmlspecialchars}</td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>    
+        <form id="submitForm" action="{:U('PayLog/index')}" method="get">
+                <foreach name="filter.fields_value" item="value" >
+                    <input type="hidden" name="filter_{$key}" value="{$value}" />
+                </foreach>     
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />            
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script type="text/javascript">
+        function submit_filter()
+        {
+            $("[name^='search_']").each(function() {
+                var search_name = $(this).prop("name");
+                var filter_name = 'filter_' + search_name.substr(7);
+               $("input[name='"+filter_name+"']").val($(this).val()); 
+            });
+            $("input[name='orderby']").val($("#orderby").val());
+            $("input[name='sortby']").val($("#sortby").val());
+            $("input[name='p']").val(1);
+            $("#submitForm").submit();
+        }
+        
+                        function chanage_page(page)
+                        {
+                            $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160706006" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">工单详情</div>
+            <div id="quality">
+            	<h5>订单编号：<span>{$tenderInfo.tender_id}</span></h5>
+                <div id="user_table">
+                    <table class="table">
+                        <tr>
+                            <th>时间</th>
+                            <th>项目名称</th>
+                            <th>需求类型</th>
+                            <th>金额</th>
+                            <th>状态</th>
+                        </tr>
+                        <tr>
+                            <td>{$tenderInfo.add_time}</td>
+                            <td>{$tenderInfo.tender_name|htmlspecialchars}</td>
+                            <td>{$tenderInfo.type_name|htmlspecialchars}</td>
+                            <td><span>{$tenderInfo.order_price}</span></td>
+                            <td>{$tenderInfo.status_desc}</td>     
+                        </tr>
+                    </table>
+                </div>
+                <div class="quality_remarks">
+                	<span>!</span>
+                	<p>如果您有维修诉求建议先和工人师傅协商：<if condition="empty($tenderInfo['bid_real_name'])">{$tenderInfo['bid_user_name']|htmlspecialchars}<else />{$tenderInfo['bid_real_name']|htmlspecialchars}</if>，电话{$tenderInfo['bid_mobile']|htmlspecialchars}</p>
+                    <p>如需帮助您可拨打派工网客服电话进行咨询。</p>
+                </div>
+                <div class="quality_detail">
+                    
+                <div class="quality_tit"><if condition="$afterSaleInfo['type'] eq 1">退款详情<else />详情</if></div>
+                    <div class="quality_detail_left">
+                        <img src="<if condition="empty($afterSaleInfo['avatar'])">images/user/head.png<else />{$afterSaleInfo['avatar']}</if>" class="img-circle">
+                        <span>{$afterSaleInfo['user_name']|htmlspecialchars}</span>
+                    </div>
+                    <div class="quality_detail_right">
+                        
+                    	<p><if condition="$afterSaleInfo['type'] eq 1">退款金额：<span>￥{$afterSaleInfo['refund_money']}</span><if condition="$afterSaleInfo['is_confirm'] eq 0 and $tenderInfo['user_id'] eq USER_ID"><a href="#" data-toggle="modal" data-target="#modify_refund_money">修改</a></if></if><small>{$afterSaleInfo['add_time']}</small></p>
+                        
+                        <p>说明：{$afterSaleInfo['content']|htmlspecialchars}</p>
+                        <if condition="!empty($afterSaleInfo['attachment_01'])"><a href="{$afterSaleInfo['attachment_01']|htmlspecialchars}" target='blank'><img src="{$afterSaleInfo['attachment_01']|htmlspecialchars}"></a></if>
+                        <if condition="!empty($afterSaleInfo['attachment_02'])"><a href="{$afterSaleInfo['attachment_02']|htmlspecialchars}" target='blank'><img src="{$afterSaleInfo['attachment_02']|htmlspecialchars}"></a></if>
+                        <if condition="!empty($afterSaleInfo['attachment_03'])"><a href="{$afterSaleInfo['attachment_03']|htmlspecialchars}" target='blank'><img src="{$afterSaleInfo['attachment_03']|htmlspecialchars}"></a></if>
+                    </div>
+                </div>
+                 <if condition="$afterSaleInfo['need_service'] eq 1">
+                <foreach name="afterSaleCommentList" item="info">
+                <div class="quality_detail">
+                    <div class="quality_detail_left">
+                    	<img src="<if condition="empty($info['avatar'])">images/user/head.png<else />{$info['avatar']}</if>" class="img-circle">
+                        <span>客服：{$info['admin_user_name']|htmlspecialchars}</span>
+                    </div>
+                    <div class="quality_detail_right">
+                        <p>说明：{$info['content']|htmlspecialchars}</p>
+                        <p><small>{$info['add_time']}</small></p>
+                        <if condition="$tenderInfo['bidder_id'] eq $info['user_id']">
+                        <span>退款状态：<if condition="$info['is_confirm'] eq 0">工人已拒绝退款申请，待您处理<else />工人已确认退款申请，请联系客服进行退款处理</if></span>
+                        <if condition="!empty($info['attachment_01'])"><a href="{$info['attachment_01']|htmlspecialchars}" target='blank'><img src="{$info['attachment_01']|htmlspecialchars}"></a></if>
+                        <if condition="!empty($info['attachment_02'])"><a href="{$info['attachment_02']|htmlspecialchars}" target='blank'><img src="{$info['attachment_02']|htmlspecialchars}"></a></if>
+                        <if condition="!empty($info['attachment_03'])"><a href="{$info['attachment_03']|htmlspecialchars}" target='blank'><img src="{$info['attachment_03']|htmlspecialchars}"></a></if>
+                                           
+                        </if>
+                    </div>
+                </div>
+                </foreach>
+                 </if>
+                <if condition="$afterSaleInfo['status'] eq 1">
+                <div class="quality_form">
+                    <form action="{:U('AfterSale/comment')}" method="post">
+                        <textarea name="content" class="form-control" rows="3" placeholder="说明" required></textarea>
+                        <p class="inputfile" id="container">
+                            <a id="selectfiles" href="javascript:void(0);" class="file_btn">选择文件</a>
+                            <div id="upload_progress" class="progress" style="display:none">
+                              <div id="upload_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+                            </div>                           
+                            <small>上传文件描述更精准！(最多提交3张)</small>
+                            <div id="img_list">
+
+                            </div>
+                        </p>
+                        <p>
+                            <input id="is_confirm" name="is_confirm" type="hidden" value='0' />
+                            <input name="id" value="{$afterSaleInfo['id']}" type="hidden" />
+                            <if condition="$afterSaleInfo['type'] eq 1 and  USER_ID eq $tenderInfo['bidder_id'] and $afterSaleInfo['is_confirm'] eq 0">
+                                <button type="submit" onClick="javascript:$('#is_confirm').val(1);" class="agree_btn">同意退款并提交</button><button type="submit" onClick="javascript:$('#is_confirm').val(0);" class="refuse_btn">拒绝退款并提交</button>
+                            <else />
+                                <button type="submit" class="agree_btn">提 交</button>
+                            </if>
+                        </p>
+                    </form>
+                </div>
+                <div class="quality_detail_button">
+                        <if condition="$afterSaleInfo['user_id'] eq USER_ID">
+                	<input type="button" id="btn_cancel" class="btn_cancel" value="关闭售后单">
+                        </if>
+                        <if condition="$afterSaleInfo['need_service'] eq 1">
+                            客服已介入
+                        <else />
+                            <input type="button" id="btn_supplement" class="btn_supplement" value="申请客服介入">
+                        </if>
+                </div>
+               </if>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+       <div class="modal fade" id="modify_refund_money" tabindex="-1" role="dialog" aria-labelledby="modifyRefundMoneyLabel">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="modifyRefundMoneyLabel">修改价格</h4>
+            </div>
+            <div class="modal-body">
+              <input type="input" name="refund_money" value="0" class="modal_text modal_top" placeholder="请输入您需要修改的价格" />
+              <input name="id" type="hidden" value="{$afterSaleInfo['id']}" />
+            </div>
+            <div class="modal-footer">
+                  <button id="submitModifyRefund" class="btn btn_appo">修改</button>
+            </div>               
+           </div>
+         </div>
+       </div>        
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script type="text/javascript">
+    $(function (){
+        $('#btn_cancel').click(function(){
+            var data = {};
+            data.id = {$afterSaleInfo['id']};
+            $.post("{:U('AfterSale/closeAfterSale')}",data,function(result){
+                if(result.status == 1){
+                    alert(result.info);
+                    window.location.reload();
+                }
+                else{
+                    alert(result.info);
+                }
+                
+            },'json');
+            return false;            
+        });
+        
+        $('#btn_supplement').click(function(){
+            var data = {};
+            data.id = {$afterSaleInfo['id']};
+            $.post("{:U('AfterSale/requestService')}",data,function(result){
+                if(result.status == 1){
+                    alert(result.info);
+                    window.location.reload();
+                }
+                else{
+                    alert(result.info);
+                }
+                
+            },'json');
+            return false;            
+        });
+        $("#submitModifyRefund").click(function(){
+            var data = {};
+            data.refund_money = $("#modify_refund_money input[name='refund_money']").val();
+            data.id = $("#modify_refund_money input[name='id']").val();
+            $.post("{:U('AfterSale/changeRefundPrice')}",data,function(result){
+                if(result.status == 1){
+                    alert(result.info);
+                }
+                else{
+                    alert(result.info);
+                }
+                $('#modify_refund_money').modal('hide');
+                window.location.reload();
+            },'json');
+            return false;
+        });        
+        
+        var uploader = new plupload.Uploader({
+            
+                runtimes : 'html5,html4,flash,silverlight',
+                browse_button : 'selectfiles', 
+                url : '{:U('AfterSale/comment')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        $("#upload_progress").hide();
+                        $("#upload_progress_bar").attr('aria-valuenow',0);
+                        $("#upload_progress_bar").attr('style','width:0%');
+                        $("#upload_progress_bar").html("0%");                         
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="alert alert-warning  alert-dismissible div_close" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button><img src="'+response.info.url+'" style="width:100px"/><input name="attachment_id[]" type="hidden" value="'+response.info.url+'"></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadProgress: function(up,file){
+                        $("#upload_progress").show();
+                        $("#upload_progress_bar").attr('aria-valuenow',file.percent);
+                        $("#upload_progress_bar").attr('style','width:'+file.percent+'%');
+                        $("#upload_progress_bar").html('' + file.percent + "%");
+                        //$(file.id).getElementsByTagName('b')[0].innerHTML = '' + file.percent + "%";
+                    //layer.closeAll('loading');//关闭加载效果
+                    },                    
+                    
+                    UploadComplete: function(up,files){
+                        //所有文件上传完成                     
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+    });
+
+    </script>       
+  </body>
+</html>

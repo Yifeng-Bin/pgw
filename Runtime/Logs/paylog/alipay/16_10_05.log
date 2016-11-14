@@ -1,0 +1,196 @@
+[ 2016-10-05T15:00:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-05T15:00:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940257785109',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:00:18',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '37',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-05 15:00:44',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-06 15:00:28',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-05 15:00:44',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => 'bd134d7253466a0e8d1eec8cc865e99n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'b8bd039558fc3699d9f4d4910954f550',
+)
+[ 2016-10-05T15:00:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '37',
+)
+[ 2016-10-05T15:00:44+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '37',
+  'out_id' => '36',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759629',
+  'log_time' => '1467759509',
+  'log_remark' => '',
+)
+[ 2016-10-05T15:03:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-05T15:03:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940260509273',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:03:38',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '38',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-05 15:03:45',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '2.00',
+  'gmt_payment' => '2016-07-06 15:03:42',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-05 15:03:44',
+  'price' => '2.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '9cfedaeefc55e187fb3cd031b6a84aan96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'ee45c7cd96628e346a1a2ab86dc125e6',
+)
+[ 2016-10-05T15:03:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '38',
+)
+[ 2016-10-05T15:03:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '38',
+  'out_id' => '36',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '2',
+  'log_type' => '3',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759822',
+  'log_time' => '1467759779',
+  'log_remark' => '',
+)
+[ 2016-10-05T15:04:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-05T15:04:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940260509296',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:04:20',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '39',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-05 15:04:45',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-06 15:04:27',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-05 15:04:45',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => 'e06c511966e4da2368298b568c97cdfn96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'b53981baf4d540d3729fa679dd3d9b3f',
+)
+[ 2016-10-05T15:04:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '39',
+)
+[ 2016-10-05T15:04:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '39',
+  'out_id' => '36',
+  'stage' => '3',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759868',
+  'log_time' => '1467759850',
+  'log_remark' => '',
+)
+[ 2016-10-05T16:36:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-10-05T16:36:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:求木工师傅',
+  'trade_no' => '2016070621001004940260054591',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 16:35:53',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '40',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-10-05 16:36:45',
+  'trade_status' => 'TRADE_FINISHED',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '7.00',
+  'gmt_payment' => '2016-07-06 16:35:57',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'gmt_close' => '2016-10-05 16:36:44',
+  'price' => '7.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '34d1d403e6176430370e5b000ced5b7n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '4f179644eb0910b9ef7d98804163b7ff',
+)
+[ 2016-10-05T16:36:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '7.00',
+  'out_trade_no' => '40',
+)
+[ 2016-10-05T16:36:45+08:00 ] 110.75.152.3 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '40',
+  'out_id' => '37',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '7.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467765357',
+  'log_time' => '1467765340',
+  'log_remark' => '',
+)

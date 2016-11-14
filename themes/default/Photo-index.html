@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Photo/index')}">派工学堂</a>
+            </div>
+        </div>
+    </div>
+	<div class="sub">
+    	<div class="container">
+        	<div class="photo_screen">
+                <foreach name="attrList" item="list">
+            	<div class="screen_tpye">
+                    <div class="screen_top">{$list.attr_desc}</div>
+                    <div class="screen_list">
+                        <ul>
+                            <foreach name="list.valueList" item="value">
+                                <if condition="$value.is_current eq 1">
+                                    <li>{$value.attr_value}</li>
+                                <else/>
+                                    <li><a href="{$value.url}">{$value.attr_value}</a></li>
+                                </if>
+                            </foreach>
+                        </ul>
+                    </div>
+                </div>                        
+                </foreach>
+                </div>
+            <div class="phtot_content">
+            	<div class="photo_sort">
+                	<ul>
+                            <foreach name="sortArr" item="sort">
+                                <li>{$sort.name}<a href="{$sort.url}"><span class="glyphicon glyphicon-arrow-up"></span></a></li>
+                            </foreach>
+                    </ul>
+                </div>
+                
+                <div id="waterfall">
+                    <foreach name="photoList" item="info">
+                        <div class="cell">
+                            <a href="{$info.url}"><img src="{$info.main_image}" /></a><p><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></p>
+                        </div>                        
+                    </foreach>
+                </div>
+                <div class="page">{$pageShow}</div>
+            </div>
+        </div>
+    </div>
+<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/watefall.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+var opt={
+getResource:function(index,render){
+      if(index>=7) index=index%7+1;
+      var html='';
+      for(var i=20*(index-1);i<20*(index-1)+20;i++){
+             var k='';
+             for(var ii=0;ii<3-i.toString().length;ii++){
+            k+='0';
+             }
+             k+=i;
+ //        var src="http://cued.xunlei.com/demos/publ/img/P_"+k+".jpg";
+  //           html+='<div class="cell"><a href="#"><img src="'+src+'" /></a><p>'+k+'</p></div>';
+      }
+      return $(html);
+},
+auto_imgHeight:true,
+insert_type:1
+}
+$('#waterfall').waterfall(opt);
+</script>
+  </body>
+</html>

@@ -1,0 +1,64 @@
+@charset "utf-8";
+/* CSS Document */
+h1 {
+    color: #CF323E;
+    font-weight: 300;
+}
+h1 .markspan {
+    color: #999;
+    font-family: serif;
+    margin-left: 10px;
+}
+p {
+    color: #666;
+    font-size: 24px;
+    line-height: 40px;
+    margin: 0;
+}
+/*小图标*/
+.xjt {
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: url(../images/zhaoshang/XJT.png)no-repeat;
+    background-size: 25px 25px;
+    position: absolute;
+    left: 50%;
+    top: -9px;
+}
+.two{
+	background-image:url(../images/zhaoshang/01-BJ.png);
+	background-repeat:no-repeat;
+	height:374px;
+	position: relative;
+	padding-top:35px;}
+.three{
+	background-image:url(../images/zhaoshang/02-BJ.png);
+	background-repeat:no-repeat;
+	height:374px;
+	position: relative;
+	padding-top:60px;}
+.four{
+	background-image:url(../images/zhaoshang/03-BJ.png);
+	background-repeat:no-repeat;
+	height:428px;
+	position: relative;
+	padding-top:60px;}
+.five{
+	background-image:url(../images/zhaoshang/04-BJ.png);
+	background-repeat:no-repeat;
+	height:374px;
+	position: relative;
+	padding-top:60px;}
+.footer{
+	background-image:url(../images/zhaoshang/X-BJ.png);
+	background-repeat:no-repeat;
+	height:205px;
+	position: relative;
+	padding-top:60px;}
+.footer p{
+	color:#fff;
+	text-align:center;
+	font-weight:400;
+	font-size:24px;}
+

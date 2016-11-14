@@ -1,0 +1,29 @@
+[ 2016-07-28T18:04:42+08:00 ] 203.189.235.220 /user/login
+INFO: array (
+  'request' => 
+  array (
+    'user_name' => 'or\'1=1\'or',
+    'password' => 'dsadas',
+    'back_url' => '/user/index',
+    'think_language' => 'zh-cn',
+    'is_mobile' => '0',
+    's_id' => '6h51pvqujmj47r79e7c288t385',
+    'region_id' => '794',
+    'CNZZDATA1259797645' => '476811298-1469699819-http%3A%2F%2Fwww.58pgw.com%2F|1469699819',
+  ),
+  'put' => 
+  array (
+    'user_name' => 'or\'1=1\'or',
+    'password' => 'dsadas',
+    'back_url' => '/user/index',
+  ),
+  'cookie' => 
+  array (
+    'think_language' => 'zh-cn',
+    'is_mobile' => '0',
+    's_id' => '6h51pvqujmj47r79e7c288t385',
+    'region_id' => '794',
+    'CNZZDATA1259797645' => '476811298-1469699819-http%3A%2F%2Fwww.58pgw.com%2F|1469699819',
+  ),
+  'HTTP_REFERER' => 'http://beihuqu.city.58pgw.com/user/login',
+)

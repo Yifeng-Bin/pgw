@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">装修日记<a href="{:U('User/write_diary')}">写日记</a></div>
+            <div id="user_mid">
+            	<div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation"<if condition="$type eq ''"> class="active"</if>><a href="{:U('User/diary')}" aria-controls="myDiary" role="tab">我的日记</a></li>
+                    <li role="presentation"<if condition="$type eq 'comment'"> class="active"</if>><a href="{:U('User/diary?type=comment')}" aria-controls="diarycomment" role="tab">日记评论</a></li>
+                    
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="myDiary">
+                        <if condition="$type eq ''">
+                    	<div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>标题</th>
+                                    <th>分类</th>
+                                    <th>审核</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td class="td_tit"><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.cat_name}</td>
+                                    <td><if condition="$info.is_checked eq 0">待审<else />已审</if></td>
+                                    <td>{$info.add_time}</td>
+                                    <td><span><a href="{:U('User/write_diary?id='.$info['article_id'])}">修改</a></span>
+                                        <span><a href="javascript:void(0)" onClick="delDiary({$info.article_id})">删除</a></span>
+                                    </td>
+                                </tr>                                    
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>
+                        <else />
+                    	<div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>日记标题</th>
+                                    <th>评论内容</th>
+                                    <th>评论时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td class="td_tit"><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.content|htmlspecialchars}</td>
+                                    <td>{$info.add_time}</td>
+                                    <td><span><a href="javascript:void(0)" onClick="delComment({$info.comment_id})">删除</a></span></td>
+                                </tr>
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>                        
+                        </if>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+  </body>
+ <script type="text/javascript"> 
+function delDiary(id){
+    var data = {};
+    data.act = 'del';
+    data.id = id;
+    $.post("{:U('User/diary')}",data,function(result){
+        if(result.status == 0){
+            alert(result.info);
+        }else{
+            alert(result.info);
+            window.location.reload();
+        }
+    },'json');
+}
+
+function delComment(id){
+    var data = {};
+    data.act = 'del_comment';
+    data.id = id;
+    $.post("{:U('User/ask')}",data,function(result){
+        if(result.status == 0){
+            alert(result.info);
+        }else{
+            alert(result.info);
+            window.location.reload();
+        }
+    },'json');
+}
+</script>
+</html>

@@ -1,0 +1,179 @@
+<extend name="Public/base" />
+<block name="main">
+
+    <h1 class="page-header">工单详情</h1>
+    <p><a class="btn btn-default" href="{:U('AfterSale/index')}">返回工单列表</a></p>
+    <h3>工单信息</h3>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <label for="tender_name" class="control-label col-sm-2">项目名称:</label>
+            <div class="col-sm-2">
+                <p class="form-control-static">{$afterSaleInfo.tender_name|htmlspecialchars}</p>
+            </div> 
+            <label for="tender_name" class="control-label col-sm-2">售后类型:</label>
+            <div class="col-sm-6">
+                <p class="form-control-static">
+                <if condition="$afterSaleInfo['type'] eq 1">退款(项目实际支付金额：{$afterSaleInfo.pay_total}，申请退款金额:{$afterSaleInfo.refund_money},总退款金额：{$afterSaleInfo.total_refund_money},<if condition="$afterSaleInfo['is_confirm'] eq 1">已确认<else />未确认</if>)
+                    <else />其他
+                </if>
+            </p>
+            </div>             
+        </div>
+
+        <div class="form-group">
+            <label for="contacts" class="control-label col-sm-2">状态:</label>
+            <div class="col-sm-2">
+                <p class="form-control-static"><if condition="$afterSaleInfo['status'] eq 0">已关闭<else />未关闭</if></p>
+            </div>    
+            <label for="contacts" class="control-label col-sm-2">增加时间:</label>
+            <div class="col-sm-2">
+                <p class="form-control-static">{$afterSaleInfo.add_time}</p>
+            </div>  
+            <label for="contacts" class="control-label col-sm-2">是否需要客服介入:</label>
+            <div class="col-sm-2">
+                <p class="form-control-static"><if condition="$afterSaleInfo['need_service'] eq 1">是<else />否</if></p>
+            </div>  
+        </div>
+        
+        <if condition="$afterSaleInfo['attachment_01'] neq ''">
+        <div class="form-group">
+            <label for="contacts" class="control-label col-sm-2">附件:</label>
+            <if condition="$afterSaleInfo['attachment_01'] neq ''">
+            <div class="col-sm-2">
+                <p class="form-control-static"><img height='100' src="{$afterSaleInfo['attachment_01']}"></p>
+            </div>   
+            </if>
+            <if condition="$afterSaleInfo['attachment_02'] neq ''">
+            <div class="col-sm-2">
+                <p class="form-control-static"><img height='100' src="{$afterSaleInfo['attachment_02']}"></p>
+            </div>   
+            </if>
+            <if condition="$afterSaleInfo['attachment_03'] neq ''">
+            <div class="col-sm-2">
+                <p class="form-control-static"><img height='100' src="{$afterSaleInfo['attachment_03']}"></p>
+            </div>   
+            </if>            
+        </div>        
+        </if>
+        <h3>工单回复内容</h3>
+        <foreach name="afterSaleComment" item="info">
+        <div class="form-group">
+            <!--<label for="contacts" class="control-label col-sm-1">用户:</label>-->
+            <div class="col-sm-2">
+                <p class="form-control-static"><if condition="$info['user_id'] neq 0">用户名：{$info.user_name|htmlspecialchars}<else />客服：{$info.admin_user_name|htmlspecialchars}</if></p>
+            </div>   
+            <label for="contacts" class="control-label col-sm-1">回复时间:</label>
+            <div class="col-sm-1">
+                <p class="form-control-static">{$info.add_time|htmlspecialchars}</p>
+            </div>               
+            <label for="contacts" class="control-label col-sm-1">回复内容:</label>
+            <div class="col-sm-3">
+                <p class="form-control-static">{$info.content|htmlspecialchars}</p>
+            </div>              
+            <if condition="$info['attachment_01'] neq ''">
+            <div class="col-sm-1">
+                <p class="form-control-static"><img height='40' src="{$info['attachment_01']}"></p>
+            </div>   
+            </if>
+            <if condition="$info['attachment_02'] neq ''">
+            <div class="col-sm-1">
+                <p class="form-control-static"><img height='40' src="{$info['attachment_02']}"></p>
+            </div>   
+            </if>
+            <if condition="$info['attachment_03'] neq ''">
+            <div class="col-sm-1">
+                <p class="form-control-static"><img height='40' src="{$info['attachment_03']}"></p>
+            </div>   
+            </if>            
+        </div>
+        </foreach>
+        
+        <h3>工单回复</h3>
+            <div class="form-group">
+                <label for="content" class="control-label col-sm-2">输入回复内容:</label>
+                <div class="col-sm-6">
+                    <textarea id="content" name="content" class="form-control" rows="3"></textarea>
+                </div>  
+                <button type="submit" id="submit_content" class="btn btn-default">确认回复</button>    
+            </div>   
+            <input type="hidden" id="after_sale_id" name="after_sale_id" value="{$afterSaleInfo['id']}" />
+            
+        <if condition="$afterSaleInfo['type'] eq 1">    
+        <h3>售后退款</h3>
+        <if condition="$afterSaleInfo['refund_status'] eq 0">
+        <div class="form-group">
+            <label for="refund_remark" class="control-label col-sm-2">输入退款备注内容:</label>
+            <div class="col-sm-6">
+                <textarea id="refund_remark" name="refund_remark" class="form-control" rows="3"></textarea>
+            </div>  
+            <button type="submit" id="submit_refund_remark" class="btn btn-default">确认退款</button>    
+        </div>     
+        <else />
+        <div class="form-group">
+            <label for="refund_remark" class="control-label col-sm-8">退款确认完成（{$afterSaleInfo['refund_time']|local_date='Y-m-d H:i:s',###}）,备注：{$afterSaleInfo.refund_remark|htmlspecialchars}</label>
+        </div>                 
+        </if>
+        </if>
+    </div>
+
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+    <style>
+        H3{
+            border-bottom: 2px solid #ddd;
+            border-top: 2px solid #ddd;
+        }
+    a.file_btn {
+        width: 90px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background-color: #eb6100;
+        color: #fff;
+    }        
+        .div_close {
+            width: 130px;
+            height: 130px;
+            float: left;
+            margin: 10px;
+        }        
+    </style>
+</block>
+<block name="js-input">
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script>        
+<script type="text/javascript">
+    $(function () {
+        $('#submit_content').click(function(){
+            var data = {};
+            data.id = $('#after_sale_id').val();
+            data.content = $('#content').val();          
+            $.post("{:U('AfterSale/comment')}",data,function(result){               // alert(data.content);
+                if(result.status == 0){
+                    alert(result.info);
+                }else
+                {
+                    window.location.reload();
+                }
+            },'json');
+        });
+        $('#submit_refund_remark').click(function(){
+            var data = {};
+            data.id = $('#after_sale_id').val();
+            data.refund_remark = $('#refund_remark').val();
+            $.post("{:U('AfterSale/refundRemark')}",data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else
+                {
+                    window.location.reload();
+                }
+            },'json');
+        });        
+        
+    });
+</script>
+</block>

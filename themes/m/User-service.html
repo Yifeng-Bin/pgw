@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords}">
+<meta name="description" content="{$pageHeadInfo.description}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/Worker-service.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+<!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript :;" onClick="javascript :history.back(-1);"><img src="images/header/return_03.png" height="22" title="返回上一页"></a>
+          <span id="head_tit" class="head_tit">{$pageHeadInfo.title}</span>
+          <span class="head_rihgt"><a href="{:U('User/guarantee')}">质保金账单</a></span>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav nav_img">
+            <li><a href="{$baseurl}"><img src="./images/header/home.png"><p>首页</p></a></li>
+            <li><a href="{:U('Photo/index')}"><img src="./images/header/map.png"><p>效果图</p></a></li>
+            <li><a href="{:U('Requirement/index')}"><img src="./images/header/demand.png"><p>需求大厅</p></a></li>
+            <li><a href="{:U('Teach/index')}"><img src="./images/header/teaching.png"><p>派工教学</p></a></li>
+            <li><a href="{:U('Ask/index')}"><img src="./images/header/diary.png"><p>装修日记</p></a></li>
+            <li><a href="{:U('Diary/index')}"><img src="./images/header/ask.png"><p>知识问答</p></a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+<div class="content">
+	<div class="worker_service">
+    	<div class="service_head">
+        	<h5>质量保证金可用余额：</h5>
+            <p>￥{$money|number_format=###,2,'.',''}</p>
+        </div>
+        <if condition="empty($total)">
+        <div class="service_content">
+        	<p>质量保障金，将作为对业主的先行赔付金</p>
+            <p>先行赔付额为您的质量保证金的60%</p>
+            <p>质量保障金可用余额≥1000元时才可开通     质量保障服务</p>
+            <p>质量保障金可用余额将会在个人信息详情页面的质保金中展示</p>
+        </div>
+        </if>
+        <div class="service_foot">
+        	<div class="service_clause">
+                <if condition="empty($total)"><input type="checkbox" name="xieyi" id="xieyi" > <label for="xieyi">我已阅读并接受</label> <a href="#">《派工网质量保障服务协议》</a></if>
+                <input type="button" class="clause_btn" value="交纳质量保障金" onclick="<if condition="empty($total)">return check()<else />$('#payment').modal();</if>">
+            </div>
+        </div>
+    </div>
+    <div class="record_list">
+    	<foreach name="payLogList" item="info">
+        <div class="record_box">
+          <p>缴纳质保金<span>{$info.money}</span></p>
+          <span>{$info.log_time}</span><span>{$info.pay_name}</span>
+          <span><if condition="$info.pay_status eq 0">未付款{$info.pay_button}<else />已付款</if></span>
+        </div>
+        </foreach>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">缴纳保障金</h4>
+            </div>
+            <div class="modal-body">
+                <form id="pay_form" action="{:U('Pay/submit')}" method="post">
+                    <p class="mar_bottom">当前质保金额度：{$money|number_format=###,0,'.',''}元</p>
+                    <p>缴纳质保金额度：<label><input type="radio" name="money_type" value="1" checked>1000元</label></p>
+                    <p class="pad_left mar_bottom"><label><input type="radio" name="money_type" value="2">自定义金额：<input type="text" id="money" name="money" class="in_money" value="1000">元</label></p>
+                    <p class="mar_bottom">缴纳金额：<span id="total">1000</span>元</p>
+                    <div class="pay_tit">选择付款方式</div>
+                    <div class="pay_mode">
+                        <foreach name="payList" item="info">
+                            <label class="radio-inline">
+                                <input type="radio" name="pay_id" value="{$info.pay_id}" style="margin-top: 11px;" <if condition="$key eq 0">checked="checked"</if> /> <img src="./images/icon/{$info.pay_code}.png">
+                            </label>                    
+                        </foreach>
+                    </div>
+                    <input type="hidden" name="type" value="margin" />
+                    <button type="submit" class="pay_btn">去付款</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+		function check() {
+			if (!document.getElementById("xieyi").checked) {
+				alert("你必须同意协议");
+				return false
+			}
+			$('#payment').modal();
+		}
+		$("#pay_form input[name='money_type']").click(function () {
+			var value = $(this).val();
+			if (value == 1) {
+				$("#total").html(1000);
+			} else {
+				$("#total").html($('#money').val());
+			}//
+		});
+		$('#money').blur(function () {
+			var value = $("#pay_form input[name='money_type']:checked").val();
+			var money = parseInt($('#money').val()) || 0;//(parseInt($('#money').val()/100) || 0) * 100;
+			$('#money').val(money);
+			if (value == 1) {
+				$("#total").html(1000);
+			} else {
+				$("#total").html(money);
+			}
+		});
+function go()
+{
+window.history.go(-1);
+}
+  var title=document.title.split('-');
+   document.getElementById('head_tit').innerHTML = title[0];
+    </script>
+</body>
+</html>

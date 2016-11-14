@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-write_diary.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="write_diary">
+    	<form action="{:U('User/write_diary')}" method="post"> 
+        <div class="write_content">
+            <input type="text" name="article_name" class="write_tit" placeholder="请在这里输入日记标题" />
+            <script id="article_desc" name="article_desc" type="text/plain"></script>                        
+            <script type="text/javascript" src="__STATICS__/ueditor/ueditor.config.js"></script>
+            <script type="text/javascript" src="__STATICS__/ueditor/ueditor.all.min.js"></script>                        
+            <script type="text/javascript">
+                                var article_desc = UE.getEditor('article_desc', {
+                                        serverUrl:'{:U('Ueditor/manage/type/diary')}',
+                                        initialFrameHeight:300,
+                                        toolbars: [[
+                                                'fullscreen', '|', 'undo', 'redo', '|',
+                                                'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                                                'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                                                 'fontfamily', 'fontsize', '|',
+                                                'directionalityltr', 'directionalityrtl', 'indent', '|',
+                                                'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                                                'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                                                'simpleupload', 'insertimage', 'emotion', 'map','pagebreak', '|',
+                                                'horizontal', 'date', 'time', 'spechars', 'wordimage', '|',
+                                                 'preview', 'searchreplace', 'drafts'
+                                            ]],
+                                        elementPathEnabled : false,
+                                });
+            </script>
+        </div>
+        <div class="write_submit">
+            <div class="write_submit_left">
+                <span class="write_sel">分类：</span>
+                <select name="cat_id">
+                    <option value='0'>-请选择分类-</option>
+                    <foreach name="diaryCat" item="catInfo">
+                        <option value='{$catInfo.cat_id}'>{$catInfo.cat_name}</option>
+                    </foreach>
+                </select>
+            </div>
+            <div class="write_submit_right">
+                <button type="submit" class="write_sub">发表</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

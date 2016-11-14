@@ -1,0 +1,70 @@
+[ 2016-09-02T10:07:16+08:00 ] 219.133.40.13 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T13:39:56+08:00 ] 219.133.40.13 /help/detail/id/505
+ERR: 模板不存在:themes/m/Help-detail.html
+
+[ 2016-09-02T13:40:03+08:00 ] 219.133.40.13 /help/detail/id/505
+ERR: 模板不存在:themes/m/Help-detail.html
+
+[ 2016-09-02T13:41:35+08:00 ] 219.133.40.13 /help/detail/id/505
+ERR: 模板不存在:themes/m/Help-detail.html
+
+[ 2016-09-02T13:45:34+08:00 ] 219.133.40.13 /help/detail/id/567
+ERR: 模板不存在:themes/m/Help-detail.html
+
+[ 2016-09-02T14:07:14+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:07:20+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:07:47+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:14:59+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:15:19+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:17:31+08:00 ] 113.243.234.57 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:21:23+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T14:21:58+08:00 ] 124.231.6.120 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T15:39:37+08:00 ] 124.231.6.120 /search/teach?keywords=123
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-02T15:39:46+08:00 ] 124.231.6.120 /search/teach?keywords=1345345
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-02T15:42:37+08:00 ] 180.153.206.16 /search/teach?keywords=123
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-02T15:42:55+08:00 ] 101.226.99.195 /search/teach?keywords=1345345
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') ORDER BY add_time desc' at line 1
+ [ SQL语句 ] : SELECT a.article_id,a.article_name,a.main_image,a.visit_time,a.add_time,a.article_keywords,a.article_brief FROM pgw_article a WHERE a.article_id IN () ORDER BY add_time desc 
+
+[ 2016-09-02T20:01:40+08:00 ] 113.219.119.27 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T23:49:19+08:00 ] 113.108.11.52 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T23:49:26+08:00 ] 113.108.11.52 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T23:55:38+08:00 ] 14.17.44.215 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+
+[ 2016-09-02T23:55:44+08:00 ] 14.17.44.215 /user/workinfo
+ERR: 模板不存在:themes/m/User-workinfo.html
+

@@ -1,0 +1,149 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">属性列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_attr(0, '{:U('ArticleCategory/AttrManage?act=add&cat_id='.$catId)}')">增加属性</button>
+        <a class="btn btn-default btn-sm" href="{:U('ArticleCategory/index')}">返回文章分类</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>属性名称</th>
+                    <th>状态</th>
+                    <th>类型</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="attrList" item="attr" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$attr['attr_id']}"></td>
+                    <td>{$attr['attr_desc']|htmlspecialchars}</td>
+                    <td><if condition="$attr['status'] eq 1">可用<else/>禁用</if></td>
+                    <td><if condition="$attr['attr_type'] eq 0">单选<else/>多选</if></td>
+                    <td>{$attr['sort']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_attr({$attr['attr_id']}, '{:U('ArticleCategory/AttrManage?act=edit&cat_id='.$catId)}')">编辑</button>
+                    <a class="btn btn-default btn-sm" href="{:U('ArticleCategory/AttrValueManage?act=list&attr_id='.$attr['attr_id'])}">属性值管理</a>
+                    <button class="btn btn-default btn-sm" onClick="del_attr({$attr['attr_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+    <!-- Modal -->
+    <div class="modal fade" id="attrModal" tabindex="-1" role="dialog" aria-labelledby="attrModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="attrModalLabel">增加/编辑分类属性信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="attr_desc" class="control-label">属性名称:</label>
+                            <input type="text" class="form-control" id="attr_desc" name="attr_desc">
+                        </div>
+                        <div class="form-group">
+                            <label for="sort" class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="sort" name="sort">
+                        </div>                         
+                        <div class="form-group">
+                            <label class="control-label">状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>  
+                        <div class="form-group">
+                            <label class="control-label">类型:</label>
+                            <label class="checkbox-inline"><input type="radio" name="attr_type" value="0">单选</label>
+                            <label class="checkbox-inline"><input type="radio" name="attr_type" value="1">多选</label>
+                        </div>                          
+                    </form>
+                    <input type="hidden" id="attr_id" name="attr_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_attr();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+</block>
+<block name="js-input">
+    <script type="text/javascript">     
+        function submit_attr()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.attr_id = $('#attr_id').val();
+            data.attr_desc = $('#attr_desc').val();
+            data.attr_type = $("input[name='attr_type']:checked").val();
+            data.status = $("input[name='status']:checked").val();
+            data.sort = $('#sort').val();
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    window.location.reload();
+                }
+              },'json');
+        }
+        
+        
+        function del_attr(attr_id)
+        {
+            if(confirm("确认删除吗？")){
+                var post_url = '{:U('ArticleCategory/AttrManage?act=del')}';
+                var data = {};
+                data.attr_id = attr_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        window.location.reload();
+                    }
+                  },'json');                
+            }            
+        }
+                                function show_edit_attr(attr_id,url)
+                                {
+                                    $('#attr_id').val(0);
+                                    $('#attr_desc').val('');
+                                    $('#sort').val(100);
+                                    $("input[name='status'][value='1']").attr("checked",true);
+                                    $("input[name='attr_type'][value='0']").attr("checked",true);
+                                    $("input[name='submitUrl']").val(url);
+                                    if (attr_id != 0)
+                                    {
+                                        $.get("{:U('ArticleCategory/AttrManage?act=getAttr')}", { attr_id: attr_id },
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#attr_id').val(data.info.attr_id);
+                                                        $('#attr_desc').val(data.info.attr_desc);
+                                                        $('#sort').val(data.info.sort);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);    
+                                                        $("input[name='attr_type'][value='"+data.info.attr_type+"']").prop("checked",true);      
+                                                        $('#attrModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $('#attrModal').modal();
+                                        }
+                                        
+                                }
+    </script>
+</block>

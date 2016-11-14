@@ -1,0 +1,232 @@
+<extend name="Public/base" />	<div class="form-group">                <label for="user_type" class="control-label col-sm-2">套餐级别</label>                <div class="col-sm-3">                    <select id="user_type" name="taocan" class="form-control form-inline">                        <option value="1">一级套餐</option>						<option value="2">二级套餐</option>						<option value="3">三级套餐</option>						<option value="4">高级套餐</option>						<option value="5">顶级套餐</option>                    </select>                </div>                           </div> 			<div class="form-group">                <label for="user_type" class="control-label col-sm-2">面积</label>                <div class="col-sm-3">                    <select id="user_type" name="area" class="form-control form-inline">                        <option value="1">30-50m²</option>						<option value="2">50-70m²</option>						<option value="3">70-90m²</option>						<option value="4">90-120m²</option>						<option value="5">120-150m²</option>						<option value="6">150-180m²</option>						<option value="7">180-210m²</option>						<option value="8">210以上</option>                    </select>                </div>                           </div>  
+
+<block name="main">
+
+        <h1 class="page-header">优惠活动列表</h1>
+
+        <div class="row well-sm">
+
+            <div class="col-sm-9 form-inline">
+
+                <label class="control-label">筛选：</label> 
+                <input type='text' name='loupan_name1' placeholder='输入活动名' id="sel" value="{$title}"/>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()" >确认</button>
+
+            </div>
+            <div class="col-sm-3"><a class="btn btn-default btn-sm  pull-right" href="{:U('House/activity_add')}">增加活动</a></div>
+
+        </div>       
+
+        <table class="table table-striped">
+
+            <thead>
+
+                <tr>
+
+                    <th>id</th>
+                                       
+                    <th>活动名称</th>
+
+                    <th>活动地区</th>
+                    
+                    <th>楼盘小区</th>
+                    
+                    <th>活动价格</th>
+
+                    <th>活动类型</th>
+                     
+                    <th>访问人次</th>
+                    
+                    <th>限定人次</th>
+                      
+                    <th>状态</th>                     
+                       
+                    <th>开始时间</th>
+                    
+                    <th>结束时间</th>
+                   
+                    <th>工人</th>
+                        
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <foreach name="list" item="info" >
+                <tbody>       
+                <tr>
+                    <td >{$info['tender_id']}</td>
+
+                    <td>{$info['tender_name']}</td>
+                    
+                    <td>{$info['region_name']}</td>
+                    
+                    <td>{$info['loupan_name']}</td>
+
+                    <td>{$info['order_price']}</td>
+
+                    <td><if condition="$info['type'] eq 1">清工包 </if><if condition="$info['type'] eq 2" >主材包</if><if condition="$info['type'] eq 3" >辅材包</if><if condition="$info['type'] eq 4" >装饰包</if><if condition="$info['type'] eq 5" >软装包</if></td>
+                    <td>{$info['visit_time']}</td>
+                    
+                    <td>{$info['people_num']}</td>
+                    
+                    <td><if condition="$info['is_checked'] eq 0">未审核<else/>审核通过</if></td>
+                    
+                    <td>{$info['add_time']|local_date='Y-m-d H:i:s',###}</td>
+                    
+                    
+                    <td>{$info['closing_time']|local_date='Y-m-d ',###}</td>
+                    <td>{$info['user_name']}</td>
+                    <td>
+                        <a class="btn btn-default btn-sm" href="{:U('House/activity_edit',array('tender_id'=>$info['tender_id'],'region_id'=>$info['region_id']))}">编辑</a>						<?php $tender = M('Tender_mate')->field('id')->where('tender_id='.$info['tender_id'])->find();						if(empty($tender['id'])){ ?>							<a href="{:U('House/activity_bao',array('tender_id'=>$info['tender_id'],'region_id'=>$info['region_id']))}"><button class="btn btn-default btn-sm">添加活动包</button></a>  						<?php }else{ ?>							<a href="{:U('House/activitybao_del',array('tender_id'=>$info['tender_id']))}"><button class="btn btn-default btn-sm">删除活动包</button></a>  						<?php } ?>
+                        <a><button class="btn btn-default btn-sm" onClick="del_article({$info['tender_id']});">删除</button></a>                      
+                        <button class="btn btn-default btn-sm" onClick="review({$info['tender_id']},{$info['is_checked']});"> <if condition="$info['is_checked'] eq 0">审核<else/>取消审核</if>
+                    </td>
+                </tr>
+                </tbody>
+            </foreach>
+
+            
+
+        </table>
+
+              
+
+        <div id="page" class="m-pagination"></div>    
+
+        <form id="submitForm" action="{:U('House/activity')}" method="get">
+            <input type="hidden" name="p_name" value=""/>   
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />                        <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+</block>
+
+<block name="css-style">
+
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+
+</block>
+
+<block name="js-input">
+
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+
+    <script type="text/javascript">
+           
+
+        function submit_filter()
+
+        {
+            
+           
+
+                var search_name = $('#sel').val();
+            $("input[name='p_name']").val(search_name);
+           
+            $("#submitForm").submit();
+
+        }
+
+        function del_article(tender_id)
+
+        {
+          
+            if(confirm("确认删除活动吗？")){
+
+                var post_url = "{:U('House/activity_del')}";
+
+                var data = {};
+
+                data.tender_id = tender_id;
+
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.status == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+
+        }
+
+        function review(tender_id,is_checked)
+
+        {
+          
+            if(confirm("确认审核吗？")){
+
+                var post_url = '{:U('House/activity_review')}';
+
+                var data = {};
+
+                data.tender_id = tender_id;
+                data.is_checked=is_checked;             
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.is_checked == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+        }
+
+   
+                        function chanage_page(page)
+
+                        {   
+                        	var p_name=$('#sel').val();
+                        	$("input[name='p_name']").val(p_name);
+                            $("#submitForm").find("input[name='p']").val(page);
+                            $("#submitForm").submit();
+
+                        }
+
+                        $("#page").page({
+
+                        total: {$pageInfo.totalRows},
+
+                                pageSize: {$pageInfo.listRows},
+
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+
+                                showInfo: true,
+
+                                showJump: true,
+
+                                loadFirstPage: false,
+
+                                infoFormat: '第{start} - {end}条，共{total}条',
+
+                        }).on("pageClicked", function (event, pageIndex) {
+
+                        chanage_page(pageIndex + 1);
+
+                        }).on('jumpClicked', function (event, pageIndex) {
+
+                        chanage_page(pageIndex + 1);
+
+                        });
+                        
+
+    </script>
+
+</block>
+

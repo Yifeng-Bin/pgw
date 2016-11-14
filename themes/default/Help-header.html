@@ -1,0 +1,18 @@
+<div class="top">
+    <div class="container">
+        <div class="top_user"><a href="{:U('User/index')}">{$userInfo.user_name|htmlspecialchars}</a></div>
+        <div class="top_tel">服务热线：{:C('service_phone')}</div>
+        <div class="top_operation">
+            <a href="{$baseurl}">[网站主页]</a>
+            <a href="{:U('User/index')}">[个人中心]</a>
+            <a href="{:U('Help/detail?id=507')}">[帮助中心]</a>
+            <a href="{:U('User/logout?code='.session('xss_code'))}">[注销退出]</a>
+        </div>
+    </div>
+</div>
+<div class="top_content">
+    <div class="container">
+    	<img src="./images/User-mid/icon/logo.png">
+        <h2>帮助中心</h2>
+    </div>
+</div>

@@ -1,0 +1,3 @@
+<?php if (!defined('THINK_PATH')) exit();?><div class="row">
+    <?php if(is_array($diaryList)): foreach($diaryList as $key=>$info): ?><div class="col-sm-6 <?php if($key > 1): ?>margin_top<?php endif; ?>"><a href="<?php echo ($info["url"]); ?>"><img src="<?php if(!empty($info['data_image'])): echo ($info["data_image"]); elseif(!empty($info['main_image'])): echo ($info["main_image"]); else: ?>./images/journal/journal_1.png<?php endif; ?>" width="100%"></a></div><?php endforeach; endif; ?>
+</div>

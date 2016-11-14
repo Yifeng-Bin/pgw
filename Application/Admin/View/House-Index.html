@@ -1,0 +1,197 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">楼盘列表</h1>
+        <div class="row well-sm">
+            <div class="col-sm-9 form-inline">
+                <label class="control-label">筛选：</label> 
+                <input type='text' name='loupan_name1' placeholder='输入楼盘名' id="sel" value="{$loupan_name}"/>
+                <button class="btn btn-default btn-sm" onClick="submit_filter()" >确认</button>
+            </div>
+            <div class="col-sm-3"><a class="btn btn-default btn-sm  pull-right" href="{:U('House/add')}">增加楼盘</a></div>
+        </div>        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>区域</th>
+                   
+                    <th>楼盘名称</th>
+                    <th>施工均价</th>
+                    <th>楼盘地址</th>
+                    <th>访问次数</th>
+                    <th>状态</th>
+                    <th>增加时间</th>
+                    <th>开盘时间</th>
+                    <th>交房时间</th>
+                    <th>管理</th>
+                </tr>
+
+            </thead>
+            <foreach name="loupan_list" item="info" >
+                <tbody>       
+                <tr>
+                    <td >{$info['loupan_id']}</td>					
+                    <td>{$info['region_name']|htmlspecialchars}</td>					
+                    <td>{$info['loupan_name']|htmlspecialchars}</td>					
+                    <td>{$info['loupan_price']|htmlspecialchars}</td>					
+                    <td>{$info['loupan_address']|htmlspecialchars}</td>
+                    <td>{$info['visit_time']}</td>
+                    <td><if condition="$info['status'] eq 1">未审核<else/>审核通过</if></td>					
+                    <td>{$info['add_time']|local_date='Y-m-d H:i:s',###}</td>
+                    <td>{$info['open_time']|local_date='Y-m-d ',###}</td>
+                    <td>{$info['finish_time']|local_date='Y-m-d ',###}</td>
+                    <td>
+                        <a class="btn btn-default btn-sm" href="{:U('House/edit',array('loupan_id'=>$info['loupan_id'],'region_id'=>$info['region_id']))}">编辑</a>
+                        <a><button class="btn btn-default btn-sm" onClick="del_article({$info['loupan_id']});">删除</button><a/>
+                        <button class="btn btn-default btn-sm" onClick="review({$info['loupan_id']},{$info['status']});"> <if condition="$info['status'] eq 1">审核<else/>取消审核</if>
+                       
+                    </td>
+                </tr>
+                </tbody>
+            </foreach>
+        </table>
+        <div id="page" class="m-pagination"></div>    
+        <form id="submitForm" action="{:U('House/index')}" method="get">
+            <input type="hidden" name="p_name" value=""/>   
+            <input type="hidden" name="orderby" value="{$filter.order.orderby}" />
+            <input type="hidden" name="sortby" value="{$filter.order.sortby}" />            
+
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+</block>
+
+<block name="css-style">
+
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+
+</block>
+
+<block name="js-input">
+
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+
+    <script type="text/javascript">
+           
+
+        function submit_filter()
+
+        {
+            
+           
+
+                var search_name = $('#sel').val();
+                
+               //alert(search_name);
+               
+
+           
+            $("input[name='p_name']").val(search_name);
+           
+            $("#submitForm").submit();
+
+        }
+
+        function del_article(loupan_id)
+
+        {
+          
+            if(confirm("确认删除楼盘吗？")){
+
+                var post_url = '{:U('House/del')}';
+
+                var data = {};
+
+                data.loupan_id = loupan_id;
+
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.status == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+
+        }
+
+        function review(loupan_id,status)
+
+        {
+          
+            if(confirm("确认审核吗？")){
+
+                var post_url = '{:U('House/review')}';
+
+                var data = {};
+
+                data.loupan_id = loupan_id;
+                data.status=status;             
+                $.post(post_url, data,
+
+                  function(result) {
+
+                    if(result.status == 0){
+
+                        alert(result.info);
+
+                    }else{
+
+                        $("#submitForm").submit();
+
+                    }
+
+                },'json');
+
+            }            
+        }
+
+   
+                        function chanage_page(page)
+
+                        {   
+                        	var p_name=$('#sel').val();
+                        	$("input[name='p_name']").val(p_name);
+                            $("#submitForm").find("input[name='p']").val(page);
+                            $("#submitForm").submit();
+
+                        }
+
+                        $("#page").page({
+
+                        total: {$pageInfo.totalRows},
+
+                                pageSize: {$pageInfo.listRows},
+
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+
+                                showInfo: true,
+
+                                showJump: true,
+
+                                loadFirstPage: false,
+
+                                infoFormat: '第{start} - {end}条，共{total}条',
+
+                        }).on("pageClicked", function (event, pageIndex) {
+
+                        chanage_page(pageIndex + 1);
+
+                        }).on('jumpClicked', function (event, pageIndex) {
+
+                        chanage_page(pageIndex + 1);
+
+                        });
+
+    </script>
+
+</block>
+

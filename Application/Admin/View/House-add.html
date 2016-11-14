@@ -1,0 +1,335 @@
+<extend name="Public/base" />
+
+<block name="main">
+    <h1 class="page-header">增加楼盘</h1>
+    <p><a class="btn btn-default" href="{:U('House/index')}">返回楼盘列表</a></p>
+    <form id="submitForm" class="form-horizontal" action="{:U('House/add_ok')}" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+
+                <label for="region_id" class="control-label col-sm-2">地区:</label>
+
+                <div class="col-sm-2">
+
+                    <select id="prov" class="form-control"></select> 
+
+                </div>   
+
+                <div class="col-sm-2">
+
+                    <select id="city" class="form-control"></select>  
+
+                </div>   
+
+                <div class="col-sm-2">
+
+                    <select id="region_id" name="region_id" class="form-control"></select>  
+
+                </div>                                              
+
+            </div>           
+
+             <div>
+
+            <div class="form-group">
+
+                <label  class="control-label col-sm-2">楼盘名称：</label>
+
+                <div class="col-sm-6">
+
+                    <input type="text" class="form-control"  name="loupan_name" value="" />
+
+                </div>
+
+            </div>
+            
+            <div class="form-group">
+
+                <label  class="control-label col-sm-2">施工均价：</label>
+
+                <div class="col-sm-5">
+
+                    <input type="text" class="form-control"  name="loupan_price" value="" />
+
+                </div>
+
+            </div>
+
+            
+
+            <div class="form-group">
+
+                <label for="mobile" class="control-label col-sm-2">交房时间：</label>
+
+                <div class="col-sm-6">
+
+                     <input type="date" class="form-control" name="finish_time" />
+
+                </div>
+
+            </div>      
+
+            <div class="form-group">
+
+                <label for="real_name" class="control-label col-sm-2">开盘时间：</label>
+
+                <div class="col-sm-6">
+
+                   <input type="date" class="form-control" name="open_time" />
+
+                </div>
+            </div> 
+			
+			 <div class="form-group">
+                <label for="user_type" class="control-label col-sm-2">板块</label>
+                <div class="col-sm-3">
+                    <select id="user_type" name="bankuai" class="form-control form-inline">
+                        <option value="1">武广新区</option>
+						<option value="2">五岭版块</option>
+						<option value="3">龙泉版块</option>
+						<option value="4">东塔版块</option>
+						<option value="5">骆仙版块</option>
+						<option value="6">梨树山版块</option>
+						<option value="7">爱莲湖片区</option>
+						<option value="8">王仙岭版块</option>
+						<option value="9">南塔版块</option>
+						<option value="10">苏仙岭版块</option>
+						<option value="11">北湖版块</option>
+						<option value="12">下湄桥版块</option>
+                    </select>
+                </div>               
+            </div>  
+			
+            <div class="form-group">
+
+                <label for="" class="control-label col-sm-2">浏览量：</label>
+
+                <div class="col-sm-6">
+
+                    <input type="number" class="form-control"   name="visit_time" value="" />
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="" class="control-label col-sm-2">楼盘地址：</label>
+
+                <div class="col-sm-6">
+                    <input type="text" class="form-control"   name="loupan_address" value="" />
+                </div>
+            </div>
+            <div class="form-group">
+
+                <label for="user_type" class="control-label col-sm-2">{$attrList.attr_desc}：</label>
+
+                <div class="col-sm-3">
+
+                    <select id="user_type" name="user_type[]" class="form-control form-inline">
+                        <foreach name="attrList.valueList" item="value">   
+                        <option value="{$value.attr_value_id}">{$value.attr_value}</option>
+                        </foreach>
+                    </select>
+                </div>               
+            </div>            
+            <div class="form-group" id="gallery">
+
+                <label for="money" class="control-label col-sm-2">上传图片：</label>
+
+                <div class="col-sm-6">
+                    <input type="file"   name="loupan_thumb" id='loupan_thumb' value="" />
+                </div>
+             </div>
+
+            <div class="form-group">
+
+                <label for="images" class="control-label col-sm-2"></label>
+
+                <input type="submit" class="btn btn-default" value='确认增加'>
+            </div>
+        </div>
+    </form>	<br>	<br>	<br>	<br>
+</block>
+<block name="css-style">
+
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        #cat_div_id{height: 100%;padding: 10px;}
+
+        #cat_list{padding: 10px 0px;}
+
+    </style>
+
+</block>
+<block name="css-style">
+
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">    
+
+    <style>
+
+    a.file_btn {
+
+        width: 90px;
+
+        height: 30px;
+
+        line-height: 30px;
+
+        text-align: center;
+
+        background-color: #eb6100;
+
+        color: #fff;
+
+    }        
+
+        .div_close {
+
+            width: 130px;
+
+            height: 130px;
+
+            float: left;
+
+            margin: 10px;
+
+        }        
+
+    </style>
+
+</block>
+
+<block name="js-input">
+
+<script src="__STATICS__/js/areaChange.js"></script>
+
+<script src="__STATICS__/js/workType.js"></script>   
+
+<script src="__STATICS__/js/moment.min.js"></script>
+
+<script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>   
+
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+
+<script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+   
+<script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+
+<script src="__STATICS__/jquery-ui-1.11.4/jquery-ui.min.js"></script>    
+    
+
+<script type="text/javascript">
+
+    var workTypeList = {};
+
+    $(function () {
+
+        initChangeRegionData('prov', 'city', 'region_id', 0, 0, 0);
+
+        initChangeWorkType('firstWorkType', 'secondWorkType');                    
+
+        $('#time_1').datetimepicker({
+
+            defaultDate: "",
+
+            format: 'YYYY-MM-DD',
+
+        });
+
+        
+
+    //初始化工人选择
+
+        var workHtml = '';
+
+        for(var i in __allWorkType.first){
+
+            workHtml = workHtml + '<div class="project_box">';
+
+            workHtml = workHtml + '<p>' + __allWorkType.first[i].name + '</p>';
+
+            for(var j in __allWorkType.second[__allWorkType.first[i].code]){
+
+                workHtml = workHtml + '<label class="checkbox-inline"><input type="checkbox" value="'+__allWorkType.second[__allWorkType.first[i].code][j].code+'" name="type_ids[]"> '+__allWorkType.second[__allWorkType.first[i].code][j].name+'</label>';
+
+            }
+
+            workHtml = workHtml + '</div>';                                  
+
+	}
+
+        $("#projectInfo").append(workHtml);
+
+        
+
+        for(var i in workTypeList){
+
+            $("input[name='type_ids[]'][value='"+workTypeList[i]+"']").attr('checked', true);
+
+        }
+
+        
+
+        $('input[type=checkbox]').click(function() {
+
+            $("input[name='type_ids[]']").attr('disabled', true);
+
+            if ($("input[name='type_ids[]']:checked").length >= 3) {
+
+                $("input[name='type_ids[]']:checked").attr('disabled', false);
+
+            } else {
+
+                $("input[name='type_ids[]']").attr('disabled', false);
+
+            }
+
+        });     
+        $('#goods_files').uploadify({
+
+            'swf'      : '__STATICS__/uploadify/uploadify.swf',
+
+            'uploader' : "{:U('Public/upload?type=6')}",
+
+            'buttonText' : "选择图片",
+
+            'multi'    : true,
+
+            'successTimeout' : 5,
+
+            'formData'      : {'ajax' : 1},
+
+            'onUploadSuccess' : function(file, data, response) {
+
+                data = jQuery.parseJSON(data);
+               
+                if (data.status == 0)
+
+                {
+
+                    alert(data.info);
+
+                } else{
+
+                    var img_str = '<div class="col-md-3"><img  class="img-responsive" src="'+data.info.url+'"><br /><input type="hidden" name="photo_ids[]" value="'+data.info.img_id+'"><br /><button name="del_img" type="button" value="'+data.info.img_id+'" class="btn btn-sm">删除</button></div>';
+
+                    $('#imglist').append(img_str);
+
+                }
+
+            }
+
+    });        
+
+
+
+    });
+
+</script>
+
+</block>
+

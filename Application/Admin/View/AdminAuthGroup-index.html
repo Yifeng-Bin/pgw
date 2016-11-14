@@ -1,0 +1,189 @@
+<extend name="Public/base" />
+<block name="main">
+
+        <h1 class="page-header">用户权限组列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_group(0, '{:U('AdminAuthGroup/add')}')">增加权限组</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>组名称</th>
+                    <th>排序</th>
+                    <th>状态</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="groupList" item="groupInfo" >
+                <tr>
+                    <th scope="row">#<input type="hidden" value="{$groupInfo['id']}"></th>
+                    <td>{$groupInfo['title']}</td>
+                <td>{$groupInfo['sort']}</td>
+                <td><if condition="$groupInfo['status'] eq 1">启用<else />禁用</if></td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_group({$groupInfo['id']}, '{:U('AdminAuthGroup/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_group({$groupInfo['id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="groupModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="groupModalLabel">增加/编辑管理组</h4>
+                </div>
+                <div class="modal-body">
+                    <form> 
+                        <div class="form-group">
+                            <label for="groupTitle" class="control-label">管理组名称:</label>
+                            <input type="text" class="form-control" id="groupTitle" name="groupTitle">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">排序:</label>
+                            <input type="text" class="form-control form-inline" id="groupSort" name="groupSort">
+                        </div> 
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="groupStatus" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="groupStatus" value="1">启用</label>
+                        </div>                        
+                        <div class="form-group" id="checkbox_menus">
+                            <label class="control-label">权限列表:</label>
+                            <ul class="list-unstyled">
+                            <foreach name="menusList" item="first">
+                                <li><input name="menus[]" type="checkbox" value='{$first.id}'>{$first.title}
+                                    <ul class="list-unstyled">
+                                    <foreach name="first.children" item="second">
+                                        <li><input name="menus[]" type="checkbox" value='{$second.id}'>{$second.title}
+                                            <ul class="list-inline">
+                                            <foreach name="second.children" item="third">
+                                                <li><input name="menus[]" type="checkbox" value='{$third.id}'>{$third.title}</li>
+                                            </foreach>
+                                            </ul>     
+                                        </li>
+                                    </foreach>
+                                    </ul>
+                                </li>
+                            </foreach>
+                            </ul>
+                        </div>
+                    </form>
+                    <input type="hidden" id="groupId" name="groupId" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_group();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <style type="text/css">
+    #checkbox_menus > ul > li > ul{
+        margin-left : 20px;
+    }
+    #checkbox_menus > ul > li > ul > li > ul{
+        margin-left : 40px;
+    }    
+    </style>
+</block>
+<block name="js-input">
+    <script type="text/javascript">
+        $("#checkbox_menus input[name='menus[]']").click(function(){
+            if(this.checked){
+                $(this).next().find("input[name='menus[]']").prop("checked", true);
+                $(this).parents("li").children("input[name='menus[]']").prop("checked", true);
+            }else{
+                $(this).next().find("input[name='menus[]']").prop("checked", false);
+                var len = $(this).parent().parent().find("input[name='menus[]']:checked").length;
+                if(len == 0){
+                    $(this).parents("li").children("input[name='menus[]']").prop("checked", false);
+                }
+            }
+        });        
+        
+        function submit_group()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.id = $('#groupId').val();
+            data.title = $('#groupTitle').val();
+            data.status = $("input[name='groupStatus']:checked").val();
+            data.sort = $('#groupSort').val();
+            data.menus = new Array();
+            $("input[name='menus[]']:checked").each(function(){
+                data.menus.push($(this).val());
+            })
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    window.location.reload();
+                }
+              },'json');
+        }
+        
+        
+        function del_group(id)
+        {
+            if(confirm("确认删除权限组吗？")){
+                var post_url = '{:U('AdminAuthGroup/del')}';
+                var data = {};
+                data.id = id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        window.location.reload();
+                    }
+                  },'json');
+            }            
+
+        }
+                                function show_edit_group(id, url)
+                                {
+                                    $('#groupTitle').val('');
+                                    $('#groupSort').val(100);
+                                    $("input[name='menus[]']").attr("checked",false);
+                                    $("input[name='firstMenu']").attr("checked",false);
+                                    $("input[name='groupStatus'][value='1']").attr("checked",true);
+                                    if (id != 0)
+                                    {
+                                        $.get("{:U('AdminAuthGroup/edit')}", {id:id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#groupTitle').val(data.info.title);
+                                                        $('#groupSort').val(data.info.sort);
+                                                        $("input[name='groupStatus'][value='"+data.info.status+"']").attr("checked",true);
+                                                        $("input[name='groupId']").val(data.info.id);
+                                                        $("input[name='submitUrl']").val(url);
+                                                        var rules=data.info.rules.split(",");
+                                                        for(var i=0;i<rules.length;i++){
+                                                            $("input[name='menus[]'][value='"+rules[i]+"']").prop("checked",true);
+                                                        }
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='groupId']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                        }
+                                        $('#groupModal').modal();
+                                }
+    </script>
+</block>

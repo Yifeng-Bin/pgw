@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">写日记</div>
+            <div class="write">
+                <div class="write_box">
+                    <form action="{:U('User/write_diary')}" method="post"> 
+                    <div class="write_content">
+                    	<input type="text" name="article_name" class="write_tit" value="{$diaryInfo.article_name|htmlspecialchars}" placeholder="请在这里输入日记标题" />
+                        <script id="content" name="article_desc" type="text/plain">{$diaryInfo.article_desc}</script>                        
+                        <script type="text/javascript" src="__STATICS__/ueditor/ueditor.config.js"></script>
+                        <script type="text/javascript" src="__STATICS__/ueditor/ueditor.all.min.js"></script>                        
+                        <script type="text/javascript">
+                                            var article_desc = UE.getEditor('content', {
+                                                    serverUrl:'{:U('Ueditor/manage/type/diary')}',
+                                                    initialFrameHeight:500,
+                                                    toolbars: [[
+                                                            'fullscreen', '|', 'undo', 'redo', '|',
+                                                            'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                                                            'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                                                             'fontfamily', 'fontsize', '|',
+                                                            'directionalityltr', 'directionalityrtl', 'indent', '|',
+                                                            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+                                                            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                                                            'simpleupload', 'insertimage', 'emotion', 'map','pagebreak', '|',
+                                                            'horizontal', 'date', 'time', 'spechars', 'wordimage', '|',
+                                                             'preview', 'searchreplace', 'drafts'
+                                                        ]],
+                                                    elementPathEnabled : false,
+                                            });
+                        </script>
+                    </div>
+                    <div class="write_submit">
+                    	<div class="write_submit_left">
+                        	<span class="write_sel">分类：</span>
+                        	<select name="cat_id">
+                            	<option value='0'>-请选择分类-</option>
+                                <foreach name="diaryCat" item="catInfo">
+                                    <option value='{$catInfo.cat_id}' <if condition="$catInfo['cat_id'] eq $diaryInfo['cat_id']">selected="selected"</if>>{$catInfo.cat_name}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <div class="write_submit_right">
+                                <input type="hidden" name="id" value="{$diaryInfo.article_id}" />
+                        	<button type="submit" class="write_sub">发表</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+  <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* CSS Document */
+.register{
+	height:auto;
+	width:100%;
+	margin-top:50px;
+	padding:0 20px;
+	position:relative;}
+.user_input{
+	width:100%;
+	height:45px;
+	line-height:45px;
+	border:1px #ddd solid;
+	padding-left:5px;
+	outline:none;}
+.user_input:hover{
+	border:1px #3fc4fc solid;}
+.user_input:focus{
+	border:1px #0baa53 solid;}
+.register_submit{
+	width:100%;
+	height:45px;
+	background-color:#0baa53;
+	color:#fff;
+	border:none;
+	margin-top:20px;}
+.register span{
+	color:#999;
+	font-size:12px;}
+.btn_verification{
+	position:absolute;
+	width:110px;
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	border:none;
+	background-color:#eb6100;
+	color:#fff;
+	top:60px;
+	right:25px;}
+.margin_10{
+	margin-top:10px;}
+.user_select{
+	margin-top:10px;
+	width:30%;
+	height:45px;
+	line-height:45px;
+	border:1px #ddd solid;
+	padding-left:5px;
+	outline:none;}
+.user_select:focus{
+	border:1px #0baa53 solid;}
+.sel_group{
+	width:100%;
+	height:45px;
+	position:relative;}
+.left{
+	float:left;}
+.middle{
+	position:absolute;
+	left:0;
+	right:0;
+	top:10px;
+	margin:0px auto;}
+.rihgt{
+	float:right;}
+.register p{
+	display:block;
+	width:100%;
+	height:40px;
+	line-height:40px;
+	font-size:12px;
+	color:#333;}
+.register p a{
+	color:#eb6100;}

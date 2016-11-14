@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+.photo{
+	margin-top:10px;
+	width:100%;
+	height:auto;
+	overflow:hidden;
+	padding:0 10px;
+	column-count:2;
+	-webkit-column-count:2;}
+.photo_content{
+	width:100%;
+	float:left;
+	height:auto;
+	position:relative;
+	padding-bottom:25px;}
+.photo_content img{
+	width:100%;
+	margin-bottom:10px;}
+.photo_content>p{
+	position:absolute;
+	bottom:10px;
+	display:block;
+	background-color:#fff;
+	color:#333;
+	box-sizing:border-box;
+	border:1px #ddd solid;
+	border-top:none;
+	width:100%;
+	height:25px;
+	line-height:25px;
+	padding-left:5px;}

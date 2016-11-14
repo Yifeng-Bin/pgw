@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160728001" type="text/css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+    <div class="header_top">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                            <if condition="USER_ID eq 0">
+                                <img src="./images/header/login_off.png"> <a href="{:U('User/login')}">登录</a> | <a href="{:U('User/register')}">注册</a>
+                            <else/>
+                                <span><a href="{:U('User/index')}">{$userInfo.user_name|htmlspecialchars}</a></span><a href="{:U('User/logout?code='.session('xss_code'))}"> &nbsp;退出</a>
+                            </if>
+                        </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 text-right"><a href="{:U('Requirement/submit')}">发布需求</a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('User/order')}">我的预约</a></div>
+	<div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('House/zhaoshang')}">分站加盟</a></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right"><img src="./images/header/tel.png"> 服务热线：<span><empty name="tel">{:C('service_phone')}<else/>{$tel.data_text|htmlspecialchars}</empty></span></div>
+                </div>
+            </div>
+        </div>
+        
+    <div class="container">
+    	<div class="reg_content_header"><a href="{$baseurl}"><img src="./images/header/logo.png" height="80"></a></div>
+    </div>
+    <div class="register_container">
+    	<div class="container">
+            <div class="reg_container_content">
+            	<div class="row">
+                	<div class="col-lg-7 col-md-7 col-sm-7" style="padding:100px 0 0 80px;">
+						<img src="./images/zcfm-l.png">	
+					</div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
+                    	<div class="reg_cont_form" style="height:550px; margin-top:25px;">
+                    		
+                                <form action="{:U('User/register')}" method="post">
+                            	<div class="btn-group kuang" data-toggle="buttons">
+                                    <label class="btn radio_gray active">
+                                    	<input type="radio" name="user_type" id="user_type_0" autocomplete="off" value="0" checked>业主注册
+                                    </label>
+                                    <label class="btn radio_gray">
+                                    	<input type="radio" name="user_type" id="user_type_1" value="1" autocomplete="off">技工注册
+                                    </label>
+                                </div>
+                                <div class="information">
+                                	<div class="information_content">
+                                        <div class="login_select">
+                                        	<input type="text" name="user_name" class="form-control inp_reg" onblur="blurFun(1,this)" placeholder="用户名">
+                                        	<div class="region-pop" style="display: none;">用户名由中英文、数字及"_"组成，4-15位字符</div>	
+                                        </div>
+                                        <div class="login_select">
+                                        	<input type="text" id="mobile" name="mobile" class="form-control inp_reg" onblur="blurFun(2,this)" placeholder="手机号">
+                                        	<div class="region-pop" name="kong" style="display: none;">请输入手机号码</div>
+                                        	<div class="region-pop" name="cuowu" style="display: none;">手机号码格式错误</div>
+                                        </div>
+                                        <div class="test">
+                                            <input type="text" name="mobilecode" class="form-control inp_test" onblur="blurFun(3,this)" placeholder="短信验证码">
+                                            <input id='getCodeButton' type="button" class="btn btn_test" value="免费获取验证码" />
+                                            <div class="region-pop" name="kong" style="display: none;">验证码不可以为空</div>
+                                            <div class="region-pop" style="display: none;">验证码错误</div>
+                                        </div>
+                                        <div class="login_select">
+	                                        <select id="prov" name="prov" class="form-control select_width"></select>
+	                                        <select id="city" name="city" class="form-control select_width margin_left"></select>
+	                                        <select id="region_id" name="region_id" class="form-control select_width margin_left"></select>
+                                        </div>
+                                        <div class="login_select">
+                                        	<input type="password" name="password" class="form-control inp_reg" onblur="blurFun(4,this)" placeholder="密码">
+                                        	<div class="region-pop" style="display: none;">密码长度需在6到16位间，只含数字 字母 _</div>
+                                        </div>
+                                        <div class="login_select">
+                                        	<input type="password" name="repassword" class="form-control inp_reg" onblur="blurFun(5,this)" placeholder="确认密码">
+                                        	<div class="region-pop" style="display: none;">确认密码与密码不一致</div>
+                                        </div>
+                                        <div class="reading">
+                                        	<input name="agree" type="checkbox" value="1"> 我已阅读并接受<a href="#">《派工网用户服务协议》</a>
+                                        </div>
+                                        <button type="submit" class="btn reg_submit" onclick="return false;">立即注册</button>
+                                        <div class="reg_login text-right"><a href="/user/login">已有帐号？立即登录</a></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script type="text/javascript"> 
+
+
+</script>
+	
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+$(function (){
+    initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$regionInfo.region_id});
+    
+    $("#getCodeButton").click(function(){
+        $(this).attr('disabled',true); 
+        var data = {};
+        data.act = 'getcode';
+        data.mobile = $("#mobile").val();
+        var code=$(this);
+        var time=60;
+        $.post('{:U('User/register')}',data,function(result){
+            if(result.status == 1){
+                var t=setInterval(function  () {
+                    time--;
+                    code.attr('disabled',true); 
+                    code.val("重新发送(" + time + ")");
+                    if (time==0) {
+                        clearInterval(t);
+                        code.attr('disabled',false);  
+                        code.val("免费获取验证码"); 
+                    }
+                },1000);                                  
+            }else{
+                code.attr('disabled',false); 
+                alert(result.info);
+            }
+        },'json');
+    }); 
+
+});
+
+function blurFun(type,obj){
+	//1用户名 2手机号 3验证码 4密码 5确认密码
+	if(type==1){
+		var text=$(obj).val();
+		if(text.length<4 || text.length>15){
+			$(obj).addClass('inp_reg-on');
+			$(obj).next().show();
+		}else{
+			$(obj).removeClass('inp_reg-on');
+			$(obj).next().hide();
+		}
+	}else if(type==2){
+		var text=$(obj).val();
+		if(text.length==0){
+			$(obj).addClass('inp_reg-on');
+			$(obj).siblings('[name="kong"]').show();
+			$(obj).siblings('[name="cuowu"]').hide();
+		}else if(text.length<11 || text.length>11){
+			$(obj).addClass('inp_reg-on');
+			$(obj).siblings('[name="cuowu"]').show();
+			$(obj).siblings('[name="kong"]').hide();
+		}else{
+			$(obj).removeClass('inp_reg-on');
+			$(obj).siblings('[name="cuowu"]').hide();
+			$(obj).siblings('[name="kong"]').hide();
+		}
+	}else if(type==3){
+		var text=$(obj).val();
+		if(text.length==0){
+			$(obj).addClass('inp_reg-on');
+			$(obj).siblings('[name="kong"]').show();
+		}else{
+			$(obj).removeClass('inp_reg-on');
+			$(obj).siblings('[name="kong"]').hide();
+		}
+	}else if(type==4){
+		var text=$(obj).val();
+		if(text.length<6 || text.length>16){
+			$(obj).addClass('inp_reg-on');
+			$(obj).next().show();
+		}else{
+			$(obj).removeClass('inp_reg-on');
+			$(obj).next().hide();
+		}
+	}else if(type==5){
+		var text=$(obj).val();
+		if(text!=$('[name="password"]').val()){
+			$(obj).addClass('inp_reg-on');
+			$(obj).next().show();
+		}else{
+			$(obj).removeClass('inp_reg-on');
+			$(obj).next().hide();
+		}
+	}
+}
+</script>
+  </body>
+</html>

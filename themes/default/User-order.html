@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+        <!-- Bootstrap -->
+        <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+    </head>
+    <body>
+    <include file="User:header" />
+    <div class="container">
+        <!--左侧文件加载处-->
+        <include file="User:left" />
+        <!--左侧文件加载处-->
+        <div class="sub_content">
+            <div class="user_sub_tit">订单管理<a href="#">查找需求</a></div>
+            <div class="demand">
+                <div class="demand_tit">
+                    <div class="demand_name">服务项目</div>
+                    <div class="demand_sub">需求类型</div>
+                    <div class="demand_sub">金额</div>
+                    <div class="demand_sub">状态</div>
+                    <div class="demand_sub">操作</div>
+                </div>
+                <div class="demand_content">
+                    <foreach name="orderList" item="info">
+                    <div class="demand_box">
+                        <div class="demand_top">
+                            <div class="demand_top_sub">订单编号：{$info.tender_id}</div>
+                            <div class="demand_top_sub">{$info.contacts|htmlspecialchars}</div>
+                            <div class="demand_top_sub">{$info.add_time}</div>
+                        </div>
+                        <div class="demand_content">
+                            <div class="demand_name">{$info.tender_name|htmlspecialchars}</div>
+                            <div class="demand_sub">{$info.type_name}</div>
+                            <div class="demand_sub">
+                                <if condition="$info['order_price'] gt 0">{$info['order_price']}<else />{$info.price}</if>
+                            </div>
+                            <div class="demand_sub">{$info.status_desc}</div>
+                            <div class="demand_sub">
+                            <if condition="$info['status'] eq STATUS_WAIT_EMPLOY or $info['bidder_id'] eq USER_ID">
+                            
+                                <if condition="$info['status'] eq STATUS_WAIT_EMPLOY">
+                                    <a href="#" class="btn btn-sm btn_inline" data-toggle="modal" data-id="{$info['tender_id']}" data-target="#chage_bid_price">修改报价</a>
+                                <elseif condition="$info['status'] eq STATUS_WAIT_CONFIRM or $info['status'] eq STATUS_IS_CONFIRM" />
+                                    <a href="#" class="btn btn-sm btn_inline" data-toggle="modal" data-price="{$info.price}" data-id="{$info['tender_id']}" data-target="#chage_tender_price"><if condition="$info['pay_part1'] gt 0">修改价格<else />提交价格</if></a>
+                                    <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>     
+                                <elseif condition="$info['status'] eq STATUS_WAIT_CONFIRM or $info['status'] eq STATUS_WAIT_PAY" />
+                                    <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>     
+                                <elseif condition="$info['status'] eq STATUS_WAIT_CONFIRM or $info['status'] eq STATUS_WAIT_EXECUTE" />
+                                    <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                <elseif condition="$info['status'] eq STATUS_IS_EXECUTE" />
+                                    <a href="javascript:void();" onClick="change_tender_status('{$info['tender_id']}','{$Think.const.STATUS_WAIT_CHECK}')">施工完成</a>   
+                                    <button class="btn btn-sm btn_inline" onClick="cancel_requirement({$info['tender_id']})">我要取消</button>
+                                <elseif condition="$info['status'] eq STATUS_IS_FINISH" />
+                                    <if condition="!empty($info['after_sale_num'])"><a href="{:U('AfterSale/info?id='.$info['tender_id'])}">查看工单</a></if>
+                                    <if condition="!empty($info['after_sale_refund_num'])"><a href="{:U('AfterSale/info?id='.$info['tender_id'])}">查看售后</a></if>                               
+                                </if>
+                            
+                            </if>
+                            </div>
+                        </div>
+                        <if condition="$info['order_price'] neq 0">
+                        <div class="demand_money">
+                            <p>
+                            	<!--全额付款显示-->
+                            	<span>付款金额：{$info['order_price']}</span>
+                                <!--分期付款显示-->
+                                <span>分期付款：</span><span>第一期{$info['pay_part1']}</span><span>第二期{$info['pay_part2']}</span><span>第三期{$info['pay_part3']}</span><span>第四期{$info['pay_part4']}</span><span>已付款：{$info['pay_total']}</span><span>未付款：{$info['order_price'] - $info['pay_total']}</span>
+                            </p>
+                            <p>
+                            	<span><if condition="$info['guarantee_date'] gt 0">质保金：保留时长{$info['guarantee_date']}个月</span><span>金额：{$info['guarantee_money']}</if></span>
+                            </p>
+                        </div>
+                        </if>
+                    </div>                      
+                    </foreach>                    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="modal fade" id="chage_bid_price" tabindex="-1" role="dialog" aria-labelledby="changeBidPriceLabel">
+        <form id="bidForm" onsubmit="return false;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="changeBidPriceLabel">修改报价</h4>
+                  </div>
+                  <div class="modal-body">
+                        <input type="text" id="price" name="price" class="modal_text modal_top" placeholder="请输入您的报价（元）">
+                  </div>
+                  <div class="modal-footer">
+                      <input id="id" name="id" type="hidden" value="0" />
+                      <button id="submitBtn" type="submit" class="btn btn_appo" data-dismiss="modal">确认</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>    
+
+    
+    <div class="modal fade" id="chage_tender_price" tabindex="-1" role="dialog" aria-labelledby="changeTenderPriceLabel">
+        <form id="bidForm" onsubmit="return false;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="changeTenderPriceLabel">确认订单价格</h4>
+                  </div>
+                  <p>需求价格：<span name="price"></span></p>
+                 <div class="modal-body">
+                        <label>一期款项：</label><input type="text" id="pay_part1" name="pay_part1" class="modal_text">
+                        <label class="modal_top">二期款项：</label><input type="text" id="pay_part2" name="pay_part2" class="modal_text">
+                        <label class="modal_top">三期款项：</label><input type="text" id="pay_part3" name="pay_part3" class="modal_text">
+                        <label class="modal_top">四期款项：</label><input type="text" id="pay_part4" name="pay_part4" class="modal_text">
+                        <label class="modal_top">质保金：</label><input type="text" id="guarantee_money" name="guarantee_money" class="modal_text mar_bottom">
+                        <label>质保金期限</label>
+                        <select id="guarantee_date" name="guarantee_date" class="new_sel bor_sel">
+                            <option value="0">无</option>
+                            <option value="1">1个月</option>
+                            <option value="2">2个月</option>
+                            <option value="3">3个月</option>
+                            <option value="6">6个月</option>
+                        </select>                                              
+                  </div>
+                  <div class="modal-footer">
+                      <input id="tender_id" name="tender_id" type="hidden" value="0" />
+                      <button id="submitModifyPayInfo" type="submit" class="btn btn_appo" data-dismiss="modal">确认价格</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>      
+    
+    
+    
+    
+    <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/i18n/zh_CN.js"></script> 
+</body>
+<script type="text/javascript">
+$('#chage_bid_price').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var id = button.data('id') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this);
+  modal.find('.modal-footer input[name="id"]').val(id)
+});
+
+    function change_tender_status(tender_id,status){
+        var data = {};
+        data.tender_id = tender_id;
+        data.status = status;
+        var url = '{:U('Requirement/changeStatus')}';
+        $.post(url,data,function(result){
+            if(result.status == 0){
+                alert(result.info);
+            }else{
+                window.location.reload();
+            }
+        },'json');  
+        return false;
+    }  
+
+$('#chage_tender_price').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var id = button.data('id') // Extract info from data-* attributes
+    var price = button.data('price');
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this);
+    modal.find('.modal-footer input[name="tender_id"]').val(id);
+    modal.find('.modal-content span[name="price"]').html(price);
+})
+
+        $("#submitBtn").click(function(){
+            var data = {};
+            data.price = $('#price').val();
+            data.id = $("#id").val();
+            $.post("{:U('Requirement/changeBidPrice')}",data,function(result){
+                if(result.status == 1){
+                    //alert(result.info);
+                }
+                else{
+                    alert(result.info);
+                }
+                $('#chage_bid_price').modal('hide');
+                window.location.reload();
+                
+            },'json');
+            return false;
+        });
+        
+        function cancel_requirement(id){
+            var data = {};
+            data.id = id;
+            var url = '{:U('Requirement/cancel')}';
+            $.post(url, data, function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    window.location.reload();
+                }
+            });
+        }
+     
+        $("#submitModifyPayInfo").click(function(){
+            var data = {};
+            data.pay_part1 = $('#pay_part1').val();
+            data.pay_part2 = $('#pay_part2').val();
+            data.pay_part3 = $('#pay_part3').val();
+            data.pay_part4 = $('#pay_part4').val();
+            data.guarantee_date = $('#guarantee_date').val();
+            data.guarantee_money = $('#guarantee_money').val();
+            data.tender_id = $("#tender_id").val();
+            $.post("{:U('Requirement/modifyPayInfo')}",data,function(result){
+                if(result.status == 1){
+                    $('#chage_tender_price').modal('hide');
+                    window.location.reload();
+                }
+                else{
+                    alert(result.info);
+                }
+
+                
+            },'json');
+            return false;
+        });        
+</script>
+</html>

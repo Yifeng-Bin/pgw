@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+  <head>
+
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+  	<include file="User:header" />
+
+  	<div class="container" id="conid">
+
+    	<!--左侧文件加载处-->
+
+		<include file="User:left" />
+
+        <!--左侧文件加载处-->
+
+    	<div class="sub_content">
+
+        	<div class="user_sub_tit">修改资料</div>
+
+            <div id="user_mid">
+
+            	<div>
+
+                  <!-- Nav tabs -->
+
+                  <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active"><a href="#information" aria-controls="home" role="tab" data-toggle="tab">基本信息</a></li>
+
+                    <li role="presentation"><a href="#password" aria-controls="profile" role="tab" data-toggle="tab">修改密码</a></li>
+
+                    <li role="presentation"><a href="#mobile" aria-controls="messages" role="tab" data-toggle="tab">更换手机</a></li>
+
+                    <li role="presentation"><a href="#head" aria-controls="settings" role="tab" data-toggle="tab">修改头像</a></li>
+
+                  </ul>
+
+                  <!-- Tab panes -->
+
+                  <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane active" id="information">
+
+                    	<form action="{:U('User/profile')}" method="post">
+
+                        <div class="nav_box">
+
+                        	<div class="nav_box_list">
+
+                            	<span>用户名：</span>{$userInfo.user_name|htmlspecialchars}
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>手机：</span>{$userInfo.mobile|htmlspecialchars}
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>真实姓名：</span><input name="real_name" type="text" class="btn_id" placeholder="输入用户姓名" value="{$userInfo.real_name|htmlspecialchars}">
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>性别：</span>
+
+                                <label class="radio-inline">
+
+                                    <input type="radio" id="inlineRadio1" name="gender" value="1" <if condition="$userInfo.gender eq 1">checked="checked"</if>> 男
+
+                                </label>
+
+                                <label class="radio-inline">
+
+                                  <input type="radio" id="inlineRadio2" name="gender" value="2" <if condition="$userInfo.gender eq 2">checked="checked"</if>> 女
+
+                                </label>
+
+                                <label class="radio-inline">
+
+                                  <input type="radio" id="inlineRadio3" name="gender" value="0" <if condition="$userInfo.gender eq 0">checked="checked"</if>> 保密
+
+                                </label>
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>生日：</span>
+
+                                <input type="text" value="{$userInfo.birthday}" name="birthday" id="birthday" onClick="return Calendar('birthday');" class="text_time"/>
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>所在地区：</span>
+
+                                <select id="prov" class="box_add"></select>
+
+                                <select id="city" class="box_add"></select>
+
+                                <select id="region_id" name="region_id" class="box_add"></select>
+
+                            </div>
+
+                            <input type="hidden" name="act" value="modify_baseinfo" />
+
+                            <button type="submit" class="sub_info">保存</button>
+
+                        </div>
+
+                        </form>
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="password">
+
+                    	<form action="{:U('User/profile')}" method="post">
+
+                        <div class="nav_box">
+
+                            <div class="nav_box_list">
+
+                            	<span>原密码：</span><input type="password" name="org_password" class="btn_id" placeholder="请输入您的原密码">
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>新密码：</span><input type="password" name="new_password" class="btn_id" placeholder="请输入您的新密码">
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>确认新密码：</span><input type="password" name="re_password" class="btn_id" placeholder="确认新密码，两次输入必须保持一致">
+
+                            </div>
+
+                            <input type="hidden" name="act" value="modify_pass" />
+
+                            <button type="submit" class="sub_info">保存</button>
+
+                        </div>
+
+                        </form>
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="mobile">
+
+                    <form action="{:U('User/profile')}" method="post">
+
+                        <div class="nav_box">
+
+                            <div class="nav_box_list">
+
+                            	<span>手机号码：</span><input type="text" id="mobile_phone" name="mobile" class="btn_id" placeholder="请输入您要新绑定的手机">
+
+                            </div>
+
+                            <div class="nav_box_list">
+
+                            	<span>验证码：</span>
+
+                                <div>
+
+                                    <input type="text" id="mobilecode" name="mobilecode" class="tel_text" placeholder="短信验证码">
+
+                                    <input id="send1" type="button" class="tel_btn" value="免费获取验证码" />
+
+                                </div>
+
+                            </div>
+
+                            <input type="hidden" name="act" value="modify_mobile" />
+
+                            <button type="submit" class="sub_info">确认更换</button>
+
+                        </div>
+
+                        </form>
+
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="head">
+
+                        <div class="nav_box">
+
+                        	<div id="img_file">
+
+                                    <img id="avatar_img" src="<if condition="empty($userInfo['avatar'])">./images/User-mid/file.png<else />{$userInfo['avatar']}</if>" />
+
+                                    <a id="selectfiles" href="javascript:void(0);" class="file_btn">更换头像</a>
+
+                                </div>
+
+                        </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+  <include file="User:footer" />	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+
+    
+
+    <script src="__STATICS__/js/areaChange.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+        <!--[if lt IE 9]>
+
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+
+            <script src="__STATICS__/js/respond.min.js"></script>        
+
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+
+        <![endif]-->       
+
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+
+    <script type="text/javascript" src="__STATICS__/plupload/i18n/zh_CN.js"></script> 
+
+
+
+<script type="text/javascript"> 
+
+    $(function  () {
+
+        initChangeRegionData('prov', 'city', 'region_id',{$provinceInfo.region_id},{$cityInfo.region_id},{$userInfo.region_id});
+
+	//获取短信验证码
+
+	var validCode=true;
+
+	$("#send1").click (function  () {
+
+		var time=60;
+
+		var code=$(this);
+
+		if (validCode) {
+
+                    var mobile = $('#mobile_phone').val();
+
+                    $.post('{:U("User/profile")}',{ act:'modify_mobile', act1:'getcode', mobile:mobile },
+
+                        function(data) {
+
+                            if(data.status == 1)
+
+                            {
+
+                                validCode=false;
+
+                                code.addClass("msgs1");
+
+                                var t=setInterval(function  () {
+
+                                    time--;
+
+                                    code.val(time+"秒");
+
+                                    if (time==0) {
+
+                                        clearInterval(t);
+
+                                        code.val("重新获取");
+
+                                        validCode=true;
+
+                                        code.removeClass("msgs1");
+
+                                    }
+
+                                },1000);                                
+
+                            }
+
+                            else
+
+                            {
+
+                                alert(data.info);
+
+                            }
+
+                          },'json');
+
+		}
+
+                return false;
+
+	});
+
+              
+
+        var uploader = false;
+
+        $('#user_mid li a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+            var href = $(e.target).attr('href');
+
+            if(href == '#head' && !uploader){
+
+                uploader = new plupload.Uploader({
+
+                        runtimes : 'html5,html4,flash,silverlight',
+
+                        browse_button : 'selectfiles', 
+
+                        url : '{:U('User/profile')}',
+
+                        max_file_size : '1mb',
+
+                        flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+
+                        silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+
+                        file_data_name : 'Filedata',
+
+                        multipart_params: {
+
+                          act : 'modify_avatar',
+
+                          ajax : '1'
+
+                        },
+
+
+
+                        filters: {
+
+                          mime_types : [ //只允许上传图片
+
+                            { title : "图片文件", extensions : "jpg,bmp,png" }, 
+
+                          ],
+
+                          max_file_size : '1mb', //最大只能上传400kb的文件
+
+                          prevent_duplicates : false //不允许选取重复文件
+
+                        },
+
+                        init: {
+
+                            FilesAdded: function(up,files){
+
+                                uploader.start();
+
+                            },
+
+                            FileUploaded: function(up,file,result){
+
+                                //layer.closeAll('loading');//关闭加载效果
+
+                                response = $.parseJSON(result.response);
+
+                                if(response.status == 1)
+
+                                    $('#avatar_img').attr('src',response.info);
+
+                                else{
+
+                                    alert('服务器未响应');
+
+                                }
+
+                                //show_upload($.parseJSON(result.response));//成功回调函数
+
+                            }, 
+
+                            UploadComplete: function(up,files){
+
+                                //layer.closeAll('loading');//关闭加载效果
+
+                            }, 
+
+                            Error: function(up,err){
+
+                            //layer.closeAll('loading');//关闭加载效果
+
+                            //layer.msg(err.message);
+
+                                alert(err.message);
+
+                            }                   
+
+                        },
+
+                });
+
+                uploader.init();              
+
+            
+
+            }
+
+        })        
+
+        
+
+    })
+
+</script>
+
+  </body>
+
+</html>

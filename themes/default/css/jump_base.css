@@ -1,0 +1,49 @@
+*公用部分*/
+/*去掉select小三角*/
+select{appearance:none;-moz-appearance:none; /* Firefox */-webkit-appearance:none; /* Safari 和 Chrome */}
+/*点击,去掉蓝色*/
+*{-webkit-tap-highlight-color:rgba(0,0,0,0); }
+/*去掉input获取焦点变蓝*/
+input,textarea{outline:none;}
+/*去掉number属性的input右边上下箭头*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+    -webkit-appearance: none !important;
+    margin: 0; 
+}
+input::-webkit-input-placeholder{color:#c9caca;}/* 谷歌 */
+input:-moz-placeholder{color:#c9caca;}/* 火狐18- */
+input::-moz-placeholder{color:#c9caca;}/* 火狐19+ */
+input:-ms-input-placeholder{color:#c9caca;}/* IE */
+
+textarea::-webkit-input-placeholder{color:#c9caca;}/* 谷歌 */
+textarea:-moz-placeholder{color:#c9caca;}/* 火狐18- */
+textarea::-moz-placeholder{color:#c9caca;}/* 火狐19+ */
+textarea:-ms-input-placeholder{color:#c9caca;}/* IE */
+
+
+/*公用部分*/
+body,div,ul,li,ol{ margin: 0;  padding: 0;font-family:"微软雅黑","宋体";
+font-size: 14px;color:#333;}
+ul,ol,li{ list-style: none; margin: 0; padding: 0; }
+img{border:none;}
+a{text-decoration:none;}
+a:hover{text-decoration:none;}
+.clear{clear:both; float: none !important;}
+
+
+/*颜色区*/
+.yellow{color:#e9ad17 !important;}
+.blur{color:#6bb2f8 !important;}
+.red{color:#ff1600 !important;}
+.hui{color:#595757 !important;}
+
+/*控制区*/
+
+.f-r{float:right;}
+.f-l{float:left;}
+.m-t{margin-top:1rem !important;}
+.tc{ text-align:center !important;}
+body{ background:#fff;}
+
+

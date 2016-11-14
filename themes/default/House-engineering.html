@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="././images/photoDetail/favicon.ico" />
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+	<link href="./css/l_base.css" type="text/css" rel="stylesheet">
+       <link href="./css/l_style.css?v=20161031004" type="text/css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('House/my')}">装修套餐</a> > <a href="{:U('House/detail?id='.$lid)}?type=2">{$loupan['loupan_name']}</a> > <a href="javascript:;">在建工程</a>
+            </div>
+        </div>
+    </div>
+	
+    <div class="house">
+    	<div class="container">
+        	<div class="row">
+            	<div class="col-xs-9">
+                    <div class="xzx_title clearfix">
+							<div class="tetail_share_right">
+											<!-- JiaThis Button BEGIN -->
+                                    <div class="jiathis_style_24x24">
+                                        <a class="jiathis_button_qzone"></a>
+                                        <a class="jiathis_button_tsina"></a>
+                                        <a class="jiathis_button_tqq"></a>
+                                        <a class="jiathis_button_weixin"></a>
+                                        <a class="jiathis_button_renren"></a>
+                                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                    </div>
+                                    <!-- JiaThis Button END -->
+                                    <div class="share_text">分享：</div>
+                                </div>
+								
+						<div class="title_site">
+							<a href="#"><img src="{$zaijian['img']}" alt=""></a>
+						</div>
+						<div class="title_diary">
+							<h2><a href="#">{$loupan['loupan_name']}&nbsp;{$zaijian['title']}</a></h2>
+							<p><span>{$jushi['attr_value']}</span> <span>{$zaijian['area']}m</span> <label><b>{$zaijian['visit_time']}</b>人看了此工程</label></p>
+							<div class="summary">{$zaijian['desc']}</div>		                		                	
+							<div class="gd_jdt" js-jd="{$madecount}">
+								<div class="huise-line"><div class="hongse-line" style="position: static;background:#f96904;"></div></div>
+								
+								<ul>
+									<li>开工大吉</li>
+									<li>水电改造</li>
+									<li><span>泥瓦阶段</span></li>
+									<li><span>木工阶段</span></li>
+									<li><span>油漆阶段</span></li>
+									<li><span>安装</span></li>
+									<li><span>验收完成</span></li>
+								</ul>
+								<div class="clear"></div>
+						   </div>		                   		                
+						</div>
+					</div>
+					<div class="gd_tit">工地进度</div>
+					<ul class="info_item">
+						<foreach name="madelist" item="info" >
+						<li>
+							<div class="title">{$info['made_name']}</div>
+							<div class="info_i_tit">{$info['made_desc']}</div>
+							<div class="info_i_pic">
+								<div class="pic"><img src="{$info['img']}"></div>
+							</div>
+						</li>
+						</foreach>
+					</ul>
+                </div>
+                <div class="col-xs-3">
+				<div class="author3">
+				       			<div class="author3-t">
+					       			<div class="pic"><img src="{$user['avatar']}"></div>
+					       			<div class="author3-r">
+					       				<div class="name">{$user['user_name']}<span></span></div>
+					       				<div class="num">案例数量：<span>{$user['case_num']}</span></div>
+					       			</div>
+					       		</div>
+					       		<div class="summary">服务理念：{$user['service_idea']}</div>
+					       		<div class="renzheng"><?php if($user['is_verified'] == 1){ ?> 身份认证已通过<span><img src="./images/renzheng.png"></span> <?php }else{?> 身份认证还没通过<?php } ?></div>
+					       		<a <?php $sess = session('user_info.user_id'); if(($sess !=0) && ($sess != $user['user_id'])){ ?> href="javascript:;" data-toggle="modal" data-target="#workTypeModal" data-user_id="{$workerInfo.user_id}" <?php }else{ ?> href="javascript:alert('请先登录或者自身不能预约自身！');" <?php } ?> class="yuyue_btn">预约TA</a>
+				       		</div>
+                    {:W('Common/recommendWorker')}
+                    {:W('Common/recommendTeach')} 
+                </div>
+            </div>
+        </div>
+    </div>
+    
+		<!--弹出框-->
+    <div class="modal fade" id="workTypeModal" tabindex="-1" role="dialog" aria-labelledby="workTypeModalLabel">
+        <form id="bidForm" onsubmit="return false;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="workTypeModalLabel">立即预约</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="contacts">您的姓名</label>
+                                      <input type="text" class="form-control" name="contacts" id="contacts" placeholder="请输入您的姓名">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="mobile">联系电话</label>
+                                      <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入您的联系电话">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="tender_name">项目名称</label>
+                                      <input type="text" class="form-control" name="tender_name" name="tender_name" id="work_item" placeholder="请输入您的项目名称">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label class="tit_inline">服务类型</label>
+                                      <select id="firstWorkType" class="form-control work_mold"></select>
+                                      <select id="secondWorkType" name="work_type_id" class="form-control work_mold"></select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="budget">项目预算</label>
+                                      <input type="text" class="form-control" name="budget" id="budget" placeholder="请输入您的预算（元）">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="days">工程日期</label>
+                                      <input type="text" class="form-control" name="days" id="days" placeholder="请输入您的预算工期（天）">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="form-group">
+                                      <label class="tit_inline">服务地区</label>
+                                      <select id="prov" class="form-control add_mold"></select>
+                                      <select id="city" class="form-control add_mold"></select>
+                                      <select id="region_id" name="region_id" class="form-control add_mold"></select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="form-group">
+                                      <label for="address">详细地址</label>
+                                      <input type="text" class="form-control" name="address" id="address" placeholder="请输入您的详细地址">
+                                  </div>
+                              </div>
+                          </div>
+	        <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="stages">是否分期</label>
+                                      <select name="installment_num"  id="stages" class="form-control">
+                                      	<option value="1">不分期</option>
+                                        <option value="2">2期</option>
+                                        <option value="3">3期</option>
+                                        <option value="4">4期</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="warranty">质保金期限</label>
+                                      <select name="guarantee_date" id="warranty" class="form-control">
+                                      	<option value="0">无</option>
+                                        <option value="1">1个月</option>
+                                        <option value="2">2个月</option>
+                                        <option value="3">3个月</option>
+                                        <option value="6">6个月</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <input name="user_id" type="hidden" value="0" />
+                      <button id="sbumitBid" type="submit" class="btn btn_appo" data-dismiss="modal">立即预约</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>
+	
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+	<script src="__STATICS__/js/areaChange.js"></script>
+	 <script src="./js/workType.js"></script>
+    <script src="./js/main.js"></script>
+	<script src="http://v3.jiathis.com/code/jia.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+			$(function(){
+				$('[js-jd]').each(function(){
+					var data=$(this).attr('js-jd')-0;
+					$(this).find('.hongse-line').css({width:(100/6)*(data-1)+'%'});
+					$(this).find('ul li').each(function(key){
+						$(this).addClass('on');
+						if(key==data-1){
+							$(this).addClass('color-on')
+							return false;
+						}
+					});
+				})
+			})
+			</script>
+		 <script>
+			$(function(){
+				for(var i=0;i<$('.picList li').length;i++){
+					$('.picList li:eq('+i+')').find('[thisNum]').html(i+1);
+					$('.picList li:eq('+i+')').find('[total]').html($('.picList li').length);
+				}	
+			})
+	</script>
+	<script>
+	$('#workTypeModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget) // Button that triggered the modal
+	  var user_id = button.data('user_id') // Extract info from data-* attributes
+	  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+	  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+	  var modal = $(this)
+	  modal.find('.modal-footer input[name="user_id"]').val(user_id)
+	})
+	</script>
+	<script>
+	$(function (){
+		initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$region_id});
+		initChangeWorkType('firstWorkType', 'secondWorkType');
+			$("#sbumitBid").click(function(){
+				$.post("{:U('Requirement/submit')}",$('#bidForm').serialize(),function(result){
+					if(result.status == 0){
+						alert(result.info);
+					}else{
+						alert("预约成功，请等待工人反馈！");
+						$('#workTypeModal').modal('hide');
+					}
+				},'json');   
+				return false;
+			});
+			$("#add_follow_worker").click(function(){
+				var data = {};
+				data.act = 'add';
+				data.user_id = $(this).attr('data-user_id');
+				var that = $(this);
+				$.post("{:U('Worker/follow')}",data,function(result){
+					if(result.status == 0){
+						alert(result.info);
+					}else{
+						that.html("已关注");
+						that.unbind("click"); 
+					}
+				},'json');            
+			});
+
+	});
+	</script>
+  </body>
+</html>

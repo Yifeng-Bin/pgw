@@ -1,0 +1,13 @@
+<div class="sub_right">
+    <div class="sub_tit"><a href="{:U('Worker/index')}">推荐工人</a></div>
+    <div class="recommend_content">
+        <ul>
+            <foreach name="workerList" item="info">
+            <li>
+                <div class="<if condition="$key lt 3">order_head<else />order_foot</if>">{$key+1}</div>
+                <div class="recommend_text"><a href="{$info.url}">{$info.user_name|htmlspecialchars}</a><span>浏览量：{$info.views}</span></div>
+            </li>                
+            </foreach>
+        </ul>
+    </div>
+</div>

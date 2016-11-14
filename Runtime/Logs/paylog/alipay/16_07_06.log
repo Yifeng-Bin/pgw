@@ -1,0 +1,372 @@
+[ 2016-07-06T15:00:29+08:00 ] 110.75.152.2 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-06T15:00:29+08:00 ] 110.75.152.2 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940257785109',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:00:18',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '37',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-06 15:00:29',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-06 15:00:28',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '6a22395abb59244d7bd4fbaefccffc2n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'fd0ebffd8b058c8bdfccd06ee384c6ac',
+)
+[ 2016-07-06T15:00:29+08:00 ] 110.75.152.2 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '37',
+)
+[ 2016-07-06T15:00:29+08:00 ] 110.75.152.2 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '37',
+  'out_id' => '36',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467759509',
+  'log_remark' => '',
+)
+[ 2016-07-06T15:00:39+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qttpXQgnj1PL5Ea4Zepwyd7314P5%252BDRmQUkm%252FlodLBur&notify_time=2016-07-06+15%3A00%3A36&notify_type=trade_status_sync&out_trade_no=37&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940257785109&trade_status=TRADE_SUCCESS&sign=d59cc1337663cfbfc6bb3eacce717fa5&sign_type=MD5
+INFO: return
+[ 2016-07-06T15:00:39+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qttpXQgnj1PL5Ea4Zepwyd7314P5%252BDRmQUkm%252FlodLBur&notify_time=2016-07-06+15%3A00%3A36&notify_type=trade_status_sync&out_trade_no=37&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940257785109&trade_status=TRADE_SUCCESS&sign=d59cc1337663cfbfc6bb3eacce717fa5&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXTo25qttpXQgnj1PL5Ea4Zepwyd7314P5%2BDRmQUkm%2FlodLBur',
+  'notify_time' => '2016-07-06 15:00:36',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '37',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:客厅吊顶',
+  'total_fee' => '1.00',
+  'trade_no' => '2016070621001004940257785109',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => 'd59cc1337663cfbfc6bb3eacce717fa5',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-06T15:00:39+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qttpXQgnj1PL5Ea4Zepwyd7314P5%252BDRmQUkm%252FlodLBur&notify_time=2016-07-06+15%3A00%3A36&notify_type=trade_status_sync&out_trade_no=37&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940257785109&trade_status=TRADE_SUCCESS&sign=d59cc1337663cfbfc6bb3eacce717fa5&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '37',
+)
+[ 2016-07-06T15:00:39+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qttpXQgnj1PL5Ea4Zepwyd7314P5%252BDRmQUkm%252FlodLBur&notify_time=2016-07-06+15%3A00%3A36&notify_type=trade_status_sync&out_trade_no=37&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940257785109&trade_status=TRADE_SUCCESS&sign=d59cc1337663cfbfc6bb3eacce717fa5&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '37',
+  'out_id' => '36',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759629',
+  'log_time' => '1467759509',
+  'log_remark' => '',
+)
+[ 2016-07-06T15:03:42+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-06T15:03:42+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940260509273',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:03:38',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '38',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-06 15:03:42',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '2.00',
+  'gmt_payment' => '2016-07-06 15:03:42',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '2.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => 'a9b57cafa03b7f8cbbaf8d4cd26422cn96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '11327693e3f371ee1d1dc9c7640313fa',
+)
+[ 2016-07-06T15:03:42+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '38',
+)
+[ 2016-07-06T15:03:42+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '38',
+  'out_id' => '36',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '2',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467759779',
+  'log_remark' => '',
+)
+[ 2016-07-06T15:03:54+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtlxTaIJllzULIcOHYuCae6TJFcZmfIzX7lfEk4ZiTX7&notify_time=2016-07-06+15%3A03%3A51&notify_type=trade_status_sync&out_trade_no=38&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=2.00&trade_no=2016070621001004940260509273&trade_status=TRADE_SUCCESS&sign=106ba807642e0ca1ee9da603812eb743&sign_type=MD5
+INFO: return
+[ 2016-07-06T15:03:54+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtlxTaIJllzULIcOHYuCae6TJFcZmfIzX7lfEk4ZiTX7&notify_time=2016-07-06+15%3A03%3A51&notify_type=trade_status_sync&out_trade_no=38&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=2.00&trade_no=2016070621001004940260509273&trade_status=TRADE_SUCCESS&sign=106ba807642e0ca1ee9da603812eb743&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXTo25qtlxTaIJllzULIcOHYuCae6TJFcZmfIzX7lfEk4ZiTX7',
+  'notify_time' => '2016-07-06 15:03:51',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '38',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:客厅吊顶',
+  'total_fee' => '2.00',
+  'trade_no' => '2016070621001004940260509273',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '106ba807642e0ca1ee9da603812eb743',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-06T15:03:54+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtlxTaIJllzULIcOHYuCae6TJFcZmfIzX7lfEk4ZiTX7&notify_time=2016-07-06+15%3A03%3A51&notify_type=trade_status_sync&out_trade_no=38&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=2.00&trade_no=2016070621001004940260509273&trade_status=TRADE_SUCCESS&sign=106ba807642e0ca1ee9da603812eb743&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '2.00',
+  'out_trade_no' => '38',
+)
+[ 2016-07-06T15:03:54+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtlxTaIJllzULIcOHYuCae6TJFcZmfIzX7lfEk4ZiTX7&notify_time=2016-07-06+15%3A03%3A51&notify_type=trade_status_sync&out_trade_no=38&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=2.00&trade_no=2016070621001004940260509273&trade_status=TRADE_SUCCESS&sign=106ba807642e0ca1ee9da603812eb743&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '38',
+  'out_id' => '36',
+  'stage' => '2',
+  'user_id' => '1143',
+  'pay_id' => '2',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '2.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759822',
+  'log_time' => '1467759779',
+  'log_remark' => '',
+)
+[ 2016-07-06T15:04:28+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-06T15:04:28+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:客厅吊顶',
+  'trade_no' => '2016070621001004940260509296',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 15:04:20',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '39',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-06 15:04:28',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-07-06 15:04:27',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => 'fe4acd26676d11123f6fda2e11bcdabn96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'f437ef310814c0691536f0c329ce024a',
+)
+[ 2016-07-06T15:04:28+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '39',
+)
+[ 2016-07-06T15:04:28+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '39',
+  'out_id' => '36',
+  'stage' => '3',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467759850',
+  'log_remark' => '',
+)
+[ 2016-07-06T15:04:40+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtl1FnRI%252BKWVv9eBJl2ns0jlqW7lrZfUoMrTvx%252FGpfzE&notify_time=2016-07-06+15%3A04%3A37&notify_type=trade_status_sync&out_trade_no=39&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940260509296&trade_status=TRADE_SUCCESS&sign=62ea39fc7c396f01fb97e6a22074cb16&sign_type=MD5
+INFO: return
+[ 2016-07-06T15:04:40+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtl1FnRI%252BKWVv9eBJl2ns0jlqW7lrZfUoMrTvx%252FGpfzE&notify_time=2016-07-06+15%3A04%3A37&notify_type=trade_status_sync&out_trade_no=39&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940260509296&trade_status=TRADE_SUCCESS&sign=62ea39fc7c396f01fb97e6a22074cb16&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXTo25qtl1FnRI%2BKWVv9eBJl2ns0jlqW7lrZfUoMrTvx%2FGpfzE',
+  'notify_time' => '2016-07-06 15:04:37',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '39',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:客厅吊顶',
+  'total_fee' => '1.00',
+  'trade_no' => '2016070621001004940260509296',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '62ea39fc7c396f01fb97e6a22074cb16',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-06T15:04:40+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtl1FnRI%252BKWVv9eBJl2ns0jlqW7lrZfUoMrTvx%252FGpfzE&notify_time=2016-07-06+15%3A04%3A37&notify_type=trade_status_sync&out_trade_no=39&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940260509296&trade_status=TRADE_SUCCESS&sign=62ea39fc7c396f01fb97e6a22074cb16&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '39',
+)
+[ 2016-07-06T15:04:40+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo25qtl1FnRI%252BKWVv9eBJl2ns0jlqW7lrZfUoMrTvx%252FGpfzE&notify_time=2016-07-06+15%3A04%3A37&notify_type=trade_status_sync&out_trade_no=39&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E5%AE%A2%E5%8E%85%E5%90%8A%E9%A1%B6&total_fee=1.00&trade_no=2016070621001004940260509296&trade_status=TRADE_SUCCESS&sign=62ea39fc7c396f01fb97e6a22074cb16&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '39',
+  'out_id' => '36',
+  'stage' => '3',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '1.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467759868',
+  'log_time' => '1467759850',
+  'log_remark' => '',
+)
+[ 2016-07-06T16:35:57+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-07-06T16:35:57+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:求木工师傅',
+  'trade_no' => '2016070621001004940260054591',
+  'buyer_email' => '18673579265@wo.cn',
+  'gmt_create' => '2016-07-06 16:35:53',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '40',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-07-06 16:35:57',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '7.00',
+  'gmt_payment' => '2016-07-06 16:35:57',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '7.00',
+  'buyer_id' => '2088912422461942',
+  'notify_id' => '08507f7c07db77fc16273475f76e506n96',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => '4bd34b0e0a8e408aec204c289413da16',
+)
+[ 2016-07-06T16:35:57+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '7.00',
+  'out_trade_no' => '40',
+)
+[ 2016-07-06T16:35:57+08:00 ] 110.75.152.1 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '40',
+  'out_id' => '37',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '7.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1467765340',
+  'log_remark' => '',
+)
+[ 2016-07-06T16:36:10+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo24amKN%252BOJh4zMm4yezfwG%252FxEYcWyD0%252FAO%252Fe6tYFhuhQ9mI&notify_time=2016-07-06+16%3A36%3A07&notify_type=trade_status_sync&out_trade_no=40&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B1%82%E6%9C%A8%E5%B7%A5%E5%B8%88%E5%82%85&total_fee=7.00&trade_no=2016070621001004940260054591&trade_status=TRADE_SUCCESS&sign=c8062639d782e3284cf24f1cf175dfc1&sign_type=MD5
+INFO: return
+[ 2016-07-06T16:36:10+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo24amKN%252BOJh4zMm4yezfwG%252FxEYcWyD0%252FAO%252Fe6tYFhuhQ9mI&notify_time=2016-07-06+16%3A36%3A07&notify_type=trade_status_sync&out_trade_no=40&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B1%82%E6%9C%A8%E5%B7%A5%E5%B8%88%E5%82%85&total_fee=7.00&trade_no=2016070621001004940260054591&trade_status=TRADE_SUCCESS&sign=c8062639d782e3284cf24f1cf175dfc1&sign_type=MD5
+INFO: array (
+  'buyer_email' => '18673579265@wo.cn',
+  'buyer_id' => '2088912422461942',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InXTo24amKN%2BOJh4zMm4yezfwG%2FxEYcWyD0%2FAO%2Fe6tYFhuhQ9mI',
+  'notify_time' => '2016-07-06 16:36:07',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '40',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:求木工师傅',
+  'total_fee' => '7.00',
+  'trade_no' => '2016070621001004940260054591',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => 'c8062639d782e3284cf24f1cf175dfc1',
+  'sign_type' => 'MD5',
+)
+[ 2016-07-06T16:36:10+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo24amKN%252BOJh4zMm4yezfwG%252FxEYcWyD0%252FAO%252Fe6tYFhuhQ9mI&notify_time=2016-07-06+16%3A36%3A07&notify_type=trade_status_sync&out_trade_no=40&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B1%82%E6%9C%A8%E5%B7%A5%E5%B8%88%E5%82%85&total_fee=7.00&trade_no=2016070621001004940260054591&trade_status=TRADE_SUCCESS&sign=c8062639d782e3284cf24f1cf175dfc1&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '7.00',
+  'out_trade_no' => '40',
+)
+[ 2016-07-06T16:36:10+08:00 ] 118.255.225.102 /payment/notify/type/alipay/method/return?buyer_email=18673579265%40wo.cn&buyer_id=2088912422461942&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InXTo24amKN%252BOJh4zMm4yezfwG%252FxEYcWyD0%252FAO%252Fe6tYFhuhQ9mI&notify_time=2016-07-06+16%3A36%3A07&notify_type=trade_status_sync&out_trade_no=40&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E6%B1%82%E6%9C%A8%E5%B7%A5%E5%B8%88%E5%82%85&total_fee=7.00&trade_no=2016070621001004940260054591&trade_status=TRADE_SUCCESS&sign=c8062639d782e3284cf24f1cf175dfc1&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '40',
+  'out_id' => '37',
+  'stage' => '1',
+  'user_id' => '1143',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'type_sign' => '0',
+  'money' => '7.00',
+  'log_ip' => '118.255.225.102',
+  'pay_status' => '1',
+  'pay_time' => '1467765357',
+  'log_time' => '1467765340',
+  'log_remark' => '',
+)

@@ -1,0 +1,3 @@
+<?php if (!defined('THINK_PATH')) exit();?><ul>
+    <?php if(is_array($askList)): foreach($askList as $key=>$info): ?><li <?php if($info['is_resolved'] == 1): ?>class="answer"<?php endif; ?>><a href="<?php echo ($info["url"]); ?>"><?php if(!empty($info['data_text'])): echo (htmlspecialchars($info["data_text"])); else: echo (htmlspecialchars($info["article_name"])); endif; ?></a></li><?php endforeach; endif; ?>    
+</ul>

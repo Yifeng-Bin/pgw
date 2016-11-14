@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">派工问答<a href="{:U('Ask/submit')}">我要提问</a></div>
+            <div id="user_mid">
+            	<div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                      <li role="presentation"<if condition="$type eq 'question'"> class="active"</if>><a href="{:U('User/ask')}" aria-controls="questions" role="tab">我的提问</a></li>
+                    <li role="presentation"<if condition="$type eq 'answer'"> class="active"</if>><a href="{:U('User/ask?type=answer')}" aria-controls="answer" role="tab">我的回答</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="questions">
+                        <if condition="$type eq 'question'">
+                    	<div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>问题</th>
+                                    <th>回答</th>
+                                    <th>状态</th>
+                                    <th>审核</th>
+                                    <th>发布时间</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td>{$info.article_id}</td>
+                                    <td><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.comment_num}</td>
+                                    <td><small><if condition="$info.is_resolved eq 0">未解决<else />已解决</if></small></td>
+                                    <td><if condition="$info.is_checked eq 0">待审核<else />已审核</if></td>
+                                    <td>{$info.add_time}</td>
+                                </tr>                                    
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>
+                        <else />
+                            
+                    	<div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>问题</th>
+                                    <th>回答</th>
+                                    <th>回答时间</th>
+                                    <th>状态</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td>{$info.comment_id}</td>
+                                    <td><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.comment_num}</td>
+                                    <td>{$info.add_time}</td>
+                                    <td><if condition="$info['comment_id'] eq $info['best_comment_id']">已采纳<else />未采纳</if></td>
+                                </tr>
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>                            
+                        </if>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+ <script type="text/javascript"> 
+
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <title>后台管理系统</title>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <link href="__STATICS__/css/dpl-min.css" rel="stylesheet" type="text/css" />
+   <link href="__STATICS__/css/bui-min.css" rel="stylesheet" type="text/css" />
+   <link href="__STATICS__/css/main.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+   <div class="header">
+    <div class="dl-title"><span class="">后台管理系统</span></div>
+    <div class="dl-log">欢迎您，<span class="dl-log-user">{$userInfo.user_name|htmlspecialchars}</span>
+        <a href="{:U('Public/logout?code='.session('xss_code'))}" title="退出系统" class="dl-log-quit">[退出]</a>
+    </div>
+   </div>
+   <div class="content">
+    <div class="dl-main-nav">
+      <ul id="J_Nav"  class="nav-list ks-clear">
+          <foreach name="firstMenu" item="info">
+              <li class="nav-item <if condition="$key eq 0">dl-selected</if>"><div class="nav-item-inner nav-storage">{$info.title|htmlspecialchars}</div></li>
+          </foreach>
+      </ul>
+    </div>
+    <ul id="J_NavContent" class="dl-tab-conten">
+ 
+    </ul>
+      
+   </div>
+  <script type="text/javascript" src="__STATICS__/js/jquery-1.8.1.min.js"></script>
+  <script type="text/javascript" src="__STATICS__/js/bui-min.js"></script>
+  <script type="text/javascript" src="__STATICS__/js/config.js"></script>
+  <script>
+     BUI.use('common/main',function(){
+      var config = {:json_encode($secondMenu)};
+      new PageUtil.MainPage({
+        modulesConfig : config
+      });
+    });
+ 
+  </script>
+ </body>
+</html>

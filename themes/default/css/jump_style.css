@@ -1,0 +1,59 @@
+.pop-tips {
+  width: 436px;
+  height: 297px;
+  background: url(../images/pop-bg.gif) no-repeat left center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -148px 0 0 -218px;
+}
+.pop-tips .top {
+  padding: 10px 30px 0px 15px;
+}
+.pop-tips .top img {
+  width: 167px;
+  height: 53px;
+}
+.pop-tips .top a {
+  float: right;
+  width: 16px;
+  height: 16px;
+  margin-top: 10px;
+  background: url(../images/close.gif) no-repeat left center;
+}
+.pop-tips .tit {
+  background: url(../images/border.gif) no-repeat center;
+  height: 20px;
+  margin: 0 20px 0 12px;
+  text-align: center;
+  line-height: 20px;
+}
+.pop-tips .tit span {
+  display: inline-block;
+  padding: 0 10px;
+  background: #fff;
+  color: #fd8531;
+  font-size: 16px;
+}
+.pop-tips .con {
+  margin: 0 20px 0 12px;
+  text-align: center;
+}
+.pop-tips .con p {
+  color: #0c0c0c;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.pop-tips .con span {
+  font-size: 14px;
+  color: #1e1e1e;
+}
+.pop-tips .bottom {
+  margin: 85px 25px 0 12px;
+  text-align: right;
+}
+.pop-tips .bottom a {
+  text-decoration: underline;
+  color: #1e1e1e;
+}
+/*# sourceMappingURL=style.css.map */

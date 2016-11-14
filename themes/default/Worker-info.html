@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20161015003" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="{:U('Requirement/index')}">工人信息</a>
+            </div>
+        </div>
+    </div>
+    <div class="workman_detail">
+    	<div class="container">
+        	<div class="workman_head">
+            	<div class="workman_portrait"><if condition="$workerInfo.avatar eq ''"><img src="./images/workman/work_head_pic.png" width="100%"><else /><img src="{$workerInfo.avatar}" width="100%"></if></div>
+                <div class="workman_mation">
+                    <h4>{$workerInfo.user_name|htmlspecialchars}</h4>
+                    <p class="big">均价：{$workerInfo.day_price}元</if></p>
+                    <p>关注数：<span>{$workerInfo.attention_num}</span> 预约数：<span>{$workerInfo.yuyue_num}</span> 案例:<span>{$workerInfo.case_num}</span></p>
+                    <p>电话：<span><if condition="USER_ID eq 0">{$workerInfo.mobile|substr_cut}<else />{$workerInfo.mobile}</if><if condition="USER_ID eq 0"><small>[登录后查看，<a href="{:U('User/login')}">立即登录</a>]</small></if></p>
+                    <if condition="empty($workerInfo['is_followed'])">
+                        <button type="button" id="add_follow_worker" data-user_id="{$workerInfo.user_id}" class="btn_work">+ 关注</button>
+                    <else/>
+                        <button type="button" class="btn_work">已关注</button>
+                    </if>
+                    
+                    <button type="button" class="btn_work" data-toggle="modal" data-target="#workTypeModal" data-user_id="{$workerInfo.user_id}">立即预约</button>
+                    <if condition="!empty($workerInfo['qq'])">
+					 <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=<?php echo $workerInfo['qq']; ?>&amp;site=www.cactussoft.cn&amp;menu=yes" target="_blank"><button type="button" class="btn_work" value="{$workerInfo['qq']|htmlspecialchars}">QQ交谈</button> </a>
+                    </if>
+                </div>
+                <div class="workman_rated">
+                    <p class="pid">实名认证 <if condition="$workerInfo.is_verified eq 1"><img src="./images/icon/real.png"><else />未实名认证</if></p>
+                    <p>保险额：<if condition="$workerInfo['is_safe'] eq 1">100000元<else />无保险</if></p>
+                    <p>质保金：{$workerInfo['money']}元</p>
+                    <div class="appraise">
+                        <div class="workman_pro pro_top">
+                            <span>服务</span>
+                            <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="{$workerInfo.score1}" aria-valuemin="0" aria-valuemax="100" style="width: {$workerInfo.score1}px">
+                                    
+                                  </div>
+                                </div>
+                            <span>{:number_format($workerInfo['score1']/20,1,'.','')}</span>
+                        </div>
+                        <div class="workman_pro">
+                            <span>价格</span>
+                            <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="{$workerInfo.score2}" aria-valuemin="0" aria-valuemax="100" style="width: {$workerInfo.score2}px">
+                                    
+                                  </div>
+                                </div>
+                            <span>{:number_format($workerInfo['score2']/20,1,'.','')}</span>
+                        </div>
+                        <div class="workman_pro">
+                            <span>质量</span>
+                            <div class="progress">
+                                  <div class="progress-bar" role="progressbar" aria-valuenow="{$workerInfo.score3}" aria-valuemin="0" aria-valuemax="100" style="width: {$workerInfo.score3}px">
+                                    
+                                  </div>
+                                </div>
+                            <span>{:number_format($workerInfo['score3']/20,1,'.','')}</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="workman_synopsis">
+            	<div class="workman_syno_tit">
+                	<ul>
+                    	<li class="active"><a href="#workman_resume">个人简介</a></li>
+                        <li><a href="#workman_case">案例展示</a></li>
+                        <li><a href="#workman_evaluate">TA的评价</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+            	<div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="workman_resume" id="workman_resume">
+                    	<div class="workman_tit">个人简介</div>
+                        <div class="resume_content">
+                        	<p class="pid"><b>工种属性：</b>{$workerInfo.workTypeDesc}</p>
+                            <p><b>入行时间：</b>{$workerInfo.enter_year}年</p>
+                            <p><b>服务理念：</b>{$workerInfo.service_idea|htmlspecialchars}</p>
+                            <p><b>个人简介：</b>{$workerInfo.profile|htmlspecialchars}</p>
+                        </div>
+                    </div>
+                    <div class="workman_case" id="workman_case">
+                    	<div class="workman_tit">案例展示<a href="{:U('User/cases')}" class="more">更多 >></a></div>
+                        <div class="case_content">
+                            <div class="row">
+                                <empty name="workerInfo.case">
+                                    <div class="col-sm-4 col-sm-offset-4">暂无案例</div>
+                                </empty>
+                                <foreach name="workerInfo.case" item="info">
+                            	<div class="col-md-3 col-sm-4">
+                                	<a href="{$info.url}"><img src="{$info.main_image}" width="100%"></a>
+                                	<p><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a><!--<small><span class="glyphicon glyphicon-heart"></span> {$info.follow_num}</small>--></p>
+                                </div>
+                                </foreach>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="workman_evaluate" id="workman_evaluate">
+                    	<div class="workman_tit">TA的评价</div>
+                        <empty name="workerInfo.commentList">
+                            <div class="col-sm-4 col-sm-offset-4">暂无评价</div>
+                        </empty>                          
+                        <foreach name="workerInfo.commentList" item="info">
+						<?php $avatar = M('avatar')->field('avatar')->where('user_id='.$info['user_id'])->find();?>
+                        <div class="evaluate_content">
+                            <div class="row">                                  
+                                <div class="col-md-2 col-sm-2"><img class="img-circle" src="<if condition="empty($avatar['avatar'])">./images/workman/head/head.png<else />{$avatar['avatar']}</if>" width="100%"></div>
+                                <div class="col-md-10 col-sm-10">
+                                	<div class="row pid">
+                                    	<div class="col-md-6 col-sm-6 text-left"><span>服务：{:number_format($info['comment_score1']/20,1,'.','')}   价格：{:number_format($info['comment_score2']/20,1,'.','')}   质量：{:number_format($info['comment_score3']/20,1,'.','')}</span></div>
+                                        <div class="col-md-6 col-sm-6 text-right"><span>{$info['comment_time']}</span></div>
+                                    </div>
+                                    <div class="row">
+                                    	<div class="col-md-12 col-sm-12">{$info.comment_content|htmlspecialchars}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                            
+                        </foreach>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-9 col-sm-3">
+                    {:W('Common/recommendWorker')}
+                    {:W('Common/recommendTeach')}   
+                </div>
+            </div>  
+        </div>
+    </div>
+	<!--弹出框-->
+    <div class="modal fade" id="workTypeModal" tabindex="-1" role="dialog" aria-labelledby="workTypeModalLabel">
+        <form id="bidForm" onsubmit="return false;">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="workTypeModalLabel">立即预约</h4>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="contacts">您的姓名</label>
+                                      <input type="text" class="form-control" name="contacts" id="contacts" placeholder="请输入您的姓名">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="mobile">联系电话</label>
+                                      <input type="text" class="form-control" name="mobile" id="mobile" placeholder="请输入您的联系电话">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="tender_name">项目名称</label>
+                                      <input type="text" class="form-control" name="tender_name" name="tender_name" id="work_item" placeholder="请输入您的项目名称">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label class="tit_inline">服务类型</label>
+                                      <select id="firstWorkType" class="form-control work_mold"></select>
+                                      <select id="secondWorkType" name="work_type_id" class="form-control work_mold"></select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="budget">项目预算</label>
+                                      <input type="text" class="form-control" name="budget" id="budget" placeholder="请输入您的预算（元）">
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="days">工程日期</label>
+                                      <input type="text" class="form-control" name="days" id="days" placeholder="请输入您的预算工期（天）">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="form-group">
+                                      <label class="tit_inline">服务地区</label>
+                                      <select id="prov" class="form-control add_mold"></select>
+                                      <select id="city" class="form-control add_mold"></select>
+                                      <select id="region_id" name="region_id" class="form-control add_mold"></select>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="row">
+                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                  <div class="form-group">
+                                      <label for="address">详细地址</label>
+                                      <input type="text" class="form-control" name="address" id="address" placeholder="请输入您的详细地址">
+                                  </div>
+                              </div>
+                          </div>
+	        <div class="row">
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="stages">是否分期</label>
+                                      <select name="installment_num"  id="stages" class="form-control">
+                                      	<option value="1">不分期</option>
+                                        <option value="2">2期</option>
+                                        <option value="3">3期</option>
+                                        <option value="4">4期</option>
+                                      </select>
+                                  </div>
+                              </div>
+                              <div class="col-lg-6 col-md-6 col-sm-6">
+                                  <div class="form-group">
+                                      <label for="warranty">质保金期限</label>
+                                      <select name="guarantee_date" id="warranty" class="form-control">
+                                      	<option value="0">无</option>
+                                        <option value="1">1个月</option>
+                                        <option value="2">2个月</option>
+                                        <option value="3">3个月</option>
+                                        <option value="6">6个月</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <input name="user_id" type="hidden" value="0" />
+                      <button id="sbumitBid" type="submit" class="btn btn_appo" data-dismiss="modal">立即预约</button>
+                  </div>
+              </div>
+          </div>
+      </form>
+    </div>
+ 	<include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <script src="./js/workType.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+$('#workTypeModal').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var user_id = button.data('user_id') // Extract info from data-* attributes
+  // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+  // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+  var modal = $(this)
+  modal.find('.modal-footer input[name="user_id"]').val(user_id)
+})
+</script>
+<script>
+$(function (){
+	initChangeRegionData('prov', 'city', 'region_id',{$province_id},{$city_id},{$workerInfo.region_id});
+	initChangeWorkType('firstWorkType', 'secondWorkType');
+        $("#sbumitBid").click(function(){
+            $.post("{:U('Requirement/submit')}",$('#bidForm').serialize(),function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    alert("预约成功，请等待工人反馈！");
+                    $('#workTypeModal').modal('hide');
+                }
+            },'json');   
+            return false;
+        });
+        $("#add_follow_worker").click(function(){
+            var data = {};
+            data.act = 'add';
+            data.user_id = $(this).attr('data-user_id');
+            var that = $(this);
+            $.post("{:U('Worker/follow')}",data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    that.html("已关注");
+                    that.unbind("click"); 
+                }
+            },'json');            
+        });
+
+});
+</script>
+  </body>
+</html>

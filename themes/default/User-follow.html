@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">我的关注</div>
+            <div id="user_mid">
+            	<div>
+                  <!-- Nav tabs -->
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation"<if condition="$type eq 'worker'"> class="active"</if>><a href="{:U('User/follow?type=worker')}" aria-controls="mechanic" role="tab">技工</a></li>
+                    <li role="presentation"<if condition="$type eq 'diary'"> class="active"</if>><a href="{:U('User/follow?type=diary')}" aria-controls="diary" role="tab">装修日记</a></li>
+                    <li role="presentation"<if condition="$type eq 'photo'"> class="active"</if>><a href="{:U('User/follow?type=photo')}" aria-controls="design" role="tab">效果图</a></li>
+                    <li role="presentation"<if condition="$type eq 'teach'"> class="active"</if>><a href="{:U('User/follow?type=teach')}" aria-controls="consultation" role="tab">教学文章</a></li>
+                  </ul>
+                  <!-- Tab panes -->
+                  <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="mechanic">
+                        <if condition="$type eq 'worker'">
+                            <foreach name="list" item="info">
+                            <div class="req_box">
+                            	<div class="media">
+                                  <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object img-circle" width="100%" src="<if condition="empty($info['avatar'])">images/need/head/head.png<else />{$info['avatar']}</if>">
+                                    </a>
+                                  </div>
+                                  <div class="media-body">
+                                    <h4 class="media-heading">{$info['user_name']|htmlspecialchars} <span>{$info['service_idea']|htmlspecialchars}</span></h4>
+                                    <P class="med_color"><if condition="$info.is_verified eq 1"><img src="./images/icon/real.png"><else />未实名认证</if>，保险额：<if condition="$info['is_safe'] eq 1">￥10000元<else />无保险</if> 质保金：￥{$info['money']}</P>
+                                    <p>90天内接单统计：共承接任务{$info['tenders_take_num']}笔，完美成功{$info['tenders_finish_num']}笔，纠纷或失败{$info['tenders_dispute_num']}笔，交付中{$info['tenders_doing_num']}笔</p>
+                                    <div class="pro_color">
+                                    	<span>服务</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$info.score1}" aria-valuemin="0" aria-valuemax="100" style="width: {$info.score1}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($info['score1']/20,1,'.','')}分</span>
+                                    </div>
+                                    <div class="pro_color">
+                                    	<span>价格</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$info.score2}" aria-valuemin="0" aria-valuemax="100" style="width: {$info.score2}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($info['score2']/20,1,'.','')}分</span>
+                                    </div>
+                                    <div class="pro_color">
+                                    	<span>质量</span>
+                                        <div class="progress">
+                                              <div class="progress-bar" role="progressbar" aria-valuenow="{$info.score3}" aria-valuemin="0" aria-valuemax="100" style="width: {$info.score3}px">
+                                                
+                                              </div>
+                                            </div>
+                                        <span>{:number_format($info['score3']/20,1,'.','')}分</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                <a href="#" class="yuyue">预约Ta</a>
+                            </div>
+                            </foreach>                        
+                            <div class="page">{$pageShow}</div>
+                        <elseif  condition="$type eq 'diary'" />
+                        <div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>标题</th>
+                                    <th>阶段</th>
+                                    <th>审核</th>
+                                    <th>创建时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td class="td_tit"><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.cat_name|htmlspecialchars}</td>
+                                    <td><if condition="$info['is_checked'] eq 0">待审<else />已审</if></td>
+                                    <td>{$info.add_time}</td>
+                                    <td><span><a href="{$info.url}">查看</a></span></td>
+                                </tr>                                    
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>
+                        <elseif  condition="$type eq 'photo'" />
+                        <div id="case" class="bor_top">
+                            <div class="case_content">
+                                <div class="row">
+                                    <foreach name="list" item="info">
+                                   <div class="col-md-3 col-sm-4">
+                                        <a href="{$info.url}"><img src="{$info.main_image}" width="100%"></a>
+                                        <p><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a><small><span class="glyphicon glyphicon-heart"></span> {$info.follow_num}</small></p>
+                                    </div>                                        
+                                    </foreach>
+                                </div>
+                                <div class="page">{$pageShow}</div>
+                            </div>
+                        </div>
+                        <elseif  condition="$type eq 'teach'" />
+                        <div id="user_table">
+                        	<table class="table">
+                                <tr>
+                                    <th>标题</th>
+                                    <th>分类</th>
+                                    <th>审核</th>
+                                    <th>关注时间</th>
+                                    <th>操作</th>
+                                </tr>
+                                <foreach name="list" item="info">
+                                <tr>
+                                    <td class="td_tit"><a href="{$info.url}">{$info.article_name|htmlspecialchars}</a></td>
+                                    <td>{$info.cat_name|htmlspecialchars}</td>
+                                    <td><if condition="$info['is_checked'] eq 0">待审<else />已审</if></td>
+                                    <td>{$info.add_time}</td>
+                                    <td><span><a href="{$info.url}">查看</a></span></td>
+                                </tr>                                    
+                                </foreach>
+                            </table>
+                            <div class="page">{$pageShow}</div>
+                        </div>
+                        </if>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  <include file="User:footer" />	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  </body>
+ <script type="text/javascript"> 
+</script>
+</html>

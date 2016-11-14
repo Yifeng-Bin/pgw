@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+        <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+        <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+        <!-- Bootstrap -->
+        <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+        <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+    </head>
+    <body>
+    <include file="User:header" />
+    <div class="container">
+        <!--左侧文件加载处-->
+        <include file="User:left" />
+        <!--左侧文件加载处-->
+        <div class="sub_content">
+            <div class="user_sub_tit">客户服务</div>
+            <div id="service">
+                <div class="service_credit">
+                    <div class="service_credit_left">
+                        <div class="service_left_sub">质量保障服务</div>
+                        <div class="service_left_sub">信用账户可用余额：￥{:number_format($money*0.6,2,'.','')}</div>
+                        <div class="service_left_sub bor_no">现金账户可用余额：￥{$money|number_format=###,2,'.',''}<a href="#" class="Pay_bzj" data-toggle="modal" data-target="#payment" >缴纳保证金</a></div>
+                    </div>
+                    <div class="service_credit_right">
+                        <p>信用账户金额，将作为对业主的先行赔付金</p>
+                        <p>信用账户额度为您缴纳的质量保证金的60%，</p>
+                        <p>现金账户可用余额≥1000元时才可开通质量保障服务</p>
+                        <p>信用账户余额将会在个人信息详情页面展示</p>
+                    </div>
+                </div>
+                <if condition="empty($total)">
+                    <div class="service_insurance">
+                        <div class="service_insurance_box">
+                            <div class="service_insu_left">
+                                <span>加入派工网质量保障服务将享有：</span>
+                            </div>
+                            <div class="service_insu_right">
+                                <p>1、派工网赠送的最高￥100000万元的施工意外险，此保险将在您加入此服务后10个工作日内生效。</p>
+                                <p>2、派工网提供的技能培训，技能鉴定及技能证书的办理。</p>
+                            </div>
+                        </div>
+                        <div class="service_insurance_box">
+                            <p>您需要签署《派工网质量保障服务协议》才能开通此服务。</p>
+                            <span>您可以通过缴纳提交保证金，为消费者提供更多特色服务，获得更多推广机会，成为消费者信奈的师傅，提高自身竞争力。</span>
+                        </div>
+                    </div>
+                    <div class="service_clause">
+                        <input type="checkbox" name="xieyi" id="xieyi" > <label for="xieyi">我已阅读并接受</label> <a href="#">《派工网质量保障服务协议》</a>
+                        <input type="button" class="clause_btn" value="立即加入并提交质量保障金" onclick="return check()">
+                    </div>
+                </if>
+                <if condition="!empty($total)">
+                    <div id="user_table">
+                        <table class="table">
+                            <tr>
+                                <th>原因</th>
+                                <th>来源</th>
+                                <th>去向/事件</th>
+                                <th>金额</th>
+                                <th>时间</th>
+                                <th>状态</th>
+                            </tr>
+                            <foreach name="payLogList" item="info">
+                                <tr>
+                                    <td>缴纳保证金</td>
+                                    <td>{$info.pay_name}</td>
+                                    <td>质量保证金</td>
+                                    <td><small>{$info.money}</small></td>
+                                    <td>{$info.log_time}</td>
+                                    <td><if condition="$info.pay_status eq 0">未付款{$info.pay_button}<else />已付款</if></td>
+                                </tr>                                
+                            </foreach>
+                        </table>
+                        <div class="page">{$pageShow}</div>
+                    </div>
+                </if>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">缴纳保障金</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="pay_form" action="{:U('Pay/submit')}" method="post">
+                        <p class="mar_bottom">当前质保金额度：{$money|number_format=###,0,'.',''}元</p>
+                        <p>缴纳质保金额度：<label><input type="radio" name="money_type" value="1" checked>1000元</label></p>
+                        <p class="pad_left mar_bottom"><label><input type="radio" name="money_type" value="2">自定义金额：<input type="text" id="money" name="money" class="in_money" value="1000">元</label></p>
+                        <p class="mar_bottom">缴纳金额：<span id="total">1000</span>元</p>
+                        <div class="pay_tit">选择付款方式</div>
+                        <div class="pay_mode">
+                            <foreach name="payList" item="info">
+                                <label class="radio-inline">
+                                    <input type="radio" name="pay_id" value="{$info.pay_id}" style="margin-top: 11px;" <if condition="$key eq 0">checked="checked"</if> /> <img src="images/icon/{$info.pay_code}.png">
+                                </label>                    
+                            </foreach>
+                        </div>
+                        <input type="hidden" name="type" value="margin" />
+                        <button type="submit" class="pay_btn">去付款</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="User:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="__STATICS__/js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+    <script>
+                            function check() {
+                                if (!document.getElementById("xieyi").checked) {
+                                    alert("你必须同意协议");
+                                    return false
+                                }
+                                $('#payment').modal();
+                            }
+                            $("#pay_form input[name='money_type']").click(function () {
+                                var value = $(this).val();
+                                if (value == 1) {
+                                    $("#total").html(1000);
+                                } else {
+                                    $("#total").html($('#money').val());
+                                }//
+                            });
+                            $('#money').blur(function () {
+                                var value = $("#pay_form input[name='money_type']:checked").val();
+                                var money = parseInt($('#money').val()) || 0;//(parseInt($('#money').val()/100) || 0) * 100;
+                                $('#money').val(money);
+                                if (value == 1) {
+                                    $("#total").html(1000);
+                                } else {
+                                    $("#total").html(money);
+                                }
+                            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<div class="user_left">
+    <div class="left_tit">用户管理</div>
+    <ul>
+        <li class="active"><a href="{:U('User/profile')}">修改资料</a></li>
+        <li><a href="{:U('User/ask')}">我的问答</a></li>
+        <li><a href="{:U('User/diary')}">装修日记</a></li>
+        <li><a href="{:U('User/follow')}">我的收藏</a></li>
+        <li><a href="{:U('User/requirement')}">我的需求</a></li>
+        <li><a href="{:U('User/gold')}">我的金币</a></li>
+    </ul>
+    <if condition="$userInfo['user_type'] eq 1">
+    <div class="left_tit">技工管理</div>
+    <ul>
+        <li><a href="{:U('User/workinfo')}">工人信息</a></li>
+        <li><a href="{:U('User/service')}">客户服务</a></li>
+        <li><a href="{:U('User/order')}">订单管理</a></li>
+        <li><a href="{:U('User/cases')}">案例管理</a></li>
+        <li><a href="{:U('User/build')}">在建工地</a></li>
+    </ul>
+    </if>
+</div>

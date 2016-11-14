@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{$pageHeadInfo.title}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  	<include file="User:header" />
+  	<div class="container">
+    	<!--左侧文件加载处-->
+		<include file="User:left" />
+        <!--左侧文件加载处-->
+    	<div class="sub_content">
+        	<div class="user_sub_tit">在建工地<a href="{:U('User/build_add')}">添加工地</a></div>
+            <div id="user_table">
+              <table class="table">
+                  <tr>
+                     <th>标题</th>					 <th>小区</th>
+                     <th>单元</th>
+                      <th>审核</th>
+                      <th>创建时间</th>
+                      <th>操作</th>
+                  </tr>
+                <foreach name="list"  item="value" >                 
+                  <tr>
+                      <td>{$value['title']}</td>					<td>{$value['loupan_name']}</td>
+                     <td>{$value['unit']}</td>
+                      <td><if condition="$value['status'] eq 0">未审核<else/>审核通过</if></td>
+                      <td>{$value['add_time']|local_date='Y-m-d H:i:s',###}</td>
+                      <td>						<if condition="$value['status'] eq 1">                      						<a href="{:U('User/build_made',array('id'=>$value['id'],'region_id'=>$value['region_id']))}" class="btn_a">工地跟进</a>						</if>
+                        <a href="{:U('User/build_edit',array('id'=>$value['id'],'region_id'=>$value['region_id']))}" class="btn_a">修改</a>
+                        <a href="#" class="btn_a" onClick="del_article({$value['id']});">删除</a>
+                      </td>
+                  </tr>
+               </foreach>
+              </table>
+          </div>
+        </div>
+        <div class="page">{$pageShow}</div>
+    </div>
+  	 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/showdate.js"></script>
+    <script src="./js/areaChange.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+    <script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+  </body>
+ <script type="text/javascript"> 
+var countdown=60; 
+function settime(obj) { 
+    if (countdown == 0) { 
+        obj.removeAttribute("disabled");    
+        obj.value="免费获取验证码"; 
+        countdown = 60; 
+        return;
+    } else { 
+        obj.setAttribute("disabled", true); 
+        obj.value="重新发送(" + countdown + ")"; 
+        countdown--; 
+    } 
+setTimeout(function() { 
+    settime(obj) }
+    ,1000) 
+}
+function del_article(id)
+
+{
+  
+    if(confirm("确认删除此条数据吗？")){
+
+        var post_url = '{:U('User/build_del')}';
+
+        var data = {};
+
+        data.id = id;
+
+        $.post(post_url, data,
+
+          function(result) {
+
+            if(result== 'ok'){
+
+            	window.location.reload();
+
+            }else{
+ 
+                alert('删除失败');
+            }
+
+        },'json');
+
+    }            
+
+}
+
+</script>
+</html>

@@ -1,0 +1,51 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">支付方式列表</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>标识</th>
+                    <th>支付方式名称</th>
+                    <th>状态</th>
+                    <th>排序</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="payList" item="payInfo" >
+                <tr>
+                    <th scope="row">#<input type="hidden" value="{$payInfo['pay_id']}"></th>
+                    <td>{$payInfo['pay_code']}</td>
+                    <td>{$payInfo['pay_name']}</td>
+                    <td><if condition="$payInfo['enabled'] eq 1">启用<else />禁用</if></td>
+                <td>{$payInfo['pay_order']}</td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="{:U('Payment/edit',array('pay_id'=>$payInfo['pay_id']))}">编辑</a>
+                </td>
+                </tr>
+            </foreach>
+
+            <foreach name="needInstallPayList" item="payInfo" >
+                <tr>
+                    <th scope="row">#</th>
+                    <td>{$payInfo['pay_code']}</td>
+                    <td>{$payInfo['pay_name']}</td>
+                    <td></td>
+                    <td></td>
+                <td>
+                    <a class="btn btn-default btn-sm" href="{:U('Payment/install',array('pay_code'=>$payInfo['pay_code']))}">安装</a>
+                </td>
+                </tr>
+            </foreach>            
+            
+            </tbody>
+        </table>
+</block>
+<block name="css-style">
+
+</block>
+<block name="js-input">
+    <script type="text/javascript">
+    </script>
+</block>

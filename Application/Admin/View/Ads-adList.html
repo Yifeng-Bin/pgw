@@ -1,0 +1,248 @@
+<extend name="Public/base" />
+<block name="main">
+
+        <h1 class="page-header">广告列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_ad(0, '{:U('Ads/add')}')">增加广告</button>
+        <a class="btn btn-default btn-sm" href="{:U('Ads/index')}")>返回广告列表</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>广告名称</th>
+                    <th>广告链接</th>
+                    <th>广告图片</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>状态</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="adList" item="adInfo" >
+                <tr>
+                    <td scope="row">#<input type="hidden" value="{$adInfo['ad_id']}"></td>
+                    <td>{$adInfo['ad_name']}</td>
+                    <td>{$adInfo['ad_link']}</td>
+                    <td>{$adInfo['ad_image']}</td>
+                    <td>{$adInfo['start_time']}</td>
+                    <td>{$adInfo['end_time']}</td>
+                <td><if condition="$adInfo['status'] eq 1">启用<else />禁用</if></td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_ad({$adInfo['ad_id']}, '{:U('Ads/edit')}')">编辑</button>
+                    <button class="btn btn-default btn-sm" onClick="del_ad({$adInfo['ad_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('Ads/adList')}" method="get">
+            <input type="hidden" name="position_id"  id="position_id" value="{$position_id}" />
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="adModal" tabindex="-1" role="dialog" aria-labelledby="adModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="adModalLabel">增加/编辑广告信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="ad_name" class="control-label">	广告名称:</label>
+                            <input type="text" class="form-control" id="ad_name" name="ad_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ad_link" class="control-label">	链接:</label>
+                            <input type="text" class="form-control" id="ad_link" name="ad_link">
+                        </div>      
+                        <div class="form-group">
+                            <label for="ad_text" class="control-label">文字:</label>
+                            <input type="text" class="form-control" id="ad_text" name="ad_text">
+                        </div>                          
+                        <div class="form-group">
+                            <label for="ad_image" class="control-label">图片:</label>
+                            <input ype="file" name="ad_image_file" id="ad_image_file" />                       
+                            <input type="text" class="form-control" id="ad_image" name="ad_image">
+                        </div>  
+                        
+                        <div class='form-group'>
+                            <div class='input-group date' id='time_1'>
+                                <input type='text'  id='start_time' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>  
+                        </div> 
+                        <div class='form-group'>
+                            <div class='input-group date' id='time_2'>
+                                <input type='text'  id='end_time' class="form-control" />
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>  
+                        </div>                          
+              
+                        <div class="form-group">
+                            <label class="control-label">规则状态:</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="0">不启用</label>
+                            <label class="checkbox-inline"><input type="radio" name="status" value="1">启用</label>
+                        </div>
+                    </form>
+                    <input type="hidden" id="ad_id" name="ad_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_ad();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+    <link href="__STATICS__/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="__STATICS__/css/uploadify.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script src="__STATICS__/js/moment.min.js"></script>
+    <script src="__STATICS__/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="__STATICS__/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+    $('#ad_image_file').uploadify({
+        'swf'      : '__STATICS__/uploadify/uploadify.swf',
+        'uploader' : "{:U('Public/upload/type/3')}",
+        'buttonText' : '选择图片',
+        'multi'    : false,
+        'successTimeout' : 5,
+        'formData'      : {'ajax' : 1},
+        'onUploadSuccess' : function(file, data, response) {
+            data = jQuery.parseJSON(data);
+            if(data.status == 0)
+            {
+                alert(data.info);
+            }else{
+                var img_path = data.info.url;
+                $('#ad_image').val(img_path);        
+            }
+        }
+    });        
+                $(function () {
+                $('#time_1').datetimepicker({
+                    defaultDate : "",
+                    format : 'YYYY-MM-DD HH:mm:ss',
+                });
+                $('#time_2').datetimepicker({
+                    defaultDate : "",
+                    format : 'YYYY-MM-DD HH:mm:ss',
+                });                
+            });
+        function submit_ad()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.position_id = $('#position_id').val();
+            data.ad_id = $('#ad_id').val();
+            data.ad_name = $('#ad_name').val();
+            data.ad_text = $('#ad_text').val();
+            data.ad_link = $('#ad_link').val();
+            data.ad_image = $('#ad_image').val();
+            data.start_time = $('#start_time').val();
+            data.end_time = $('#end_time').val();
+            data.status = $("input[name='status']:checked").val();      
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_ad(ad_id)
+        {
+            if(confirm("确认删除广告吗？")){
+                var post_url = '{:U('Ads/del')}';
+                var data = {};
+                data.ad_id = ad_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                  },'json');
+            }        
+
+        }
+                                function show_edit_ad(ad_id, url)
+                                {
+                                    $('#ad_name').val('');
+                                    $('#ad_text').val('');
+                                    $('#ad_link').val('');
+                                    $('#ad_image').val('');
+                                    $("input[name='status'][value='1']").prop("checked",true);
+                                    if (ad_id != 0)
+                                    {
+                                        $.get("{:U('Ads/edit')}", {ad_id : ad_id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $('#ad_id').val(data.info.ad_id);
+                                                        $('#ad_name').val(data.info.ad_name);
+                                                        $('#ad_text').val(data.info.ad_text);
+                                                        $('#ad_link').val(data.info.ad_link);
+                                                        $('#ad_image').val(data.info.ad_image);
+                                                        $('#start_time').val(data.info.start_time);
+                                                        $('#end_time').val(data.info.end_time);
+                                                        $("input[name='status'][value='"+data.info.status+"']").prop("checked",true);
+                                                        $("input[name='uid']").val(data.info.uid);
+                                                        $("input[name='submitUrl']").val(url);
+                                                        $('#adModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='ad_id']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                                $('#adModal').modal();
+                                        }
+                                        return false;
+                                        
+                                }
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

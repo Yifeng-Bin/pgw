@@ -1,0 +1,171 @@
+<extend name="Public/base" />
+<block name="main">
+        <h1 class="page-header">模版位置列表</h1>
+        <button class="btn btn-default btn-sm" onClick="show_edit_position(0, '{:U('TemplateData/addPosition')}')">增加模版位置</button>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#模版位置id</th>
+                    <th>模版位置名称</th>
+                    <th>模版位置描述</th>
+                    <th>模版类型</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+            <tbody>
+            <foreach name="templateDataPositionList" item="positionInfo" >
+                <tr>
+                    <td scope="row">#{$positionInfo['position_id']}<input type="hidden" value="{$positionInfo['position_id']}"></td>
+                    <td>{$positionInfo['position_name']}</td>
+                    <td>{$positionInfo['position_desc']}</td>
+                    <td>{$positionInfo['position_type_desc']}</td>
+                <td>
+                    <button class="btn btn-default btn-sm" onClick="show_edit_position({$positionInfo['position_id']}, '{:U('TemplateData/editPosition')}')">编辑</button>
+                    <a class="btn btn-default btn-sm" href="{:U('TemplateData/dataList/position_id/'.$positionInfo['position_id'])}">管理</a>
+                    <button class="btn btn-default btn-sm" onClick="del_position({$positionInfo['position_id']});">删除</a>
+                </td>
+                </tr>
+            </foreach>
+            </tbody>
+        </table>
+        <div id="page" class="m-pagination"></div>
+        <form id="submitForm" action="{:U('TemplateData/index')}" method="get">
+            <input type="hidden" name="p" value="{$pageInfo.nowPage}" />
+        </form>
+
+    <!-- Modal -->
+    <div class="modal fade" id="positionModal" tabindex="-1" role="dialog" aria-labelledby="positionModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="positionModalLabel">增加/编辑模版位置</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="position_name" class="control-label">模版位置名称:</label>
+                            <input type="text" class="form-control" id="position_name" name="position_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="position_desc" class="control-label">模版位置描述:</label>
+                            <input type="text" class="form-control" id="position_desc" name="position_desc">
+                        </div> 
+                        <div>
+                            <label for="position_type" class="control-label">模版类型选择:</label>
+                            <select id="position_type" name="position_type" class="form-control">
+                                <foreach name="positionTypeDesc" item="typeName">
+                                    <option value="{$key}">{$typeName}</option>
+                                </foreach>
+                            </select>                    
+                        </div>
+                    </form>
+                    <input type="hidden" id="position_id" name="position_id" value='0' />
+                    <input type="hidden" id="submitUrl" name="submitUrl" value='' />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onClick="submit_position();" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</block>
+<block name="css-style">
+    <link href="__STATICS__/css/jquery.pagination.css" rel="stylesheet">
+</block>
+<block name="js-input">
+    <script src="__STATICS__/js/jquery.pagination-1.2.7.min.js"></script>
+    <script type="text/javascript">
+        function submit_position()
+        {
+            var post_url = $("input[name='submitUrl']").val();
+            var data = {};
+            data.position_id = $('#position_id').val();
+            data.position_name = $('#position_name').val();
+            data.position_desc = $('#position_desc').val();      
+            data.position_type = $('#position_type').val(); 
+            $.post(post_url, data,
+              function(result) {
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#submitForm").submit();
+                }
+              },'json');
+        }
+        
+        
+        function del_position(position_id)
+        {
+            if(confirm("确认删除模版数据吗？")){
+                var post_url = '{:U('TemplateData/delPosition')}';
+                var data = {};
+                data.position_id = position_id;
+                $.post(post_url, data,
+                  function(result) {
+                    if(result.status == 0){
+                        alert(result.info);
+                    }else{
+                        $("#submitForm").submit();
+                    }
+                },'json');                
+            }      
+
+        }
+                                function show_edit_position(position_id, url)
+                                {
+                                    $('#position_name').val('');
+                                    $('#position_desc').val('');
+                                    $('#position_type').val('link');
+                                    
+                                    if (position_id != 0)
+                                    {
+                                        $.get("{:U('TemplateData/editPosition')}", {position_id : position_id},
+                                                function(data) {
+                                                    if(data.status == 0)
+                                                    {
+                                                        alert(data.info);
+                                                        return false;
+                                                    }
+                                                    else
+                                                    {
+                                                        $("input[name='position_id']").val(data.info.position_id);
+                                                        $("input[name='position_name']").val(data.info.position_name);
+                                                        $("input[name='position_desc']").val(data.info.position_desc);
+                                                        $("select[name='position_type']").val(data.info.position_type);
+                                                        $("input[name='submitUrl']").val(url);                                                 
+                                                        $('#positionModal').modal();
+                                                    }
+                                                },'json');
+                                        } else
+                                        {
+                                                $("input[name='position_id']").val(0);
+                                                $("input[name='submitUrl']").val(url);
+                                                $('#positionModal').modal();
+                                        }
+                                        
+                                }
+                                
+                                
+                        function chanage_page(page)
+                        {
+                        $("#submitForm").find("input[name='p']").val(page);
+                                $("#submitForm").submit();
+                        }
+                        $("#page").page({
+                        total: {$pageInfo.totalRows},
+                                pageSize: {$pageInfo.listRows},
+                                pageIndex: {$pageInfo['nowPage'] - 1},
+                                showInfo: true,
+                                showJump: true,
+                                loadFirstPage: false,
+                                infoFormat: '第{start} - {end}条，共{total}条',
+                        }).on("pageClicked", function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        }).on('jumpClicked', function (event, pageIndex) {
+                        chanage_page(pageIndex + 1);
+                        });
+    </script>
+</block>

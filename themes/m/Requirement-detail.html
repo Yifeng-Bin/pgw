@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/Requirement-detail.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="requirement_info">
+    	<h5>{$requirementInfo.tender_name|htmlspecialchars}<small><if condition="$requirementInfo['status'] == STATUS_WAIT_BID || $requirementInfo['status'] == STATUS_WAIT_EMPLOY">等待承接<elseif condition="$requirementInfo['status'] eq STATUS_IS_FINISH" />交易完成<else />已被承接</if></small></h5>
+        <p>
+        	<span>需求ID：{$requirementInfo.tender_id}</span>
+        	<span>浏览量：{$requirementInfo.visit_time}</span>
+        	<span>发布者：{$requirementInfo.contacts|htmlspecialchars}</span>
+        </p>
+        <p>发布时间：{$requirementInfo.add_time}</p>
+    </div>
+    <div class="requirement_detail">
+    	<p>服务需求：{$requirementInfo.type_name}</p>
+        <p>项目预算：<if condition="$requirementInfo.budget eq 0">暂无预算报价<else />￥{$requirementInfo.budget|htmlspecialchars}</if></p>
+        <p>接单工人属性：<if condition="$requirementInfo.work_rank eq 1">普通技工<elseif condition="$requirementInfo.work_rank eq 2" />VIP技工<else />不限</if></p>
+        <p>服务地区：{$provinceInfo.region_name} {$cityInfo.region_name} {$regionInfo.region_name} {$requirementInfo.address|htmlspecialchars}</p>
+        <p>备注要求：<if condition="$requirementInfo.remark eq ''">无<else />{$requirementInfo.remark|htmlspecialchars}</if></p> 
+        <p>需求说明文档：
+        <if condition="empty($requirementInfo['files'])">
+            无
+        <else />
+            <foreach name="requirementInfo.files" item="file">
+                <a href="{$file.url}" target="_blank">附件{$key+1}</a>
+            </foreach>
+        </if>
+    </p>
+    </div>
+    <div class="bid">
+    	<div class="bid_tit"><a href="{:U('Requirement/bidderList?id='.$requirementInfo['tender_id'])}">参与竞标的技工(<span>{$bidderList|count}</span>)</a></div>
+    </div>
+    <if condition="$requirementInfo.status eq STATUS_WAIT_BID or $requirementInfo.status eq STATUS_WAIT_EMPLOY">
+    <div class="undertake">
+    	<input type="button" class="bid_btn" name="bid_btn" value="我要承接" data-toggle="modal" data-target="#undertake"/>
+    </div>
+    </if>
+</div>
+    
+<if condition="$requirementInfo.status eq STATUS_WAIT_BID or $requirementInfo.status eq STATUS_WAIT_EMPLOY">
+<!-- Modal -->
+<div class="modal fade" id="undertake" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">我要承接</h4>
+      </div>
+      <div class="modal-body">
+        <p>承接后即可查看业主联系方式</p>
+        
+            <input type="number" required id="requ_price" name="requ_price" class="price" placeholder="请输入您的预估价格（元）， 报价可在后台修改"/>
+        
+      </div>
+      <div class="modal-footer">
+          <input type="hidden" id="tender_id" value="{$requirementInfo.tender_id}" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button  id="submitBtn" type="button" class="btn btn-primary" form="undertake_price">立即承接</button>
+      </div>
+    </div>
+  </div>
+</div>
+</if>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script>
+$(function(){
+        $("#submitBtn").click(function(){
+            var data = {};
+            data.price = $('#requ_price').val();
+            data.tender_id = $("#tender_id").val();
+            $.post("{:U('Requirement/bid')}",data,function(result){
+                if(result.status == 1){
+                    alert(result.info);
+                }
+                else{
+                    alert(result.info);
+                }
+                $('#myRequirement').modal('hide');
+                
+            },'json');
+            return false;
+        });
+});
+        function confirmBidder(tender_id,bidder_id){
+            var data = {};
+            data.tender_id = tender_id;
+            data.bidder_id = bidder_id;
+            $.post("{:U('Requirement/confirmBidder')}",data,function(result){
+                if(result.status == 1){
+                    alert(result.info);
+                    window.location.reload();
+                }
+                else{
+                    alert(result.info);
+                }
+                
+            },'json');
+            return false;            
+        }
+</script>
+</body>
+</html>

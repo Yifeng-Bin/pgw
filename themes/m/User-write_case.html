@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords}">
+<meta name="description" content="{$pageHeadInfo.description}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-write_case.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+	<div class="write_case">
+    	<form action="{:U('User/write_case')}" method="post">
+        <input type="text" name="case_name" class="case_name" placeholder="请输入案例名称" required/>
+        <textarea rows="4" class="case_text" placeholder="请输入案例描述" name="case_add" required></textarea>
+        <div id="img_list"></div>
+        <div id="upload_progress" class="progress" style="display:none">
+          <div id="upload_progress_bar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+        </div>
+        <a href="javascript:void(0);" class="add" id="id_case_image">+</a>
+        <div class="submit">
+        	<input type="submit" value="发表" class="sub_case" />
+        </div>
+        </form>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="__STATICS__/plupload/plupload.full.min.js"></script>
+<script type="text/javascript" src="__STATICS__//plupload/i18n/zh_CN.js"></script> 
+ <script type="text/javascript"> 
+$(function (){
+        var uploader = new plupload.Uploader({
+                runtimes : 'html5,flash,silverlight,html4',
+                browse_button : 'id_case_image', 
+                url : '{:U('User/write_case')}',
+                max_file_size : '1mb',
+                flash_swf_url : '__STATICS__/plupload/Moxie.swf',
+                silverlight_xap_url : '__STATICS__/plupload/Moxie.xap',
+                file_data_name : 'Filedata',
+                multipart_params: {
+                  act : 'upload_attachment',
+                  ajax : '1'
+                },
+                
+                filters: {
+                  mime_types : [ //只允许上传图片
+                    { title : "图片文件", extensions : "jpg,bmp,png" }, 
+                  ],
+                  max_file_size : '1mb', //最大只能上传400kb的文件
+                  prevent_duplicates : false //不允许选取重复文件
+                },
+                init: {
+                    FilesAdded: function(up,files){
+                        uploader.start();
+                    },
+                    FileUploaded: function(up,file,result){
+                        //layer.closeAll('loading');//关闭加载效果
+                        response = $.parseJSON(result.response);
+                        if(response.status == 1)
+                            $('#img_list').append('<div class="case_content_list alert fade in"><img src="'+response.info.url+'"/><textarea rows="3" name="img_desc[]" class="pic_describe" ></textarea><input name="img_id[]" type="hidden" value="'+response.info.img_id+'"><a class="delete" class="close" data-dismiss="alert" aria-label="Close">删除</a></div>');  
+                        else{
+                            alert('服务器未响应');
+                        }
+                        //show_upload($.parseJSON(result.response));//成功回调函数
+                    }, 
+                    UploadComplete: function(up,files){
+                    //layer.closeAll('loading');//关闭加载效果
+                    }, 
+                    Error: function(up,err){
+                    //layer.closeAll('loading');//关闭加载效果
+                    //layer.msg(err.message);
+                        //alert(err.message);
+                    }                   
+                },
+        });
+        uploader.init();
+});
+</script>
+</body>
+</html>

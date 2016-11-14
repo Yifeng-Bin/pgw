@@ -1,0 +1,91 @@
+[ 2016-09-30T11:30:10+08:00 ] 110.75.225.253 /payment/notify/type/alipay/method/notify
+INFO: notify
+[ 2016-09-30T11:30:10+08:00 ] 110.75.225.253 /payment/notify/type/alipay/method/notify
+INFO: array (
+  'discount' => '0.00',
+  'payment_type' => '1',
+  'subject' => '支付需求:需要一个项目经理',
+  'trade_no' => '2016093021001004090268606279',
+  'buyer_email' => '15197590603',
+  'gmt_create' => '2016-09-30 11:30:04',
+  'notify_type' => 'trade_status_sync',
+  'quantity' => '1',
+  'out_trade_no' => '62',
+  'seller_id' => '2088611544270613',
+  'notify_time' => '2016-09-30 11:30:10',
+  'trade_status' => 'TRADE_SUCCESS',
+  'is_total_fee_adjust' => 'N',
+  'total_fee' => '1.00',
+  'gmt_payment' => '2016-09-30 11:30:10',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'price' => '1.00',
+  'buyer_id' => '2088902347329098',
+  'notify_id' => '3d873ea2bf64fef9d499ba80ea2e2d0gp2',
+  'use_coupon' => 'N',
+  'sign_type' => 'MD5',
+  'sign' => 'f555fee2b151e1620d3fdcb53ad88f5a',
+)
+[ 2016-09-30T11:30:10+08:00 ] 110.75.225.253 /payment/notify/type/alipay/method/notify
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '62',
+)
+[ 2016-09-30T11:30:10+08:00 ] 110.75.225.253 /payment/notify/type/alipay/method/notify
+INFO: 支付日志信息：array (
+  'log_id' => '62',
+  'out_id' => '82',
+  'stage' => '1',
+  'user_id' => '1209',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '223.152.76.90',
+  'pay_status' => '0',
+  'pay_time' => '0',
+  'log_time' => '1475177170',
+  'log_remark' => '',
+)
+[ 2016-09-30T11:30:22+08:00 ] 223.152.76.90 /payment/notify/type/alipay/method/return?buyer_email=15197590603&buyer_id=2088902347329098&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWe2w%252BPTru1pX09vIqUIAxGl454SPT4Qv1qnth%252BkHK3yg4%252B0P6&notify_time=2016-09-30+11%3A30%3A19&notify_type=trade_status_sync&out_trade_no=62&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86&total_fee=1.00&trade_no=2016093021001004090268606279&trade_status=TRADE_SUCCESS&sign=638375346a13b77458d4b7b52ffaa329&sign_type=MD5
+INFO: return
+[ 2016-09-30T11:30:22+08:00 ] 223.152.76.90 /payment/notify/type/alipay/method/return?buyer_email=15197590603&buyer_id=2088902347329098&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWe2w%252BPTru1pX09vIqUIAxGl454SPT4Qv1qnth%252BkHK3yg4%252B0P6&notify_time=2016-09-30+11%3A30%3A19&notify_type=trade_status_sync&out_trade_no=62&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86&total_fee=1.00&trade_no=2016093021001004090268606279&trade_status=TRADE_SUCCESS&sign=638375346a13b77458d4b7b52ffaa329&sign_type=MD5
+INFO: array (
+  'buyer_email' => '15197590603',
+  'buyer_id' => '2088902347329098',
+  'exterface' => 'create_direct_pay_by_user',
+  'is_success' => 'T',
+  'notify_id' => 'RqPnCoPT3K9%2Fvwbh3InWe2w%2BPTru1pX09vIqUIAxGl454SPT4Qv1qnth%2BkHK3yg4%2B0P6',
+  'notify_time' => '2016-09-30 11:30:19',
+  'notify_type' => 'trade_status_sync',
+  'out_trade_no' => '62',
+  'payment_type' => '1',
+  'seller_email' => 'hnzxwbb@qq.com',
+  'seller_id' => '2088611544270613',
+  'subject' => '支付需求:需要一个项目经理',
+  'total_fee' => '1.00',
+  'trade_no' => '2016093021001004090268606279',
+  'trade_status' => 'TRADE_SUCCESS',
+  'sign' => '638375346a13b77458d4b7b52ffaa329',
+  'sign_type' => 'MD5',
+)
+[ 2016-09-30T11:30:22+08:00 ] 223.152.76.90 /payment/notify/type/alipay/method/return?buyer_email=15197590603&buyer_id=2088902347329098&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWe2w%252BPTru1pX09vIqUIAxGl454SPT4Qv1qnth%252BkHK3yg4%252B0P6&notify_time=2016-09-30+11%3A30%3A19&notify_type=trade_status_sync&out_trade_no=62&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86&total_fee=1.00&trade_no=2016093021001004090268606279&trade_status=TRADE_SUCCESS&sign=638375346a13b77458d4b7b52ffaa329&sign_type=MD5
+INFO: 订单信息：array (
+  'status' => true,
+  'money' => '1.00',
+  'out_trade_no' => '62',
+)
+[ 2016-09-30T11:30:22+08:00 ] 223.152.76.90 /payment/notify/type/alipay/method/return?buyer_email=15197590603&buyer_id=2088902347329098&exterface=create_direct_pay_by_user&is_success=T&notify_id=RqPnCoPT3K9%252Fvwbh3InWe2w%252BPTru1pX09vIqUIAxGl454SPT4Qv1qnth%252BkHK3yg4%252B0P6&notify_time=2016-09-30+11%3A30%3A19&notify_type=trade_status_sync&out_trade_no=62&payment_type=1&seller_email=hnzxwbb%40qq.com&seller_id=2088611544270613&subject=%E6%94%AF%E4%BB%98%E9%9C%80%E6%B1%82%3A%E9%9C%80%E8%A6%81%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%BB%8F%E7%90%86&total_fee=1.00&trade_no=2016093021001004090268606279&trade_status=TRADE_SUCCESS&sign=638375346a13b77458d4b7b52ffaa329&sign_type=MD5
+INFO: 支付日志信息：array (
+  'log_id' => '62',
+  'out_id' => '82',
+  'stage' => '1',
+  'user_id' => '1209',
+  'pay_id' => '1',
+  'log_type' => '3',
+  'money' => '1.00',
+  'log_ip' => '223.152.76.90',
+  'pay_status' => '1',
+  'pay_time' => '1475177410',
+  'log_time' => '1475177170',
+  'log_remark' => '',
+)

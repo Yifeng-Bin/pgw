@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>{$pageHeadInfo.title|htmlspecialchars}</title>
+<meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+<meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+<!-- Bootstrap -->
+<link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="./css/style.css?v=20160720002" type="text/css" rel="stylesheet">
+<link href="./css/User-profile.css" type="text/css" rel="stylesheet">
+
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<include file="Common:header" />
+<div class="content">
+<div style="float:right">
+	<a href="{:U('User/profiled')}"><h4>编辑</h4></a>
+	</div>
+	<div class="user_profole">
+    	<div class="user_head">
+            <span>头像</span>
+            <img src="<if condition="empty($userInfo['avatar'])">./images/user/head/head.png<else />{$userInfo['avatar']}</if>">
+        </div>
+        <div class="user_list">
+        	<p>用户名<span>{$userInfo.user_name|htmlspecialchars}</span></p>
+        </div>
+        <div class="user_list">
+        	<p>姓名<span>{$userInfo.real_name|htmlspecialchars}</span></p>
+        </div>
+        <div class="user_list">
+        	<p>手机号<span>{$userInfo.mobile|htmlspecialchars}</span></p>
+        </div>
+        <div class="user_list">
+            <p>性别<span><if condition="$userInfo.gender eq 1">男<elseif condition="$userInfo.gender eq 2" />女<else />保密</if></span></p>
+        </div>
+        <div class="user_list">
+        	<p>地区<span>{$regionInfo.region_name}</span><span>{$cityInfo.region_name}</span></p>
+        </div>
+        <div class="user_list">
+        	<p>修改密码</p>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="./jquery/jquery-1.12.3.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

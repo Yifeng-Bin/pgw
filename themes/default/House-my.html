@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="././images/photoDetail/favicon.ico" />
+    <title>装修套餐</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords}">
+    <meta name="description" content="{$pageHeadInfo.description}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20161027001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> > <a href="/house/my">装修套餐</a>
+            </div>
+        </div>
+    </div>
+	
+    <div id="teach_list">
+    	<div class="container">
+            <div class="row">             
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="row">
+                    	<div class="col-lg-12 col-md-12 col-sm-12">
+                        	
+                            <div class="screen">
+                                    <div class="screen_inline">
+                                        <div class="screen_inline_left">类型</div>
+                                        <div class="screen_inline_right">
+                                            <ul>
+                                                <li><a href="javascript:;" js-select="xq"  class="on">小区套餐</a></li>
+												 <li><a href="javascript:;" js-select="mj">面积套餐</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+              						<div class="screen_inline" js-select-box="xq">
+                                        <div class="screen_inline_left">区域</div>
+                                        <div class="screen_inline_right">
+                                            <ul>
+												<li><a href="{:U('House/my')}">不限</a></li>
+                                                <li><a href="{:U('House/my?x=1')}">武广新区</a></li>
+												<li><a href="{:U('House/my?x=2')}">五岭版块</a></li>
+												<li><a href="{:U('House/my?x=3')}">龙泉版块</a></li>
+												<li><a href="{:U('House/my?x=4')}">东塔版块</a></li>
+												<li><a href="{:U('House/my?x=5')}">骆仙版块</a></li>
+												<li><a href="{:U('House/my?x=6')}">梨树山版块</a></li>
+												<li><a href="{:U('House/my?x=7')}">爱莲湖片区</a></li>
+												<li><a href="{:U('House/my?x=8')}">王仙岭版块</a></li>
+												<li><a href="{:U('House/my?x=9')}">南塔版块</a></li>
+												<li><a href="{:U('House/my?x=10')}">苏仙岭版块</a></li>
+												<li><a href="{:U('House/my?x=11')}">北湖版块</a></li>
+												<li><a href="{:U('House/my?x=12')}">下湄桥版块</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+									<div class="screen_inline" js-select-box="mj">
+										<div class="screen_inline_left" >级别</div>
+										<div class="screen_inline_right" >
+											<ul>
+												<li><a href="javascript:;" onclick="mianji(11)" class="on" data="1">一级套餐</a></li>
+												<li><a href="javascript:;" onclick="mianji(22)" data="2">二级套餐</a></li>
+												<li><a href="javascript:;" onclick="mianji(33)" data="3">三级套餐</a></li>
+												<li><a href="javascript:;" onclick="mianji(44)" data="4">高级套餐</a></li>
+												<li><a href="javascript:;" onclick="mianji(55)" data="5">顶级套餐</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="screen_inline" js-select-box="mj">
+                                        <div class="screen_inline_left">面积</div>
+                                        <div class="screen_inline_right">
+                                            <ul>
+                                                <li><a href="javascript:;" onclick="mianji(1)" data="1">30-50m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(2)" data="2">50-70m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(3)" data="3">70-90m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(4)" data="4">90-120m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(5)" data="5">120-150m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(6)" data="6">150-180m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(7)" data="7">180-210m²</a></li>
+												<li><a href="javascript:;" onclick="mianji(8)" data="8">210以上</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+									
+                            </div>
+                            
+                        </div>
+                    </div>
+                	<!--小区套餐开始-->
+                    <div class="house_content" js-select-box="xq">
+						 <foreach name="loupan_list" item="info" >
+                    	<div class="house_box">
+                        	<div class="hose_box_left">
+                            	<img src="{$info['thumb']}">
+                            </div>
+                            <div class="house_box_right">
+                            	<h5><a href="{:U('House/detail?id='.$info['loupan_id'])}?type=1" >{$info['loupan_name']}</a><small><span>{$info['visit_time']}</span>人查看了该楼盘装修特餐</small></h5>
+                                <p><img src="images/house/price.png">施工均价：{$info['loupan_price']}元</p>
+                                <p><img src="images/house/add.png">地址：{$info['loupan_address']|htmlspecialchars}</p>
+                                
+								<a href="{:U('House/detail?id='.$info['loupan_id'])}?type=1">成功案例</a>
+								<a href="{:U('House/detail?id='.$info['loupan_id'])}?type=2">在建工程</a>
+								<a href="{:U('House/detail?id='.$info['loupan_id'])}?type=3">小区活动</a>
+                                <a href="{:U('House/detail?id='.$info['loupan_id'])}?type=1" class="a_btn">查看套餐</a>
+                            </div>
+                        </div>
+						 </foreach>
+						
+                    </div> 
+					<!--小区套餐结束-->
+					<!--活动列表开始-->
+                    <ul class="activityInfo" js-select-box="mj">
+						
+					</ul>
+					<!--活动列表结束-->
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div class="teach_list_count">
+                        <div class="teach_list_right_tit">
+                            <span>装修工具</span>
+                        </div>
+                        <div class="teach_count">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+								<a href="{:U('index/tuliao')}">
+                                    <img src="./images/banner/count_pic_01.png" width="100%"></a>
+                                    <p><a href="{:U('index/tuliao')}">涂料计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+								<a href="{:U('index/diban')}">
+                                    <img src="./images/banner/count_pic_02.png" width="100%">
+									</a>
+                                    <p><a href="{:U('index/diban')}">地板计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_bottom">
+								<a href="{:U('index/bizhi')}">
+                                    <img src="./images/banner/count_pic_03.png" width="100%">
+									</a>
+                                    <p><a href="{:U('index/bizhi')}">壁纸计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+								<a href="{:U('index/qiangzhuan')}">
+                                    <img src="./images/banner/count_pic_04.png" width="100%"></a>
+                                    <p><a href="{:U('index/qiangzhuan')}">墙砖计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+								<a href="{:U('index/chuanglian')}">
+                                    <img src="./images/banner/count_pic_05.png" width="100%">
+									</a>
+                                    <p><a href="{:U('index/chuanglian')}">窗帘计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+								<a href="{:U('index/dizhuan')}">
+                                    <img src="./images/banner/count_pic_06.png" width="100%">
+									</a>
+                                    <p><a href="{:U('index/dizhuan')}">地砖计算器</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="teach_list_news">
+                    	<div class="teach_list_right_tit">
+                            <span>最新文章</span>
+                        </div>
+                        <div class="teach_news_content">
+                        	<ul>
+							 <foreach name="addtime" item="info" >
+                            	<li><a href="{:U('Teach/detail?id='.$info['article_id'])}">{$info['article_name']}</a></li>
+							 </foreach>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="teach_list_news">
+                    	<div class="teach_list_right_tit">
+                            <span>最热文章</span>
+                        </div>
+                        <div class="teach_news_content">
+                        	<ul>
+								 <foreach name="visittime" item="info" >
+                            	<li><a href="{:U('Teach/detail?id='.$info['article_id'])}">{$info['article_name']}</a></li>
+								 </foreach>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script>
+	$(function(){
+		$('[js-select]').click(function(){
+			var name=$(this).attr('js-select');
+			$('[js-select-box]').hide();
+			$('[js-select-box="'+name+'"]').show();
+			console.log(name);
+			if(name=='mj'){
+				var url = "/House/mianji";
+				var region = "<?php echo $_COOKIE['region_id']; ?>"; 
+				var data = {region:region};
+				$.post(url,data,function(data){
+					console.log(data); 
+					var len = data.length; 
+					for(var i=0;i<len;i++){ 
+						var end = getLocalTime(data[i]['closing_time']); 
+						var html = "<li><div class='pic'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"'><img src='"+data[i]['path']+"'/></a><div class='text'>活动中&nbsp;"+end+"结束</div></div><div class='title'></div><div class='num'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"' class='btn ljcy'>立即参与</a></div></li>";
+						activityInfo.append(html);
+					}
+				},'json');
+			}
+		})
+		$('[js-select]:eq(0)').click();
+	})
+	
+	function getLocalTime(nS) { 
+		return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)
+	}
+
+	function mianji(obj){ 
+		var activityInfo = $(".activityInfo");
+		activityInfo.find('li').remove();
+		var url = "/House/mianji";
+		var region = "<?php echo $_COOKIE['region_id']; ?>"; 
+		var data = {id:obj,region:region};
+		$.post(url,data,function(data){
+			console.log(data); 
+			var len = data.length; 
+			for(var i=0;i<len;i++){ 
+				var end = getLocalTime(data[i]['closing_time']); 
+				var html = "<li><div class='pic'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"'><img src='"+data[i]['path']+"'/></a><div class='text'>活动中&nbsp;"+end+"结束</div></div><div class='title'></div><div class='num'><a href='{:U('House/activity')}/lid/"+data[i]['loupan_id']+"/id/"+data[i]['tender_id']+"' class='btn ljcy'>立即参与</a></div></li>";
+				activityInfo.append(html);
+			}
+		},'json');
+	}
+	
+</script>
+  </body>
+</html>

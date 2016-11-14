@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20160704001" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  
+    <div class="header_top">
+        	<div class="container">
+            	<div class="row">
+                	<div class="col-lg-3 col-md-3 col-sm-3 text-left">
+                            <if condition="USER_ID eq 0">
+                                <img src="./images/header/login_off.png"> <a href="{:U('User/login')}">登录</a> | <a href="{:U('User/register')}">注册</a>
+                            <else/>
+                                <span><a href="{:U('User/index')}">{$userInfo.user_name|htmlspecialchars}</a></span><a href="{:U('User/logout?code='.session('xss_code'))}"> &nbsp;退出</a>
+                            </if>
+                        </div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 col-lg-offset-3 col-md-offset-3 col-sm-offset-2 text-right"><a href="{:U('Requirement/submit')}">发布需求</a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('User/order')}">我的预约</a></div>
+	<div class="col-lg-1 col-md-1 col-sm-1 text-right"><a href="{:U('House/zhaoshang')}">分站加盟</a></div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right"><img src="./images/header/tel.png"> 服务热线：<span><empty name="tel">{:C('service_phone')}<else/>{$tel.data_text|htmlspecialchars}</empty></span></div>
+                </div>
+            </div>
+        </div>
+        
+        
+    <div class="register_container">
+    	<div class="container">
+        	<div class="reg_content_header"><a href='/'><img src="./images/header/logo.png" height="80"></a></div>
+            <div class="reg_container_content">
+            	<div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                    	<div class="reg_cont_form">
+                            <form action="{:U('User/findpass')}" method="post">
+                                <div class="information">
+                                	<div class="information_content">
+                                        <input type="text" id="mobile" name="mobile" class="form-control inp_reg" placeholder="手机号">
+                                        <div class="test">
+                                        	<input type="text" name="mobilecode" class="form-control inp_test" placeholder="短信验证码">
+                                            <input id='getCodeButton' type="button" class="btn btn_test" value="免费获取验证码" />
+                                        </div>
+                                        <input type="password" name="password"  class="form-control inp_reg" placeholder="密码">
+                                        <input type="password" name="repassword"  class="form-control inp_reg" placeholder="确认密码">
+                                        <button type="submit" class="btn reg_submit">找回密码</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+	<script src="__STATICS__/js/areaChange.js"></script>
+    <script src="./js/main.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript"> 
+$(function (){
+    $("#getCodeButton").click(function(){
+        $(this).attr('disabled',true); 
+        var data = {};
+        data.act = 'getcode';
+        data.mobile = $("#mobile").val();
+        var code=$(this);
+        var time=60;
+        $.post('{:U('User/findpass')}',data,function(result){
+            if(result.status == 1){
+                var t=setInterval(function  () {
+                    time--;
+                    code.attr('disabled',true); 
+                    code.val("重新发送(" + time + ")");
+                    if (time==0) {
+                        clearInterval(t);
+                        code.attr('disabled',false);  
+                        code.val("免费获取验证码"); 
+                    }
+                },1000);                                  
+            }else{
+                code.attr('disabled',false); 
+                alert(result.info);
+            }
+            return false;
+        },'json');
+        return false;
+    }); 
+
+});
+</script>
+  </body>
+</html>

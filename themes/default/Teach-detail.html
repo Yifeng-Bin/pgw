@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="{$baseurl}favicon.ico" />
+    <title>{$pageHeadInfo.title|htmlspecialchars}</title>
+    <meta name="keywords" content="{$pageHeadInfo.keywords|htmlspecialchars}">
+    <meta name="description" content="{$pageHeadInfo.description|htmlspecialchars}">
+
+    <!-- Bootstrap -->
+    <link href="./bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="./css/style.css?v=20161021005" type="text/css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="__STATICS__/js/html5shiv.min.js"></script>
+            <script src="__STATICS__/js/respond.min.js"></script>        
+            <link href="__STATICS__/js/respond-proxy.html" id="respond-proxy" rel="respond-proxy" />
+            <link href="{$baseurl}cross-domain/respond.proxy.gif" id="respond-redirect" rel="respond-redirect" />
+            <script src="{$baseurl}cross-domain/respond.proxy.js"></script>        
+        <![endif]-->
+  </head>
+  <body>
+  <include file="Common:header" />
+  	<div class="sub_location">
+    	<div class="container">
+        	<div class="location_tit">
+            	您的位置： <a href="{$baseurl}">派工网</a> 
+                <foreach name="catInfoArr" item="info">
+                > <if condition="empty($info['cat_url'])">{$info.cat_name}<else /><a href="{$info['cat_url']}">{$info.cat_name}</a></if>
+                </foreach>
+                
+            </div>
+        </div>
+    </div>
+	
+    <div id="teach_detail">
+    	<div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                	<div class="teach_detail_content">
+                    	<div class="detail_content_article">
+                        	<h4>{$teachInfo['article_name']|htmlspecialchars}</h4>
+                            <div class="detail_share">
+                            	<div class="detail_share_left"><span>{$teachInfo['visit_time']}</span>人已浏览</div>
+                                <div class="tetail_share_mid">时间 : {$teachInfo['add_time']}</div>
+		<div class="tetail_shaer_guanzhu"><a id="add_follow_content" href="javascript:void(0)" data-id="{$teachInfo['article_id']}" class="guanzhu">关注</a></div>
+                                <div class="tetail_share_right">
+                                    <!-- JiaThis Button BEGIN -->
+                                    <div class="jiathis_style_24x24">
+                                        <a class="jiathis_button_qzone"></a>
+                                        <a class="jiathis_button_tsina"></a>
+                                        <a class="jiathis_button_tqq"></a>
+                                        <a class="jiathis_button_weixin"></a>
+                                        <a class="jiathis_button_renren"></a>
+                                        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                    </div>
+                                    <!-- JiaThis Button END -->
+                                    <div class="share_text">分享：</div>
+                                </div>
+                            </div>
+                            <div class="detail_lead">导语：{$teachInfo['article_brief']|htmlspecialchars}
+                            </div>
+                            <div class="detail_text">
+                            	{$teachInfo['article_desc']}
+                            </div>
+
+                        </div>
+                        {:W('Teach/recommendArticle')}
+                        <div class="detail_content_comment">
+                        	<h4>评论</h4>
+                            	<textarea class="form-control" id="comment_content" name="comment_content" rows="3"></textarea>
+                                <div class="comment_verify">  
+                                    <div class="comment_verify_pic">
+                                    	<span>验证码：</span>
+                                        <input id="verify_code" name="verify_code" type="text" class="text">
+                                        <img id="verify_img" src="{:U('Public/verify?key=comment&t='.gmtime())}" alt="captcha" style="vertical-align: middle;cursor: pointer;" width="124" height="52" onclick="this.src = '{:U("Public/verify?key=comment")}?t=' + (new Date()).getTime();" />
+                                        <input type="hidden" id="teach_id" value="{$teachInfo['article_id']}">
+                                    	<button id="submit_comment" type="submit" class="btn btn_teach">发表评论</button>
+                                    </div>
+                                </div>
+
+                            <div class="comment_list">
+                            	<h4>最新评论</h4>
+                                <empty name="teachInfo.comment_list">
+                                    暂无评论
+                                </empty>
+                                <foreach name="teachInfo.comment_list" item="commentInfo">
+                                    <div class="comment_list_box">
+                                        <div class="media">
+                                          <div class="media-left">
+                                            <a href="#">
+                                              <img class="media-object img-circle" src="{$commentInfo.avatar}">
+                                            </a>
+                                          </div>
+                                          <div class="media-body">
+                                            <span>{$commentInfo.user_name|htmlspecialchars}</span><small>{$commentInfo.add_time|local_date="Y-m-d",###}</small>
+                                            <p>{$commentInfo.content|htmlspecialchars}</p>
+                                          </div>
+                                        </div>
+                                    </div>                                    
+                                </foreach>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3">
+                	<div class="teach_list_count">
+                        <div class="teach_list_right_tit">
+                            <span>装修工具</span>
+                        </div>
+                        <div class="teach_count">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                    <img src="./images/banner/count_pic_01.png" width="100%">
+                                    <p><a href="#">涂料计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right bor_bottom">
+                                    <img src="./images/banner/count_pic_02.png" width="100%">
+                                    <p><a href="#">地板计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_bottom">
+                                    <img src="./images/banner/count_pic_03.png" width="100%">
+                                    <p><a href="#">壁纸计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                    <img src="./images/banner/count_pic_04.png" width="100%">
+                                    <p><a href="#">墙砖计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 bor_right">
+                                    <img src="./images/banner/count_pic_05.png" width="100%">
+                                    <p><a href="#">窗帘计算器</a></p>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <img src="./images/banner/count_pic_06.png" width="100%">
+                                    <p><a href="#">地砖计算器</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {:W('Teach/newArticle')}
+                    {:W('Teach/hotArticle')}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <include file="Common:footer" />
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="./jquery/jquery-1.12.3.min.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="http://v3.jiathis.com/code/jia.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="./bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $("#submit_comment").click(function(){
+            var url = "{:U('Article/comment')}";
+            var data = {};
+            $("#this").attr('disabled',"true");
+            data.id = $("#teach_id").val();
+            data.verify_code = $("#verify_code").val();
+            data.comment_content = $("#comment_content").val();
+            $.post(url,data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    $("#comment_content").val('');
+                    alert(result.info);
+                }
+            },'json');
+            $("#verify_img").click();
+            $("#this").attr('disabled',"false");
+        });
+        
+        $("#add_follow_content").click(function(){
+            var data = {};
+            data.act = 'add';
+            data.id = $(this).attr('data-id');
+            var that = $(this);
+            $.post("{:U('Article/follow')}",data,function(result){
+                if(result.status == 0){
+                    alert(result.info);
+                }else{
+                    that.html("已关注");
+                    that.unbind("click"); 
+                }
+            },'json');            
+        });             
+    </script>
+  </body>
+</html>
